@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cls2l048sueax"]
+
+[ext_resource type="PackedScene" uid="uid://cf46oi1m01fsh" path="res://scenes/player_model.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cncmko6oqi8qx" path="res://scenes/player.gd" id="1_g2els"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cggpe"]
+albedo_color = Color(0.235969, 0.142058, 0.0382288, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
+material = SubResource("StandardMaterial3D_cggpe")
+radius = 0.05
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr7j6"]
+transparency = 1
+albedo_color = Color(0.750595, 0.00284819, 0.983591, 0.482353)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g2els"]
+material = SubResource("StandardMaterial3D_fr7j6")
+top_radius = 0.05
+bottom_radius = 0.6
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_model", "look_pivot")]
+script = ExtResource("1_g2els")
+player_model = NodePath("PlayerModel")
+look_pivot = NodePath("LookPivot")
+
+[node name="PlayerModel" parent="." instance=ExtResource("1_3vyb7")]
+
+[node name="LookPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="LookPivot"]
+current = true
+
+[node name="WandDummy" type="MeshInstance3D" parent="LookPivot"]
+transform = Transform3D(1.85189e-08, -0.423662, 0.90582, -1, -4.37114e-08, 0, 3.95947e-08, -0.90582, -0.423662, 0.267516, -0.34309, -0.368771)
+mesh = SubResource("CapsuleMesh_g2els")
+
+[node name="HatDummy" type="MeshInstance3D" parent="LookPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47642, 0)
+mesh = SubResource("CylinderMesh_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_g2els")
