@@ -1,7 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cls2l048sueax"]
+[gd_scene load_steps=9 format=3 uid="uid://cls2l048sueax"]
 
-[ext_resource type="PackedScene" uid="uid://cf46oi1m01fsh" path="res://scenes/player_model.tscn" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cncmko6oqi8qx" path="res://scenes/player.gd" id="1_g2els"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr7j6"]
+transparency = 1
+albedo_color = Color(0.750595, 0.00284819, 0.983591, 0.482353)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+material = SubResource("StandardMaterial3D_fr7j6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cggpe"]
 albedo_color = Color(0.235969, 0.142058, 0.0382288, 1)
@@ -11,24 +17,24 @@ material = SubResource("StandardMaterial3D_cggpe")
 radius = 0.05
 height = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr7j6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
 transparency = 1
 albedo_color = Color(0.750595, 0.00284819, 0.983591, 0.482353)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_g2els"]
-material = SubResource("StandardMaterial3D_fr7j6")
+material = SubResource("StandardMaterial3D_g2els")
 top_radius = 0.05
 bottom_radius = 0.6
 height = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_model", "look_pivot")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot")]
 script = ExtResource("1_g2els")
-player_model = NodePath("PlayerModel")
 look_pivot = NodePath("LookPivot")
 
-[node name="PlayerModel" parent="." instance=ExtResource("1_3vyb7")]
+[node name="Dummy" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_3vyb7")
 
 [node name="LookPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

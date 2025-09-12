@@ -7,7 +7,6 @@ extends CharacterBody3D
 @export_range(0, 90, 1, "radians_as_degrees") var max_up_angle: float = 60
 
 @export_category("internal nodes")
-@export var player_model: PlayerModel
 @export var look_pivot: Node3D
 
 
