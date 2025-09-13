@@ -1,0 +1,107 @@
+[gd_scene load_steps=16 format=3 uid="uid://q2mw83d47dql"]
+
+[ext_resource type="Script" uid="uid://b7js1t7bo3s1w" path="res://scenes/decor/fake_outside.gd" id="1_0ri0p"]
+[ext_resource type="Texture2D" uid="uid://d02wfli40q5cx" path="res://textures/window_paralax/parallax-demon-woods-bg.png" id="1_nfxtc"]
+[ext_resource type="Texture2D" uid="uid://f5n3f27l4pxq" path="res://textures/window_paralax/parallax-demon-woods-far-trees.png" id="2_0ri0p"]
+[ext_resource type="Texture2D" uid="uid://joxn32oypkaf" path="res://textures/window_paralax/parallax-demon-woods-mid-trees.png" id="3_w3kne"]
+[ext_resource type="Texture2D" uid="uid://bi15mclwmsexa" path="res://textures/window_paralax/parallax-demon-woods-close-trees.png" id="4_p6i3v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3f30y"]
+render_priority = -1
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.0851, 0.18653, 0.23, 1)
+uv1_scale = Vector3(6, 2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_m8ejx"]
+top_radius = 22.0
+bottom_radius = 22.0
+height = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdtmi"]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_nfxtc")
+uv1_scale = Vector3(6, 2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mnhbu"]
+top_radius = 20.0
+bottom_radius = 20.0
+height = 5.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3ghw"]
+render_priority = 1
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_0ri0p")
+uv1_scale = Vector3(6, 2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n0lg8"]
+top_radius = 19.0
+bottom_radius = 19.0
+height = 5.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ql3f7"]
+render_priority = 2
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_w3kne")
+uv1_scale = Vector3(6, 2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bgqol"]
+top_radius = 15.0
+bottom_radius = 15.0
+height = 5.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_677gn"]
+render_priority = 3
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("4_p6i3v")
+uv1_scale = Vector3(6, 2, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_13ct7"]
+top_radius = 6.0
+bottom_radius = 6.0
+height = 5.0
+cap_top = false
+cap_bottom = false
+
+[node name="FakeOutside" type="Node3D"]
+script = ExtResource("1_0ri0p")
+
+[node name="BGReal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811405, 0)
+material_override = SubResource("StandardMaterial3D_3f30y")
+mesh = SubResource("CylinderMesh_m8ejx")
+
+[node name="BG" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811405, 0)
+material_override = SubResource("StandardMaterial3D_sdtmi")
+mesh = SubResource("CylinderMesh_mnhbu")
+
+[node name="Far" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+material_override = SubResource("StandardMaterial3D_d3ghw")
+mesh = SubResource("CylinderMesh_n0lg8")
+
+[node name="Mid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+material_override = SubResource("StandardMaterial3D_ql3f7")
+mesh = SubResource("CylinderMesh_bgqol")
+
+[node name="Close" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+material_override = SubResource("StandardMaterial3D_677gn")
+mesh = SubResource("CylinderMesh_13ct7")
