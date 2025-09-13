@@ -5,6 +5,9 @@ extends Interactable
 
 @onready var debug_label_3d: Label3D = $DebugLabel3D
 
+@onready var pickup: AudioStreamPlayer = $pickup
+
+
 func _ready() -> void:
 	debug_label_3d.text = Item.ItemType.keys()[produced_item]
 	set_highlight(false)
@@ -22,6 +25,8 @@ func interact(player: Player) -> void:
 	
 	var new_item: Item = Item.get_scene(produced_item).instantiate() as Item
 	player.set_item(new_item)
+	
+	pickup.play()
 	
 func set_highlight(highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
