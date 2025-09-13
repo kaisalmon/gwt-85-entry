@@ -71,6 +71,8 @@ func set_highlight(highlight_new: bool) -> void:
 func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	if recipe.ingredients.size() == 0:
 		return true
+	if !recipe.ingredients.has(item_type):
+		return true
 	var needed_amount: int = recipe.ingredients[item_type]
 	var current_amount: int = 0
 	if provided_ingredients.has(item_type):
