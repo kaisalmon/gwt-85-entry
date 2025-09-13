@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5xpry7ne6hmn"]
+
+[ext_resource type="Script" uid="uid://b8l4nwlwkqsty" path="res://scenes/interactable/item_interactable.gd" id="1_1b53f"]
+[ext_resource type="AudioStream" uid="uid://bngdomxcvu4m4" path="res://audio/sfx/ui/pickup_01.ogg" id="2_um12a"]
+[ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="3_c5q6a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvxfo"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(4.04298e-06, 0.661018, 0.583787, 0.647059)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vyspm"]
+material = SubResource("StandardMaterial3D_yvxfo")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1hiuq"]
+streams_count = 2
+stream_0/stream = ExtResource("2_um12a")
+stream_1/stream = ExtResource("3_c5q6a")
+
+[node name="ItemInteractable" type="Area3D" node_paths=PackedStringArray("debug_label_3d", "item_source", "pickup_audio_stream_player")]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_1b53f")
+debug_label_3d = NodePath("DebugLabel3D")
+item_source = NodePath("")
+pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_b7q1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_vyspm")
+
+[node name="DebugLabel3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
+billboard = 2
+text = "lorem ipsum"
+
+[node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_1hiuq")
+volume_db = 6.5
+bus = &"SFX"

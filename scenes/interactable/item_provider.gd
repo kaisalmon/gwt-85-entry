@@ -24,7 +24,7 @@ func interact(player: Player) -> void:
 		return
 	
 	var new_item: Item = Item.get_scene(produced_item).instantiate() as Item
-	player.set_item(new_item)
+	player.set_item_in_hand(new_item)
 	
 	pickup.play()
 	

@@ -12,7 +12,8 @@ extends Interactable
 @export var provided_ingredients: Dictionary[Item.ItemType, int]
 
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
-@onready var dropitem: AudioStreamPlayer3D = $dropitem
+@onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
+
 
 func _ready() -> void:
 	#set_highlight(false)
@@ -36,7 +37,7 @@ func interact(player: Player) -> void:
 	var item: Item.ItemType = player.held_item.item_type
 	#print("interacting with ", self.name, ": using item type: ", Item.ItemType.keys()[item])
 	player.remove_current_item()
-	dropitem.play()
+	cauldroninteract_insert.play()
 	
 	if provided_ingredients.has(item):
 		provided_ingredients[item] = provided_ingredients[item] + 1

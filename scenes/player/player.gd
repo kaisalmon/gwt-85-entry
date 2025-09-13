@@ -63,6 +63,10 @@ func _input(event: InputEvent) -> void:
 		look_pivot.rotation.x = clampf(look_pivot.rotation.x, -deg_to_rad(max_down_angle), deg_to_rad(max_up_angle))
 	if event.is_action_pressed("interact"):
 		interaction.interact()
+	if event.is_action_pressed("drop_item"):
+		drop_current_item()
+				
+		
 		
 func can_use_input() -> bool:
 	return true
@@ -79,10 +83,20 @@ func set_magic(new_amount: int) -> void:
 	GameState.ui.set_magic_amount(current_magic)
 
 func remove_current_item() -> void:
+	if held_item == null:
+		return
 	held_item.queue_free()
+	held_item = null
 
-func set_item(new_item: Item) -> void:
+func drop_current_item() -> void:
+	if !is_instance_valid(held_item):
+		return
+	held_item.reparent(get_parent())
+	held_item.set_held(false)
+	held_item = null
+
+func set_item_in_hand(new_item: Item) -> void:
 	item_hold_position.add_child(new_item)
 	new_item.position = Vector3.ZERO
 	held_item = new_item
-	
+	held_item.set_held(true)	
