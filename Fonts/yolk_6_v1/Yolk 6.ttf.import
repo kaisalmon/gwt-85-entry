@@ -1,0 +1,35 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bn4sp1pda3cvc"
+path="res://.godot/imported/Yolk 6.ttf-f398a97cf86bead2864b8973a039d785.fontdata"
+
+[deps]
+
+source_file="res://Fonts/yolk_6_v1/Yolk 6.ttf"
+dest_files=["res://.godot/imported/Yolk 6.ttf-f398a97cf86bead2864b8973a039d785.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
