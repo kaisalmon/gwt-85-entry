@@ -15,3 +15,6 @@ script = ExtResource("1_mf4np")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_mf4np")
 debug_color = Color(0, 0.64, 0.192, 0.870588)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

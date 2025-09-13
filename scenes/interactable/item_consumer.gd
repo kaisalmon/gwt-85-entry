@@ -12,9 +12,12 @@ func can_interact(_player: Player) -> bool:
 	return true
 
 func interact(_player: Player) -> void:
+	print("interacting with ", self.name)
 	#TODO
 	pass
 	
-func highlight() -> void:
+func set_highlight(highlight_new: bool) -> void:
+	print("highlighting for ", self.name, ": ", highlight_new)
 	#TODO
 	pass
+	

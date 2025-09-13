@@ -41,10 +41,12 @@ stream_4/stream = ExtResource("8_gx1jg")
 stream_5/stream = ExtResource("9_ugbui")
 stream_6/stream = ExtResource("10_fcs02")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot", "interaction", "item_hold_position")]
 collision_layer = 3
 script = ExtResource("1_g2els")
 look_pivot = NodePath("LookPivot")
+interaction = NodePath("LookPivot/Interaction")
+item_hold_position = NodePath("LookPivot/FirstPersonModel/ItemHoldPosition")
 
 [node name="ModelDummy" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3vyb7")
@@ -61,13 +63,17 @@ current = true
 [node name="FirstPersonModel" parent="LookPivot" instance=ExtResource("2_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
+[node name="ItemHoldPosition" type="Marker3D" parent="LookPivot/FirstPersonModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.159751, -1.11144)
+
 [node name="HatDummy" type="MeshInstance3D" parent="LookPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47642, 0)
 visible = false
 mesh = SubResource("CylinderMesh_g2els")
 
-[node name="Interaction" parent="LookPivot" instance=ExtResource("3_qhqgy")]
+[node name="Interaction" parent="LookPivot" node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20692)
+player = NodePath("../..")
 
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.465

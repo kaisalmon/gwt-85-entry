@@ -6,6 +6,7 @@
 radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8sqe6"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.915, 1, 0.49, 0.647059)

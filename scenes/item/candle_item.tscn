@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbdv8jmxybrli"]
+
+[ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_b1tlb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vst8"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aocwp"]
+next_pass = SubResource("StandardMaterial3D_4vst8")
+
+[sub_resource type="PrismMesh" id="PrismMesh_4vst8"]
+material = SubResource("StandardMaterial3D_aocwp")
+
+[node name="DummyItem" type="Node3D"]
+script = ExtResource("1_b1tlb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_4vst8")
