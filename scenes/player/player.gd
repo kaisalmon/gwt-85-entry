@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
-@export var move_speed: float = 12.0
+@export var move_speed: float = 8.0
 @export_range(0.0, 0.6, 0.01) var walk_y_variance: float = 0.1
-@export var mouse_sensitivity: float = 0.05
+@export var mouse_sensitivity: float = 0.005
 @export_range(0, 90, 1, "radians_as_degrees") var max_down_angle: float = 60
 @export_range(0, 90, 1, "radians_as_degrees") var max_up_angle: float = 60
 
@@ -16,7 +16,7 @@ var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
 var ismoving: bool = false #check movement for footsteps
-
+var current_magic: int = 0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #we may not want this here
@@ -67,3 +67,11 @@ func can_use_input() -> bool:
 func _on_timer_timeout() -> void:
 	if ismoving:
 		footsteps.play()
+
+
+func change_magic(change_amount: int) -> void:
+	set_magic(current_magic + change_amount)
+
+func set_magic(new_amount: int) -> void:
+	current_magic = max(new_amount, 0)
+	GameState.ui.set_magic_amount(current_magic)

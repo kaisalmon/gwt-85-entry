@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpamrmg3xtr37"]
+
+[ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="1_0s7re"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yygki"]
+albedo_texture = ExtResource("1_0s7re")
+uv1_scale = Vector3(16, 16, 8)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0o8vs"]
+size = Vector2(16, 16)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mrbhi"]
+points = PackedVector3Array(8.12698, 0.126984, 8.12698, -8.12698, -0.126984, -8.12698, -8.12698, 0.126984, -8.12698, 8.12698, -0.126984, -8.12698, -8.12698, -0.126984, 8.12698, -8.12698, 0.126984, 8.12698, 8.12698, 0.126984, -8.12698, 8.12698, -0.126984, 8.12698)
+
+[node name="WoodenFloor" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_yygki")
+mesh = SubResource("PlaneMesh_0o8vs")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_mrbhi")
