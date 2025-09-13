@@ -18,7 +18,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ddgcptw5cn343" path="res://models/shelf_B_large_decorated.obj" id="16_x0u5a"]
 [ext_resource type="ArrayMesh" uid="uid://do5cyup14asns" path="res://models/shelf_B_small_decorated.obj" id="17_b3lkd"]
 [ext_resource type="PackedScene" uid="uid://cxjbvqlgkhxp3" path="res://models/custom/cauldron.gltf" id="18_7mhv5"]
-[ext_resource type="Script" uid="uid://dvccmav60vxp6" path="res://scripts/furniture.gd" id="19_82gjl"]
+[ext_resource type="Script" path="res://scripts/furniture.gd" id="19_82gjl"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="19_jwnwe"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="19_swucj"]
 [ext_resource type="PackedScene" uid="uid://q2mw83d47dql" path="res://scenes/decor/fake_outside.tscn" id="21_66dec"]
@@ -209,7 +209,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
 material_override = SubResource("StandardMaterial3D_8moox")
 mesh = SubResource("PlaneMesh_im1w5")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/MeshInstance3D2"]
 
@@ -220,7 +219,6 @@ shape = SubResource("ConvexPolygonShape3D_6kosg")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 1, 2)
 material_override = SubResource("StandardMaterial3D_8moox")
 mesh = SubResource("PlaneMesh_im1w5")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/MeshInstance3D3"]
 
@@ -231,7 +229,6 @@ shape = SubResource("ConvexPolygonShape3D_6kosg")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 6)
 material_override = SubResource("StandardMaterial3D_8moox")
 mesh = SubResource("PlaneMesh_im1w5")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/MeshInstance3D4"]
 
@@ -242,7 +239,6 @@ shape = SubResource("ConvexPolygonShape3D_6kosg")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, 4.5)
 material_override = SubResource("StandardMaterial3D_21w76")
 mesh = SubResource("PlaneMesh_u41ck")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/MeshInstance3D5"]
 
@@ -254,7 +250,6 @@ transform = Transform3D(-0.565685, 0, -0.565685, 0, 0.8, 0, 0.565685, 0, -0.5656
 material_override = ExtResource("4_21w76")
 material_overlay = ExtResource("5_u41ck")
 mesh = ExtResource("6_2ilsx")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/Armchair"]
 
@@ -266,7 +261,6 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.39122, 0.276984, 3.37
 material_override = SubResource("StandardMaterial3D_j5aph")
 material_overlay = SubResource("ShaderMaterial_6kosg")
 mesh = ExtResource("9_c4c0h")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/BookSet"]
 
@@ -278,7 +272,6 @@ transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 
 material_override = SubResource("StandardMaterial3D_52knp")
 material_overlay = ExtResource("5_u41ck")
 mesh = ExtResource("10_vd0cn")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/CabinetMediumDecorated"]
 
@@ -290,7 +283,6 @@ transform = Transform3D(-0.725046, 0, 0.338095, 0, 0.8, 0, -0.338095, 0, -0.7250
 material_override = SubResource("StandardMaterial3D_fc1uw")
 material_overlay = ExtResource("5_u41ck")
 mesh = ExtResource("11_pjd53")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/CabinetSmallDecorated"]
 
@@ -407,7 +399,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318802, -18, 12.7349)
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 1, 2.2)
 material_override = SubResource("StandardMaterial3D_21w76")
 mesh = SubResource("PlaneMesh_u41ck")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/MeshInstance3D6"]
 
@@ -418,7 +409,6 @@ shape = SubResource("ConvexPolygonShape3D_vd0cn")
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5.5, 1, -2.3)
 material_override = SubResource("StandardMaterial3D_21w76")
 mesh = SubResource("PlaneMesh_u41ck")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/MeshInstance3D7"]
 
@@ -429,7 +419,6 @@ shape = SubResource("ConvexPolygonShape3D_pjd53")
 transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -5.5, 1, 2.7)
 material_override = SubResource("StandardMaterial3D_21w76")
 mesh = SubResource("PlaneMesh_u41ck")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/MeshInstance3D8"]
 
@@ -440,7 +429,6 @@ shape = SubResource("ConvexPolygonShape3D_fy6fd")
 transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -7, 1, 0.2)
 material_override = SubResource("StandardMaterial3D_u41ck")
 mesh = SubResource("PlaneMesh_21w76")
-skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/MeshInstance3D9"]
 
@@ -451,7 +439,6 @@ shape = SubResource("ConvexPolygonShape3D_lxttd")
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 1, -1.8)
 material_override = SubResource("StandardMaterial3D_2ilsx")
 mesh = SubResource("PlaneMesh_82gjl")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/MeshInstance3D10"]
 
