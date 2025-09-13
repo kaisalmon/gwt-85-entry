@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.005
 @export_range(0, 90, 1, "radians_as_degrees") var max_down_angle: float = 60
 @export_range(0, 90, 1, "radians_as_degrees") var max_up_angle: float = 60
-
+@export var gravity: float = 9.8
 @export_category("internal nodes")
 @export var look_pivot: Node3D
 @export var interaction: Interaction
@@ -28,7 +28,6 @@ func _ready() -> void:
 		current_magic_amounts.append(0)
 
 func _physics_process(delta: float) -> void:
-	
 	_move(delta)
 	
 	if move_time > 0:
@@ -44,6 +43,7 @@ func _move(delta: float) -> void:
 	if !can_use_input():
 		input_dir = Vector2.ZERO
 
+	var y_velo: float = 0.0 if is_on_floor() else -gravity
 
 	var move_dir: Vector3 = Vector3.ZERO
 	if !input_dir.is_zero_approx():
@@ -55,6 +55,7 @@ func _move(delta: float) -> void:
 		ismoving = false
 	
 	velocity = velocity.move_toward(move_dir * move_speed, delta * 200)
+	velocity.y = lerp(velocity.y, y_velo, delta*30)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
@@ -69,8 +70,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("drop_item"):
 		drop_current_item()
 				
-		
-		
 func can_use_input() -> bool:
 	return true
 
