@@ -160,3 +160,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365284, 1, -2.85657)
 
 [editable path="Cauldron"]
 [editable path="Cauldron/blockbench_export"]
+[editable path="Cauldron/ItemConsumer"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnfcnb8qrl0t5" path="res://scenes/interactable/item_provider.gd" id="1_yvxfo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
-radius = 1.0
+radius = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvxfo"]
 transparency = 1

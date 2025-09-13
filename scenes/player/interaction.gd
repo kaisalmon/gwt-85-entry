@@ -29,18 +29,24 @@ func _update_interaction_hint() -> void:
 	
 func _get_next_interactable() -> Interactable:
 	var found_interactable: Interactable = null
-	var invalid_interactables: Array[Interactable]
+	
+	remove_invalid_interactables()
+	available_interactables.sort_custom(sort_by_dist.bind(global_position))
+	
 	for interactable: Interactable in available_interactables:
-		if !is_instance_valid(interactable):
-			invalid_interactables.append(interactable)
-			continue
 		if interactable.can_interact(player):
 			found_interactable = interactable
-	
-	for invalid_interactable: Interactable in invalid_interactables:
-		available_interactables.erase(invalid_interactable)
-	
+
 	return found_interactable
+
+func sort_by_dist(ia1: Interactable, ia2: Interactable, pos_reference: Vector3) -> int:
+	return ia1.global_position.distance_to(pos_reference) < ia2.global_position.distance_to(pos_reference)
+
+func remove_invalid_interactables() -> void:
+	for idx: int in available_interactables.size():
+		var reverse_index: int = available_interactables.size() - 1 - idx
+		if !is_instance_valid(available_interactables[reverse_index]):
+			available_interactables.remove_at(reverse_index)
 
 func _on_area_entered(area: Area3D) -> void:
 	if !area is Interactable || !is_instance_valid(area):

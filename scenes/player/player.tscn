@@ -69,7 +69,7 @@ visible = false
 mesh = SubResource("CylinderMesh_g2els")
 
 [node name="Interaction" parent="LookPivot" node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20692)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.315697, -1.604)
 player = NodePath("../..")
 
 [node name="FootstepTimer" type="Timer" parent="."]
