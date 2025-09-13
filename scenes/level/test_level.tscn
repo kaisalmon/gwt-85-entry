@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhstogp1gac2u"]
 
 [ext_resource type="PackedScene" uid="uid://cgpt5j6jktjpw" path="res://scenes/ui/ui.tscn" id="1_2i8ps"]
-[ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player.tscn" id="1_67e3x"]
+[ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="1_67e3x"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2i8ps"]
 

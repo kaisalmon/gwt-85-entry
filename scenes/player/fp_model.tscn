@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://shxwvlj63inc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cggpe"]
+albedo_color = Color(0.235969, 0.142058, 0.0382288, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g2els"]
+material = SubResource("StandardMaterial3D_cggpe")
+radius = 0.05
+height = 1.0
+
+[node name="FirstPersonModel" type="Node3D"]
+
+[node name="WandDummy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.85189e-08, -0.423662, 0.90582, -1, -4.37114e-08, 0, 3.95947e-08, -0.90582, -0.423662, 0.267516, -0.34309, -0.368771)
+mesh = SubResource("CapsuleMesh_g2els")
+skeleton = NodePath("../..")
