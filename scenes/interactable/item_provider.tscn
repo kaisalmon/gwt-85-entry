@@ -8,11 +8,13 @@
 radius = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvxfo"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_color = Color(4.04298e-06, 0.661018, 0.583787, 0.647059)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vyspm"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_yvxfo")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1hiuq"]
@@ -20,11 +22,12 @@ streams_count = 2
 stream_0/stream = ExtResource("2_g4kgx")
 stream_1/stream = ExtResource("3_0ns2q")
 
-[node name="ItemProvider" type="Area3D"]
+[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
+source_mesh = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")

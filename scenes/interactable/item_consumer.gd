@@ -6,17 +6,16 @@ extends Interactable
 
 
 @export var recipe: Recipe
-
-@export var debug_label_3d: Label3D
-
+@export var source_mesh: MeshInstance3D
 @export var provided_ingredients: Dictionary[Item.ItemType, int]
-
+@export var debug_label_3d: Label3D
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 
 var text_tween: Tween = null
 
 func _ready() -> void:
+	
 	#set_highlight(false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
@@ -39,6 +38,8 @@ func interact(player: Player) -> void:
 
 	if has_necessary_ingredients_for(held_item_type):
 		print("does not need item of the given type")
+		
+		wiggle_text()
 		return
 	
 	#print("interacting with ", self.name, ": using item type: ", Item.ItemType.keys()[item])
@@ -119,5 +120,14 @@ func is_recipe_completed() -> bool:
 			
 	return true
 	
-func tween_wiggle(progress: float) -> void:
-	pass
+func wiggle_text() -> void:
+	if is_instance_valid(text_tween):
+		text_tween.kill()
+		
+	text_tween = create_tween()
+	text_tween.tween_method(tween_wiggle.bind(debug_label_3d.global_position), 0.0, 1.0, 0.5)
+	
+func tween_wiggle(progress: float, start_pos: Vector3) -> void:
+	var displacement: float = sin(progress * 10) * 0.1
+	debug_label_3d.global_position.x = start_pos.x + displacement * (1-progress)
+	debug_label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
