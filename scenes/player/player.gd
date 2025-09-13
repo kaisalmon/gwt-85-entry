@@ -10,10 +10,14 @@ extends CharacterBody3D
 @export_category("internal nodes")
 @export var look_pivot: Node3D
 
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
- 
+@onready var timer: Timer = $Timer
+var ismoving: bool = false
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #we may not want this here
@@ -41,8 +45,10 @@ func move(delta: float) -> void:
 	if !input_dir.is_zero_approx():
 		move_dir = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 		move_time += delta
+		ismoving = true
 	else:
 		move_time = 0.0
+		ismoving = false
 	
 	velocity = velocity.move_toward(move_dir * move_speed, delta * 200)
 	move_and_slide()
@@ -57,3 +63,8 @@ func _input(event: InputEvent) -> void:
 		
 func can_use_input() -> bool:
 	return true
+
+
+func _on_timer_timeout() -> void:
+	if ismoving:
+		audio_stream_player_3d.play()

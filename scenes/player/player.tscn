@@ -1,8 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cls2l048sueax"]
+[gd_scene load_steps=17 format=3 uid="uid://cls2l048sueax"]
 
 [ext_resource type="Script" uid="uid://cncmko6oqi8qx" path="res://scenes/player/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://shxwvlj63inc" path="res://scenes/player/fp_model.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bgu3mnobaoxa2" path="res://scenes/player/interaction.tscn" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://b6o8n45swehhh" path="res://audio/sfx/footsteps/footstep_wood_01.ogg" id="4_lvxji"]
+[ext_resource type="AudioStream" uid="uid://ddwnchnlqriy2" path="res://audio/sfx/footsteps/footstep_wood_02.ogg" id="5_h17s1"]
+[ext_resource type="AudioStream" uid="uid://c38pap6fdtmvx" path="res://audio/sfx/footsteps/footstep_wood_03.ogg" id="6_je7p5"]
+[ext_resource type="AudioStream" uid="uid://cuxw8xsm8y0b" path="res://audio/sfx/footsteps/footstep_wood_04.ogg" id="7_fm80t"]
+[ext_resource type="AudioStream" uid="uid://bk1bikgarkrc5" path="res://audio/sfx/footsteps/footstep_wood_05.ogg" id="8_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://y7j1lgausslc" path="res://audio/sfx/footsteps/footstep_wood_06.ogg" id="9_ugbui"]
+[ext_resource type="AudioStream" uid="uid://dxfr4jgqlungt" path="res://audio/sfx/footsteps/footstep_wood_07.ogg" id="10_fcs02"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fr7j6"]
 transparency = 1
@@ -22,6 +29,17 @@ material = SubResource("StandardMaterial3D_g2els")
 top_radius = 0.05
 bottom_radius = 0.6
 height = 0.3
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_myrg7"]
+random_pitch = 1.1
+streams_count = 7
+stream_0/stream = ExtResource("4_lvxji")
+stream_1/stream = ExtResource("5_h17s1")
+stream_2/stream = ExtResource("6_je7p5")
+stream_3/stream = ExtResource("7_fm80t")
+stream_4/stream = ExtResource("8_gx1jg")
+stream_5/stream = ExtResource("9_ugbui")
+stream_6/stream = ExtResource("10_fcs02")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot")]
 collision_layer = 3
@@ -50,3 +68,12 @@ mesh = SubResource("CylinderMesh_g2els")
 
 [node name="Interaction" parent="LookPivot" instance=ExtResource("3_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20692)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.465
+autostart = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_myrg7")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
