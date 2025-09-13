@@ -7,7 +7,7 @@ var fired_particles: bool = false
 
 @export var room_type: GameState.RoomType = GameState.RoomType.BEDROOM
 func _ready() -> void:
-	pass
+	set_highlight(false)
 
 func _physics_process(delta: float) -> void:
 	if animation_progress == 0.0:
