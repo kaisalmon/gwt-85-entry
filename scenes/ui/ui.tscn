@@ -6,7 +6,7 @@
 layer = 8
 script = ExtResource("1_u7n8c")
 pause_overlay = NodePath("PauseOverlay")
-magic_value_label = NodePath("MagicView/HBoxContainer/MagicValueLabel")
+magic_value_label = NodePath("MagicView/HBoxContainer/MagicValueLabelSoft")
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false
@@ -36,12 +36,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MagicView" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+offset_right = 63.0
+offset_bottom = 20.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MagicView"]
 layout_mode = 2
@@ -51,9 +51,54 @@ layout_mode = 2
 text = "Magic:"
 vertical_alignment = 1
 
-[node name="MagicValueLabel" type="Label" parent="MagicView/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+[node name="MagicValueLabelSoft" type="Label" parent="MagicView/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
-text = "9999"
+theme_override_colors/font_color = Color(1, 0.745098, 1, 1)
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="VSeparator" parent="MagicView/HBoxContainer"]
+layout_mode = 2
+
+[node name="MagicValueLabelCrispy" type="Label" parent="MagicView/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.78905, 0.742444, 1)
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator2" type="VSeparator" parent="MagicView/HBoxContainer"]
+layout_mode = 2
+
+[node name="MagicValueLabelHollow" type="Label" parent="MagicView/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 1, 0.929167, 1)
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator3" type="VSeparator" parent="MagicView/HBoxContainer"]
+layout_mode = 2
+
+[node name="MagicValueLabelBulky" type="Label" parent="MagicView/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9625, 1, 0.75, 1)
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator4" type="VSeparator" parent="MagicView/HBoxContainer"]
+layout_mode = 2
+
+[node name="MagicValueLabelSturdy" type="Label" parent="MagicView/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+text = "999"
 horizontal_alignment = 2
 vertical_alignment = 1

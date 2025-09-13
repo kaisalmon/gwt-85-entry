@@ -16,13 +16,16 @@ var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
 var ismoving: bool = false #check movement for footsteps
-var current_magic: int = 0
+var current_magic_amounts: Array[int] = []
 
 var held_item: Item = null
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #we may not want this here
 	base_y_pos = look_pivot.position.y
+	
+	for type: Recipe.MagicType in Recipe.MagicType.values():
+		current_magic_amounts.append(0)
 
 func _physics_process(delta: float) -> void:
 	
@@ -75,28 +78,35 @@ func _on_timer_timeout() -> void:
 	if ismoving:
 		footsteps.play()
 
-func change_magic(change_amount: int) -> void:
-	set_magic(current_magic + change_amount)
+func change_magic(magic_type: Recipe.MagicType, change_amount: int) -> void:
+	set_magic(magic_type, current_magic_amounts[magic_type] + change_amount)
 
-func set_magic(new_amount: int) -> void:
-	current_magic = max(new_amount, 0)
-	GameState.ui.set_magic_amount(current_magic)
+func set_magic(magic_type: Recipe.MagicType, new_amount: int) -> void:
+	current_magic_amounts[magic_type] = max(new_amount, 0)
+	GameState.ui.set_magic_amount(magic_type, current_magic_amounts[magic_type] )
 
-func remove_current_item() -> void:
+func remove_and_get_current_item() -> Item:
 	if held_item == null:
-		return
-	held_item.queue_free()
+		return null
+	var item: Item = held_item
 	held_item = null
-
+	return item
+	
 func drop_current_item() -> void:
 	if !is_instance_valid(held_item):
 		return
 	held_item.reparent(get_parent())
 	held_item.set_held(false)
+	held_item.drag_target = null
 	held_item = null
 
-func set_item_in_hand(new_item: Item) -> void:
-	item_hold_position.add_child(new_item)
-	new_item.position = Vector3.ZERO
-	held_item = new_item
+func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
+	if !reparent_child:
+		item_hold_position.add_child(item)
+	else:
+		item.reparent(item_hold_position)
+	item.position = Vector3.ZERO
+	held_item = item
 	held_item.set_held(true)	
+	held_item.drag_target = item_hold_position
+	
