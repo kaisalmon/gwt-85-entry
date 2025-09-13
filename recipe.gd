@@ -5,9 +5,9 @@ extends Resource
 enum MagicType {
 	SOFT,
 	CRISPY,
-	STURDY,
 	HOLLOW,
-	BULKY
+	BULKY,
+	STURDY
 }
 
 #item -> amount

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=29 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="PackedScene" uid="uid://dwr1quj7s8fqh" path="res://scenes/level/room_base.tscn" id="2_nbgty"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
 [ext_resource type="Script" uid="uid://m6koss8c30rd" path="res://recipe.gd" id="15_ivku7"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
-[ext_resource type="PackedScene" uid="uid://c4mtybhuv7us2" path="res://scenes/interactable/room_expander.tscn" id="16_x4oov"]
 [ext_resource type="PackedScene" uid="uid://cdiv778ltxb4m" path="res://scenes/music_player.tscn" id="18_ss4b2"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cqqhe"]
@@ -59,7 +58,11 @@ ingredients = Dictionary[int, int]({
 2: 1
 })
 produced_magic = Dictionary[int, int]({
-2: 5
+0: 1,
+1: 2,
+2: 5,
+3: 4,
+4: 3
 })
 metadata/_custom_type_script = "uid://m6koss8c30rd"
 
@@ -156,10 +159,7 @@ produced_item = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02163, 1, 0.217578)
 produced_item = 2
 
-[node name="RoomExpander" parent="." index="10" instance=ExtResource("16_x4oov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365284, 1, -2.85657)
-
-[node name="MusicPlayer" parent="." index="11" instance=ExtResource("18_ss4b2")]
+[node name="MusicPlayer" parent="." index="10" instance=ExtResource("18_ss4b2")]
 
 [editable path="Cauldron"]
 [editable path="Cauldron/blockbench_export"]

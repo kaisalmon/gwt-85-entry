@@ -1,5 +1,5 @@
 class_name ItemInteractable 
-extends Area3D
+extends Interactable
 
 @export var debug_label_3d: Label3D
 @export var item_source: Item
@@ -20,7 +20,7 @@ func interact(player: Player) -> void:
 		# TODO: should we allow the player to remove items from his hand if its from the same type?
 		return
 	
-	player.set_item_in_hand(item_source)
+	player.set_item_in_hand(item_source, true)
 	
 	pickup_audio_stream_player.play()
 	

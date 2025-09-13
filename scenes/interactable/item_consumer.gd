@@ -14,6 +14,7 @@ extends Interactable
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 
+var text_tween: Tween = null
 
 func _ready() -> void:
 	#set_highlight(false)
@@ -34,31 +35,34 @@ func interact(player: Player) -> void:
 		#print("interacting with ", self.name, ": the player does not hold an item")
 		return
 	
-	var item: Item.ItemType = player.held_item.item_type
+	var held_item_type: Item.ItemType = player.held_item.item_type
+
+	if has_necessary_ingredients_for(held_item_type):
+		print("does not need item of the given type")
+		return
+	
 	#print("interacting with ", self.name, ": using item type: ", Item.ItemType.keys()[item])
-	player.remove_current_item()
+	var item: Item = player.remove_and_get_current_item()
+	item.reparent(self)
+	item.drag_target = null
+	
 	cauldroninteract_insert.play()
 	
-	if provided_ingredients.has(item):
-		provided_ingredients[item] = provided_ingredients[item] + 1
+	if provided_ingredients.has(held_item_type):
+		provided_ingredients[held_item_type] = provided_ingredients[held_item_type] + 1
 	else:
-		provided_ingredients[item] = 1
+		provided_ingredients[held_item_type] = 1
 		
 	if is_recipe_completed():
-		for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
-			push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
-			if recipe.produced_magic[magic_type] == 0:
-				push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
-
-			
-			
-			player.change_magic(recipe.produced_magic[magic_type])
-			
-			cauldroninteract_success.play()
-		
-		provided_ingredients.clear()
+		provide_magic(player)
 		
 	update_recipe_display()
+	
+	var tween: Tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(item, "global_position", self.global_position, 1.0)
+	tween.tween_property(item, "scale", Vector3.ONE * 0.2, 1.0)
+	await tween.finished
+	item.queue_free()
 	
 func set_highlight(highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
@@ -72,6 +76,18 @@ func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	if provided_ingredients.has(item_type):
 		current_amount = provided_ingredients[item_type]
 	return current_amount >= needed_amount
+
+func provide_magic(player: Player) -> void:
+	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
+		push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
+		if recipe.produced_magic[magic_type] == 0:
+			push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
+		
+		player.change_magic(magic_type, recipe.produced_magic[magic_type])
+		
+		cauldroninteract_success.play()
+	
+	provided_ingredients.clear()
 
 func update_recipe_display() -> void:
 	var recipe_texts: Array[String] = []
@@ -100,3 +116,6 @@ func is_recipe_completed() -> bool:
 			return false
 			
 	return true
+	
+func tween_wiggle(progress: float) -> void:
+	pass

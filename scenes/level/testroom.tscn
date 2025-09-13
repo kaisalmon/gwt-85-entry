@@ -318,7 +318,6 @@ shape = SubResource("ConvexPolygonShape3D_82gjl")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, -0.5)
 material_override = SubResource("StandardMaterial3D_21w76")
 mesh = SubResource("PlaneMesh_u41ck")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/MeshInstance3D6"]
 
@@ -329,7 +328,6 @@ shape = SubResource("ConvexPolygonShape3D_c4c0h")
 transform = Transform3D(-2.44784e-08, 0, -0.56, 0, 0.56, 0, 0.56, 0, -2.44784e-08, 4, 1.2, 0)
 material_override = ExtResource("4_21w76")
 mesh = ExtResource("16_x0u5a")
-skeleton = NodePath("../..")
 
 [node name="ShelfBSmallDecorated" type="MeshInstance3D" parent="Room"]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3, 1, -2)
@@ -369,7 +367,6 @@ removed_by_room = 1
 transform = Transform3D(0.598833, 0, 0.0374026, 0, 0.6, 0, -0.0374026, 0, 0.598833, -3.21516, 0, -0.862851)
 material_override = ExtResource("4_21w76")
 mesh = ExtResource("23_u41ck")
-skeleton = NodePath("../../SecondRoom")
 script = ExtResource("19_82gjl")
 removed_by_room = 1
 
@@ -449,7 +446,6 @@ shape = SubResource("ConvexPolygonShape3D_5uvgv")
 transform = Transform3D(-0.598804, 0, -0.0378729, 0, 0.6, 0, 0.0378729, 0, -0.598804, -6.00912, 0, 1.76338)
 material_override = ExtResource("4_21w76")
 mesh = ExtResource("23_u41ck")
-skeleton = NodePath("../../SecondRoom")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="SecondRoom/BedSingleA"]
 
