@@ -10,13 +10,12 @@ extends CharacterBody3D
 @export_category("internal nodes")
 @export var look_pivot: Node3D
 
-@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var footsteps: AudioStreamPlayer3D = $PlayerAudio/footsteps
 
 var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
-@onready var timer: Timer = $Timer
-var ismoving: bool = false
+var ismoving: bool = false #check movement for footsteps
 
 
 func _ready() -> void:
@@ -67,4 +66,4 @@ func can_use_input() -> bool:
 
 func _on_timer_timeout() -> void:
 	if ismoving:
-		audio_stream_player_3d.play()
+		footsteps.play()

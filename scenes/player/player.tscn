@@ -69,11 +69,14 @@ mesh = SubResource("CylinderMesh_g2els")
 [node name="Interaction" parent="LookPivot" instance=ExtResource("3_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.20692)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.465
 autostart = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_myrg7")
+[node name="PlayerAudio" type="Node3D" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="footsteps" type="AudioStreamPlayer3D" parent="PlayerAudio"]
+stream = SubResource("AudioStreamRandomizer_myrg7")
+bus = &"SFX"
+
+[connection signal="timeout" from="FootstepTimer" to="." method="_on_timer_timeout"]
