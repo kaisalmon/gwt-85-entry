@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=29 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="PackedScene" uid="uid://dwr1quj7s8fqh" path="res://scenes/level/room_base.tscn" id="2_nbgty"]
@@ -14,6 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b1uvctgnt15c6" path="res://models/pictureframe_medium.obj" id="12_3rml5"]
 [ext_resource type="ArrayMesh" uid="uid://cofvr8yva6bwx" path="res://models/lamp_standing.obj" id="13_a5iu8"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
+[ext_resource type="Script" uid="uid://m6koss8c30rd" path="res://recipe.gd" id="15_ivku7"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
 [ext_resource type="PackedScene" uid="uid://c4mtybhuv7us2" path="res://scenes/interactable/room_expander.tscn" id="16_x4oov"]
 
@@ -49,6 +50,17 @@ points = PackedVector3Array(-0.35, -0.430002, 0.0199883, -0.330061, -0.430002, 0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t51ir"]
 points = PackedVector3Array(-0.5, 1.79996, -0.296496, -0.440486, 1.79996, -0.440486, -0.259495, 0, 0, -0.5, 1.79996, 0.296398, -0.25, 2.49977, -0.0464957, -0.296496, 1.79996, -0.5, 0, 0, -0.259495, -0.183536, 0, -0.183536, -0.190486, 2.49977, -0.190486, -0.183536, 0, 0.183438, -0.440486, 1.79996, 0.440388, -0.25, 2.49977, 0.0463978, -0.215544, 2.52, -0.0396437, 0.296398, 1.79996, -0.5, -0.0464957, 2.49977, -0.25, 0.183438, 0, -0.183536, 0.440388, 1.79996, -0.440486, -0.164056, 2.52, -0.164056, -0.0396437, 2.52, -0.215544, 0, 0, 0.259397, -0.296496, 1.79996, 0.5, -0.190486, 2.49977, 0.190388, -0.215544, 2.52, 0.0395458, 0.0463978, 2.49977, -0.25, 0.259397, 0, 0, 0.5, 1.79996, -0.296496, 0.190388, 2.49977, -0.190486, 0.0395458, 2.52, -0.215544, 0.183438, 0, 0.183438, 0.440388, 1.79996, 0.440388, 0.296398, 1.79996, 0.5, -0.0464957, 2.49977, 0.25, -0.164056, 2.52, 0.163958, 0.5, 1.79996, 0.296398, 0.25, 2.49977, -0.0464957, 0.163958, 2.52, -0.164056, 0.190388, 2.49977, 0.190388, 0.0463978, 2.49977, 0.25, -0.0396437, 2.52, 0.215446, 0.25, 2.49977, 0.0463978, 0.215446, 2.52, -0.0396437, 0.163958, 2.52, 0.163958, 0.0395458, 2.52, 0.215446, 0.215446, 2.52, 0.0395458)
+
+[sub_resource type="Resource" id="Resource_ss4b2"]
+script = ExtResource("15_ivku7")
+ingredients = Dictionary[int, int]({
+0: 2,
+2: 1
+})
+produced_magic = Dictionary[int, int]({
+2: 5
+})
+metadata/_custom_type_script = "uid://m6koss8c30rd"
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
 
@@ -129,8 +141,22 @@ omni_range = 17.0
 [node name="Cauldron" parent="." index="6" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92268, 0, -2.96324)
 
+[node name="ItemConsumer" parent="Cauldron" index="1"]
+recipe = SubResource("Resource_ss4b2")
+
 [node name="ItemProvider" parent="." index="7" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 3)
 
-[node name="RoomExpander" parent="." index="8" instance=ExtResource("16_x4oov")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+[node name="ItemProvider2" parent="." index="8" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99379, 1, 1.58459)
+produced_item = 1
+
+[node name="ItemProvider3" parent="." index="9" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02163, 1, 0.217578)
+produced_item = 2
+
+[node name="RoomExpander" parent="." index="10" instance=ExtResource("16_x4oov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365284, 1, -2.85657)
+
+[editable path="Cauldron"]
+[editable path="Cauldron/blockbench_export"]

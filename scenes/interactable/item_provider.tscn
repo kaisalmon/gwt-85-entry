@@ -24,3 +24,8 @@ shape = SubResource("SphereShape3D_b7q1x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_vyspm")
+
+[node name="DebugLabel3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
+billboard = 2
+text = "lorem ipsum"

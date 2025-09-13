@@ -59,7 +59,13 @@ lifetime = 0.42
 process_material = SubResource("ParticleProcessMaterial_3um5l")
 draw_pass_1 = SubResource("QuadMesh_m4y0a")
 
-[node name="ItemConsumer" parent="." instance=ExtResource("4_sw1e1")]
+[node name="ItemConsumer" parent="." node_paths=PackedStringArray("debug_label_3d") instance=ExtResource("4_sw1e1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+debug_label_3d = NodePath("../DebugLabel3D")
+
+[node name="DebugLabel3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41314, 0)
+billboard = 2
+text = "lorem ipsum"
 
 [editable path="blockbench_export"]

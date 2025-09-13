@@ -2,7 +2,7 @@ class_name RoomExpander
 extends Interactable
 
 func _ready() -> void:
-	pass
+	set_highlight(false)
 
 func can_interact(_player: Player) -> bool:
 	#TODO ?

@@ -1,18 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://wu271fptdut0"]
+[gd_scene load_steps=7 format=3 uid="uid://wu271fptdut0"]
 
 [ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_aocwp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vst8"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r1n4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aocwp"]
-next_pass = SubResource("StandardMaterial3D_4vst8")
+[sub_resource type="BoxMesh" id="BoxMesh_dywoi"]
+material = SubResource("StandardMaterial3D_3r1n4")
+size = Vector3(0.55, 0.1, 0.55)
 
-[sub_resource type="PrismMesh" id="PrismMesh_4vst8"]
-material = SubResource("StandardMaterial3D_aocwp")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dywoi"]
+albedo_color = Color(0.0800073, 0.247048, 0.194022, 1)
 
-[node name="DummyItem" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_3r1n4"]
+material = SubResource("StandardMaterial3D_dywoi")
+size = Vector3(0.6, 0.05, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jblyg"]
+material = SubResource("StandardMaterial3D_dywoi")
+size = Vector3(0.1, 0.18, 0.6)
+
+[node name="BookItem" type="Node3D"]
 script = ExtResource("1_aocwp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PrismMesh_4vst8")
+[node name="DummyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dywoi")
+
+[node name="DummyMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0651786, 0)
+mesh = SubResource("BoxMesh_3r1n4")
+
+[node name="DummyMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.065, 0)
+mesh = SubResource("BoxMesh_3r1n4")
+
+[node name="DummyMesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
+mesh = SubResource("BoxMesh_jblyg")
