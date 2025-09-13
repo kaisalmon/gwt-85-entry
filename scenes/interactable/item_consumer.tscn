@@ -1,18 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://2wi4shqocb1m"]
+[gd_scene load_steps=7 format=3 uid="uid://2wi4shqocb1m"]
 
 [ext_resource type="Script" uid="uid://c01xfdf2r1f2x" path="res://scenes/interactable/item_consumer.gd" id="1_tkpk6"]
 [ext_resource type="AudioStream" uid="uid://cb73wmked30s7" path="res://audio/sfx/ambience/ambience_cauldron.ogg" id="2_rwcla"]
 [ext_resource type="AudioStream" uid="uid://bvbhv6ccmdsfc" path="res://audio/sfx/ui/cauldroninteract_success.ogg" id="2_t3867"]
-[ext_resource type="AudioStream" uid="uid://b47o7rop6a0rk" path="res://audio/sfx/ui/drop_01.ogg" id="4_ep7wk"]
-[ext_resource type="AudioStream" uid="uid://bfthukvdhis5l" path="res://audio/sfx/ui/drop_02.ogg" id="5_dj5sa"]
+[ext_resource type="AudioStream" uid="uid://bptdkx8jdf3jg" path="res://audio/sfx/ui/cauldron_splash.ogg" id="4_lknpr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xvw1b"]
-random_pitch = 1.3
-streams_count = 2
-stream_0/stream = ExtResource("4_ep7wk")
-stream_1/stream = ExtResource("5_dj5sa")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ep7wk"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_lknpr")
 
 [node name="ItemConsumer" type="Area3D"]
 collision_layer = 4
@@ -33,5 +31,7 @@ bus = &"SFX"
 stream = ExtResource("2_t3867")
 bus = &"SFX"
 
-[node name="dropitem" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_xvw1b")
+[node name="cauldroninteract_insert" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ep7wk")
+volume_db = -3.96
+bus = &"SFX"
