@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://qj8yt50m37o"]
+[gd_scene load_steps=23 format=3 uid="uid://qj8yt50m37o"]
 
 [ext_resource type="Texture2D" uid="uid://de24pln7p0opt" path="res://textures/GreenWall.png" id="1_nkkm8"]
 [ext_resource type="Script" uid="uid://bkbxwfrykn7ai" path="res://scenes/interactable/room_expander.gd" id="2_gg805"]
 [ext_resource type="Texture2D" uid="uid://dy6awpc087igu" path="res://textures/pentagram_circle.png" id="3_3b4va"]
 [ext_resource type="Texture2D" uid="uid://b0ix4bx5skvi3" path="res://textures/pentagram_star.png" id="4_lnqit"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_lnqit"]
+[ext_resource type="ArrayMesh" uid="uid://duw0blk7uy1mg" path="res://models/custom/doorframe.obj" id="6_1sv7o"]
+[ext_resource type="Texture2D" uid="uid://ck5nqplsb6l2p" path="res://models/custom/texture.png" id="7_1skjs"]
+[ext_resource type="Texture2D" uid="uid://upf86n4fc53x" path="res://models/custom/GreenWall.png" id="8_o4i0j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gg805"]
 cull_mode = 2
 shading_mode = 0
 albedo_texture = ExtResource("1_nkkm8")
-uv1_scale = Vector3(2, 2, 1)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mxd7w"]
@@ -49,7 +51,7 @@ particles_anim_loop = false
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23676, 0.497506), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_kvme1"]
+[sub_resource type="CurveTexture" id="CurveTexture_1sv7o"]
 curve = SubResource("Curve_1sv7o")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1skjs"]
@@ -64,11 +66,25 @@ initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.0
 scale_max = 8.06
-scale_curve = SubResource("CurveTexture_kvme1")
+scale_curve = SubResource("CurveTexture_1sv7o")
 scale_over_velocity_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_o4i0j"]
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d6i1"]
+shading_mode = 0
+albedo_texture = ExtResource("7_1skjs")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sk6o"]
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("8_o4i0j")
+texture_filter = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1sv7o"]
+data = PackedVector3Array(0, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0, 1.6875, -0.0625, 0, 1.6875, -0.0625, 0, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.5625, 1.6875, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.6875, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0, 1.6875, 0.0625, 0, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 0, 0.0625, 0.5625, 0, -0.0625, 0.4375, 0, 0.0625, 0.4375, 0, 0.0625, 0.5625, 0, -0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 0, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.5312, 0.0625, 0.5625, 0, 0.0625, 0.4375, 0, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.5312, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.6875, 0.0625, 0.4375, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.4375, 1.6875, 0.0625, 0, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.5312, -0.0625, 0.4375, 0, -0.0625, 0.5625, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 0, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 0, 0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 0, -0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 0, -0.0625, 0.5625, 0, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.6875, 0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.6875, 0.0625, 0.5625, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0.4375, 1.5312, 0.0625, 1, 0.4, 0, 0.5, 0.4, 0, 1, 0, 0, 1, 0, 0, 0.5, 0.4, 0, 0.5, 0, 0, 0, 1.6, 0, 0.5, 1.6, 0, 0, 2, 0, 0, 2, 0, 0.5, 1.6, 0, 0.5, 2, 0, 0.5, 1.6, 0, 1, 1.6, 0, 0.5, 2, 0, 0.5, 2, 0, 1, 1.6, 0, 1, 2, 0, 0.5, 1.2, 0, 1, 1.2, 0, 0.5, 1.6, 0, 0.5, 1.6, 0, 1, 1.2, 0, 1, 1.6, 0, 0.5, 0.8, 0, 1, 0.8, 0, 0.5, 1.2, 0, 0.5, 1.2, 0, 1, 0.8, 0, 1, 1.2, 0, 0.5, 0.4, 0, 1, 0.4, 0, 0.5, 0.8, 0, 0.5, 0.8, 0, 1, 0.4, 0, 1, 0.8, 0, -0.5625, 1.6875, 0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.6875, -0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, -0.0625, 0, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, 0, 1.6875, -0.0625, -0.5625, 0, 0.0625, -0.4375, 0, 0.0625, -0.5625, 0, -0.0625, -0.5625, 0, -0.0625, -0.4375, 0, 0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, 0.0625, -0.4375, 1.5312, 0.0625, -0.5625, 0, 0.0625, -0.5625, 0, 0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 0, 0.0625, -0.4375, 1.5312, 0.0625, -0.5625, 1.5312, 0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 1.6875, 0.0625, 0, 1.6875, 0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 1.6875, 0.0625, 0, 1.5312, 0.0625, -0.4375, 1.5312, 0.0625, 0, 1.6875, 0.0625, -0.4375, 1.5312, -0.0625, -0.5625, 1.5312, -0.0625, -0.4375, 0, -0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.4375, 1.5312, -0.0625, -0.5625, 1.6875, -0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.6875, -0.0625, -0.4375, 1.5312, -0.0625, 0, 1.6875, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 0, 0.0625, -0.4375, 0, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 0, -0.0625, -0.5625, 0, -0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 0, 0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.6875, 0.0625, -0.5625, 1.6875, 0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0, 1.5312, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 1.5312, 0.0625, -1, 0.4, 0, -1, 0, 0, -0.5, 0.4, 0, -0.5, 0.4, 0, -1, 0, 0, -0.5, 0, 0, 0, 1.6, 0, 0, 2, 0, -0.5, 1.6, 0, -0.5, 1.6, 0, 0, 2, 0, -0.5, 2, 0, -0.5, 1.6, 0, -0.5, 2, 0, -1, 1.6, 0, -1, 1.6, 0, -0.5, 2, 0, -1, 2, 0, -0.5, 1.2, 0, -0.5, 1.6, 0, -1, 1.2, 0, -1, 1.2, 0, -0.5, 1.6, 0, -1, 1.6, 0, -0.5, 0.8, 0, -0.5, 1.2, 0, -1, 0.8, 0, -1, 0.8, 0, -0.5, 1.2, 0, -1, 1.2, 0, -0.5, 0.4, 0, -0.5, 0.8, 0, -1, 0.4, 0, -1, 0.4, 0, -0.5, 0.8, 0, -1, 0.8, 0)
 
 [node name="Door" type="Area3D"]
 collision_layer = 5
@@ -110,5 +126,18 @@ one_shot = true
 explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_1skjs")
 draw_pass_1 = SubResource("QuadMesh_o4i0j")
+
+[node name="Doorframe" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("6_1sv7o")
+surface_material_override/0 = SubResource("StandardMaterial3D_4d6i1")
+surface_material_override/1 = SubResource("StandardMaterial3D_0sk6o")
+surface_material_override/2 = SubResource("StandardMaterial3D_4d6i1")
+surface_material_override/3 = SubResource("StandardMaterial3D_0sk6o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Doorframe"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doorframe/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1sv7o")
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

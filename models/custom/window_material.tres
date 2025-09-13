@@ -6,3 +6,4 @@
 shading_mode = 0
 albedo_texture = ExtResource("1_w3k7b")
 texture_filter = 2
+distance_fade_max_distance = 0.0

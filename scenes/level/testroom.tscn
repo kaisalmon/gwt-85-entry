@@ -47,7 +47,7 @@ points = PackedVector3Array(8.12698, 0.126984, 8.12698, -8.12698, -0.126984, -8.
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8moox"]
 shading_mode = 0
 albedo_texture = ExtResource("3_66dec")
-uv1_scale = Vector3(8, 2, 1)
+uv1_scale = Vector3(4, 1, 1)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_im1w5"]
@@ -60,7 +60,7 @@ points = PackedVector3Array(-4.02951, -1.0303, 0.0302971, 4.02951, 1.0303, 0.030
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21w76"]
 shading_mode = 0
 albedo_texture = ExtResource("3_66dec")
-uv1_scale = Vector3(3, 2, 1)
+uv1_scale = Vector3(2, 1, 1)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_u41ck"]
@@ -163,7 +163,7 @@ points = PackedVector3Array(1.5, 1, 0, 1.5, -1, 0, -1.5, 1, 0, -1.5, -1, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u41ck"]
 shading_mode = 0
 albedo_texture = ExtResource("3_66dec")
-uv1_scale = Vector3(5, 2, 1)
+uv1_scale = Vector3(2.5, 1, 1)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_21w76"]
@@ -176,7 +176,7 @@ points = PackedVector3Array(2.5, 1, 0, 2.5, -1, 0, -2.5, 1, 0, -2.5, -1, 0)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ilsx"]
 shading_mode = 0
 albedo_texture = ExtResource("3_66dec")
-uv1_scale = Vector3(1, 2, 1)
+uv1_scale = Vector3(0.5, 1, 1)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_82gjl"]
