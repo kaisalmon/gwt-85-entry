@@ -1,0 +1,11 @@
+CONSTRUCT 3 - SpriteFont parameters
+
+Character width: 16
+
+Character height: 16
+
+Character set: 
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!"'+-=*%_()[]{}~#&@©®™°^`|/\<>…€$£¢¿¡“”‘’«»‹›„‚·•ÀÁÂÄÃÅĄÆÇĆÐÈÉÊËĘĞÌÍÎÏİŁÑŃÒÓÔÖÕŐØŒŚŞẞÞÙÚÛÜŰÝŸŹŻàáâäãåąæçćðèéêëęğìíîïıłñńòóôöõőøœśşßþùúûüűýÿźż▼
+
+Spacing data:
+[[4," "],[9,"MYŒÝŸ"],[8,"BDKLNOPQRUVW%©®ÆÐŁÑŃÒÓÔÖÕŐØÙÚÛÜŰ▼"],[7,"AEFHXZ™ÀÁÂÄÃÅĄÈÉÊËĘẞÞŹŻ"],[6,"CGIJSTmw*#&@…€$£ÇĆĞÌÍÎÏİŚŞæłœ"],[5,"bdghknopqstuvxyz023456789_~¢“”«»„ãðğñńòóôöõőøśşßþùúûüűýÿźż"],[4,"acefjr1?\"+-=()[]{}°^/\\<>¿‹›•àáâäåąçćèéêëęîï"],[3,".,;:!'`|‘’‚ìí"],[2,"il¡·ı"]]

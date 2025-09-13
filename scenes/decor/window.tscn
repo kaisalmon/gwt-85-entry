@@ -1,13 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://r4n06db14718"]
+[gd_scene load_steps=13 format=3 uid="uid://r4n06db14718"]
 
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="1_tyc8v"]
 [ext_resource type="Material" uid="uid://c7xraa4dgnec5" path="res://scenes/decor/window_portal_material.tres" id="2_17yy1"]
 [ext_resource type="ArrayMesh" uid="uid://l658w3s75ek2" path="res://models/custom/window.obj" id="3_a4nrp"]
 [ext_resource type="Material" uid="uid://b7xke3yltv0pk" path="res://models/custom/window_material.tres" id="4_nfjdw"]
+[ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_a4nrp"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjewq"]
 size = Vector2(1.545, 1.535)
 orientation = 2
+
+[sub_resource type="Environment" id="Environment_17yy1"]
+resource_local_to_scene = true
+background_color = Color(0.694223, 0.308905, 0.801082, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfjdw"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_a4nrp")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_po14m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23676, 0.497506), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kvme1"]
+curve = SubResource("Curve_po14m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b0vfj"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 0.7
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 8.06
+scale_curve = SubResource("CurveTexture_kvme1")
+scale_over_velocity_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ofou3"]
+size = Vector2(0.1, 0.1)
 
 [node name="Window" type="Node3D"]
 script = ExtResource("1_tyc8v")
@@ -16,11 +62,11 @@ script = ExtResource("1_tyc8v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00048697)
 visible = false
 mesh = SubResource("PlaneMesh_hjewq")
-surface_material_override/0 = ExtResource("2_17yy1")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
+environment = SubResource("Environment_17yy1")
 
 [node name="Window" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.839706, -0.0889711)
@@ -40,3 +86,13 @@ surface_material_override/11 = ExtResource("2_17yy1")
 surface_material_override/12 = ExtResource("4_nfjdw")
 surface_material_override/13 = ExtResource("2_17yy1")
 surface_material_override/14 = ExtResource("4_nfjdw")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0997522)
+material_override = SubResource("StandardMaterial3D_nfjdw")
+emitting = false
+amount = 2000
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_b0vfj")
+draw_pass_1 = SubResource("QuadMesh_ofou3")

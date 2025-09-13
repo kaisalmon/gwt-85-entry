@@ -14,7 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b1uvctgnt15c6" path="res://models/pictureframe_medium.obj" id="12_3rml5"]
 [ext_resource type="ArrayMesh" uid="uid://cofvr8yva6bwx" path="res://models/lamp_standing.obj" id="13_a5iu8"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
-[ext_resource type="Script" uid="uid://m6koss8c30rd" path="res://recipe.gd" id="15_ivku7"]
+[ext_resource type="Script" path="res://recipe.gd" id="15_ivku7"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
 [ext_resource type="PackedScene" uid="uid://c4mtybhuv7us2" path="res://scenes/interactable/room_expander.tscn" id="16_x4oov"]
 
