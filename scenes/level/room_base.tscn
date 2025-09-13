@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwr1quj7s8fqh"]
+
+[ext_resource type="PackedScene" uid="uid://cpamrmg3xtr37" path="res://scenes/level/wooden_floor.tscn" id="1_ba5i3"]
+[ext_resource type="PackedScene" uid="uid://dt6k0c8w2pyfj" path="res://scenes/level/wall.tscn" id="2_yygki"]
+[ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="3_0o8vs"]
+[ext_resource type="ArrayMesh" uid="uid://ddgcptw5cn343" path="res://models/shelf_B_large_decorated.obj" id="4_mrbhi"]
+[ext_resource type="ArrayMesh" uid="uid://do5cyup14asns" path="res://models/shelf_B_small_decorated.obj" id="5_wc74u"]
+
+[node name="RoomBase" type="Node3D"]
+
+[node name="WoodenFloor" parent="." instance=ExtResource("1_ba5i3")]
+
+[node name="Wall" parent="." instance=ExtResource("2_yygki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="Wall2" parent="." instance=ExtResource("2_yygki")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 1, 0)
+
+[node name="Wall3" parent="." instance=ExtResource("2_yygki")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 4)
+
+[node name="Wall4" parent="." instance=ExtResource("2_yygki")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, 0)
+
+[node name="ShelfBLargeDecorated" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.44784e-08, 0, -0.56, 0, 0.56, 0, 0.56, 0, -2.44784e-08, 4, 1.2, -2.3)
+material_override = ExtResource("3_0o8vs")
+mesh = ExtResource("4_mrbhi")
+
+[node name="ShelfBSmallDecorated" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3, 1, -4.3)
+material_override = ExtResource("3_0o8vs")
+mesh = ExtResource("5_wc74u")

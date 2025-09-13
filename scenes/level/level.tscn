@@ -1,0 +1,132 @@
+[gd_scene load_steps=25 format=3 uid="uid://ddhwvnrt4veas"]
+
+[ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
+[ext_resource type="PackedScene" uid="uid://dwr1quj7s8fqh" path="res://scenes/level/room_base.tscn" id="2_nbgty"]
+[ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_i166f"]
+[ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="4_pm6rs"]
+[ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="5_vrc4q"]
+[ext_resource type="ArrayMesh" uid="uid://bhc1sn4yrjgxj" path="res://models/armchair.obj" id="6_x4oov"]
+[ext_resource type="Texture2D" uid="uid://c5petn1iy3xxm" path="res://textures/furniturebits_texture_pixel.png" id="7_ivku7"]
+[ext_resource type="Shader" uid="uid://bb14maw4fowt1" path="res://materials/Outline.gdshader" id="8_ss4b2"]
+[ext_resource type="ArrayMesh" uid="uid://cb5on7gkqit41" path="res://models/book_set.obj" id="9_qjqsm"]
+[ext_resource type="ArrayMesh" uid="uid://mp8wnp8kmaba" path="res://models/cabinet_medium_decorated.obj" id="10_0fkkc"]
+[ext_resource type="ArrayMesh" uid="uid://cwrhagrxkohit" path="res://models/cabinet_small_decorated.obj" id="11_wyi7n"]
+[ext_resource type="ArrayMesh" uid="uid://b1uvctgnt15c6" path="res://models/pictureframe_medium.obj" id="12_3rml5"]
+[ext_resource type="ArrayMesh" uid="uid://cofvr8yva6bwx" path="res://models/lamp_standing.obj" id="13_a5iu8"]
+[ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cqqhe"]
+points = PackedVector3Array(-0.850137, 0.0499641, -0.75, -0.850137, 0.0249221, -0.743422, -0.87498, 0.0499641, -0.743422, -0.850137, 0.949917, -0.75, 0.849961, 0.0499641, -0.75, -0.850137, 0.00658999, -0.725098, -0.873923, 0.0130602, -0.724002, -0.873923, 0.0260005, -0.736844, 0.849961, 0.0249221, -0.743422, -0.874628, 0.949917, -0.742639, -0.886962, 0.0260005, -0.724002, -0.893481, 0.0499641, -0.725098, -0.873747, 0.973641, -0.737001, -0.849961, 0.974479, -0.742639, 0.849961, 0.949917, -0.75, 0.874804, 0.0499641, -0.743422, -0.850137, 0, -0.700039, -0.87498, 0.00658999, -0.700039, 0.849961, 0.00658999, -0.725098, -0.893481, 0.0249221, -0.700039, 0.873747, 0.0260005, -0.736844, 0.873747, 0.0130602, -0.724002, -0.8926, 0.949917, -0.724628, -0.9, 0.0499641, -0.700039, -0.9, 0.949917, -0.700039, -0.873571, 0.98694, -0.723688, -0.886962, 0.973641, -0.723688, -0.849608, 0.992572, -0.724315, -0.500039, 1.17841, -0.603563, -0.500039, 1.12198, -0.655403, 0.849785, 0.974479, -0.742639, 0.873571, 0.973641, -0.737001, 0.874452, 0.949917, -0.742639, 0.886785, 0.0260005, -0.724002, 0.893305, 0.0499641, -0.725098, -0.850137, 0, 0.699961, 0.849961, 0, -0.700039, -0.874628, 0.00730889, 0.699961, 0.874804, 0.00658999, -0.700039, -0.8926, 0.0254014, 0.699961, -0.9, 0.0499641, 0.699961, 0.893305, 0.0249221, -0.700039, -0.9, 0.949917, 0.397846, -0.893305, 0.974959, 0.401135, -0.8926, 0.974479, -0.699883, -0.874276, 0.992572, -0.699569, -0.570869, 1.19411, -0.500666, -0.500039, 1.22071, -0.513038, 0.499863, 1.17841, -0.603563, 0.499863, 1.12198, -0.655403, 0.849432, 0.992572, -0.724315, 0.873395, 0.98694, -0.723688, 0.886785, 0.973641, -0.723688, 0.892424, 0.949917, -0.724628, 0.9, 0.0499641, -0.700039, 0.9, 0.949917, -0.700039, -0.849432, 0.00515217, 0.724706, -0.873571, 0.0109034, 0.723923, 0.849961, 0, 0.699961, -0.886962, 0.0233645, 0.72361, 0.874452, 0.00730889, 0.699961, -0.892424, 0.0450515, 0.724393, -0.893305, 0.651091, 0.724863, -0.9, 0.647856, 0.699961, 0.9, 0.0499641, 0.699961, 0.892424, 0.0254014, 0.699961, -0.9, 0.908819, 0.551331, -0.893305, 0.931225, 0.564174, -0.874804, 0.993291, 0.403485, -0.557831, 1.20681, -0.442874, -0.500039, 1.22406, -0.436609, 0.499863, 1.22071, -0.513038, 0.874099, 0.992572, -0.699569, 0.892424, 0.974479, -0.699883, 0.570693, 1.19411, -0.500666, 0.9, 0.949917, 0.397846, 0.893128, 0.974959, 0.401135, -0.848904, 0.0177331, 0.742717, 0.849256, 0.00515217, 0.724706, -0.873395, 0.021088, 0.737079, 0.873395, 0.0109034, 0.723923, -0.873923, 0.0394201, 0.742561, 0.886785, 0.0233645, 0.72361, -0.874452, 0.653607, 0.743187, -0.874628, 0.823748, 0.697612, -0.893305, 0.814283, 0.681167, -0.9, 0.801342, 0.658771, 0.893128, 0.651091, 0.724863, 0.892247, 0.0450515, 0.724393, 0.9, 0.647856, 0.699961, -0.874628, 0.94764, 0.573727, -0.849256, 0.953631, 0.577173, -0.849432, 0.999881, 0.404424, 0.499863, 1.22406, -0.436609, 0.557655, 1.20681, -0.442874, 0.874628, 0.993291, 0.403485, 0.9, 0.908819, 0.551331, 0.893128, 0.931225, 0.564174, -0.848551, 0.0343877, 0.749922, 0.848727, 0.0177331, 0.742717, -0.550078, 0.214594, 0.835278, 0.873218, 0.021088, 0.737079, -0.550078, 0.24994, 0.85, 0.873747, 0.0394201, 0.742561, -0.848904, 0.654446, 0.749922, -0.550078, 0.449916, 0.85, -0.84908, 0.827223, 0.703563, 0.874276, 0.653607, 0.743187, 0.893128, 0.814283, 0.681167, 0.874452, 0.823748, 0.697612, 0.9, 0.801342, 0.658771, 0.84908, 0.953631, 0.577173, 0.849256, 0.999881, 0.404424, 0.874452, 0.94764, 0.573727, 0.848375, 0.0343877, 0.749922, 0.549902, 0.214594, 0.835278, 0.549902, 0.24994, 0.85, 0.549902, 0.449916, 0.85, 0.848904, 0.827223, 0.703563, 0.848727, 0.654446, 0.749922)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yoh1m"]
+albedo_texture = ExtResource("7_ivku7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5w0m"]
+render_priority = 0
+shader = ExtResource("8_ss4b2")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fhw5o"]
+points = PackedVector3Array(0.369463, 0.25, 0.187543, 0.369463, -0.25, 0.187543, 0.389925, 0.229982, 0.167535, 0.369463, 0.25, -0.1592, -0.369537, 0.25, 0.187543, 0.369463, -0.25, -0.1592, 0.389925, -0.230031, 0.167535, -0.369537, -0.25, 0.187543, 0.389925, 0.229982, -0.157485, 0.369997, 0.229982, -0.177457, -0.369537, 0.25, -0.1592, -0.389999, 0.229982, 0.167535, 0.369997, -0.230031, -0.177457, 0.389925, -0.230031, -0.157485, -0.369537, -0.25, -0.1592, -0.389999, -0.230031, 0.167535, -0.370071, 0.229982, -0.177457, -0.389999, 0.229982, -0.157485, -0.370071, -0.230031, -0.177457, -0.389999, -0.230031, -0.157485)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xm880"]
+albedo_texture = ExtResource("7_ivku7")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vfold"]
+points = PackedVector3Array(0.687705, 1.82703, -0.183827, 0.730272, 1.81344, -0.142749, 0.738666, 1.81112, -0.212552, 0.675314, 1.81702, -0.242355, 0.627551, 1.82292, -0.190983, 0.661525, 1.82059, -0.129415, 0.838589, 1.60581, 0.178621, 0.789227, 1.75889, -0.0819648, 0.810011, 1.75335, -0.254022, 0.653531, 1.76802, -0.327453, -0.940446, 1.41302, -0.233042, -0.905073, 1.46774, -0.0868667, 0.619757, 1.77696, -0.0490239, 0.78483, 1.61958, 0.17019, 0.979881, 0.979866, 0.49999, 0.884554, 1.6033, 0.146268, 0.558204, 1.39263, 0.373325, 0.556206, 1.37206, 0.390286, 0.823001, 1.37206, 0.338423, 0.895545, 1.61386, 0.0922492, 1.04143, 1.37206, -0.130396, 0.838389, 1.67645, -0.272551, 0.909734, 1.37206, -0.368237, 0.638143, 1.69505, -0.366472, -0.299138, 1.41302, -0.388825, -0.980015, 0.979866, -0.5, -1, 0.979866, -0.48, -0.958232, 1.39424, -0.221669, -0.922859, 1.44896, -0.0754943, -0.898878, 1.45576, -0.061965, -0.273757, 1.25868, 0.364011, 0.979881, 0.819983, 0.49999, 0.999865, 0.979866, 0.479991, -0.980015, 0.979866, 0.49999, 0.399926, 0.669936, 0.501559, 1.00846, 1.37206, 0.139504, 0.999865, 0.819983, 0.479991, 0.999865, 0.819983, -0.48, 0.999865, 0.979866, -0.48, 0.979881, 0.979866, -0.5, 0.663124, 1.37206, -0.483039, -0.301936, 1.38726, -0.400491, -0.980015, 0.819983, -0.5, -1, 0.819983, -0.48, -1, 0.979866, 0.479991, -0.980015, 0.999896, 0.479991, 0.399926, 0.429932, 0.501559, 0.779834, 0.349991, 0.449991, 0.879957, 0.219974, 0.399991, -0.980015, 0.819983, 0.49999, -0.40006, 0.669936, 0.501559, 0.899942, 0.219974, 0.379992, 0.979881, 0.819983, -0.5, 0.899942, 0.219974, -0.380001, -0.880092, 0.219974, -0.400001, -1, 0.819983, 0.479991, -0.900077, 0.219974, -0.380001, 0.399926, 0.387905, 0.488814, 0.829996, 0.0198513, 0.349992, -0.40006, 0.429932, 0.501559, -0.880092, 0.219974, 0.399991, -0.780169, 0.349991, 0.449991, 0.84998, 0.0198513, 0.329992, 0.879957, 0.219974, -0.400001, 0.84998, 0.0198513, -0.330002, -0.83013, 0.0198513, -0.350001, -0.900077, 0.219974, 0.379992, -0.850115, 0.0198513, -0.330002, -0.40006, 0.387905, 0.488814, 0.829996, 0, 0.329992, -0.83013, 0.0198513, 0.349992, 0.829996, 0.0198513, -0.350001, 0.829996, 0, -0.330002, -0.83013, 0, -0.330002, -0.850115, 0.0198513, 0.329992, -0.83013, 0, 0.329992)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r732y"]
+albedo_texture = ExtResource("7_ivku7")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_87pmf"]
+points = PackedVector3Array(-0.249076, 1.23673, 0.603883, 0.422639, 1.59867, -0.0875566, 0.395668, 1.60548, -0.0824781, -0.259433, 1.25731, 0.586594, -0.275637, 1.2372, 0.598264, -0.249076, 1.01776, 0.603883, 0.479966, 0.979914, 0.499935, 0.503245, 1.54389, -0.21452, 0.40941, 1.61751, -0.104089, 0.479966, 0.999864, 0.479945, 0.499963, 0.979914, 0.479945, -0.528222, 1.25731, 0.213375, 0.021046, 1.61751, -0.350669, -0.544425, 1.2372, 0.225045, -0.50002, 0.979914, 0.479945, -0.480022, 0.979914, 0.499935, -0.275637, 1.01728, 0.598264, 0.479966, 0.819999, 0.499935, -0.280046, 0.349913, 0.449906, -7.96318e-05, 0.42987, 0.501556, 0.496374, 1.53708, -0.241102, 0.490016, 1.56273, -0.231053, 0.499963, 0.819999, 0.479945, 0.499963, 0.819999, -0.48001, 0.499963, 0.979914, -0.48001, -0.541348, 1.23673, 0.198139, 0.000535667, 1.59867, -0.355639, 0.101652, 1.56273, -0.477633, -0.50002, 0.979914, -0.48001, -0.544425, 1.01728, 0.225045, -0.50002, 0.819999, 0.479945, -0.480022, 0.819999, 0.499935, -0.380034, 0.219922, 0.399985, 0.27999, 0.349913, 0.449906, 0.379978, 0.219922, 0.399985, -0.330092, 0.0199498, 0.349955, -7.96318e-05, 0.388071, 0.488805, 0.329932, 0.0199498, 0.349955, 0.10801, 1.53708, -0.487682, 0.479966, 0.979914, -0.5, 0.399975, 0.219922, 0.379994, 0.479966, 0.819999, -0.5, 0.399975, 0.219922, -0.38006, 0.0810389, 1.54389, -0.482495, -0.480022, 0.979914, -0.5, -0.480022, 0.999864, -0.48001, -0.50002, 0.819999, -0.48001, -0.400032, 0.219922, -0.38006, -0.400032, 0.219922, 0.379994, -0.350089, 0.0199498, 0.329965, -0.330092, 0, 0.329965, 0.329932, 0, 0.329965, 0.34993, 0.0199498, 0.329965, -0.480022, 0.819999, -0.5, 0.379978, 0.219922, -0.40005, 0.34993, 0.0199498, -0.330031, -0.380034, 0.219922, -0.40005, -0.350089, 0.0199498, -0.330031, -0.330092, 0, -0.330031, 0.329932, 0, -0.330031, 0.329932, 0.0199498, -0.350021, -0.330092, 0.0199498, -0.350021)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mf35j"]
+points = PackedVector3Array(-0.35, -0.430002, 0.0199883, -0.330061, -0.430002, 0, -0.330061, -0.45, 0.0199883, -0.35, -0.430002, 0.179992, -0.35, 0.429914, 0.0199883, 0.329992, -0.430002, 0, -0.330061, 0.429914, 0, -0.330061, -0.45, 0.179992, 0.329992, -0.45, 0.0199883, -0.330061, -0.430002, 0.2, -0.35, 0.429914, 0.179992, -0.330061, 0.45, 0.0199883, 0.349932, -0.430002, 0.0199883, 0.329992, 0.429914, 0, 0.329992, -0.45, 0.179992, 0.329992, -0.430002, 0.2, -0.330061, 0.429914, 0.2, -0.330061, 0.45, 0.179992, 0.329992, 0.45, 0.0199883, 0.349932, -0.430002, 0.179992, 0.349932, 0.429914, 0.0199883, 0.329992, 0.429914, 0.2, 0.329992, 0.45, 0.179992, 0.349932, 0.429914, 0.179992)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t51ir"]
+points = PackedVector3Array(-0.5, 1.79996, -0.296496, -0.440486, 1.79996, -0.440486, -0.259495, 0, 0, -0.5, 1.79996, 0.296398, -0.25, 2.49977, -0.0464957, -0.296496, 1.79996, -0.5, 0, 0, -0.259495, -0.183536, 0, -0.183536, -0.190486, 2.49977, -0.190486, -0.183536, 0, 0.183438, -0.440486, 1.79996, 0.440388, -0.25, 2.49977, 0.0463978, -0.215544, 2.52, -0.0396437, 0.296398, 1.79996, -0.5, -0.0464957, 2.49977, -0.25, 0.183438, 0, -0.183536, 0.440388, 1.79996, -0.440486, -0.164056, 2.52, -0.164056, -0.0396437, 2.52, -0.215544, 0, 0, 0.259397, -0.296496, 1.79996, 0.5, -0.190486, 2.49977, 0.190388, -0.215544, 2.52, 0.0395458, 0.0463978, 2.49977, -0.25, 0.259397, 0, 0, 0.5, 1.79996, -0.296496, 0.190388, 2.49977, -0.190486, 0.0395458, 2.52, -0.215544, 0.183438, 0, 0.183438, 0.440388, 1.79996, 0.440388, 0.296398, 1.79996, 0.5, -0.0464957, 2.49977, 0.25, -0.164056, 2.52, 0.163958, 0.5, 1.79996, 0.296398, 0.25, 2.49977, -0.0464957, 0.163958, 2.52, -0.164056, 0.190388, 2.49977, 0.190388, 0.0463978, 2.49977, 0.25, -0.0396437, 2.52, 0.215446, 0.25, 2.49977, 0.0463978, 0.215446, 2.52, -0.0396437, 0.163958, 2.52, 0.163958, 0.0395458, 2.52, 0.215446, 0.215446, 2.52, 0.0395458)
+
+[node name="Level" instance=ExtResource("1_h3e3j")]
+
+[node name="Player" parent="." index="3" instance=ExtResource("3_i166f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="RoomBase" parent="." index="4" instance=ExtResource("2_nbgty")]
+
+[node name="Armchair" type="MeshInstance3D" parent="RoomBase" index="7"]
+transform = Transform3D(-0.565685, 0, -0.565685, 0, 0.8, 0, 0.565685, 0, -0.565685, 3, 0, 3)
+material_override = ExtResource("4_pm6rs")
+material_overlay = ExtResource("5_vrc4q")
+mesh = ExtResource("6_x4oov")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/Armchair" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/Armchair/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_cqqhe")
+
+[node name="BookSet" type="MeshInstance3D" parent="RoomBase" index="8"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.39122, 0.276984, 1.37957)
+material_override = SubResource("StandardMaterial3D_yoh1m")
+material_overlay = SubResource("ShaderMaterial_u5w0m")
+mesh = ExtResource("9_qjqsm")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/BookSet" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/BookSet/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_fhw5o")
+
+[node name="CabinetMediumDecorated" type="MeshInstance3D" parent="RoomBase" index="9"]
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 3.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_xm880")
+material_overlay = ExtResource("5_vrc4q")
+mesh = ExtResource("10_0fkkc")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/CabinetMediumDecorated" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/CabinetMediumDecorated/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_vfold")
+
+[node name="CabinetSmallDecorated" type="MeshInstance3D" parent="RoomBase" index="10"]
+transform = Transform3D(-0.725046, 0, 0.338095, 0, 0.8, 0, -0.338095, 0, -0.725046, 1, 0, 3.4)
+material_override = SubResource("StandardMaterial3D_r732y")
+material_overlay = ExtResource("5_vrc4q")
+mesh = ExtResource("11_wyi7n")
+skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/CabinetSmallDecorated" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/CabinetSmallDecorated/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_87pmf")
+
+[node name="PictureframeMedium" type="MeshInstance3D" parent="RoomBase" index="11"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.235904, 1.02466, 4.0697)
+material_override = ExtResource("4_pm6rs")
+mesh = ExtResource("12_3rml5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/PictureframeMedium" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/PictureframeMedium/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_mf35j")
+
+[node name="LampStanding" type="MeshInstance3D" parent="RoomBase" index="12"]
+transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 2.2, 0, 3.8)
+material_override = ExtResource("4_pm6rs")
+mesh = ExtResource("13_a5iu8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RoomBase/LampStanding" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomBase/LampStanding/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_t51ir")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.3, 3.8)
+light_energy = 3.91
+omni_range = 17.0
+
+[node name="Cauldron" parent="." index="6" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92268, 0, -2.96324)

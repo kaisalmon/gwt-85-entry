@@ -52,7 +52,7 @@ text = "Magic:"
 vertical_alignment = 1
 
 [node name="MagicValueLabel" type="Label" parent="MagicView/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 text = "9999"
 horizontal_alignment = 2

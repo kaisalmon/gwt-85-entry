@@ -1,17 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://2wi4shqocb1m"]
+[gd_scene load_steps=3 format=3 uid="uid://2wi4shqocb1m"]
 
 [ext_resource type="Script" uid="uid://c01xfdf2r1f2x" path="res://scenes/interactable/item_consumer.gd" id="1_tkpk6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
-radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7q1x"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 0.49, 0.49, 0.647059)
-
-[sub_resource type="SphereMesh" id="SphereMesh_yvxfo"]
-material = SubResource("StandardMaterial3D_b7q1x")
 
 [node name="ItemConsumer" type="Area3D"]
 collision_layer = 4
@@ -21,6 +12,3 @@ script = ExtResource("1_tkpk6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_yvxfo")
