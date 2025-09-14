@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://2wi4shqocb1m"]
+[gd_scene load_steps=8 format=3 uid="uid://2wi4shqocb1m"]
 
 [ext_resource type="Script" uid="uid://c01xfdf2r1f2x" path="res://scenes/interactable/item_consumer.gd" id="1_tkpk6"]
 [ext_resource type="AudioStream" uid="uid://cb73wmked30s7" path="res://audio/sfx/ambience/ambience_cauldron.ogg" id="2_rwcla"]
 [ext_resource type="AudioStream" uid="uid://bvbhv6ccmdsfc" path="res://audio/sfx/ui/cauldroninteract_success.ogg" id="2_t3867"]
 [ext_resource type="AudioStream" uid="uid://bptdkx8jdf3jg" path="res://audio/sfx/ui/cauldron_splash.ogg" id="4_lknpr"]
+[ext_resource type="AudioStream" uid="uid://celd7afsjlrqr" path="res://audio/sfx/ui/cauldroninteract_failure.ogg" id="5_ep7wk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
 
@@ -35,3 +36,6 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_ep7wk")
 volume_db = -3.96
 bus = &"SFX"
+
+[node name="cauldroninteract_failure" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_ep7wk")

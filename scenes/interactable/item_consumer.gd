@@ -11,6 +11,7 @@ extends Interactable
 @export var debug_label_3d: Label3D
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
+@onready var cauldroninteract_failure: AudioStreamPlayer3D = $cauldroninteract_failure
 
 var text_tween: Tween = null
 
@@ -37,7 +38,7 @@ func interact(player: Player) -> void:
 
 	if has_necessary_ingredients_for(held_item_type):
 		print("does not need item of the given type")
-		
+		cauldroninteract_failure.play()
 		wiggle_text()
 		return
 	
