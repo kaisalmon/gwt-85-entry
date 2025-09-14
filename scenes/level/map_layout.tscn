@@ -1,8 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://biedd6kpesol7"]
+[gd_scene load_steps=36 format=3 uid="uid://ch5ehwhnko4q2"]
 
 [ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="2_1advv"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="3_15kbo"]
-[ext_resource type="PackedScene" uid="uid://cxj5oaihv80wm" path="res://scenes/level/small_wall.tscn" id="3_wl1g2"]
+[ext_resource type="PackedScene" path="res://scenes/level/small_wall.tscn" id="3_wl1g2"]
 [ext_resource type="ArrayMesh" uid="uid://bhc1sn4yrjgxj" path="res://models/armchair.obj" id="4_wl1g2"]
 [ext_resource type="Texture2D" uid="uid://c5petn1iy3xxm" path="res://textures/furniturebits_texture_pixel.png" id="5_o54a4"]
 [ext_resource type="Shader" uid="uid://bb14maw4fowt1" path="res://materials/Outline.gdshader" id="6_n1evr"]
@@ -19,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://qj8yt50m37o" path="res://scenes/interactable/door.tscn" id="18_ce3nn"]
 [ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="19_1advv"]
 [ext_resource type="PackedScene" uid="uid://dt6k0c8w2pyfj" path="res://scenes/level/wall.tscn" id="19_15kbo"]
-[ext_resource type="PackedScene" uid="uid://dn58wv626jhtd" path="res://scenes/level/middle_wall.tscn" id="20_wl1g2"]
-[ext_resource type="PackedScene" uid="uid://cw7l88og36qev" path="res://scenes/level/mini_wall.tscn" id="21_wl1g2"]
+[ext_resource type="PackedScene" path="res://scenes/level/middle_wall.tscn" id="20_wl1g2"]
+[ext_resource type="PackedScene" path="res://scenes/level/mini_wall.tscn" id="21_wl1g2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15kbo"]
 albedo_texture = ExtResource("19_1advv")

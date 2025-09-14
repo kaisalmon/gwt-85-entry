@@ -124,12 +124,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 stream = SubResource("AudioStreamRandomizer_kktls")
 volume_db = -4.0
 autoplay = true
-stream_paused = true
 
 [node name="AmbienceOutsideR" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 stream = SubResource("AudioStreamRandomizer_tpi1w")
 volume_db = -4.0
 autoplay = true
-stream_paused = true
 bus = &"Ambience"

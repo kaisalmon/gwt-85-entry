@@ -55,7 +55,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.745098, 1, 1)
-text = "999"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -66,7 +66,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.78905, 0.742444, 1)
-text = "999"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -77,7 +77,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 1, 0.929167, 1)
-text = "999"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -88,7 +88,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9625, 1, 0.75, 1)
-text = "999"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -99,6 +99,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
-text = "999"
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1

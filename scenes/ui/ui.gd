@@ -13,6 +13,14 @@ var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 @onready var magic_value_label_bulky: Label = $MagicView/HBoxContainer/MagicValueLabelBulky
 @onready var magic_value_label_sturdy: Label = $MagicView/HBoxContainer/MagicValueLabelSturdy
 
+var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
+	Recipe.MagicType.SOFT: 0,
+	Recipe.MagicType.CRISPY: 0,
+	Recipe.MagicType.HOLLOW: 0,
+	Recipe.MagicType.BULKY: 0,
+	Recipe.MagicType.STURDY: 0
+}
+
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
@@ -31,7 +39,8 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
 		
 func set_magic_amount(type: Recipe.MagicType, magic_amount_new: int) -> void:
-	get_label_by_type(type).text = str(magic_amount_new)
+	# TODO: store the actual mechanical amounts, either here or in player or in game state
+	pass
 	
 func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 	match magic_type:
@@ -47,3 +56,11 @@ func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 			return magic_value_label_sturdy			
 	push_warning("no implementation found for UI.get_label_by_type() with type: ", Recipe.MagicType.keys()[magic_type])
 	return null
+
+func increment_visual_magic_amount(type: Recipe.MagicType, amount: int) -> void:
+	if not visual_magic_amounts.has(type):
+		push_warning("no entry found in visual_magic_amounts for type: ", Recipe.MagicType.keys()[type])
+		return
+	visual_magic_amounts[type] += amount
+	get_label_by_type(type).text = str(visual_magic_amounts[type])
+

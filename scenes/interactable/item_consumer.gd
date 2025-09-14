@@ -1,6 +1,8 @@
 class_name ItemConsumer
 extends Interactable
 
+
+
 ## Consumes items and converts them to magic
 ## Used for the cauldron.
 
@@ -13,6 +15,7 @@ extends Interactable
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 @onready var cauldroninteract_failure: AudioStreamPlayer3D = $cauldroninteract_failure
+@onready var mana_orb: PackedScene = preload("res://ui/mana_orb.tscn")
 
 var text_tween: Tween = null
 
@@ -90,13 +93,23 @@ func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	return current_amount >= needed_amount
 
 func provide_magic(player: Player) -> void:
+	var delay = 0.0
 	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
 		push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
 		if recipe.produced_magic[magic_type] == 0:
 			push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
-		
-		player.change_magic(magic_type, recipe.produced_magic[magic_type])
-		
+
+		var amount = recipe.produced_magic[magic_type]
+		player.change_magic(magic_type, amount)
+
+		for i in amount:
+			delay += 0.25
+			var orb_instance: ManaOrb = mana_orb.instantiate()
+			get_tree().current_scene.add_child(orb_instance)
+			orb_instance.set_magic_type(magic_type)
+			orb_instance.global_position = self.global_position
+			orb_instance.delay = delay
+
 		cauldroninteract_success.play()
 	
 	provided_ingredients.clear()
