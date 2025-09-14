@@ -18,7 +18,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ddgcptw5cn343" path="res://models/shelf_B_large_decorated.obj" id="16_x0u5a"]
 [ext_resource type="ArrayMesh" uid="uid://do5cyup14asns" path="res://models/shelf_B_small_decorated.obj" id="17_b3lkd"]
 [ext_resource type="PackedScene" uid="uid://cxjbvqlgkhxp3" path="res://models/custom/cauldron.gltf" id="18_7mhv5"]
-[ext_resource type="Script" uid="uid://dvccmav60vxp6" path="res://scripts/furniture.gd" id="19_82gjl"]
+[ext_resource type="Script" path="res://scripts/furniture.gd" id="19_82gjl"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="19_jwnwe"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="19_swucj"]
 [ext_resource type="PackedScene" uid="uid://q2mw83d47dql" path="res://scenes/decor/fake_outside.tscn" id="21_66dec"]

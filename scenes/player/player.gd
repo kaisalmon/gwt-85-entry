@@ -2,10 +2,11 @@ class_name Player
 extends CharacterBody3D
 
 @export var move_speed: float = 8.0
-@export_range(0.0, 0.6, 0.01) var walk_y_variance: float = 0.1
 @export var mouse_sensitivity: float = 0.005
 @export_range(0, 90, 1, "radians_as_degrees") var max_down_angle: float = 60
 @export_range(0, 90, 1, "radians_as_degrees") var max_up_angle: float = 60
+@export_range(0.0, 0.6, 0.01) var  head_bobbing_y_offset: float = 0.08
+@export var head_bobbing_speed: float = 15
 @export var gravity: float = 9.8
 @export_category("internal nodes")
 @export var look_pivot: Node3D
@@ -17,7 +18,7 @@ var move_time: float = 0.0
 var current_y_offset: float = 0.0
 var ismoving: bool = false #check movement for footsteps
 var current_magic_amounts: Array[int] = []
-
+var actual_current_speed: float
 var held_item: Item = null
 
 func _ready() -> void:
@@ -29,10 +30,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_move(delta)
+	var relative_speed: float = min(actual_current_speed / move_speed, 1.0)
+	var speed_factor: float = relative_speed * head_bobbing_speed
 	
 	if move_time > 0:
 		var offset_strength: float = max(clamp(move_time * 2, 0.0, 1.0), current_y_offset)
-		current_y_offset = offset_strength * sin(move_time*10) * walk_y_variance
+		current_y_offset = offset_strength * sin(move_time*speed_factor) * head_bobbing_y_offset
 		look_pivot.position.y = base_y_pos + current_y_offset
 	else:
 		current_y_offset = lerp(current_y_offset, 0.0, delta)
@@ -53,11 +56,15 @@ func _move(delta: float) -> void:
 	else:
 		move_time = 0.0
 		ismoving = false
-	
+	var previous_pos: Vector3 = global_position
 	velocity = velocity.move_toward(move_dir * move_speed, delta * 200)
 	velocity.y = lerp(velocity.y, y_velo, delta*30)
 	move_and_slide()
 
+	if previous_pos.is_equal_approx(global_position):
+		move_time = 0
+	actual_current_speed = (global_position - previous_pos).length()/delta
+	
 func _input(event: InputEvent) -> void:
 	if !can_use_input():
 		return
