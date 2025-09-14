@@ -1,10 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://r4n06db14718"]
+[gd_scene load_steps=23 format=3 uid="uid://r4n06db14718"]
 
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="1_tyc8v"]
 [ext_resource type="Material" uid="uid://c7xraa4dgnec5" path="res://scenes/decor/window_portal_material.tres" id="2_17yy1"]
 [ext_resource type="ArrayMesh" uid="uid://l658w3s75ek2" path="res://models/custom/window.obj" id="3_a4nrp"]
 [ext_resource type="Material" uid="uid://b7xke3yltv0pk" path="res://models/custom/window_material.tres" id="4_nfjdw"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_a4nrp"]
+[ext_resource type="AudioStream" uid="uid://bymgiq4hi7unr" path="res://audio/sfx/ambience/ambience_outside_l_01.ogg" id="6_scc5q"]
+[ext_resource type="AudioStream" uid="uid://c4738x3sla8ta" path="res://audio/sfx/ambience/ambience_outside_l_02.ogg" id="7_oyt8e"]
+[ext_resource type="AudioStream" uid="uid://dpxk1s65ey6cj" path="res://audio/sfx/ambience/ambience_outside_l_03.ogg" id="8_kyqfd"]
+[ext_resource type="AudioStream" uid="uid://bx2w471vpkgc2" path="res://audio/sfx/ambience/ambience_outside_l_04.ogg" id="9_rinmd"]
+[ext_resource type="AudioStream" uid="uid://cosepq2yn8ixd" path="res://audio/sfx/ambience/ambience_outside_r_01.ogg" id="10_2xp0f"]
+[ext_resource type="AudioStream" uid="uid://ch5du6ccnc02x" path="res://audio/sfx/ambience/ambience_outside_r_02.ogg" id="11_po8k2"]
+[ext_resource type="AudioStream" uid="uid://dq80kcmwcnrjg" path="res://audio/sfx/ambience/ambience_outside_r_03.ogg" id="12_85w4r"]
+[ext_resource type="AudioStream" uid="uid://cnyr85r13tgtq" path="res://audio/sfx/ambience/ambience_outside_r_04.ogg" id="13_wnh8w"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hjewq"]
 size = Vector2(1.545, 1.535)
@@ -55,6 +63,20 @@ scale_over_velocity_max = 1.0
 [sub_resource type="QuadMesh" id="QuadMesh_ofou3"]
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kktls"]
+streams_count = 4
+stream_0/stream = ExtResource("6_scc5q")
+stream_1/stream = ExtResource("7_oyt8e")
+stream_2/stream = ExtResource("8_kyqfd")
+stream_3/stream = ExtResource("9_rinmd")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tpi1w"]
+streams_count = 4
+stream_0/stream = ExtResource("10_2xp0f")
+stream_1/stream = ExtResource("11_po8k2")
+stream_2/stream = ExtResource("12_85w4r")
+stream_3/stream = ExtResource("13_wnh8w")
+
 [node name="Window" type="Node3D"]
 script = ExtResource("1_tyc8v")
 
@@ -96,3 +118,18 @@ one_shot = true
 explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_b0vfj")
 draw_pass_1 = SubResource("QuadMesh_ofou3")
+
+[node name="AmbienceOutsideL" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+stream = SubResource("AudioStreamRandomizer_kktls")
+volume_db = -4.0
+autoplay = true
+stream_paused = true
+
+[node name="AmbienceOutsideR" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+stream = SubResource("AudioStreamRandomizer_tpi1w")
+volume_db = -4.0
+autoplay = true
+stream_paused = true
+bus = &"Ambience"
