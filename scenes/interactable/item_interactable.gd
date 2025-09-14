@@ -8,7 +8,7 @@ extends Interactable
 
 func _ready() -> void:
 	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]
-	set_highlight(false)
+	set_highlight(null, false)
 
 func can_interact(_player: Player) -> bool:
 	return true
@@ -24,6 +24,6 @@ func interact(player: Player) -> void:
 	player.set_item_in_hand(item_source, true)
 	pickup_audio_stream_player.play()
 	
-func set_highlight(highlight_new: bool) -> void:
+func set_highlight(_player: Player, highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	debug_label_3d.visible = highlight_new

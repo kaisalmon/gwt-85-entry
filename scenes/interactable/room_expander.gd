@@ -31,7 +31,7 @@ var star_mat: StandardMaterial3D
 
 func _ready() -> void:
 	init_circle()
-	set_highlight(false)
+	set_highlight(null, false)
 
 func _physics_process(delta: float) -> void:
 	if door_unlocked:
@@ -77,7 +77,7 @@ func interact(_player: Player) -> void:
 			room_listener.on_room_unlock_start(room_type, unlock_time)
 
 
-func set_highlight(highlight_new: bool) -> void:
+func set_highlight(_player: Player, highlight_new: bool) -> void:
 	if has_started_animation || door_unlocked:
 		return
 	#print("highlighting for ", self.name, ": ", highlight_new)

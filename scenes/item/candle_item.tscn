@@ -25,7 +25,8 @@ height = 0.2
 radius = 0.07
 
 [node name="CandleItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
-collision_layer = 0
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_b1tlb")
 item_type = 1
 item_interactable = NodePath("ItemInteractable")

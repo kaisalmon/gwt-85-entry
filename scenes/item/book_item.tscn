@@ -21,33 +21,34 @@ material = SubResource("StandardMaterial3D_dywoi")
 size = Vector3(0.1, 0.18, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dywoi"]
-size = Vector3(0.651245, 0.181201, 0.598991)
+size = Vector3(0.540314, 0.145697, 0.487594)
 
 [node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
-collision_layer = 0
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_aocwp")
 item_interactable = NodePath("ItemInteractable")
 col_shape = NodePath("CollisionShape3D")
 despawn_timer = NodePath("DespawnTimer")
 
 [node name="DummyMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 0, 0.541958, 0.840406, -0.000502206, -0.00801855, -2.9274e-05)
+transform = Transform3D(0.7939, 0.0828674, -0.0534392, -0.098604, 0.667198, -0.43026, 1.19209e-08, 0.433566, 0.672325, -0.000502206, -0.00801855, -0.00416831)
 mesh = SubResource("BoxMesh_dywoi")
 
 [node name="DummyMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 0, 0.541958, 0.840406, 0.00624927, 0.0463403, 0.0352948)
+transform = Transform3D(0.7939, 0.0828674, -0.0534392, -0.098604, 0.667198, -0.43026, 1.19209e-08, 0.433566, 0.672325, 0.00624927, 0.0380506, 0.0318775)
 mesh = SubResource("BoxMesh_3r1n4")
 
 [node name="DummyMesh3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 0, 0.541958, 0.840406, -0.00723518, -0.0622284, -0.0352565)
+transform = Transform3D(0.7939, 0.0828674, -0.0534392, -0.098604, 0.667198, -0.43026, 1.19209e-08, 0.433566, 0.672325, -0.00723518, -0.045779, -0.0275731)
 mesh = SubResource("BoxMesh_3r1n4")
 
 [node name="DummyMesh4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 0, 0.541958, 0.840406, -0.298215, 0.028958, -2.9274e-05)
+transform = Transform3D(0.7939, 0.0828674, -0.0534392, -0.098604, 0.667198, -0.43026, 1.19209e-08, 0.433566, 0.672325, -0.259293, 0.028958, -2.9274e-05)
 mesh = SubResource("BoxMesh_jblyg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 0, 0.541958, 0.840406, -0.0257489, -0.00479326, -2.05892e-05)
+transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 7.45058e-09, 0.541958, 0.840406, -0.0315098, 0.000447732, 0.00455323)
 shape = SubResource("BoxShape3D_dywoi")
 
 [node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_3r1n4")]

@@ -6,9 +6,10 @@ extends Interactable
 
 
 @export var recipe: Recipe
-@export var source_mesh: MeshInstance3D
 @export var provided_ingredients: Dictionary[Item.ItemType, int]
+@export var ready_item_position: Marker3D
 @export var debug_label_3d: Label3D
+@export var source_mesh: MeshInstance3D
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 @onready var cauldroninteract_failure: AudioStreamPlayer3D = $cauldroninteract_failure
@@ -16,7 +17,7 @@ extends Interactable
 var text_tween: Tween = null
 
 func _ready() -> void:
-	set_highlight(false)
+	set_highlight(null, false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
 		push_warning("the recipe on ", self.name, " does not require any ingredients in the recipe")
@@ -65,9 +66,17 @@ func interact(player: Player) -> void:
 	await tween.finished
 	item.queue_free()
 	
-func set_highlight(highlight_new: bool) -> void:
+func set_highlight(player: Player, highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	debug_label_3d.visible = highlight_new
+	
+	if player != null && is_instance_valid(player.held_item):
+		if highlight_new:
+			player.held_item.reparent(self)
+			player.held_item.drag_target = ready_item_position
+			player.is_item_in_ready_pos = true
+		else:
+			player.set_item_to_hand_pos(player.held_item)
 	
 func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	if recipe.ingredients.size() == 0:

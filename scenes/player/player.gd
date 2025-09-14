@@ -23,6 +23,7 @@ var ismoving: bool = false #check movement for footsteps
 var current_magic_amounts: Array[int] = []
 var actual_current_speed: float
 var held_item: Item = null
+var is_item_in_ready_pos: bool = false
 
 func _ready() -> void:
 	GameState.player = self
@@ -116,7 +117,12 @@ func remove_and_get_current_item() -> Item:
 func drop_current_item() -> void:
 	if !is_instance_valid(held_item):
 		return
+
 	held_item.reparent(get_parent())
+	if is_item_in_ready_pos:
+		held_item.drag_target = self
+		await get_tree().create_timer(0.1).timeout
+	is_item_in_ready_pos = false
 	held_item.set_held(false)
 	held_item.drag_target = null
 	held_item = null
@@ -130,4 +136,9 @@ func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
 	held_item = item
 	held_item.set_held(true)	
 	held_item.drag_target = item_hold_position
+	is_item_in_ready_pos = false
 	
+func set_item_to_hand_pos(item: Item) -> void:
+	is_item_in_ready_pos = false
+	item.reparent(item_hold_position)
+	held_item.drag_target = item_hold_position

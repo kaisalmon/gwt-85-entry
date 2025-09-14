@@ -18,13 +18,13 @@ func _update_interaction_hint() -> void:
 		return
 
 	if is_instance_valid(current_highlight_interactable):
-		current_highlight_interactable.set_highlight(false)
+		current_highlight_interactable.set_highlight(player, false)
 	
 	if next_interactable == null:
 		current_highlight_interactable = null
 		return
 	
-	next_interactable.set_highlight(true)
+	next_interactable.set_highlight(player, true)
 	current_highlight_interactable = next_interactable
 	
 func _get_next_interactable() -> Interactable:

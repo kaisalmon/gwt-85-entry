@@ -26,6 +26,8 @@ height = 0.681076
 radius = 0.0830078
 
 [node name="KnifeItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_elfyg")
 item_type = 2
 item_interactable = NodePath("ItemInteractable")

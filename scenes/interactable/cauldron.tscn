@@ -60,10 +60,11 @@ lifetime = 0.42
 process_material = SubResource("ParticleProcessMaterial_3um5l")
 draw_pass_1 = SubResource("QuadMesh_m4y0a")
 
-[node name="ItemConsumer" parent="." node_paths=PackedStringArray("source_mesh", "debug_label_3d") instance=ExtResource("4_sw1e1")]
+[node name="ItemConsumer" parent="." node_paths=PackedStringArray("ready_item_position", "debug_label_3d", "source_mesh") instance=ExtResource("4_sw1e1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.544188, 0)
-source_mesh = NodePath("../blockbench_export/Node/cylinder")
+ready_item_position = NodePath("../Marker3D")
 debug_label_3d = NodePath("../DebugLabel3D")
+source_mesh = NodePath("../blockbench_export/Node/cylinder")
 
 [node name="DebugLabel3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41314, 0)
@@ -73,6 +74,9 @@ text = "lorem ipsum"
 font = ExtResource("5_2vx1k")
 font_size = 60
 outline_size = 8
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [editable path="blockbench_export"]
 [editable path="ItemConsumer"]

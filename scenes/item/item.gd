@@ -33,7 +33,8 @@ func set_held(is_held_new: bool) -> void:
 	gravity_scale = 0.0 if is_held_new else 1.0
 	item_interactable.visible = !is_held_new
 	item_interactable.monitorable = !is_held_new
-	col_shape.disabled = is_held_new
+	#col_shape.disabled = is_held_new
+	set_collision_layer_value(1, !is_held_new)
 	item_interactable_offset = item_interactable.debug_label_3d.position
 	
 	if is_held_new:

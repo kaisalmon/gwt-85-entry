@@ -1,6 +1,7 @@
 class_name ItemProvider
 extends Interactable
 
+@export var interaction_duration: float = 0.5
 @export var produced_item: Item.ItemType
 @export var source_mesh: MeshInstance3D
 @onready var debug_label_3d: Label3D = $DebugLabel3D
@@ -17,7 +18,7 @@ func _ready() -> void:
 	default_albedo = highlight_material.albedo_color
 	highlight_albedo = Color.from_hsv(default_albedo.h, max(default_albedo.s - 0.3, 0), min(default_albedo.v + 0.2, 1.0))
 	debug_label_3d.text = Item.ItemType.keys()[produced_item]
-	set_highlight(false)
+	set_highlight(null, false)
 
 func can_interact(_player: Player) -> bool:
 	return true
@@ -37,7 +38,7 @@ func interact(player: Player) -> void:
 	
 	pickup.play()
 	
-func set_highlight(highlight_new: bool) -> void:
+func set_highlight(_player: Player, highlight_new: bool) -> void:
 	if is_instance_valid(highlight_tween):
 		highlight_tween.kill()
 	
