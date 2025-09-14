@@ -1,20 +1,31 @@
-[gd_resource type="AudioStreamInteractive" load_steps=2 format=3 uid="uid://c05rr8tygpfft"]
+[gd_resource type="AudioStreamInteractive" load_steps=5 format=3 uid="uid://c05rr8tygpfft"]
 
-[ext_resource type="AudioStream" uid="uid://cb73wmked30s7" path="res://audio/sfx/ambience/ambience_cauldron.ogg" id="1_31kqj"]
+[ext_resource type="AudioStream" uid="uid://xkr2plyl84io" path="res://audio/music/Intro01.ogg" id="1_02q37"]
+[ext_resource type="AudioStream" uid="uid://pmvsbjtxtbw0" path="res://audio/music/Room01.ogg" id="2_gv8qs"]
+[ext_resource type="AudioStream" uid="uid://cbqyos7j2rpvy" path="res://audio/music/Intro02.ogg" id="3_7442e"]
+[ext_resource type="AudioStream" uid="uid://cdg4u17tybxys" path="res://audio/music/Room02.ogg" id="4_etiy7"]
 
 [resource]
-clip_count = 2
-clip_0/name = &"Ambience Cauldron"
-clip_0/stream = ExtResource("1_31kqj")
-clip_0/auto_advance = 0
-clip_1/name = &"Ambience Cauldron"
-clip_1/stream = ExtResource("1_31kqj")
+clip_count = 4
+clip_0/name = &"Intro01"
+clip_0/stream = ExtResource("1_02q37")
+clip_0/auto_advance = 1
+clip_0/next_clip = 0
+clip_1/name = &"Room01"
+clip_1/stream = ExtResource("2_gv8qs")
 clip_1/auto_advance = 0
+clip_2/name = &"Intro02"
+clip_2/stream = ExtResource("3_7442e")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Room02"
+clip_3/stream = ExtResource("4_etiy7")
+clip_3/auto_advance = 0
 _transitions = {
 Vector2i(0, 1): {
 "fade_beats": 1.0,
-"fade_mode": 4,
-"from_time": 1,
+"fade_mode": 0,
+"from_time": 3,
 "to_time": 1
 }
 }
