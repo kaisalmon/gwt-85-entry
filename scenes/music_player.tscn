@@ -11,3 +11,44 @@ stream = ExtResource("1_jxdhu")
 volume_db = -10.0
 bus = &"Music"
 playback_type = 2
+
+[node name="MasterFader" type="HSlider" parent="."]
+offset_left = 22.0
+offset_top = 8.0
+offset_right = 147.0
+offset_bottom = 78.0
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[node name="MusicFader" type="HSlider" parent="."]
+offset_left = 22.0
+offset_top = 93.0
+offset_right = 147.0
+offset_bottom = 109.0
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[node name="SFXFader" type="HSlider" parent="."]
+offset_left = 22.0
+offset_top = 55.0
+offset_right = 147.0
+offset_bottom = 73.0
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[node name="AmbienceFader" type="HSlider" parent="."]
+offset_left = 22.0
+offset_top = 73.0
+offset_right = 147.0
+offset_bottom = 93.0
+max_value = 1.5
+step = 0.001
+value = 1.5
+
+[connection signal="value_changed" from="MasterFader" to="." method="_on_master_fader_value_changed"]
+[connection signal="value_changed" from="MusicFader" to="." method="_on_music_fader_value_changed"]
+[connection signal="value_changed" from="SFXFader" to="." method="_on_sfx_fader_value_changed"]
+[connection signal="value_changed" from="AmbienceFader" to="." method="_on_ambience_fader_value_changed"]
