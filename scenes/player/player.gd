@@ -2,6 +2,8 @@ class_name Player
 extends CharacterBody3D
 
 @export var move_speed: float = 8.0
+@export var acceleration: float = 15.0
+@export var deacceleration: float = 35.0
 @export_range(0.0, 0.6, 0.01) var walk_y_variance: float = 0.1
 @export var mouse_sensitivity: float = 0.005
 @export_range(0, 90, 1, "radians_as_degrees") var max_down_angle: float = 60
@@ -21,6 +23,8 @@ var current_magic_amounts: Array[int] = []
 var held_item: Item = null
 
 func _ready() -> void:
+	GameState.player = self
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #we may not want this here
 	base_y_pos = look_pivot.position.y
 	
@@ -50,11 +54,18 @@ func _move(delta: float) -> void:
 		move_dir = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 		move_time += delta
 		ismoving = true
+
+
+		# 0 when moving in exact opposition direction to move_dir, 1 when moving in exact same direction
+		var acc_dec_ratio = velocity.normalized().dot(move_dir.normalized()) * 0.5 + 0.5 
+		var acc_dec_rate = lerp(deacceleration, acceleration, acc_dec_ratio)
+		velocity = velocity.move_toward(move_dir * move_speed, acc_dec_rate * delta)
 	else:
 		move_time = 0.0
 		ismoving = false
-	
-	velocity = velocity.move_toward(move_dir * move_speed, delta * 200)
+		velocity = velocity.move_toward(Vector3(0,y_velo,0), deacceleration * delta)
+
+
 	velocity.y = lerp(velocity.y, y_velo, delta*30)
 	move_and_slide()
 

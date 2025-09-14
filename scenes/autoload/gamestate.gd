@@ -9,3 +9,5 @@ enum RoomType {
 var ui: UI
 
 var outside: Node3D
+
+var player: Player
