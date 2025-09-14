@@ -85,5 +85,6 @@ autostart = true
 [node name="footsteps" type="AudioStreamPlayer3D" parent="PlayerAudio"]
 stream = SubResource("AudioStreamRandomizer_myrg7")
 bus = &"SFX"
+playback_type = 2
 
 [connection signal="timeout" from="FootstepTimer" to="." method="_on_timer_timeout"]
