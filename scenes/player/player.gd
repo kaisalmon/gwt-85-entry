@@ -1,15 +1,15 @@
 class_name Player
 extends CharacterBody3D
 
-@export var move_speed: float = 8.0
+@export var move_speed: float = 7.0
 @export var acceleration: float = 15.0
 @export var deacceleration: float = 35.0
 @export_range(0.0, 0.6, 0.01) var walk_y_variance: float = 0.1
 @export var mouse_sensitivity: float = 0.005
 @export_range(0, 90, 1, "radians_as_degrees") var max_down_angle: float = 60
 @export_range(0, 90, 1, "radians_as_degrees") var max_up_angle: float = 60
-@export_range(0.0, 0.6, 0.01) var  head_bobbing_y_offset: float = 0.08
-@export var head_bobbing_speed: float = 15
+@export_range(0.0, 0.6, 0.01) var head_bobbing_y_offset: float = 0.05
+@export var head_bobbing_speed: float = 14
 @export var gravity: float = 9.8
 @export_category("internal nodes")
 @export var look_pivot: Node3D
@@ -90,6 +90,8 @@ func _input(event: InputEvent) -> void:
 		look_pivot.rotation.x = clampf(look_pivot.rotation.x, -deg_to_rad(max_down_angle), deg_to_rad(max_up_angle))
 	if event.is_action_pressed("interact"):
 		interaction.interact()
+	if event.is_action_released("interact"):
+		interaction.stop_interact()
 	if event.is_action_pressed("drop_item"):
 		drop_current_item()
 				

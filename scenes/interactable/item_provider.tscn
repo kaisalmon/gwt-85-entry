@@ -23,12 +23,15 @@ streams_count = 2
 stream_0/stream = ExtResource("2_g4kgx")
 stream_1/stream = ExtResource("3_0ns2q")
 
-[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh")]
+[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh", "label_3d", "pickup_audio_stream_player", "interaction_timer")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
 source_mesh = NodePath("MeshInstance3D")
+label_3d = NodePath("DebugLabel3D")
+pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
+interaction_timer = NodePath("InteractionTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")
@@ -45,7 +48,11 @@ font = ExtResource("2_0ns2q")
 font_size = 60
 outline_size = 8
 
-[node name="pickup" type="AudioStreamPlayer" parent="."]
+[node name="InteractionTimer" type="Timer" parent="."]
+
+[node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1hiuq")
 volume_db = 6.5
 bus = &"SFX"
+
+[connection signal="timeout" from="InteractionTimer" to="." method="_on_interaction_timer_timeout"]
