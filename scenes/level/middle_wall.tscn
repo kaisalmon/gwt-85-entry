@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn58wv626jhtd"]
+
+[ext_resource type="Texture2D" uid="uid://de24pln7p0opt" path="res://textures/GreenWall.png" id="1_ybcad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8h4d"]
+shading_mode = 0
+albedo_texture = ExtResource("1_ybcad")
+uv1_scale = Vector3(2.5, 1, 1)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3gr7i"]
+size = Vector2(5, 2)
+orientation = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_420mt"]
+points = PackedVector3Array(2.5, 1, 0, 2.5, -1, 0, -2.5, 1, 0, -2.5, -1, 0)
+
+[node name="MiddleWall" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_w8h4d")
+mesh = SubResource("PlaneMesh_3gr7i")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_420mt")
