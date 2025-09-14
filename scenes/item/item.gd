@@ -14,8 +14,6 @@ enum ItemType {
 	KNIFE
 }
 
-
-
 @export var item_type: ItemType
 @export var fadeout_time: float = 4.0
 @export_category("internal nodes")
@@ -28,18 +26,6 @@ var drag_target: Node3D
 var is_held: bool = false
 var drag_tween: Tween
 var fadeout_factor: float = 0
-
-static func get_scene(scene_item_type: ItemType) -> PackedScene:
-	match scene_item_type:
-		ItemType.BOOK:
-			return BOOK_ITEM_SCENE
-		ItemType.CANDLE:
-			return CANDLE_ITEM_SCENE
-		ItemType.KNIFE:
-			return KNIFE_ITEM_SCENE
-			
-	push_warning("Item.get_scene(): no implementation for " + ItemType.keys()[scene_item_type] + " exists yet!")
-	return null
 
 func set_held(is_held_new: bool) -> void:
 	is_held = is_held_new
@@ -56,9 +42,6 @@ func set_held(is_held_new: bool) -> void:
 			fadeout_tween.kill()
 	else:
 		despawn_timer.start()
-		#fadeout_factor = 0.0
-		#fadeout_time = 0.0
-
 
 func _physics_process(_delta: float) -> void:
 	update_drag_tween()
@@ -82,13 +65,8 @@ func update_fadeout() -> void:
 		return
 
 	var used_fadeout_speed: float = lerp(FADEOUT_START_SPEED, FADEOUT_FINAL_SPEED, fadeout_factor)
-	var is_visible_currently_old: bool = sin(float(Time.get_ticks_msec()) / (6000 / used_fadeout_speed)) > 0.0
-	
 	var is_visible_currently: bool = sin(fadeout_factor * used_fadeout_speed) > 0.0
-	print("fadeout_factor:", fadeout_factor, "    used_fadeout_speed: ", used_fadeout_speed)
-
 	
-	#print("fadeout speed:", used_fadeout_speed, "    value: ", float(Time.get_ticks_msec()) / (6000 / used_fadeout_speed))
 	set_visible_custom(is_visible_currently)
 	
 func _on_despawn_timer_timeout() -> void:
@@ -98,7 +76,6 @@ func _on_despawn_timer_timeout() -> void:
 	fadeout_tween = get_tree().create_tween()
 	fadeout_tween.tween_property(self, "fadeout_factor", 1.0, fadeout_time)
 	fadeout_tween.finished.connect(on_fadeout_tween_finished)
-	print("_on_despawn_timer_timeout fadeout_factor:" , fadeout_factor)
 	
 func on_fadeout_tween_finished() -> void:
 	if is_held:
@@ -109,3 +86,15 @@ func on_fadeout_tween_finished() -> void:
 ## using a method wrapper in case we want to use something else for fading out later
 func set_visible_custom(is_visible_new: bool) -> void:
 	visible = is_visible_new
+
+static func get_scene(scene_item_type: ItemType) -> PackedScene:
+	match scene_item_type:
+		ItemType.BOOK:
+			return BOOK_ITEM_SCENE
+		ItemType.CANDLE:
+			return CANDLE_ITEM_SCENE
+		ItemType.KNIFE:
+			return KNIFE_ITEM_SCENE
+			
+	push_warning("Item.get_scene(): no implementation for " + ItemType.keys()[scene_item_type] + " exists yet!")
+	return null
