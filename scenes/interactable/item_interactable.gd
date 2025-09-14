@@ -4,6 +4,7 @@ extends Interactable
 @export var debug_label_3d: Label3D
 @export var item_source: Item
 @export var pickup_audio_stream_player: AudioStreamPlayer 
+@export var despawn_timer: Timer
 
 func _ready() -> void:
 	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]
@@ -21,7 +22,6 @@ func interact(player: Player) -> void:
 		return
 	
 	player.set_item_in_hand(item_source, true)
-	
 	pickup_audio_stream_player.play()
 	
 func set_highlight(highlight_new: bool) -> void:

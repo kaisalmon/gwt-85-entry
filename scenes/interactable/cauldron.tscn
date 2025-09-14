@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7658larp87xq"]
+[gd_scene load_steps=11 format=3 uid="uid://b7658larp87xq"]
 
 [ext_resource type="PackedScene" uid="uid://cxjbvqlgkhxp3" path="res://models/custom/cauldron.gltf" id="1_4kail"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="2_p2k2p"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="3_p2k2p"]
 [ext_resource type="PackedScene" uid="uid://2wi4shqocb1m" path="res://scenes/interactable/item_consumer.tscn" id="4_sw1e1"]
+[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="5_2vx1k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw1e1"]
 transparency = 1
@@ -67,7 +68,11 @@ debug_label_3d = NodePath("../DebugLabel3D")
 [node name="DebugLabel3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41314, 0)
 billboard = 2
+outline_modulate = Color(0.25098, 0.25098, 0.25098, 1)
 text = "lorem ipsum"
+font = ExtResource("5_2vx1k")
+font_size = 60
+outline_size = 8
 
 [editable path="blockbench_export"]
 [editable path="ItemConsumer"]
