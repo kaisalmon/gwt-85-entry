@@ -5,12 +5,22 @@ extends Area3D
 
 var available_interactables: Array[Interactable] = []
 var current_highlight_interactable: Interactable = null
+
+var interactable_in_use: Interactable = null
+
  
 func interact() -> void:	
 	var next_interactable: Interactable = _get_next_interactable()
 	if next_interactable != null:
 		next_interactable.interact(player)
+		interactable_in_use = next_interactable
 	_update_interaction_hint()
+
+func stop_interact() -> void:
+	if !is_instance_valid(interactable_in_use):
+		return
+
+	interactable_in_use.stop_interact(player)
 
 func _update_interaction_hint() -> void:
 	var next_interactable: Interactable = _get_next_interactable()

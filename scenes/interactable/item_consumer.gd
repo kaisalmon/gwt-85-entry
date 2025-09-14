@@ -13,10 +13,11 @@ extends Interactable
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 @onready var cauldroninteract_failure: AudioStreamPlayer3D = $cauldroninteract_failure
-
+var label_position: Vector3
 var text_tween: Tween = null
 
 func _ready() -> void:
+	label_position = debug_label_3d.global_position
 	set_highlight(null, false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
@@ -132,9 +133,10 @@ func is_recipe_completed() -> bool:
 func wiggle_text() -> void:
 	if is_instance_valid(text_tween):
 		text_tween.kill()
+		#debug_label_3d.global_position = label_position
 		
 	text_tween = create_tween()
-	text_tween.tween_method(tween_wiggle.bind(debug_label_3d.global_position), 0.0, 1.0, 0.5)
+	text_tween.tween_method(tween_wiggle.bind(label_position), 0.0, 1.0, 0.5)
 	
 func tween_wiggle(progress: float, start_pos: Vector3) -> void:
 	var displacement: float = sin(progress * 10) * 0.1
