@@ -63,5 +63,5 @@ func enable_all_collisions(node: Node) -> void:
 		if child is Node:
 			enable_all_collisions(child as Node)
 
-func check_for_player_stuck(collision_object: CollisionObject3D) -> void:
+func check_for_player_stuck(_collision_object: CollisionObject3D) -> void:
 	print("TODO")

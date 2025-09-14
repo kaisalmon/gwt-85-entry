@@ -28,7 +28,10 @@ func _ready() -> void:
 		push_warning("the recipe on ", self.name, " does not require any ingredients in the recipe")
 	if recipe.produced_magic.size() == 0:
 		push_warning("the recipe on ", self.name, " does not produce any magic from the recipe")
-						
+	
+	if cauldroninteract_success.playback_type == AudioServer.PLAYBACK_TYPE_SAMPLE && !OS.has_feature("web"):
+		cauldroninteract_success.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
+	
 func can_interact(_player: Player) -> bool:
 	#TODO ?
 	return true
@@ -97,7 +100,7 @@ func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 func provide_magic(player: Player) -> void:
 	var delay = 0.0
 	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
-		push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
+		#push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
 		if recipe.produced_magic[magic_type] == 0:
 			push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
 
