@@ -11,6 +11,7 @@ func _ready() -> void:
 	audio_stream_interactive = audio_stream_player.stream as AudioStreamInteractive	
 	
 	GameState.music_player = self
+	audio_stream_player.play()
 
 func progress_music(room_type:GameState.RoomType) -> void:
 	var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
