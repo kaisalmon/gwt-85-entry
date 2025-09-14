@@ -1,4 +1,6 @@
-[gd_resource type="Theme" format=3 uid="uid://5wep3gngthoj"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://5wep3gngthoj"]
+
+[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="1_vos2p"]
 
 [resource]
-Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("1_vos2p")

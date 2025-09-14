@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfb4hdkxpvt4c"
-path="res://.godot/imported/yolk 6.png-9e1e026516d29c97d1858cb54c87cccd.ctex"
+path="res://.godot/imported/yolk 6.png-82986563cd80ce218169e343e37ffda1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Fonts/yolk_6_v1/yolk 6.png"
-dest_files=["res://.godot/imported/yolk 6.png-9e1e026516d29c97d1858cb54c87cccd.ctex"]
+source_file="res://ui/Fonts/yolk_6_v1/yolk 6.png"
+dest_files=["res://.godot/imported/yolk 6.png-82986563cd80ce218169e343e37ffda1.ctex"]
 
 [params]
 

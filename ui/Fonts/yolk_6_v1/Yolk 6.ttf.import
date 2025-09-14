@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bn4sp1pda3cvc"
-path="res://.godot/imported/Yolk 6.ttf-f398a97cf86bead2864b8973a039d785.fontdata"
+path="res://.godot/imported/Yolk 6.ttf-2dffaf68730781555b206405cb599b35.fontdata"
 
 [deps]
 
-source_file="res://Fonts/yolk_6_v1/Yolk 6.ttf"
-dest_files=["res://.godot/imported/Yolk 6.ttf-f398a97cf86bead2864b8973a039d785.fontdata"]
+source_file="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf"
+dest_files=["res://.godot/imported/Yolk 6.ttf-2dffaf68730781555b206405cb599b35.fontdata"]
 
 [params]
 
