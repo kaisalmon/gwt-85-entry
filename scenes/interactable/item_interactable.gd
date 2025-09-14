@@ -5,6 +5,7 @@ extends Interactable
 @export var item_source: Item
 @export var pickup_audio_stream_player: AudioStreamPlayer 
 
+
 func _ready() -> void:
 	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]
 	set_highlight(false)

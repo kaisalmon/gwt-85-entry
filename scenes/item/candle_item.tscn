@@ -33,13 +33,15 @@ col_shape = NodePath("CollisionShape3D")
 despawn_timer = NodePath("DespawnTimer")
 
 [node name="DummyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.933793, 0.357814, 0, -0.35781, 0.933783, -0.00455529, -0.00162995, 0.0042537, 0.99999, -0.0172899, 0.00319966, -0.000205543)
 mesh = SubResource("CylinderMesh_b1tlb")
 
 [node name="DummyMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.144963, 0)
+transform = Transform3D(0.933793, 0.357814, 0, -0.35781, 0.933783, -0.00455529, -0.00162995, 0.0042537, 0.99999, 0.0345799, 0.138564, 0.000411086)
 mesh = SubResource("CapsuleMesh_b1tlb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.933793, 0.357814, 0, -0.35781, 0.933783, -0.00455529, -0.00162995, 0.0042537, 0.99999, -0.0172899, 0.00319966, -0.000205543)
 shape = SubResource("CylinderShape3D_b1tlb")
 
 [node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_57h7h")]

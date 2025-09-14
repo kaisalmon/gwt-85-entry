@@ -26,6 +26,7 @@ var drag_target: Node3D
 var is_held: bool = false
 var drag_tween: Tween
 var fadeout_factor: float = 0
+var item_interactable_offset: Vector3
 
 func set_held(is_held_new: bool) -> void:
 	is_held = is_held_new
@@ -33,6 +34,7 @@ func set_held(is_held_new: bool) -> void:
 	item_interactable.visible = !is_held_new
 	item_interactable.monitorable = !is_held_new
 	col_shape.disabled = is_held_new
+	item_interactable_offset = item_interactable.debug_label_3d.position
 	
 	if is_held_new:
 		set_visible_custom(true)
@@ -41,12 +43,13 @@ func set_held(is_held_new: bool) -> void:
 		if is_instance_valid(fadeout_tween):
 			fadeout_tween.kill()
 	else:
+		update_label_pos()
 		despawn_timer.start()
 
 func _physics_process(_delta: float) -> void:
 	update_drag_tween()
-	
 	update_fadeout()
+	update_label_pos()
 
 func update_drag_tween() -> void:
 	if !is_instance_valid(drag_target):
@@ -69,6 +72,13 @@ func update_fadeout() -> void:
 	
 	set_visible_custom(is_visible_currently)
 	
+func update_label_pos() -> void:
+	if is_held:
+		return
+		
+	item_interactable.global_rotation = Vector3.ZERO
+	item_interactable.debug_label_3d.global_position = item_interactable.global_position + item_interactable_offset
+		
 func _on_despawn_timer_timeout() -> void:
 	if is_instance_valid(fadeout_tween):
 		fadeout_tween.kill()

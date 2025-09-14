@@ -37,7 +37,7 @@ visible = false
 mesh = SubResource("SphereMesh_vyspm")
 
 [node name="DebugLabel3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596345, 0)
 billboard = 2
 outline_modulate = Color(0.25098, 0.25098, 0.25098, 1)
 text = "lorem ipsum"

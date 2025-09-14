@@ -15,8 +15,7 @@ extends Interactable
 var text_tween: Tween = null
 
 func _ready() -> void:
-	
-	#set_highlight(false)
+	set_highlight(false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
 		push_warning("the recipe on ", self.name, " does not require any ingredients in the recipe")
