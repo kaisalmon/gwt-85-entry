@@ -20,6 +20,8 @@ var fired_particles: bool = false
 @export var gpu_particles_3d: GPUParticles3D
 @export var collision_shape_3d: CollisionShape3D
 @export var doorframe: MeshInstance3D
+@onready var dooropen: AudioStreamPlayer3D = $dooropen
+@onready var dooropen_end: AudioStreamPlayer3D = $dooropen_end
 
 var door_unlocked: bool = false
 var has_started_animation: bool = false
@@ -65,6 +67,7 @@ func interact(_player: Player) -> void:
 		return
 	has_started_animation = true
 	animation_progress = 0.01
+	dooropen.play()
 	
 	var start_anim_tween: Tween = create_tween().set_trans(Tween.TRANS_SPRING).set_parallel(true)
 	start_anim_tween.tween_property(self, "scale_factor", 1.0, 0.4)
@@ -95,6 +98,7 @@ func unlock() -> void:
 	star_mesh.queue_free()
 	collision_shape_3d.queue_free()
 	doorframe.visible = true
+	dooropen_end.play()
 	
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")
 	for room_listener in room_listeners:
