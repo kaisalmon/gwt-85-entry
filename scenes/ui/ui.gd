@@ -22,6 +22,7 @@ var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 }
 
 var music_fade_tween: Tween = null
+var music_mono_tween: Tween = null
 
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
@@ -35,7 +36,8 @@ func set_paused(is_paused_new: bool) -> void:
 	if is_instance_valid(music_fade_tween):
 		music_fade_tween.kill()
 
-	var audio_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
+	var audio_effect_eqband: AudioEffectEQ = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
+	var audio_effect_stereo: AudioEffectStereoEnhance = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 1)
 
 	#if is_paused_new:
 		#set_audio_effect_enabled(true)
@@ -43,11 +45,23 @@ func set_paused(is_paused_new: bool) -> void:
 	get_tree().paused = is_paused_new
 	pause_overlay.visible = is_paused_new
 
-	var new_cutoff: float = 200 if is_paused_new else 10000
-
-	music_fade_tween = create_tween()
-	music_fade_tween.tween_property(audio_effect, "cutoff_hz", new_cutoff, 0.25)
+	var new_band1: float = -60 if is_paused_new else 0
+	var new_band2: float = -50 if is_paused_new else 0
+	var new_band3: float = -6 if is_paused_new else 0
+	var new_band4: float = -20 if is_paused_new else 0
+	var new_band5: float = -60 if is_paused_new else 0
+	var new_band6: float = -60 if is_paused_new else 0
 	
+	var new_pan: float = 0 if is_paused_new else 1
+
+	music_fade_tween = create_tween().set_parallel()
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/32_hz", new_band1, 0.5)
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/100_hz", new_band2, 0.4)
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/320_hz", new_band3, 0.3)
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/1000_hz", new_band4, 0.3)
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/3200_hz", new_band5, 0.25)
+	music_fade_tween.tween_property(audio_effect_eqband, "band_db/10000_hz", new_band6, 0.2)
+	music_fade_tween.tween_property(audio_effect_stereo, "pan_pullout", new_pan, 0.4)
 	
 	#if !is_paused_new:
 	#	music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))

@@ -1,9 +1,9 @@
 [gd_resource type="AudioStreamInteractive" load_steps=5 format=3 uid="uid://c05rr8tygpfft"]
 
-[ext_resource type="AudioStream" uid="uid://xkr2plyl84io" path="res://audio/music/Intro01.ogg" id="1_02q37"]
-[ext_resource type="AudioStream" uid="uid://pmvsbjtxtbw0" path="res://audio/music/Room01.ogg" id="2_gv8qs"]
-[ext_resource type="AudioStream" uid="uid://cbqyos7j2rpvy" path="res://audio/music/Intro02.ogg" id="3_7442e"]
-[ext_resource type="AudioStream" uid="uid://cdg4u17tybxys" path="res://audio/music/Room02.ogg" id="4_etiy7"]
+[ext_resource type="AudioStream" uid="uid://cf3m823jppfam" path="res://audio/music/Intro01.ogg" id="1_02q37"]
+[ext_resource type="AudioStream" uid="uid://4oylqpceks03" path="res://audio/music/Room01.ogg" id="2_gv8qs"]
+[ext_resource type="AudioStream" uid="uid://n62d12v6ivip" path="res://audio/music/Intro02.ogg" id="3_7442e"]
+[ext_resource type="AudioStream" uid="uid://bpbuwtv1xdf78" path="res://audio/music/Room02.ogg" id="4_etiy7"]
 
 [resource]
 clip_count = 4
