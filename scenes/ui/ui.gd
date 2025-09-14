@@ -37,8 +37,8 @@ func set_paused(is_paused_new: bool) -> void:
 
 	var audio_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
 
-	if is_paused_new:
-		set_audio_effect_enabled(true)
+	#if is_paused_new:
+		#set_audio_effect_enabled(true)
 	
 	get_tree().paused = is_paused_new
 	pause_overlay.visible = is_paused_new
@@ -49,8 +49,8 @@ func set_paused(is_paused_new: bool) -> void:
 	music_fade_tween.tween_property(audio_effect, "cutoff_hz", new_cutoff, 0.25)
 	
 	
-	if !is_paused_new:
-		music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))
+	#if !is_paused_new:
+	#	music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))
 
 func set_audio_effect_enabled(is_enabled_new: bool) -> void:
 	#AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, is_enabled_new)
