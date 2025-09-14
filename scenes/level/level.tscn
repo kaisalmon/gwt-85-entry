@@ -69,6 +69,9 @@ metadata/_custom_type_script = "uid://m6koss8c30rd"
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
 
+[node name="ColorRect" parent="CanvasLayer" index="0"]
+visible = true
+
 [node name="Player" parent="." index="3" instance=ExtResource("3_i166f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
