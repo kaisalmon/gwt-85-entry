@@ -21,14 +21,13 @@ streams_count = 2
 stream_0/stream = ExtResource("2_um12a")
 stream_1/stream = ExtResource("3_c5q6a")
 
-[node name="ItemInteractable" type="Area3D" node_paths=PackedStringArray("debug_label_3d", "pickup_audio_stream_player", "despawn_timer")]
+[node name="ItemInteractable" type="Area3D" node_paths=PackedStringArray("debug_label_3d", "pickup_audio_stream_player")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_1b53f")
 debug_label_3d = NodePath("DebugLabel3D")
 pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
-despawn_timer = NodePath("DespawnTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")
@@ -50,5 +49,3 @@ outline_size = 8
 stream = SubResource("AudioStreamRandomizer_1hiuq")
 volume_db = 6.5
 bus = &"SFX"
-
-[node name="DespawnTimer" type="Timer" parent="."]

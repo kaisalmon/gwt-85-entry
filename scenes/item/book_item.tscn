@@ -23,11 +23,12 @@ size = Vector3(0.1, 0.18, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dywoi"]
 size = Vector3(0.651245, 0.181201, 0.598991)
 
-[node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape")]
+[node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 collision_layer = 0
 script = ExtResource("1_aocwp")
 item_interactable = NodePath("ItemInteractable")
 col_shape = NodePath("CollisionShape3D")
+despawn_timer = NodePath("DespawnTimer")
 
 [node name="DummyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_dywoi")
@@ -50,3 +51,9 @@ shape = SubResource("BoxShape3D_dywoi")
 
 [node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_3r1n4")]
 item_source = NodePath("..")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
