@@ -26,3 +26,25 @@ func _input(event):
 	if event.is_action_pressed ("ui_mute"):
 		AudioServer.set_bus_mute(master_bus_index, !AudioServer.is_bus_mute(master_bus_index))
 		print("audio toggle")
+
+
+
+
+func _on_master_fader_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+	pass # Replace with function body.
+
+
+func _on_sfx_fader_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
+	pass # Replace with function body.
+
+
+func _on_music_fader_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
+	pass # Replace with function body.
+
+
+func _on_ambience_fader_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambience"), linear_to_db(value))
+	pass # Replace with function body.
