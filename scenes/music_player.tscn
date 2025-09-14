@@ -13,6 +13,7 @@ bus = &"Music"
 playback_type = 2
 
 [node name="MasterFader" type="HSlider" parent="."]
+visible = false
 offset_left = 22.0
 offset_top = 8.0
 offset_right = 147.0
@@ -22,6 +23,7 @@ step = 0.001
 value = 1.5
 
 [node name="MusicFader" type="HSlider" parent="."]
+visible = false
 offset_left = 22.0
 offset_top = 93.0
 offset_right = 147.0
@@ -31,6 +33,7 @@ step = 0.001
 value = 1.5
 
 [node name="SFXFader" type="HSlider" parent="."]
+visible = false
 offset_left = 22.0
 offset_top = 55.0
 offset_right = 147.0
@@ -40,6 +43,7 @@ step = 0.001
 value = 1.5
 
 [node name="AmbienceFader" type="HSlider" parent="."]
+visible = false
 offset_left = 22.0
 offset_top = 73.0
 offset_right = 147.0
