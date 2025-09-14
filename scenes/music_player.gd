@@ -5,6 +5,9 @@ extends Node
 var audio_stream_interactive: AudioStreamInteractive
 
 func _ready() -> void:
+	
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	if !audio_stream_player.stream is AudioStreamInteractive:
 		push_warning("this resource should be an audiostream interactive")
 	

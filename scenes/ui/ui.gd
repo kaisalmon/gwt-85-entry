@@ -21,6 +21,8 @@ var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 	Recipe.MagicType.STURDY: 0
 }
 
+var music_fade_tween: Tween = null
+
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
@@ -30,8 +32,30 @@ func _ready() -> void:
 		set_magic_amount(type, 0)
 
 func set_paused(is_paused_new: bool) -> void:
+	if is_instance_valid(music_fade_tween):
+		music_fade_tween.kill()
+
+	var audio_effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
+
+	if is_paused_new:
+		set_audio_effect_enabled(true)
+	
 	get_tree().paused = is_paused_new
 	pause_overlay.visible = is_paused_new
+
+	var new_cutoff: float = 200 if is_paused_new else 10000
+
+	music_fade_tween = create_tween()
+	music_fade_tween.tween_property(audio_effect, "cutoff_hz", new_cutoff, 0.25)
+	
+	
+	if !is_paused_new:
+		music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))
+
+func set_audio_effect_enabled(is_enabled_new: bool) -> void:
+	#AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, is_enabled_new)
+	print("set audio effect: ", is_enabled_new)
+
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

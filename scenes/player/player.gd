@@ -28,7 +28,7 @@ var is_item_in_ready_pos: bool = false
 func _ready() -> void:
 	GameState.player = self
 
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED #we may not want this here
+	 #we may not want this here
 	base_y_pos = look_pivot.position.y
 	
 	for type: Recipe.MagicType in Recipe.MagicType.values():
@@ -88,6 +88,9 @@ func _input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		look_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
 		look_pivot.rotation.x = clampf(look_pivot.rotation.x, -deg_to_rad(max_down_angle), deg_to_rad(max_up_angle))
+	if event is InputEventMouseButton && (event as InputEventMouseButton).pressed:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	if event.is_action_pressed("interact"):
 		interaction.interact()
 	if event.is_action_released("interact"):

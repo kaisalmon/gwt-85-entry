@@ -9,6 +9,7 @@ extends Interactable
 @export var label_3d: Label3D
 @export var pickup_audio_stream_player: AudioStreamPlayer
 @export var interaction_timer: Timer
+@export var progress_mesh: MeshInstance3D
 
 var text_tween: Tween = null
 var highlight_tween: Tween = null
@@ -19,6 +20,8 @@ var highlight_albedo: Color
 var is_interacting: bool = false
 var source_player: Player = null
 var interaction_progress: float = 0
+
+var progress_mesh_tween: Tween = null
 
 func _ready() -> void:
 	highlight_material = source_mesh.get_active_material(0) as StandardMaterial3D	
@@ -31,11 +34,13 @@ func _process(delta: float) -> void:
 	if !is_interacting:
 		if interaction_progress > 0:
 			interaction_progress -= delta * 2
-			print("pickup stopped: ", interaction_progress)
+			set_progress(interaction_progress / interaction_duration)
+			#print("pickup stopped: ", interaction_progress)
 		return
 		
 	interaction_progress += delta
-	print("pickup: ", interaction_progress)
+	set_progress(interaction_progress / interaction_duration)
+	#print("pickup: ", interaction_progress)
 	if interaction_progress >= interaction_duration:
 		on_interaction_finished()
 		return
@@ -59,12 +64,26 @@ func interact(player: Player) -> void:
 		return
 		
 	is_interacting = true
+	tween_progress_mesh_visibility(true)
+	label_3d.visible = false
 	source_player = player
 	#print(player.name, ": interacting with ", self.name)
 	
+func tween_progress_mesh_visibility(mesh_visible: bool) -> void:
+	if is_instance_valid(progress_mesh_tween):
+		progress_mesh_tween.kill()
+		
 
+	var mesh_alpha: float = 1.0 if mesh_visible else 0.0
+	var mat: StandardMaterial3D = progress_mesh.get_active_material(0) as StandardMaterial3D
+	
+	progress_mesh_tween = create_tween()
+	progress_mesh_tween.tween_property(mat, "albedo_color:a", mesh_alpha, 0.35)	
+	
 
 func stop_interact(_player: Player) -> void:
+	tween_progress_mesh_visibility(false)
+	label_3d.visible = true
 	is_interacting = false
 	
 func on_interaction_finished() -> void:
@@ -98,3 +117,7 @@ func tween_wiggle(progress: float, start_pos: Vector3) -> void:
 	var displacement: float = sin(progress * 10) * 0.1
 	label_3d.global_position.x = start_pos.x + displacement * (1-progress)
 	label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
+
+func set_progress(rel_progress: float) -> void:
+	progress_mesh.scale.x = rel_progress
+	progress_mesh.position.x = -rel_progress / 2
