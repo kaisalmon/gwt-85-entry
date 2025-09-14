@@ -48,7 +48,7 @@ func on_room_unlocked(_room: GameState.RoomType) -> void:
 	if _room == removed_by_room:
 		queue_free()
 
-func on_room_unlock_start(room_type: GameState.RoomType, unlock_time: float) -> void:
+func on_room_unlock_start(room_type: GameState.RoomType, unlock_time_new: float) -> void:
 	if room_type == removed_by_room:
-		self.unlock_time = unlock_time
-		self.unlock_duration = unlock_time
+		self.unlock_time = unlock_time_new
+		self.unlock_duration = unlock_time_new

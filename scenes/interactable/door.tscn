@@ -25,12 +25,14 @@ points = PackedVector3Array(-0.5, -1, 0, 0.5, -1, 0, -0.5, 1, 0, 0.5, 1, 0)
 size = Vector3(1.58758, 1.86548, 1.77301)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b4va"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("3_3b4va")
 texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uudvi"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("4_lnqit")
@@ -86,15 +88,22 @@ texture_filter = 2
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1sv7o"]
 data = PackedVector3Array(0, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0, 1.6875, -0.0625, 0, 1.6875, -0.0625, 0, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.5625, 1.6875, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.6875, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0, 1.6875, 0.0625, 0, 1.6875, -0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 0, 0.0625, 0.5625, 0, -0.0625, 0.4375, 0, 0.0625, 0.4375, 0, 0.0625, 0.5625, 0, -0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 0, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.5312, 0.0625, 0.5625, 0, 0.0625, 0.4375, 0, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.5312, 0.0625, 0.4375, 1.6875, 0.0625, 0.5625, 1.6875, 0.0625, 0.4375, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.4375, 1.6875, 0.0625, 0, 1.5312, 0.0625, 0, 1.6875, 0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.5312, -0.0625, 0.4375, 0, -0.0625, 0.5625, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0.5625, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0.4375, 1.6875, -0.0625, 0.4375, 1.5312, 0.0625, 0.4375, 0, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 0, 0.0625, 0.4375, 0, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 0, -0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 0, -0.0625, 0.5625, 0, 0.0625, 0.5625, 1.5312, 0.0625, 0.5625, 1.6875, 0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.5312, -0.0625, 0.5625, 1.6875, 0.0625, 0.5625, 1.6875, -0.0625, 0, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0.4375, 1.5312, -0.0625, 0.4375, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0.4375, 1.5312, 0.0625, 1, 0.4, 0, 0.5, 0.4, 0, 1, 0, 0, 1, 0, 0, 0.5, 0.4, 0, 0.5, 0, 0, 0, 1.6, 0, 0.5, 1.6, 0, 0, 2, 0, 0, 2, 0, 0.5, 1.6, 0, 0.5, 2, 0, 0.5, 1.6, 0, 1, 1.6, 0, 0.5, 2, 0, 0.5, 2, 0, 1, 1.6, 0, 1, 2, 0, 0.5, 1.2, 0, 1, 1.2, 0, 0.5, 1.6, 0, 0.5, 1.6, 0, 1, 1.2, 0, 1, 1.6, 0, 0.5, 0.8, 0, 1, 0.8, 0, 0.5, 1.2, 0, 0.5, 1.2, 0, 1, 0.8, 0, 1, 1.2, 0, 0.5, 0.4, 0, 1, 0.4, 0, 0.5, 0.8, 0, 0.5, 0.8, 0, 1, 0.4, 0, 1, 0.8, 0, -0.5625, 1.6875, 0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.6875, -0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, -0.0625, 0, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, 0, 1.6875, -0.0625, -0.5625, 0, 0.0625, -0.4375, 0, 0.0625, -0.5625, 0, -0.0625, -0.5625, 0, -0.0625, -0.4375, 0, 0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, 0.0625, -0.4375, 1.5312, 0.0625, -0.5625, 0, 0.0625, -0.5625, 0, 0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 0, 0.0625, -0.4375, 1.5312, 0.0625, -0.5625, 1.5312, 0.0625, -0.4375, 1.6875, 0.0625, -0.4375, 1.6875, 0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 1.6875, 0.0625, 0, 1.6875, 0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 1.6875, 0.0625, 0, 1.5312, 0.0625, -0.4375, 1.5312, 0.0625, 0, 1.6875, 0.0625, -0.4375, 1.5312, -0.0625, -0.5625, 1.5312, -0.0625, -0.4375, 0, -0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.4375, 1.5312, -0.0625, -0.5625, 1.6875, -0.0625, -0.5625, 1.6875, -0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.6875, -0.0625, -0.4375, 1.5312, -0.0625, 0, 1.6875, -0.0625, -0.4375, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.5312, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 0, 0.0625, -0.4375, 0, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 0, -0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 0, -0.0625, -0.5625, 0, -0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 0, 0.0625, -0.5625, 1.5312, 0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.6875, 0.0625, -0.5625, 1.6875, 0.0625, -0.5625, 1.5312, -0.0625, -0.5625, 1.6875, -0.0625, 0, 1.5312, -0.0625, -0.4375, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0, 1.5312, 0.0625, -0.4375, 1.5312, -0.0625, -0.4375, 1.5312, 0.0625, -1, 0.4, 0, -1, 0, 0, -0.5, 0.4, 0, -0.5, 0.4, 0, -1, 0, 0, -0.5, 0, 0, 0, 1.6, 0, 0, 2, 0, -0.5, 1.6, 0, -0.5, 1.6, 0, 0, 2, 0, -0.5, 2, 0, -0.5, 1.6, 0, -0.5, 2, 0, -1, 1.6, 0, -1, 1.6, 0, -0.5, 2, 0, -1, 2, 0, -0.5, 1.2, 0, -0.5, 1.6, 0, -1, 1.2, 0, -1, 1.2, 0, -0.5, 1.6, 0, -1, 1.6, 0, -0.5, 0.8, 0, -0.5, 1.2, 0, -1, 0.8, 0, -1, 0.8, 0, -0.5, 1.2, 0, -1, 1.2, 0, -0.5, 0.4, 0, -0.5, 0.8, 0, -1, 0.4, 0, -1, 0.4, 0, -0.5, 0.8, 0, -1, 0.8, 0)
 
-[node name="Door" type="Area3D"]
+[node name="Door" type="Area3D" node_paths=PackedStringArray("star_mesh", "circle_mesh", "wall", "gpu_particles_3d", "collision_shape_3d", "doorframe")]
 collision_layer = 5
 script = ExtResource("2_gg805")
+deactivated_color = Color(0, 0, 0, 1)
+highlight_color = Color(0.855472, 0.821594, 0.821066, 1)
+star_mesh = NodePath("Star")
+circle_mesh = NodePath("Circle")
+wall = NodePath("Wall")
+gpu_particles_3d = NodePath("GPUParticles3D")
+collision_shape_3d = NodePath("CollisionShape3D")
+doorframe = NodePath("Doorframe")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_gg805")
 mesh = SubResource("PlaneMesh_mxd7w")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
 
@@ -109,13 +118,11 @@ shape = SubResource("BoxShape3D_gg805")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0585464)
 material_override = SubResource("StandardMaterial3D_3b4va")
 mesh = SubResource("PlaneMesh_mxd7w")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="Star" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0962366)
 material_override = SubResource("StandardMaterial3D_uudvi")
 mesh = SubResource("PlaneMesh_mxd7w")
-skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/Node3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
