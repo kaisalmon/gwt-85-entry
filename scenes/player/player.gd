@@ -147,3 +147,10 @@ func set_item_to_hand_pos(item: Item) -> void:
 	is_item_in_ready_pos = false
 	item.reparent(item_hold_position)
 	held_item.drag_target = item_hold_position
+
+func get_look_ortho() -> float:
+	return rotation.y + PI
+
+func get_look_ortho_vec3D() -> Vector3:
+	var displacemnt_vec: Vector2 = Vector2.from_angle(2 * PI - get_look_ortho())
+	return Vector3(displacemnt_vec.x, 0, displacemnt_vec.y)

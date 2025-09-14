@@ -29,6 +29,10 @@ func _ready() -> void:
 	if recipe.produced_magic.size() == 0:
 		push_warning("the recipe on ", self.name, " does not produce any magic from the recipe")
 	
+		
+	if cauldroninteract_failure.playback_type == AudioServer.PLAYBACK_TYPE_SAMPLE && !OS.has_feature("web"):
+		cauldroninteract_failure.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
+		
 	if cauldroninteract_success.playback_type == AudioServer.PLAYBACK_TYPE_SAMPLE && !OS.has_feature("web"):
 		cauldroninteract_success.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
 	
@@ -48,7 +52,7 @@ func interact(player: Player) -> void:
 	if has_necessary_ingredients_for(held_item_type):
 		print("does not need item of the given type")
 		cauldroninteract_failure.play()
-		wiggle_text()
+		wiggle_text(player.get_look_ortho_vec3D())
 		return
 	
 	#print("interacting with ", self.name, ": using item type: ", Item.ItemType.keys()[item])
@@ -147,15 +151,15 @@ func is_recipe_completed() -> bool:
 			
 	return true
 	
-func wiggle_text() -> void:
+func wiggle_text(direction_vec: Vector3) -> void:
 	if is_instance_valid(text_tween):
 		text_tween.kill()
 		#debug_label_3d.global_position = label_position
 		
 	text_tween = create_tween()
-	text_tween.tween_method(tween_wiggle.bind(label_position), 0.0, 1.0, 0.5)
+	text_tween.tween_method(tween_wiggle.bind(label_position, direction_vec), 0.0, 1.0, 0.5)
 	
-func tween_wiggle(progress: float, start_pos: Vector3) -> void:
+func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -> void:
 	var displacement: float = sin(progress * 10) * 0.1
-	debug_label_3d.global_position.x = start_pos.x + displacement * (1-progress)
+	debug_label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
 	debug_label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)

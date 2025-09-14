@@ -46,7 +46,6 @@ collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
-interaction_duration = 3.0
 source_mesh = NodePath("MeshInstance3D")
 label_3d = NodePath("DebugLabel3D")
 pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
