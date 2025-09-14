@@ -25,12 +25,14 @@ points = PackedVector3Array(-0.5, -1, 0, 0.5, -1, 0, -0.5, 1, 0, 0.5, 1, 0)
 size = Vector3(1.58758, 1.86548, 1.77301)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b4va"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("3_3b4va")
 texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uudvi"]
+resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("4_lnqit")
@@ -89,6 +91,8 @@ data = PackedVector3Array(0, 1.5312, -0.0625, 0, 1.5312, 0.0625, 0, 1.6875, -0.0
 [node name="Door" type="Area3D" node_paths=PackedStringArray("star_mesh", "circle_mesh", "wall", "gpu_particles_3d", "collision_shape_3d", "doorframe")]
 collision_layer = 5
 script = ExtResource("2_gg805")
+deactivated_color = Color(0, 0, 0, 1)
+highlight_color = Color(0.855472, 0.821594, 0.821066, 1)
 star_mesh = NodePath("Star")
 circle_mesh = NodePath("Circle")
 wall = NodePath("Wall")
