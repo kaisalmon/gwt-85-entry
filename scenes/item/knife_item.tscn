@@ -25,11 +25,12 @@ size = Vector3(0.2, 0.4, 0.05)
 height = 0.681076
 radius = 0.0830078
 
-[node name="KnifeItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape")]
+[node name="KnifeItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 script = ExtResource("1_elfyg")
 item_type = 2
 item_interactable = NodePath("ItemInteractable")
 col_shape = NodePath("CollisionShape3D")
+despawn_timer = NodePath("DespawnTimer")
 
 [node name="DummyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_elfyg")
@@ -45,3 +46,9 @@ shape = SubResource("CylinderShape3D_elfyg")
 
 [node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_lsuh1")]
 item_source = NodePath("..")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

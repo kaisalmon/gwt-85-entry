@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5npl0ksq8mxq"]
+[gd_scene load_steps=9 format=3 uid="uid://b5npl0ksq8mxq"]
 
 [ext_resource type="Script" uid="uid://bnfcnb8qrl0t5" path="res://scenes/interactable/item_provider.gd" id="1_yvxfo"]
+[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="2_0ns2q"]
 [ext_resource type="AudioStream" uid="uid://bngdomxcvu4m4" path="res://audio/sfx/ui/pickup_01.ogg" id="2_g4kgx"]
 [ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="3_0ns2q"]
 
@@ -38,7 +39,11 @@ mesh = SubResource("SphereMesh_vyspm")
 [node name="DebugLabel3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
 billboard = 2
+outline_modulate = Color(0.25, 0.25, 0.25, 1)
 text = "lorem ipsum"
+font = ExtResource("2_0ns2q")
+font_size = 60
+outline_size = 8
 
 [node name="pickup" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1hiuq")

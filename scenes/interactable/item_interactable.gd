@@ -21,7 +21,6 @@ func interact(player: Player) -> void:
 		return
 	
 	player.set_item_in_hand(item_source, true)
-	
 	pickup_audio_stream_player.play()
 	
 func set_highlight(highlight_new: bool) -> void:
