@@ -35,9 +35,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_move(delta)
-	var relative_speed: float = min(actual_current_speed / move_speed, 1.0)
-	var speed_factor: float = relative_speed * head_bobbing_speed
+	#var relative_speed: float = min(actual_current_speed / move_speed, 1.0)
+	#var speed_factor: float = relative_speed * head_bobbing_speed
 	
+	var speed_factor: float = head_bobbing_speed
+
 	if move_time > 0:
 		var offset_strength: float = max(clamp(move_time * 2, 0.0, 1.0), current_y_offset)
 		current_y_offset = offset_strength * sin(move_time*speed_factor) * head_bobbing_y_offset
