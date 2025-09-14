@@ -13,7 +13,7 @@ func _ready() -> void:
 	GameState.music_player = self
 	audio_stream_player.play()
 
-func progress_music(room_type:GameState.RoomType) -> void:
+func progress_music(_room_type:GameState.RoomType) -> void:
 	var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
 	playback.switch_to_clip_by_name("Intro02")
 

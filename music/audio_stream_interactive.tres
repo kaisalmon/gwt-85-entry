@@ -10,7 +10,7 @@ clip_count = 4
 clip_0/name = &"Intro01"
 clip_0/stream = ExtResource("1_02q37")
 clip_0/auto_advance = 1
-clip_0/next_clip = 0
+clip_0/next_clip = 1
 clip_1/name = &"Room01"
 clip_1/stream = ExtResource("2_gv8qs")
 clip_1/auto_advance = 0
@@ -29,14 +29,14 @@ Vector2i(0, 1): {
 "to_time": 1
 },
 Vector2i(0, 2): {
-"fade_beats": 6.0,
-"fade_mode": 3,
+"fade_beats": 3.0,
+"fade_mode": 2,
 "from_time": 2,
 "to_time": 1
 },
 Vector2i(1, 2): {
-"fade_beats": 6.0,
-"fade_mode": 3,
+"fade_beats": 3.0,
+"fade_mode": 2,
 "from_time": 2,
 "to_time": 1
 },

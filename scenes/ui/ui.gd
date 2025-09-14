@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 		set_paused(!get_tree().paused)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
 		
-func set_magic_amount(type: Recipe.MagicType, magic_amount_new: int) -> void:
+func set_magic_amount(_type: Recipe.MagicType, _magic_amount_new: int) -> void:
 	# TODO: store the actual mechanical amounts, either here or in player or in game state
 	pass
 	
@@ -63,4 +63,3 @@ func increment_visual_magic_amount(type: Recipe.MagicType, amount: int) -> void:
 		return
 	visual_magic_amounts[type] += amount
 	get_label_by_type(type).text = str(visual_magic_amounts[type])
-

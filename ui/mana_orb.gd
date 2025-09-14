@@ -19,12 +19,12 @@ func _ready() -> void:
 		randf_range(-initial_speed_variance, initial_speed_variance)
 	)
 	
-func set_magic_type(magic_type: Recipe.MagicType) -> void:
+func set_magic_type(new_magic_type: Recipe.MagicType) -> void:
 	var ui: UI = GameState.ui
-	var label: Label = ui.get_label_by_type(magic_type)
+	var label: Label = ui.get_label_by_type(new_magic_type)
 	var global_position_2d: Vector2 = label.get_global_position() + label.get_size() * 0.5
 	screen_space_target = global_position_2d
-	self.magic_type = magic_type
+	self.magic_type = new_magic_type
 
 func get_world_space_target() -> Vector3:
 	var camera: Camera3D = get_viewport().get_camera_3d()
