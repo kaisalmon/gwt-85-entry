@@ -68,7 +68,7 @@ func interact(_player: Player) -> void:
 	has_started_animation = true
 	animation_progress = 0.01
 	dooropen.play()
-	GameState.music_player.progress_music()
+	GameState.music_player.progress_music(room_type)
 	
 	var start_anim_tween: Tween = create_tween().set_trans(Tween.TRANS_SPRING).set_parallel(true)
 	start_anim_tween.tween_property(self, "scale_factor", 1.0, 0.4)
