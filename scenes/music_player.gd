@@ -9,17 +9,12 @@ func _ready() -> void:
 		push_warning("this resource should be an audiostream interactive")
 	
 	audio_stream_interactive = audio_stream_player.stream as AudioStreamInteractive	
+	
+	GameState.music_player = self
 
+func progress_music() -> void:
+	var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
+	playback.switch_to_clip_by_name("Intro02")
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey && (event as InputEventKey).keycode == KEY_SPACE:
-		var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
-		playback.switch_to_clip_by_name("Room01")
-		test_something()
-		
-		
-func test_something() -> void:
-	print("test")
-	pass
 
   

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c14b5t363i8wa"]
+[gd_scene load_steps=64 format=3 uid="uid://c14b5t363i8wa"]
 
 [ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="2_wsbj2"]
 [ext_resource type="Texture2D" uid="uid://de24pln7p0opt" path="res://textures/GreenWall.png" id="3_66dec"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://r4n06db14718" path="res://scenes/decor/window.tscn" id="22_21w76"]
 [ext_resource type="ArrayMesh" uid="uid://deex4ijoms5bi" path="res://models/bed_single_A.obj" id="23_u41ck"]
 [ext_resource type="PackedScene" uid="uid://qj8yt50m37o" path="res://scenes/interactable/door.tscn" id="24_2ilsx"]
+[ext_resource type="PackedScene" uid="uid://cdiv778ltxb4m" path="res://scenes/music_player.tscn" id="26_l3y6i"]
 
 [sub_resource type="Environment" id="Environment_tt3vw"]
 background_mode = 1
@@ -477,5 +478,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.026
 
 [node name="Door" parent="SecondRoom" instance=ExtResource("24_2ilsx")]
 transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, -4, 0, -0.3)
+
+[node name="MusicPlayer" parent="." instance=ExtResource("26_l3y6i")]
 
 [editable path="Room/blockbench_export"]
