@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Room01.ogg-d3081dad3cec3b35226cb4abc8e2a9fb.o
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=112.0
 beat_count=0
-bar_beats=4
+bar_beats=3

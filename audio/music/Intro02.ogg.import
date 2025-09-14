@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Intro02.ogg-b257c51d48b7482dc5e5c350093eae96.
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=112.0
 beat_count=0
-bar_beats=4
+bar_beats=3

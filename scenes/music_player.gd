@@ -13,8 +13,13 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey && (event as InputEventKey).keycode == KEY_SPACE:
-		test_something() 
+		var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
+		playback.switch_to_clip_by_name("Room01")
+		test_something()
 		
 		
 func test_something() -> void:
+	print("test")
 	pass
+
+  
