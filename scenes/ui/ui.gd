@@ -13,6 +13,11 @@ var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 @onready var magic_value_label_bulky: Label = $MagicView/HBoxContainer/MagicValueLabelBulky
 @onready var magic_value_label_sturdy: Label = $MagicView/HBoxContainer/MagicValueLabelSturdy
 
+@onready var textbox_container: MarginContainer = $TextboxContainer
+@onready var text_start: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextStart
+@onready var text_main: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextMain
+@onready var text_end: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextEnd
+
 var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 	Recipe.MagicType.SOFT: 0,
 	Recipe.MagicType.CRISPY: 0,
@@ -24,10 +29,14 @@ var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 var music_fade_tween: Tween = null
 var music_mono_tween: Tween = null
 
+var text_tween: Tween = null
+
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
 	set_paused(false)
+	hide_textbox()
+	add_text("testing text,testing text,testing text,testing text,testing text, ")
 
 	for type: Recipe.MagicType in Recipe.MagicType.values():
 		set_magic_amount(type, 0)
@@ -101,3 +110,21 @@ func increment_visual_magic_amount(type: Recipe.MagicType, amount: int) -> void:
 		return
 	visual_magic_amounts[type] += amount
 	get_label_by_type(type).text = str(visual_magic_amounts[type])
+
+func hide_textbox():
+	text_start.text = ""
+	text_main.text = ""
+	text_end.text = ""
+	textbox_container.hide()
+
+func show_textbox():
+	text_start.text = ""
+	textbox_container.show()
+
+func add_text(next_text):
+	if is_instance_valid(text_tween):
+		text_tween.kill()
+	text_main.text = next_text
+	show_textbox()
+	text_tween = create_tween()
+	text_tween.tween_property(text_main, "visible_ratio", 0, 1)
