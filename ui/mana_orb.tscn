@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpsbtueuw7x8m"]
+[gd_scene load_steps=10 format=3 uid="uid://cpsbtueuw7x8m"]
 
 [ext_resource type="Script" uid="uid://dsi80r68rp3p0" path="res://ui/mana_orb.gd" id="1_gl4tv"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="1_wu3lf"]
+[ext_resource type="AudioStream" uid="uid://dfyctys7ya310" path="res://audio/sfx/ui/magic_bubble_01.ogg" id="3_bi5im"]
+[ext_resource type="AudioStream" uid="uid://bfdtx8rl2h24w" path="res://audio/sfx/ui/magic_bubble_02.ogg" id="4_q4egi"]
+[ext_resource type="AudioStream" uid="uid://dqx8dwldtkpmy" path="res://audio/sfx/ui/magic_bubble_03.ogg" id="5_4tovj"]
+[ext_resource type="AudioStream" uid="uid://cwx3n57vomlta" path="res://audio/sfx/ui/magic_bubble_04.ogg" id="6_0j1ue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gl4tv"]
 transparency = 1
@@ -13,9 +17,23 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_dbyxe"]
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_17m1x"]
+streams_count = 4
+stream_0/stream = ExtResource("3_bi5im")
+stream_1/stream = ExtResource("4_q4egi")
+stream_2/stream = ExtResource("5_4tovj")
+stream_3/stream = ExtResource("6_0j1ue")
+
 [node name="ManaOrb" type="Node3D"]
 script = ExtResource("1_gl4tv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_gl4tv")
 mesh = SubResource("QuadMesh_dbyxe")
+
+[node name="bubble_sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_17m1x")
+volume_db = 7.453
+max_polyphony = 4
+bus = &"SFX"
+playback_type = 2
