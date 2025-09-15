@@ -8,6 +8,6 @@ ingredients = Dictionary[int, int]({
 0: 1
 })
 produced_magic = Dictionary[int, int]({
-1: 2
+1: 100
 })
 metadata/_custom_type_script = "uid://m6koss8c30rd"

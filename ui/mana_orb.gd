@@ -13,6 +13,7 @@ var velocity: Vector3 = Vector3.ZERO
 var deposited: bool = false
 var magic_type: Recipe.MagicType = Recipe.MagicType.SOFT
 var delay = 0.0
+var sound_played: bool = false
 
 func _ready() -> void:
 	velocity = initial_velocity + Vector3(
@@ -50,6 +51,9 @@ func _process(delta: float) -> void:
 
 	if to_target.length() < 0.2:
 		position = position.move_toward(target, delta * 5.0)
+		if not sound_played:
+			bubble_sound.play()
+			sound_played = true
 		var xscale = self.scale.x
 		xscale -= delta * 2.0
 		self.scale = Vector3.ONE * xscale
@@ -60,4 +64,3 @@ func _process(delta: float) -> void:
 			var ui: UI = GameState.ui
 			ui.increment_visual_magic_amount(magic_type, 1)
 			deposited = true
-			bubble_sound.play()
