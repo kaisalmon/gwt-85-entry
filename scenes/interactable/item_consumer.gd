@@ -8,10 +8,9 @@ extends Interactable
 
 
 @export var recipe: Recipe
-@export var provided_ingredients: Dictionary[Item.ItemType, int]
 @export var cooldown_time: float = 1.0
 @export var ready_item_position: Marker3D
-@export var debug_label_3d: Label3D
+@export var label_3d: Label3D
 @export var source_mesh: MeshInstance3D
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
@@ -22,9 +21,10 @@ var label_position: Vector3
 var text_tween: Tween = null
 var is_on_cooldown: bool = false
 var is_currently_highlighted: bool
+var provided_ingredients: Dictionary[Item.ItemType, int]
 
 func _ready() -> void:
-	label_position = debug_label_3d.global_position
+	label_position = label_3d.global_position
 	set_highlight(null, false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
@@ -75,12 +75,12 @@ func interact(player: Player) -> void:
 	if recipe_completed:
 		is_on_cooldown = true
 		var cooldown_tween: Tween = create_tween()
-		cooldown_tween.tween_property(debug_label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
-		cooldown_tween.tween_property(debug_label_3d, "modulate", Color.TRANSPARENT, 0.2)
+		cooldown_tween.tween_property(label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
+		cooldown_tween.tween_property(label_3d, "modulate", Color.TRANSPARENT, 0.2)
 		update_recipe_display()
 
 		await cooldown_tween.finished
-		debug_label_3d.visible = false
+		label_3d.visible = false
 	
 	await tween.finished
 	item.queue_free()
@@ -88,7 +88,7 @@ func interact(player: Player) -> void:
 
 	if recipe_completed:
 		provide_magic(player)
-		debug_label_3d.modulate = Color.WHITE
+		label_3d.modulate = Color.WHITE
 		is_on_cooldown = false
 		set_highlight(player, is_currently_highlighted)
 
@@ -100,7 +100,7 @@ func set_highlight(player: Player, highlight_new: bool) -> void:
 	if is_on_cooldown:
 		return
 	#print("highlighting for ", self.name, ": ", highlight_new)
-	debug_label_3d.visible = highlight_new
+	label_3d.visible = highlight_new
 	
 	if player != null && is_instance_valid(player.held_item):
 		if highlight_new:
@@ -143,8 +143,6 @@ func provide_magic(player: Player) -> void:
 	
 	provided_ingredients.clear()
 
-	
-
 func update_recipe_display() -> void:
 	var recipe_texts: Array[String] = []
 	for item_type: Item.ItemType in recipe.ingredients.keys():
@@ -171,7 +169,7 @@ func update_recipe_display() -> void:
 		recipe_texts.append(" => " + str(recipe.produced_magic[magic_type]) + " " + Recipe.magic_type_to_string(magic_type) + " magic ")
 
 
-	debug_label_3d.text = "\n".join(recipe_texts)
+	label_3d.text = "\n".join(recipe_texts)
 
 func is_recipe_completed() -> bool:
 	for item_type: Item.ItemType in recipe.ingredients.keys():
@@ -190,5 +188,5 @@ func wiggle_text(direction_vec: Vector3) -> void:
 	
 func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -> void:
 	var displacement: float = sin(progress * 10) * 0.1
-	debug_label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
-	debug_label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
+	label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
+	label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)

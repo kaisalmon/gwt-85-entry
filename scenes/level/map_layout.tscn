@@ -181,7 +181,7 @@ material_override = ExtResource("2_1advv")
 mesh = ExtResource("12_2qc63")
 
 [node name="ShelfBSmallDecorated" type="MeshInstance3D" parent="StartRoom"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3, 1, -2)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 2.99875, 1, -1.99644)
 material_override = ExtResource("2_1advv")
 mesh = ExtResource("13_3asdv")
 skeleton = NodePath("../..")
@@ -226,6 +226,9 @@ shape = SubResource("ConvexPolygonShape3D_e22f2")
 
 [node name="Door" parent="SecondRoom" instance=ExtResource("18_ce3nn")]
 transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, -4, 0, -0.3)
+required_magic = Dictionary[int, int]({
+1: 2
+})
 
 [node name="Walls" type="Node3D" parent="SecondRoom"]
 
