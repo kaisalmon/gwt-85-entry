@@ -122,8 +122,11 @@ func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	return current_amount >= needed_amount
 
 func provide_magic(player: Player) -> void:
-	var delay = 0.0
 	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
+		var delay = 0.0
+		var total_amount =  recipe.produced_magic[magic_type]
+		var duration = (log(total_amount) / log(2)) * 0.5
+		var delta_delay = duration / total_amount
 		#push_warning("adding produced magic of type ", Recipe.MagicType.keys()[magic_type], "... (types not implemented yet!)")
 		if recipe.produced_magic[magic_type] == 0:
 			push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
@@ -132,7 +135,7 @@ func provide_magic(player: Player) -> void:
 		player.change_magic(magic_type, amount)
 
 		for i in amount:
-			delay += 0.25
+			delay += delta_delay
 			var orb_instance: ManaOrb = mana_orb.instantiate()
 			get_tree().current_scene.add_child(orb_instance)
 			orb_instance.set_magic_type(magic_type)
