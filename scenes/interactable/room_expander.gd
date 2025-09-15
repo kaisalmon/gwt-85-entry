@@ -126,6 +126,7 @@ func unlock() -> void:
 	collision_shape_3d.queue_free()
 	doorframe.visible = true
 	dooropen_end.play()
+	GameState.ui.show_text("new room!")
 	
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")
 	for room_listener in room_listeners:
