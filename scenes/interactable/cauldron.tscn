@@ -69,6 +69,7 @@ source_mesh = NodePath("../blockbench_export/Node/cylinder")
 [node name="DebugLabel3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41314, 0)
 billboard = 2
+no_depth_test = true
 outline_modulate = Color(0.25098, 0.25098, 0.25098, 1)
 text = "lorem ipsum"
 font = ExtResource("5_2vx1k")

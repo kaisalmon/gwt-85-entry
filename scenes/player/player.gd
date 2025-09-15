@@ -26,6 +26,7 @@ var held_item: Item = null
 var is_item_in_ready_pos: bool = false
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.player = self
 
 	 #we may not want this here
@@ -89,6 +90,7 @@ func _input(event: InputEvent) -> void:
 		look_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
 		look_pivot.rotation.x = clampf(look_pivot.rotation.x, -deg_to_rad(max_down_angle), deg_to_rad(max_up_angle))
 	if event is InputEventMouseButton && (event as InputEventMouseButton).pressed:
+		#Needed for web capture
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	if event.is_action_pressed("interact"):

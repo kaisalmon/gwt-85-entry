@@ -9,6 +9,7 @@ extends Interactable
 
 @export var recipe: Recipe
 @export var provided_ingredients: Dictionary[Item.ItemType, int]
+@export var cooldown_time: float = 1.0
 @export var ready_item_position: Marker3D
 @export var debug_label_3d: Label3D
 @export var source_mesh: MeshInstance3D
@@ -19,6 +20,8 @@ extends Interactable
 
 var label_position: Vector3
 var text_tween: Tween = null
+var is_on_cooldown: bool = false
+var is_currently_highlighted: bool
 
 func _ready() -> void:
 	label_position = debug_label_3d.global_position
@@ -37,11 +40,8 @@ func _ready() -> void:
 		cauldroninteract_success.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
 	
 func can_interact(_player: Player) -> bool:
-	#TODO ?
-	return true
+	return !is_on_cooldown
 
-
-#TODO: should we only allow to add items required for the recipe? what about excess amount?
 func interact(player: Player) -> void:
 	if !is_instance_valid(player.held_item):
 		#print("interacting with ", self.name, ": the player does not hold an item")
@@ -66,19 +66,39 @@ func interact(player: Player) -> void:
 		provided_ingredients[held_item_type] = provided_ingredients[held_item_type] + 1
 	else:
 		provided_ingredients[held_item_type] = 1
-		
-	if is_recipe_completed():
-		provide_magic(player)
-		
-	update_recipe_display()
 	
 	var tween: Tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(item, "global_position", self.global_position, 1.0)
 	tween.tween_property(item, "scale", Vector3.ONE * 0.2, 1.0)
+	
+	var recipe_completed: bool = is_recipe_completed()
+	if recipe_completed:
+		is_on_cooldown = true
+		var cooldown_tween: Tween = create_tween()
+		cooldown_tween.tween_property(debug_label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
+		cooldown_tween.tween_property(debug_label_3d, "modulate", Color.TRANSPARENT, 0.2)
+		update_recipe_display()
+
+		await cooldown_tween.finished
+		debug_label_3d.visible = false
+	
 	await tween.finished
 	item.queue_free()
+	update_recipe_display()
+
+	if recipe_completed:
+		provide_magic(player)
+		debug_label_3d.modulate = Color.WHITE
+		is_on_cooldown = false
+		set_highlight(player, is_currently_highlighted)
+
+	update_recipe_display()
+
 	
 func set_highlight(player: Player, highlight_new: bool) -> void:
+	is_currently_highlighted = highlight_new
+	if is_on_cooldown:
+		return
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	debug_label_3d.visible = highlight_new
 	
@@ -123,11 +143,13 @@ func provide_magic(player: Player) -> void:
 	
 	provided_ingredients.clear()
 
+	
+
 func update_recipe_display() -> void:
 	var recipe_texts: Array[String] = []
 	for item_type: Item.ItemType in recipe.ingredients.keys():
-		if recipe.ingredients[item_type] == 0:
-			push_warning("the recipe on ", self.name, " has an item entry with a 0 amount for ", Item.ItemType.keys()[item_type])
+		if recipe.ingredients[item_type] <= 0:
+			push_warning("the recipe on ", self.name, " has an item entry with a 0 (or less) amount for ", Item.ItemType.keys()[item_type])
 			continue
 		var needed_amount: int = recipe.ingredients[item_type]
 		var current_amount: int = 0
@@ -136,10 +158,17 @@ func update_recipe_display() -> void:
 			
 		recipe_texts.append(Item.ItemType.keys()[item_type] + "s: " + str(current_amount) + "/" + str(needed_amount))
 
-	for item_type: Item.ItemType in provided_ingredients:
-		if !recipe.ingredients.has(item_type):
-			var current_amount: int = provided_ingredients[item_type]
-			recipe_texts.append(Item.ItemType.keys()[item_type] + "s: " + str(current_amount) + "/0")
+	#for item_type: Item.ItemType in provided_ingredients:
+		#if !recipe.ingredients.has(item_type):
+			#var current_amount: int = provided_ingredients[item_type]
+			#recipe_texts.append(Item.ItemType.keys()[item_type] + "s: " + str(current_amount) + "/0")
+
+	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
+		if recipe.produced_magic[magic_type] <= 0:
+			push_warning("the recipe on ", self.name, " has a produced magictype entry with a 0 (or less) amount for ", Recipe.MagicType.keys()[magic_type])
+			continue
+		
+		recipe_texts.append(" => " + str(recipe.produced_magic[magic_type]) + " " + Recipe.magic_type_to_string(magic_type) + " magic ")
 
 
 	debug_label_3d.text = "\n".join(recipe_texts)

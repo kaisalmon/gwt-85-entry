@@ -1,27 +1,28 @@
 class_name ItemProvider
 extends Interactable
 
-const START_WIGGLE_INTENSITY: float = 0.02
-const FINAL_WIGGLE_INTENSITY: float = 0.2
+const START_WIGGLE_INTENSITY: float = 0.01
+const FINAL_WIGGLE_INTENSITY: float = 0.3
 
-const START_WIGGLE_SPEED: float = 0.5
-const FINAL_WIGGLE_SPEED: float = 12.0
+const START_WIGGLE_SPEED: float = 1.0
+const FINAL_WIGGLE_SPEED: float = 45.0
 
 @export var produced_item: Item.ItemType
 @export var interaction_duration: float = 2
 @export var max_interaction_distance: float = 2.5
 @export var source_mesh: MeshInstance3D
+@export var highlight_albedo: Color = Color.GREEN_YELLOW
+@export var finalzie_albedo: Color = Color.WHITE
 @export_category("internal nodes")
 @export var label_3d: Label3D
 @export var pickup_audio_stream_player: AudioStreamPlayer
-@export var interaction_timer: Timer
 @export var progress_mesh: MeshInstance3D
 
+
 var text_tween: Tween = null
-var highlight_tween: Tween = null
+var orb_color_tween: Tween = null
 var highlight_material: StandardMaterial3D
 var default_albedo: Color
-var highlight_albedo: Color
 
 var is_interacting: bool = false
 var source_player: Player = null
@@ -36,7 +37,7 @@ func _ready() -> void:
 	progress_mesh_mat = progress_mesh.get_active_material(0) as StandardMaterial3D
 	source_mesh_default_pos = source_mesh.global_position
 	default_albedo = highlight_material.albedo_color
-	highlight_albedo = Color.from_hsv(default_albedo.h, max(default_albedo.s - 0.3, 0), min(default_albedo.v + 0.2, 1.0))
+	#highlight_albedo = Color.from_hsv(default_albedo.h, max(default_albedo.s - 0.3, 0), min(default_albedo.v + 0.2, 1.0))
 	label_3d.text = Item.ItemType.keys()[produced_item]
 	progress_mesh_mat.albedo_color.a = 0.0
 	
@@ -46,18 +47,21 @@ func _process(delta: float) -> void:
 	if !is_interacting:
 		if interaction_progress > 0:
 			interaction_progress -= delta * 2
-			set_progress(interaction_progress / interaction_duration)
+			set_progress_bar(interaction_progress / interaction_duration)
 			source_mesh.global_position = source_mesh_default_pos
 			#print("pickup stopped: ", interaction_progress)
 		return
 		
 	interaction_progress += delta
-	set_progress(interaction_progress / interaction_duration)
+	var relative_progress: float = interaction_progress / interaction_duration
+	set_progress_bar(relative_progress)
 
-	var wiggle_intensity: float = lerp(START_WIGGLE_INTENSITY, FINAL_WIGGLE_INTENSITY, interaction_progress)
-	var wiggle_speed: float = lerp(START_WIGGLE_SPEED, FINAL_WIGGLE_SPEED, interaction_progress)
-	var wiggle_factor: float = sin(interaction_progress * wiggle_speed)
+	var wiggle_intensity: float = lerp(START_WIGGLE_INTENSITY, FINAL_WIGGLE_INTENSITY, relative_progress)
+	var wiggle_speed: float = lerp(START_WIGGLE_SPEED, FINAL_WIGGLE_SPEED, relative_progress)
+	var wiggle_factor: float = sin(relative_progress * wiggle_speed)
 	source_mesh.global_position = source_mesh_default_pos + (source_player.get_look_ortho_vec3D() * wiggle_factor * wiggle_intensity)
+	highlight_material.albedo_color = lerp(highlight_albedo, finalzie_albedo, interaction_progress/interaction_duration)
+
 	#print("pickup: ", interaction_progress)
 	if interaction_progress >= interaction_duration:
 		on_interaction_finished()
@@ -85,15 +89,15 @@ func interact(player: Player) -> void:
 	tween_progress_mesh_visibility(true)
 	label_3d.visible = false
 	source_player = player
+	if is_instance_valid(orb_color_tween):
+		orb_color_tween.kill()
 	#print(player.name, ": interacting with ", self.name)
 	
 func tween_progress_mesh_visibility(mesh_visible: bool) -> void:
 	if is_instance_valid(progress_mesh_tween):
 		progress_mesh_tween.kill()
 		
-
 	var mesh_alpha: float = 1.0 if mesh_visible else 0.0
-
 	
 	progress_mesh_tween = create_tween()
 	progress_mesh_tween.tween_property(progress_mesh_mat, "albedo_color:a", mesh_alpha, 0.35)	
@@ -113,12 +117,12 @@ func on_interaction_finished() -> void:
 	pickup_audio_stream_player.play()
 	
 func set_highlight(_player: Player, highlight_new: bool) -> void:
-	if is_instance_valid(highlight_tween):
-		highlight_tween.kill()
+	if is_instance_valid(orb_color_tween):
+		orb_color_tween.kill()
 
-	var target_albedo: Color = highlight_albedo if highlight_new else default_albedo
-	highlight_tween = create_tween()
-	highlight_tween.tween_property(highlight_material, "albedo_color", target_albedo, 0.3)
+	var target_color: Color = highlight_albedo if highlight_new else default_albedo
+	orb_color_tween = create_tween()
+	orb_color_tween.tween_property(highlight_material, "albedo_color", target_color, 0.2)
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	label_3d.visible = highlight_new
 	
@@ -134,7 +138,8 @@ func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -
 	label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
 	label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
 
-func set_progress(rel_progress: float) -> void:
+func set_progress_bar(rel_progress: float) -> void:
 	progress_mesh.scale.x = rel_progress
 	#progress_mesh.position.x = -rel_progress / 2
 	progress_mesh.rotation.y = source_player.get_look_ortho()
+	progress_mesh_mat.albedo_color = Color.html("d3d3d3").lerp(Color.WHITE, rel_progress)
