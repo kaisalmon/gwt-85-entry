@@ -5,6 +5,7 @@ class_name  ManaOrb
 @export var acceleration = 5.0
 @export var initial_velocity = Vector3.UP * 0.6
 @export var initial_speed_variance = 1
+@export var is_valid_orb: bool = true
 
 var screen_space_target: Vector2 = Vector2.ZERO
 var velocity: Vector3 = Vector3.ZERO
@@ -34,6 +35,9 @@ func get_world_space_target() -> Vector3:
 	return camera.project_position(screen_space_target, screen_depth)
 
 func _process(delta: float) -> void:
+	if !is_valid_orb:
+		return
+		
 	if delay > 0.0:
 		delay -= delta
 		return
