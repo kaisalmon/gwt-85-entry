@@ -29,15 +29,14 @@ var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 var music_fade_tween: Tween = null
 var music_mono_tween: Tween = null
 
-var text_tween: Tween = null
+var text_animate_tween: Tween = null
 
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
 	set_paused(false)
 	hide_textbox()
-	add_text("testing text,testing text,testing text,testing text,testing text, ")
-
+	
 	for type: Recipe.MagicType in Recipe.MagicType.values():
 		set_magic_amount(type, 0)
 
@@ -85,6 +84,9 @@ func _input(event: InputEvent) -> void:
 		set_paused(!get_tree().paused)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
 		
+	if event.is_action_pressed("text_accept",):
+		hide_textbox()
+		
 func set_magic_amount(_type: Recipe.MagicType, _magic_amount_new: int) -> void:
 	# TODO: store the actual mechanical amounts, either here or in player or in game state
 	pass
@@ -116,15 +118,15 @@ func hide_textbox():
 	text_main.text = ""
 	text_end.text = ""
 	textbox_container.hide()
+	text_main.visible_ratio = 0
 
 func show_textbox():
 	text_start.text = ""
 	textbox_container.show()
+	
 
-func add_text(next_text):
-	if is_instance_valid(text_tween):
-		text_tween.kill()
+func show_text(next_text):
 	text_main.text = next_text
 	show_textbox()
-	text_tween = create_tween()
-	text_tween.tween_property(text_main, "visible_ratio", 0, 1)
+	text_animate_tween = create_tween()
+	text_animate_tween.tween_property(text_main, "visible_ratio", 1, 1)
