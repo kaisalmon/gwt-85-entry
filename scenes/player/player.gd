@@ -106,6 +106,13 @@ func can_use_input() -> bool:
 func _on_timer_timeout() -> void:
 	if ismoving:
 		footsteps.play()
+	
+# returns the amount that was removed	
+func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
+	var current_amount: int = current_magic_amounts[magic_type]
+	var amount_to_remove: int = min(current_amount, remove_amount)
+	set_magic(magic_type, current_amount - amount_to_remove)
+	return amount_to_remove
 
 func change_magic(magic_type: Recipe.MagicType, change_amount: int) -> void:
 	set_magic(magic_type, current_magic_amounts[magic_type] + change_amount)
