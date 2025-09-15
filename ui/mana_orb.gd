@@ -6,6 +6,7 @@ class_name  ManaOrb
 @export var initial_velocity = Vector3.UP * 0.6
 @export var initial_speed_variance = 1
 @export var is_valid_orb: bool = true
+@onready var bubble_sound: AudioStreamPlayer2D = $bubble_sound
 
 var screen_space_target: Vector2 = Vector2.ZERO
 var velocity: Vector3 = Vector3.ZERO
@@ -59,3 +60,4 @@ func _process(delta: float) -> void:
 			var ui: UI = GameState.ui
 			ui.increment_visual_magic_amount(magic_type, 1)
 			deposited = true
+			bubble_sound.play()

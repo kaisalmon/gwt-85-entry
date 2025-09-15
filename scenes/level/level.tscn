@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=12 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="PackedScene" uid="uid://ch5ehwhnko4q2" path="res://scenes/level/map_layout.tscn" id="2_xv074"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_i166f"]
 [ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://recipe_book_to_crispy.tres" id="5_xv074"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_xv074"]
+[ext_resource type="PackedScene" uid="uid://83bhm1ar3cx0" path="res://interaction/text_area.tscn" id="9_sytrn"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
 [ext_resource type="PackedScene" uid="uid://cdiv778ltxb4m" path="res://scenes/music_player.tscn" id="18_ss4b2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tf2q7"]
+size = Vector3(5.75055, 2.38037, 6.07367)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sytrn"]
+size = Vector3(5.75055, 2.38037, 6.07367)
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
 
@@ -47,6 +54,21 @@ produced_item = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81567, 0.0175796, 8.92895)
 visible = false
 is_valid_orb = false
+
+[node name="TextArea2" parent="." index="13" instance=ExtResource("9_sytrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3867, 0, 0.659278)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TextArea2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37528, 0.690186, -1.34946)
+shape = SubResource("BoxShape3D_tf2q7")
+
+[node name="TextArea" parent="." index="14" instance=ExtResource("9_sytrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90207, 0, -3.53272)
+room_type = 1
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TextArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37528, 0.690186, -1.34946)
+shape = SubResource("BoxShape3D_sytrn")
 
 [editable path="Cauldron"]
 [editable path="Cauldron/blockbench_export"]
