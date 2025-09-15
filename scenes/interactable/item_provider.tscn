@@ -36,6 +36,7 @@ shading_mode = 0
 albedo_color = Color(0.82606, 0.82606, 0.82606, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1hiuq"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_0ns2q")
 size = Vector3(1, 0.1, 0.1)
 

@@ -20,7 +20,6 @@ var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
 var ismoving: bool = false #check movement for footsteps
-var current_magic_amounts: Array[int] = []
 var actual_current_speed: float
 var held_item: Item = null
 var is_item_in_ready_pos: bool = false
@@ -33,7 +32,7 @@ func _ready() -> void:
 	base_y_pos = look_pivot.position.y
 	
 	for type: Recipe.MagicType in Recipe.MagicType.values():
-		current_magic_amounts.append(0)
+		GameState.current_magic_amounts.append(0)
 
 func _physics_process(delta: float) -> void:
 	_move(delta)
@@ -107,20 +106,6 @@ func _on_timer_timeout() -> void:
 	if ismoving:
 		footsteps.play()
 	
-# returns the amount that was removed	
-func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
-	var current_amount: int = current_magic_amounts[magic_type]
-	var amount_to_remove: int = min(current_amount, remove_amount)
-	set_magic(magic_type, current_amount - amount_to_remove)
-	return amount_to_remove
-
-func change_magic(magic_type: Recipe.MagicType, change_amount: int) -> void:
-	set_magic(magic_type, current_magic_amounts[magic_type] + change_amount)
-
-func set_magic(magic_type: Recipe.MagicType, new_amount: int) -> void:
-	current_magic_amounts[magic_type] = max(new_amount, 0)
-	GameState.ui.set_magic_amount(magic_type, current_magic_amounts[magic_type] )
-
 func remove_and_get_current_item() -> Item:
 	if held_item == null:
 		return null

@@ -18,13 +18,13 @@ var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 @onready var text_main: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextMain
 @onready var text_end: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextEnd
 
-var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
-	Recipe.MagicType.SOFT: 0,
-	Recipe.MagicType.CRISPY: 0,
-	Recipe.MagicType.HOLLOW: 0,
-	Recipe.MagicType.BULKY: 0,
-	Recipe.MagicType.STURDY: 0
-}
+#var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
+	#Recipe.MagicType.SOFT: 0,
+	#Recipe.MagicType.CRISPY: 0,
+	#Recipe.MagicType.HOLLOW: 0,
+	#Recipe.MagicType.BULKY: 0,
+	#Recipe.MagicType.STURDY: 0
+#}
 
 var music_fade_tween: Tween = null
 var music_mono_tween: Tween = null
@@ -87,10 +87,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("text_accept",):
 		hide_textbox()
 		
-func set_magic_amount(_type: Recipe.MagicType, _magic_amount_new: int) -> void:
+func set_magic_amount(type: Recipe.MagicType, magic_amount_new: int) -> void:
 	# TODO: store the actual mechanical amounts, either here or in player or in game state
 	pass
-	
+	get_label_by_type(type).text = str(magic_amount_new)
+
 func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 	match magic_type:
 		Recipe.MagicType.SOFT:
@@ -106,12 +107,11 @@ func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 	push_warning("no implementation found for UI.get_label_by_type() with type: ", Recipe.MagicType.keys()[magic_type])
 	return null
 
-func increment_visual_magic_amount(type: Recipe.MagicType, amount: int) -> void:
-	if not visual_magic_amounts.has(type):
-		push_warning("no entry found in visual_magic_amounts for type: ", Recipe.MagicType.keys()[type])
-		return
-	visual_magic_amounts[type] += amount
-	get_label_by_type(type).text = str(visual_magic_amounts[type])
+#func increment_visual_magic_amount(type: Recipe.MagicType, amount: int) -> void:
+	#if not visual_magic_amounts.has(type):
+		#push_warning("no entry found in visual_magic_amounts for type: ", Recipe.MagicType.keys()[type])
+		#return
+	#visual_magic_amounts[type] += amount
 
 func hide_textbox():
 	text_start.text = ""
