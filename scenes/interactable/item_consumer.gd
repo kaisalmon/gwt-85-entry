@@ -87,7 +87,7 @@ func interact(player: Player) -> void:
 	update_recipe_display()
 
 	if recipe_completed:
-		provide_magic(player)
+		provide_magic()
 		label_3d.modulate = Color.WHITE
 		is_on_cooldown = false
 		set_highlight(player, is_currently_highlighted)
@@ -121,7 +121,7 @@ func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 		current_amount = provided_ingredients[item_type]
 	return current_amount >= needed_amount
 
-func provide_magic(player: Player) -> void:
+func provide_magic() -> void:
 	for magic_type: Recipe.MagicType in recipe.produced_magic.keys():
 		var delay = 0.0
 		var total_amount =  recipe.produced_magic[magic_type]
@@ -132,7 +132,7 @@ func provide_magic(player: Player) -> void:
 			push_warning("found produced magic definition of type (", Recipe.MagicType.keys()[magic_type], ") with a zero amount!!")
 
 		var amount = recipe.produced_magic[magic_type]
-		player.change_magic(magic_type, amount)
+		#player.change_magic(magic_type, amount)
 
 		for i in amount:
 			delay += delta_delay

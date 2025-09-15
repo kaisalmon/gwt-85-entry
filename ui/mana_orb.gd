@@ -61,6 +61,5 @@ func _process(delta: float) -> void:
 			queue_free()
 		
 		if xscale < 0.5 and not deposited:
-			var ui: UI = GameState.ui
-			ui.increment_visual_magic_amount(magic_type, 1)
+			GameState.change_magic(magic_type, 1)
 			deposited = true

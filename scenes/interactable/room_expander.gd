@@ -78,7 +78,7 @@ func interact(player: Player) -> void:
 	
 	var finished: bool = has_all_magic()
 	if !finished:
-		var received_any_magic: bool = provide_magic_from_player(player)
+		var received_any_magic: bool = provide_available_magic()
 
 		if !received_any_magic:
 			display_no_magic_anim(player.get_look_ortho_vec3D())
@@ -144,12 +144,12 @@ func init_circle() -> void:
 	#circle_mesh.scale = default_circle_scale * initial_scale_factor
 	
 ## returns true if anything was provided
-func provide_magic_from_player(player: Player) -> bool:
+func provide_available_magic() -> bool:
 	var has_provided_anything: bool = false	
 	for mtype: Recipe.MagicType in required_magic.keys():
 		var remaining_magic_amount: int = get_remaining_magic_amount_for(mtype)
 		if remaining_magic_amount > 0:
-			var added_amount: int = player.remove_magic(mtype, remaining_magic_amount)
+			var added_amount: int = GameState.remove_magic(mtype, remaining_magic_amount)
 			if added_amount > 0:
 				has_provided_anything = true
 				provided_magic[mtype] += added_amount
