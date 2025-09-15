@@ -2,4 +2,7 @@
 .godot/
 /android/
 /videos
-/dist
+
+# Export files and subfolders
+/dist/*
+!dist/.gdignore
