@@ -6,11 +6,15 @@ var unlock_time = null
 var unlock_duration = null
 var has_emitted = false
 @export var removed_by_room: GameState.RoomType = GameState.RoomType.NONE
+@onready var ambience_outside_l: AudioStreamPlayer3D = $AmbienceOutsideL
+@onready var ambience_outside_r: AudioStreamPlayer3D = $AmbienceOutsideR
 
 func _ready() -> void:
 	super._ready()
 	viewport = $SubViewport
 	outside_camera = $SubViewport/Camera3D
+	Util.set_sample_type_if_web(ambience_outside_l)
+	Util.set_sample_type_if_web(ambience_outside_r)
 
 func _physics_process(delta: float) -> void:
 	update_dissapear_animation(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=11 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="PackedScene" uid="uid://ch5ehwhnko4q2" path="res://scenes/level/map_layout.tscn" id="2_xv074"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://83bhm1ar3cx0" path="res://interaction/text_area.tscn" id="9_sytrn"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
-[ext_resource type="PackedScene" uid="uid://cdiv778ltxb4m" path="res://scenes/music_player.tscn" id="18_ss4b2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tf2q7"]
 size = Vector3(5.75055, 2.38037, 6.07367)
@@ -21,34 +20,32 @@ size = Vector3(5.75055, 2.38037, 6.07367)
 [node name="ColorRect" parent="CanvasLayer" index="0"]
 visible = true
 
-[node name="MapLayout" parent="." index="4" instance=ExtResource("2_xv074")]
+[node name="MapLayout" parent="." index="5" instance=ExtResource("2_xv074")]
 
-[node name="Player" parent="." index="5" instance=ExtResource("3_i166f")]
+[node name="Player" parent="." index="6" instance=ExtResource("3_i166f")]
 transform = Transform3D(-0.863246, 0, 0.504784, 0, 1, 0, -0.504784, 0, -0.863246, -1.85753, 1, 1.2367)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.3, 3.8)
 light_energy = 3.91
 omni_range = 17.0
 
-[node name="Cauldron" parent="." index="7" instance=ExtResource("14_b3up8")]
+[node name="Cauldron" parent="." index="8" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44803, 0, 2.17526)
 
 [node name="ItemConsumer" parent="Cauldron" index="1"]
 recipe = ExtResource("5_xv074")
 
-[node name="BookItemProvider" parent="." index="8" instance=ExtResource("15_vrc4q")]
+[node name="BookItemProvider" parent="." index="9" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08885, 1, 3.10791)
 
-[node name="CandleItemProvider" parent="." index="9" instance=ExtResource("15_vrc4q")]
+[node name="CandleItemProvider" parent="." index="10" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.23787, 1, -1.58746)
 produced_item = 1
 
-[node name="KnifeItemProvider" parent="." index="10" instance=ExtResource("15_vrc4q")]
+[node name="KnifeItemProvider" parent="." index="11" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02163, 1, -5.95487)
 produced_item = 2
-
-[node name="MusicPlayer" parent="." index="11" instance=ExtResource("18_ss4b2")]
 
 [node name="ManaOrb_For_performance_reasons" parent="." index="12" instance=ExtResource("8_xv074")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81567, 0.0175796, 8.92895)

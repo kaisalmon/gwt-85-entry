@@ -164,11 +164,9 @@ shape = SubResource("ConcavePolygonShape3D_1sv7o")
 
 [node name="dooropen" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_he66k")
-playback_type = 2
 
 [node name="dooropen_end" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4cxkj")
-playback_type = 2
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11162, 0.152992)

@@ -1,0 +1,46 @@
+keys;en;de
+magic.hollow;Hollow Magic;Hohle Magie
+magic.cozy;Cozy Magic;Gemütliche Magie
+magic.vivid;Vivid Magic;Lebhafte Magie
+magic.windy;Windy Magic;Windige Magie
+magic.soft;Soft Magic;Weiche Magie
+magic.bulky;Bulky Magic;Sperrige Magie
+magic.sturdy;Sturdy Magic;Robuste Magie
+magic.crispy;Crispy Magic;Knusprige Magie
+item.book;Book;Buch
+item.book.plural;Books;Bücher
+item.candle;Candle;Kerze
+item.candle.plural;Candles;Kerzen
+item.knife;Knife;Messer
+item.knife.plural;Knives;Messer
+item.coal;Coal;Kohle
+item.coal.plural;Coals;Kohlen
+item.clock;Clock;Uhr
+item.clock.plural;Clocks;Uhren
+item.bottle;Bottle;Flasche
+item.bottle.plural;Bottles;Flaschen
+item.lavender;Lavender;Lavendel
+item.lavender.plural;Lavenders;Lavendel
+item.pumpkin;Pumpkin;Kürbis
+item.pumpkin.plural;Pumpkins;Kürbisse
+room.bedroom;Bedroom;Schlafzimmer
+room.library;Library;Bibliothek
+room.kitchen;Kitchen;Küche
+room.broom_room;Broom Room;Besenkammer
+room.office;Office;Büro
+room.main_room;Main Room;Hauptraum
+room.corridor;Corridor;Flur
+room.green_house;Green House;Gewächshaus
+ui.menu.start;Start;Start
+ui.menu.continue;Continue;Fortsetzen
+ui.menu.settings;Settings;Einstellungen
+ui.menu.credits;Credits;Credits
+ui.menu.quit;Quit;Verlassen
+ui.settings.language;Language;Sprache (Language)
+ui.settings.audio.overall;Overall;Gesamt
+ui.settings.audio.music;Music;Musik
+ui.settings.audio.sfx;SFX;SFX
+ui.settings.audio.atmo;Atmo;Atmo
+ui.paused;Paused;Pausiert
+dialogue.this_is;This is the {0};Das ist {0}
+dialogue.room_unlocked;Room unlocked: {0};Raum freigeschaltet: {0}

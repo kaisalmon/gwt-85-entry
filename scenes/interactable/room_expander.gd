@@ -36,6 +36,8 @@ var text_tween: Tween = null
 var provided_magic: Dictionary[Recipe.MagicType, int] = {}
 
 func _ready() -> void:
+	Util.set_sample_type_if_web(dooropen)
+	Util.set_sample_type_if_web(dooropen_end)
 	label_position = label_3d.global_position
 	
 	for mtype: Recipe.MagicType in required_magic.keys():
@@ -198,7 +200,7 @@ func update_requirement_display() -> void:
 		var current_amount: int = 0
 		if provided_magic.has(mtype):
 			current_amount = provided_magic[mtype]
-		recipe_texts.append(Recipe.magic_type_to_string(mtype) + " magic: " + str(current_amount) + "/" + str(needed_amount))
+		recipe_texts.append(tr(Util.magic_type_to_trkey(mtype)) + ": " + str(current_amount) + "/" + str(needed_amount))
 
 	label_3d.text = "\n".join(recipe_texts)
 

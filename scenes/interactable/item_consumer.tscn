@@ -27,19 +27,15 @@ stream = ExtResource("2_rwcla")
 pitch_scale = 1.2
 autoplay = true
 bus = &"SFX"
-playback_type = 2
 
 [node name="cauldroninteract_success" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_t3867")
 bus = &"SFX"
-playback_type = 2
 
 [node name="cauldroninteract_insert" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ep7wk")
 volume_db = -3.96
 bus = &"SFX"
-playback_type = 2
 
 [node name="cauldroninteract_failure" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_ep7wk")
-playback_type = 2

@@ -10,7 +10,6 @@ script = ExtResource("1_ql6qh")
 stream = ExtResource("1_jxdhu")
 volume_db = -10.0
 bus = &"Music"
-playback_type = 2
 
 [node name="MasterFader" type="HSlider" parent="."]
 visible = false

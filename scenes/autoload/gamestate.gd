@@ -4,6 +4,13 @@ extends Node
 enum RoomType {
 	NONE, # Used to disable room-specific behavior
 	BEDROOM,
+	LIBRARY,
+	KITCHEN,
+	BROOM_ROOM,
+	OFFICE,
+	MAIN_ROOM,
+	CORRIDOR,
+	GREEN_HOUSE
 }
 
 var ui: UI
