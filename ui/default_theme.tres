@@ -3,4 +3,5 @@
 [ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="1_vos2p"]
 
 [resource]
+default_font = ExtResource("1_vos2p")
 Label/fonts/font = ExtResource("1_vos2p")
