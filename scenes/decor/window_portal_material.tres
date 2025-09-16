@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c7xraa4dgnec5"]
 
-[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="1_v5jmx"]
+[ext_resource type="Shader" path="res://materials/portal.gdshader" id="1_v5jmx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_tyc8v"]
 viewport_path = NodePath("SubViewport")

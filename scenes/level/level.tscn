@@ -17,9 +17,6 @@ size = Vector3(5.75055, 2.38037, 6.07367)
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
 
-[node name="ColorRect" parent="CanvasLayer" index="0"]
-visible = true
-
 [node name="MapLayout" parent="." index="5" instance=ExtResource("2_xv074")]
 
 [node name="Player" parent="." index="6" instance=ExtResource("3_i166f")]
