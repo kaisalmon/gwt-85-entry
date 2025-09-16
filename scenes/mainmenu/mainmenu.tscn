@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dyawlu53u7bd2"]
+[gd_scene load_steps=26 format=3 uid="uid://dyawlu53u7bd2"]
 
 [ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="1_ckupo"]
 [ext_resource type="Texture2D" uid="uid://4lhd8480iw6b" path="res://hidden-library-1x.png" id="2_fi8nj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://f5n3f27l4pxq" path="res://textures/window_paralax/parallax-demon-woods-far-trees.png" id="10_542r0"]
 [ext_resource type="Texture2D" uid="uid://b2vxcdbcpwh6q" path="res://textures/window_paralax/kais-worse-mountains.png" id="11_8gim3"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="11_aqxfm"]
+[ext_resource type="Texture2D" uid="uid://c3bst5fw73pkb" path="res://textures/nameideas/name 4.png" id="13_n1qyp"]
 
 [sub_resource type="Environment" id="Environment_3vvtq"]
 background_mode = 1
@@ -111,7 +112,8 @@ offset_right = 1155.0
 offset_bottom = 650.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.560578, 0.0875517, -0.82346, -0.0367508, 0.990785, 0.13036, 0.827286, 0.10334, -0.552195, -2.5571, 1.75536, -2.73562)
+transform = Transform3D(-0.624705, -0.0118748, -0.780771, -0.0261962, 0.99964, 0.00575642, 0.780421, 0.0240493, -0.624791, -2.12624, 1.58549, -3.34245)
+fov = 77.7
 
 [node name="Walker" type="Node3D" parent="."]
 script = ExtResource("3_xyqql")
@@ -231,3 +233,9 @@ offset_bottom = 54.0
 theme = ExtResource("11_aqxfm")
 theme_type_variation = &"FlatButton"
 text = "Settings"
+
+[node name="Naem1" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(96, 93)
+texture = ExtResource("13_n1qyp")
