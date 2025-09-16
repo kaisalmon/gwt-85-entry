@@ -1,0 +1,163 @@
+[gd_scene load_steps=3 format=3 uid="uid://lgpv656d2gli"]
+
+[ext_resource type="Script" uid="uid://dhqiw3qfy4o06" path="res://scenes/ui/settings_ui.gd" id="1_orh8u"]
+[ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_5jsx6"]
+
+[node name="SettingsUI" type="MarginContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -38.0
+offset_right = 30.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_orh8u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LanguageHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/LanguageHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "ui.settings.language"
+
+[node name="LocaleOptionButton" type="OptionButton" parent="VBoxContainer/LanguageHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Deutsch"
+popup/item_1/id = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="VBoxContainer/FullscreenHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "ui.settings.fullscreen"
+
+[node name="FullscreenButton" type="CheckBox" parent="VBoxContainer/FullscreenHBC"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OverallHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OverallLabel" type="Label" parent="VBoxContainer/OverallHBC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "ui.settings.audio.overall"
+
+[node name="OverallFader" type="HSlider" parent="VBoxContainer/OverallHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="OverallValueLabel" type="Label" parent="VBoxContainer/OverallHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "999%"
+
+[node name="MusicHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicHBC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "ui.settings.audio.music"
+
+[node name="MusicFader" type="HSlider" parent="VBoxContainer/MusicHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="MusicValueLabel" type="Label" parent="VBoxContainer/MusicHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "999%"
+
+[node name="SFXHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer/SFXHBC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "ui.settings.audio.sfx"
+
+[node name="SFXFader" type="HSlider" parent="VBoxContainer/SFXHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="SFXValueLabel" type="Label" parent="VBoxContainer/SFXHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "999%"
+
+[node name="AmbienceHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AmbienceLabel" type="Label" parent="VBoxContainer/AmbienceHBC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "ui.settings.audio.ambience"
+
+[node name="AmbienceFader" type="HSlider" parent="VBoxContainer/AmbienceHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="AmbienceValueLabel" type="Label" parent="VBoxContainer/AmbienceHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "999%"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_5jsx6")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.back"
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_5jsx6")
+theme_type_variation = &"FlatButton"
+text = "ui.settings.reset"
+
+[connection signal="item_selected" from="VBoxContainer/LanguageHBC/LocaleOptionButton" to="." method="_on_locale_option_button_item_selected"]
+[connection signal="toggled" from="VBoxContainer/FullscreenHBC/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="drag_ended" from="VBoxContainer/OverallHBC/OverallFader" to="." method="_on_overall_fader_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/OverallHBC/OverallFader" to="." method="_on_overall_fader_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/MusicHBC/MusicFader" to="." method="_on_music_fader_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/MusicHBC/MusicFader" to="." method="_on_music_fader_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/SFXHBC/SFXFader" to="." method="_on_sfx_fader_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/SFXHBC/SFXFader" to="." method="_on_sfx_fader_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/AmbienceHBC/AmbienceFader" to="." method="_on_ambience_fader_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/AmbienceHBC/AmbienceFader" to="." method="_on_ambience_fader_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

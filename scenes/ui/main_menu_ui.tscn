@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfi7rvclpdapr"]
+
+[ext_resource type="Script" uid="uid://dic6c0jtrsj0f" path="res://scenes/ui/main_menu_ui.gd" id="1_3bauu"]
+[ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_b8bkt"]
+[ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="3_qegi1"]
+
+[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "quit_button", "settings_ui")]
+script = ExtResource("1_3bauu")
+start_game_scene_path = "uid://ddhwvnrt4veas"
+start_menu_mc = NodePath("StartMenuMC")
+quit_button = NodePath("StartMenuMC/VBoxContainer/QuitButton")
+settings_ui = NodePath("SettingsUI")
+
+[node name="StartMenuMC" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+offset_right = 80.0
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuMC"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = -1
+
+[node name="NewGameButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.new_game"
+
+[node name="SettingsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.settings"
+
+[node name="CreditsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.credits"
+
+[node name="QuitButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.quit"
+
+[node name="SettingsUI" parent="." instance=ExtResource("3_qegi1")]
+
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="back_pressed" from="SettingsUI" to="." method="_on_settings_ui_back_pressed"]
