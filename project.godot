@@ -94,6 +94,7 @@ text_accept={
 ]
 }
 
+[internationalization]
 
 locale/translations=PackedStringArray("res://ui/translation/translation.en.translation", "res://ui/translation/translation.de.translation")
 
