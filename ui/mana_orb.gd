@@ -21,7 +21,8 @@ func _ready() -> void:
 		randf_range(-initial_speed_variance, initial_speed_variance),
 		randf_range(-initial_speed_variance, initial_speed_variance)
 	)
-	
+	Util.set_sample_type_if_web(bubble_sound)
+
 func set_magic_type(new_magic_type: Recipe.MagicType) -> void:
 	var ui: UI = GameState.ui
 	var label: Label = ui.get_label_by_type(new_magic_type)
@@ -59,7 +60,7 @@ func _process(delta: float) -> void:
 		self.scale = Vector3.ONE * xscale
 		if xscale <= 0.0:
 			queue_free()
-		
+
 		if xscale < 0.5 and not deposited:
 			GameState.change_magic(magic_type, 1)
 			deposited = true

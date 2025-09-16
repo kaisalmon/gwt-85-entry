@@ -16,6 +16,7 @@ extends Interactable
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
 @onready var cauldroninteract_failure: AudioStreamPlayer3D = $cauldroninteract_failure
 @onready var mana_orb: PackedScene = preload("res://ui/mana_orb.tscn")
+@onready var ambience_cauldron: AudioStreamPlayer3D = $CollisionShape3D/ambience_cauldron
 
 var label_position: Vector3
 var text_tween: Tween = null
@@ -32,12 +33,11 @@ func _ready() -> void:
 	if recipe.produced_magic.size() == 0:
 		push_warning("the recipe on ", self.name, " does not produce any magic from the recipe")
 	
-		
-	if cauldroninteract_failure.playback_type == AudioServer.PLAYBACK_TYPE_SAMPLE && !OS.has_feature("web"):
-		cauldroninteract_failure.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
-		
-	if cauldroninteract_success.playback_type == AudioServer.PLAYBACK_TYPE_SAMPLE && !OS.has_feature("web"):
-		cauldroninteract_success.playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
+	Util.set_sample_type_if_web(cauldroninteract_failure)
+	Util.set_sample_type_if_web(cauldroninteract_insert)
+	Util.set_sample_type_if_web(cauldroninteract_success)
+	Util.set_sample_type_if_web(ambience_cauldron)
+
 	
 func can_interact(_player: Player) -> bool:
 	return !is_on_cooldown
@@ -157,7 +157,7 @@ func update_recipe_display() -> void:
 		if provided_ingredients.has(item_type):
 			current_amount = provided_ingredients[item_type]
 			
-		recipe_texts.append(Item.ItemType.keys()[item_type] + "s: " + str(current_amount) + "/" + str(needed_amount))
+		recipe_texts.append(tr(Util.pluralize_item_type_to_trkey(item_type, 2)) + ": " + str(current_amount) + "/" + str(needed_amount))
 
 	#for item_type: Item.ItemType in provided_ingredients:
 		#if !recipe.ingredients.has(item_type):
@@ -169,7 +169,7 @@ func update_recipe_display() -> void:
 			push_warning("the recipe on ", self.name, " has a produced magictype entry with a 0 (or less) amount for ", Recipe.MagicType.keys()[magic_type])
 			continue
 		
-		recipe_texts.append(" => " + str(recipe.produced_magic[magic_type]) + " " + Recipe.magic_type_to_string(magic_type) + " magic ")
+		recipe_texts.append(" => " + str(recipe.produced_magic[magic_type]) + "x " + tr(Util.magic_type_to_trkey(magic_type)))
 
 
 	label_3d.text = "\n".join(recipe_texts)

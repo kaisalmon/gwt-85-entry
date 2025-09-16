@@ -27,6 +27,7 @@ var is_item_in_ready_pos: bool = false
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.player = self
+	Util.set_sample_type_if_web(footsteps)
 
 	 #we may not want this here
 	base_y_pos = look_pivot.position.y
@@ -38,7 +39,6 @@ func _physics_process(delta: float) -> void:
 	_move(delta)
 	#var relative_speed: float = min(actual_current_speed / move_speed, 1.0)
 	#var speed_factor: float = relative_speed * head_bobbing_speed
-	
 	var speed_factor: float = head_bobbing_speed
 
 	if move_time > 0:
@@ -61,7 +61,6 @@ func _move(delta: float) -> void:
 		move_dir = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 		move_time += delta
 		ismoving = true
-
 
 		# 0 when moving in exact opposition direction to move_dir, 1 when moving in exact same direction
 		var acc_dec_ratio = velocity.normalized().dot(move_dir.normalized()) * 0.5 + 0.5 

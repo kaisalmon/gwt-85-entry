@@ -10,7 +10,7 @@ var sfx_bus_index = AudioServer.get_bus_index("SFX")
 var ambience_bus_index = AudioServer.get_bus_index("Ambience")
 
 func _ready() -> void:
-	
+	Util.set_sample_type_if_web(audio_stream_player)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	if !audio_stream_player.stream is AudioStreamInteractive:
@@ -30,24 +30,15 @@ func _input(event):
 		AudioServer.set_bus_mute(master_bus_index, !AudioServer.is_bus_mute(master_bus_index))
 		print("audio toggle")
 
-
-
-
 func _on_master_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
-	pass # Replace with function body.
-
 
 func _on_sfx_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value))
-	pass # Replace with function body.
-
 
 func _on_music_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
-	pass # Replace with function body.
-
 
 func _on_ambience_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambience"), linear_to_db(value))
-	pass # Replace with function body.
+	

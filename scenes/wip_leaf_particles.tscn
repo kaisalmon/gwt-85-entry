@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk6ii4ewgj2q7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v8w54"]
+lifetime_randomness = 0.3
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+angle_min = -156.5
+angle_max = -67.6
+inherit_velocity_ratio = 1.0
+spread = 85.127
+angular_velocity_min = -111.8
+angular_velocity_max = -111.8
+radial_velocity_min = -2.00002
+radial_velocity_max = 1.99998
+gravity = Vector3(0, -5, 0)
+linear_accel_min = 2.49
+linear_accel_max = 11.81
+radial_accel_min = -6.83
+radial_accel_max = 4.35
+tangential_accel_min = -2.0
+tangential_accel_max = 8.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb8ps"]
+albedo_color = Color(0.666594, 0.372027, 0.151025, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eojfl"]
+material = SubResource("StandardMaterial3D_jb8ps")
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+lifetime = 3.4
+explosiveness = 0.05
+randomness = 0.45
+process_material = SubResource("ParticleProcessMaterial_v8w54")
+draw_pass_1 = SubResource("PlaneMesh_eojfl")

@@ -18,7 +18,6 @@ const FINAL_WIGGLE_SPEED: float = 45.0
 @export var pickup_audio_stream_player: AudioStreamPlayer
 @export var progress_mesh: MeshInstance3D
 
-
 var text_tween: Tween = null
 var orb_color_tween: Tween = null
 var highlight_material: StandardMaterial3D
@@ -38,12 +37,15 @@ func _ready() -> void:
 	source_mesh_default_pos = source_mesh.global_position
 	default_albedo = highlight_material.albedo_color
 	#highlight_albedo = Color.from_hsv(default_albedo.h, max(default_albedo.s - 0.3, 0), min(default_albedo.v + 0.2, 1.0))
-	label_3d.text = Item.ItemType.keys()[produced_item]
+	label_3d.text = tr(Util.item_type_to_trkey(produced_item))
 	progress_mesh_mat.albedo_color.a = 0.0
-	
+
 	set_highlight(null, false)
 
 func _process(delta: float) -> void:
+	#var alpha: float = progress_mesh_mat.albedo_color.a
+	#if alpha > 0:
+		#print(self.name + ": albedo alpha: ", alpha)
 	if !is_interacting:
 		if interaction_progress > 0:
 			interaction_progress -= delta * 2
@@ -51,7 +53,7 @@ func _process(delta: float) -> void:
 			source_mesh.global_position = source_mesh_default_pos
 			#print("pickup stopped: ", interaction_progress)
 		return
-		
+
 	interaction_progress += delta
 	var relative_progress: float = interaction_progress / interaction_duration
 	set_progress_bar(relative_progress)
@@ -76,7 +78,7 @@ func can_interact(_player: Player) -> bool:
 
 func interact(player: Player) -> void:
 	if is_instance_valid(player.held_item):
-		print("player can't pick up '", Item.ItemType.keys()[produced_item], "' from '", self.name, "' because he currently holds '", player.held_item)
+		#print("player can't pick up '", Item.ItemType.keys()[produced_item], "' from '", self.name, "' because he currently holds '", player.held_item)
 		# TODO: should we allow the player to remove items from his hand if its from the same type?
 		
 		wiggle_text(player.get_look_ortho_vec3D())
@@ -101,6 +103,7 @@ func tween_progress_mesh_visibility(mesh_visible: bool) -> void:
 	
 	progress_mesh_tween = create_tween()
 	progress_mesh_tween.tween_property(progress_mesh_mat, "albedo_color:a", mesh_alpha, 0.35)	
+	await progress_mesh_tween.finished
 
 func stop_interact(_player: Player) -> void:
 	tween_progress_mesh_visibility(false)
@@ -142,4 +145,4 @@ func set_progress_bar(rel_progress: float) -> void:
 	progress_mesh.scale.x = rel_progress
 	#progress_mesh.position.x = -rel_progress / 2
 	progress_mesh.rotation.y = source_player.get_look_ortho()
-	progress_mesh_mat.albedo_color = Color.html("d3d3d3").lerp(Color.WHITE, rel_progress)
+	progress_mesh_mat.albedo_color = Color(Color.html("d3d3d3"), progress_mesh_mat.albedo_color.a ).lerp(Color(Color.WHITE, progress_mesh_mat.albedo_color.a), rel_progress)
