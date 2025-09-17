@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://qj8yt50m37o"]
+[gd_scene load_steps=30 format=3 uid="uid://qj8yt50m37o"]
 
 [ext_resource type="Texture2D" uid="uid://de24pln7p0opt" path="res://textures/GreenWall.png" id="1_nkkm8"]
 [ext_resource type="Script" uid="uid://bkbxwfrykn7ai" path="res://scenes/interactable/room_expander.gd" id="2_gg805"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cs7w15701uw8x" path="res://models/custom/cauldron_0.png" id="7_0sk6o"]
 [ext_resource type="AudioStream" uid="uid://tljteju1sgjn" path="res://audio/sfx/ui/magicseal_open.ogg" id="9_4d6i1"]
 [ext_resource type="AudioStream" uid="uid://cajsjgqgl624t" path="res://audio/sfx/ui/magicseal_end_01.ogg" id="10_0sk6o"]
+[ext_resource type="AudioStream" uid="uid://c8lqe1a7mcvem" path="res://audio/sfx/ui/door_error.ogg" id="11_0sk6o"]
 [ext_resource type="AudioStream" uid="uid://cfyvrl6ati37p" path="res://audio/sfx/ui/magicseal_end_02.ogg" id="11_mxi5f"]
 [ext_resource type="PackedScene" uid="uid://bgrpeagpcgvnb" path="res://scenes/ui/info_label_3d.tscn" id="12_mxi5f"]
 
@@ -103,6 +104,11 @@ streams_count = 2
 stream_0/stream = ExtResource("10_0sk6o")
 stream_1/stream = ExtResource("11_mxi5f")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mxi5f"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("11_0sk6o")
+
 [node name="Door" type="Area3D" node_paths=PackedStringArray("star_mesh", "circle_mesh", "wall", "gpu_particles_3d", "collision_shape_3d", "doorframe", "info_label_3d")]
 collision_layer = 5
 script = ExtResource("2_gg805")
@@ -168,6 +174,14 @@ stream = SubResource("AudioStreamRandomizer_he66k")
 
 [node name="dooropen_end" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4cxkj")
+
+[node name="dooropen_error" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_mxi5f")
+attenuation_model = 2
+volume_db = -27.955
+max_db = 0.0
+panning_strength = 0.0
+bus = &"SFX"
 
 [node name="InfoLabel3D" parent="." instance=ExtResource("12_mxi5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3705, 0.297059)

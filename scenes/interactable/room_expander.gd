@@ -22,6 +22,7 @@ var fired_particles: bool = false
 @export var info_label_3d: InfoLabel3D
 @onready var dooropen: AudioStreamPlayer3D = $dooropen
 @onready var dooropen_end: AudioStreamPlayer3D = $dooropen_end
+@onready var dooropen_error: AudioStreamPlayer3D = $dooropen_error
 
 var door_unlocked: bool = false
 var has_started_animation: bool = false
@@ -183,6 +184,7 @@ func has_all_magic() -> bool:
 func display_no_magic_anim(direction_vec: Vector3) -> void:
 	#wiggle_text(direction_vec)
 	info_label_3d.wiggle_text(direction_vec)
+	dooropen_error.play()
 
 #func wiggle_text(direction_vec: Vector3) -> void:
 	#if is_instance_valid(text_tween):
