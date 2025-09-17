@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://o3dxjjbvg8gl"]
+
+[ext_resource type="ArrayMesh" uid="uid://d208nph7co14w" path="res://models/custom/frontdoor.obj" id="1_685vh"]
+[ext_resource type="Texture2D" uid="uid://by3siyvprg51c" path="res://textures/furniturebits_texture.png" id="2_lddte"]
+[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="3_6jyou"]
+[ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="3_rtmrr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtmrr"]
+shading_mode = 0
+albedo_texture = ExtResource("2_lddte")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qun2q"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fd07e"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_6jyou")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("ViewportTexture_qun2q")
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Environment" id="Environment_6jyou"]
+resource_local_to_scene = true
+background_color = Color(0.694223, 0.308905, 0.801082, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+
+[node name="Frontdoor" type="MeshInstance3D"]
+transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
+mesh = ExtResource("1_685vh")
+skeleton = NodePath("../../CanvasLayer")
+surface_material_override/0 = SubResource("StandardMaterial3D_rtmrr")
+surface_material_override/1 = SubResource("ShaderMaterial_fd07e")
+surface_material_override/2 = SubResource("StandardMaterial3D_rtmrr")
+surface_material_override/3 = SubResource("ShaderMaterial_fd07e")
+surface_material_override/4 = SubResource("StandardMaterial3D_rtmrr")
+script = ExtResource("3_rtmrr")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+environment = SubResource("Environment_6jyou")

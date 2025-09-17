@@ -1,0 +1,6 @@
+# Made in Blockbench 4.12.6
+newmtl m_319adca9-4a7e-7b42-1a35-bc84dba8a2cd
+map_Kd furniturebits_texture.png
+newmtl m_a2eb3404-71ca-93f7-7cbb-34c0ac7af42f
+map_Kd window_portal.png
+newmtl none

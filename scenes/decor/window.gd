@@ -13,8 +13,10 @@ func _ready() -> void:
 	super._ready()
 	viewport = $SubViewport
 	outside_camera = $SubViewport/Camera3D
-	Util.set_sample_type_if_web(ambience_outside_l)
-	Util.set_sample_type_if_web(ambience_outside_r)
+	if ambience_outside_l:
+		Util.set_sample_type_if_web(ambience_outside_l)
+	if ambience_outside_r:
+		Util.set_sample_type_if_web(ambience_outside_r)
 
 func _physics_process(delta: float) -> void:
 	update_dissapear_animation(delta)

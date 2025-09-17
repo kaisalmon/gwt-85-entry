@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://r4n06db14718"]
+[gd_scene load_steps=24 format=3 uid="uid://r4n06db14718"]
 
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="1_tyc8v"]
-[ext_resource type="Material" uid="uid://c7xraa4dgnec5" path="res://scenes/decor/window_portal_material.tres" id="2_17yy1"]
 [ext_resource type="ArrayMesh" uid="uid://l658w3s75ek2" path="res://models/custom/window.obj" id="3_a4nrp"]
 [ext_resource type="Material" uid="uid://b7xke3yltv0pk" path="res://models/custom/window_material.tres" id="4_nfjdw"]
+[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="4_scc5q"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_a4nrp"]
 [ext_resource type="AudioStream" uid="uid://bymgiq4hi7unr" path="res://audio/sfx/ambience/ambience_outside_l_01.ogg" id="6_scc5q"]
 [ext_resource type="AudioStream" uid="uid://c4738x3sla8ta" path="res://audio/sfx/ambience/ambience_outside_l_02.ogg" id="7_oyt8e"]
@@ -14,10 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://dq80kcmwcnrjg" path="res://audio/sfx/ambience/ambience_outside_r_03.ogg" id="12_85w4r"]
 [ext_resource type="AudioStream" uid="uid://cnyr85r13tgtq" path="res://audio/sfx/ambience/ambience_outside_r_04.ogg" id="13_wnh8w"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_hjewq"]
-size = Vector2(1.545, 1.535)
-orientation = 2
-
 [sub_resource type="Environment" id="Environment_17yy1"]
 resource_local_to_scene = true
 background_color = Color(0.694223, 0.308905, 0.801082, 1)
@@ -26,6 +22,24 @@ fog_mode = 1
 fog_light_color = Color(1, 1, 1, 1)
 fog_density = 1.0
 fog_depth_begin = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oyt8e"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kyqfd"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_scc5q")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("ViewportTexture_oyt8e")
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfjdw"]
 transparency = 1
@@ -80,11 +94,6 @@ stream_3/stream = ExtResource("13_wnh8w")
 [node name="Window" type="Node3D"]
 script = ExtResource("1_tyc8v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00048697)
-visible = false
-mesh = SubResource("PlaneMesh_hjewq")
-
 [node name="SubViewport" type="SubViewport" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
@@ -94,19 +103,19 @@ environment = SubResource("Environment_17yy1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.839706, -0.0889711)
 mesh = ExtResource("3_a4nrp")
 surface_material_override/0 = ExtResource("4_nfjdw")
-surface_material_override/1 = ExtResource("2_17yy1")
-surface_material_override/2 = ExtResource("2_17yy1")
-surface_material_override/3 = ExtResource("2_17yy1")
+surface_material_override/1 = SubResource("ShaderMaterial_kyqfd")
+surface_material_override/2 = SubResource("ShaderMaterial_kyqfd")
+surface_material_override/3 = SubResource("ShaderMaterial_kyqfd")
 surface_material_override/4 = ExtResource("4_nfjdw")
-surface_material_override/5 = ExtResource("2_17yy1")
+surface_material_override/5 = SubResource("ShaderMaterial_kyqfd")
 surface_material_override/6 = ExtResource("4_nfjdw")
-surface_material_override/7 = ExtResource("2_17yy1")
+surface_material_override/7 = SubResource("ShaderMaterial_kyqfd")
 surface_material_override/8 = ExtResource("4_nfjdw")
-surface_material_override/9 = ExtResource("2_17yy1")
-surface_material_override/10 = ExtResource("2_17yy1")
-surface_material_override/11 = ExtResource("2_17yy1")
+surface_material_override/9 = SubResource("ShaderMaterial_kyqfd")
+surface_material_override/10 = SubResource("ShaderMaterial_kyqfd")
+surface_material_override/11 = SubResource("ShaderMaterial_kyqfd")
 surface_material_override/12 = ExtResource("4_nfjdw")
-surface_material_override/13 = ExtResource("2_17yy1")
+surface_material_override/13 = SubResource("ShaderMaterial_kyqfd")
 surface_material_override/14 = ExtResource("4_nfjdw")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
