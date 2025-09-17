@@ -32,6 +32,7 @@ var circle_mat: StandardMaterial3D
 var star_mat: StandardMaterial3D
 var label_position: Vector3
 var text_tween: Tween = null
+var highlighted: bool = false
 
 var provided_magic: Dictionary[Recipe.MagicType, int] = {}
 
@@ -47,6 +48,13 @@ func _ready() -> void:
 	update_requirement_display()
 
 func _physics_process(delta: float) -> void:
+
+	var target_color = highlight_color
+	if not highlighted:
+		target_color = deactivated_color
+	star_mat.albedo_color = star_mat.albedo_color.lerp(target_color, 3.0 * delta)
+	circle_mat.albedo_color = circle_mat.albedo_color.lerp(target_color, 3.0 * delta)
+
 	if door_unlocked:
 		return
 	if animation_progress == 0.0:
@@ -114,9 +122,7 @@ func set_highlight(_player: Player, highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	info_label_3d.visible = highlight_new
 	
-	star_mat.albedo_color = highlight_color if highlight_new else deactivated_color
-	circle_mat.albedo_color = highlight_color if highlight_new else deactivated_color
-
+	highlighted = highlight_new
 func unlock() -> void:
 	if door_unlocked: 
 		return
