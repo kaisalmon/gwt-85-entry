@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ch5ehwhnko4q2" path="res://scenes/level/map_layout.tscn" id="2_nxsyj"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_mrxxk"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="4_nom25"]
-[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://recipe_book_to_crispy.tres" id="5_sytxn"]
+[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipe_book_to_crispy.tres" id="5_sytxn"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="6_k6grx"]
 [ext_resource type="PackedScene" uid="uid://cdiv778ltxb4m" path="res://scenes/music_player.tscn" id="7_mmrb6"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_pfo8u"]

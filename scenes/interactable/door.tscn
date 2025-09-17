@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://tljteju1sgjn" path="res://audio/sfx/ui/magicseal_open.ogg" id="9_4d6i1"]
 [ext_resource type="AudioStream" uid="uid://cajsjgqgl624t" path="res://audio/sfx/ui/magicseal_end_01.ogg" id="10_0sk6o"]
 [ext_resource type="AudioStream" uid="uid://cfyvrl6ati37p" path="res://audio/sfx/ui/magicseal_end_02.ogg" id="11_mxi5f"]
-[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="12_0sk6o"]
+[ext_resource type="PackedScene" uid="uid://bgrpeagpcgvnb" path="res://scenes/ui/info_label_3d.tscn" id="12_mxi5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gg805"]
 cull_mode = 2
@@ -102,7 +102,7 @@ streams_count = 2
 stream_0/stream = ExtResource("10_0sk6o")
 stream_1/stream = ExtResource("11_mxi5f")
 
-[node name="Door" type="Area3D" node_paths=PackedStringArray("star_mesh", "circle_mesh", "wall", "gpu_particles_3d", "collision_shape_3d", "doorframe", "label_3d")]
+[node name="Door" type="Area3D" node_paths=PackedStringArray("star_mesh", "circle_mesh", "wall", "gpu_particles_3d", "collision_shape_3d", "doorframe", "info_label_3d")]
 collision_layer = 5
 script = ExtResource("2_gg805")
 deactivated_color = Color(0, 0, 0, 1)
@@ -113,7 +113,7 @@ wall = NodePath("Wall")
 gpu_particles_3d = NodePath("GPUParticles3D")
 collision_shape_3d = NodePath("CollisionShape3D")
 doorframe = NodePath("Doorframe")
-label_3d = NodePath("Label3D")
+info_label_3d = NodePath("InfoLabel3D")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -168,14 +168,7 @@ stream = SubResource("AudioStreamRandomizer_he66k")
 [node name="dooropen_end" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4cxkj")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="InfoLabel3D" parent="." instance=ExtResource("12_mxi5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11162, 0.152992)
-billboard = 2
-no_depth_test = true
-outline_modulate = Color(0.25098, 0.25098, 0.25098, 1)
-text = "lorem ipsum"
-font = ExtResource("12_0sk6o")
-font_size = 60
-outline_size = 8
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

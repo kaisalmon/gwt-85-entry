@@ -19,9 +19,9 @@ var fired_particles: bool = false
 @export var gpu_particles_3d: GPUParticles3D
 @export var collision_shape_3d: CollisionShape3D
 @export var doorframe: MeshInstance3D
+@export var info_label_3d: InfoLabel3D
 @onready var dooropen: AudioStreamPlayer3D = $dooropen
 @onready var dooropen_end: AudioStreamPlayer3D = $dooropen_end
-@export var label_3d: Label3D
 
 var door_unlocked: bool = false
 var has_started_animation: bool = false
@@ -38,7 +38,6 @@ var provided_magic: Dictionary[Recipe.MagicType, int] = {}
 func _ready() -> void:
 	Util.set_sample_type_if_web(dooropen)
 	Util.set_sample_type_if_web(dooropen_end)
-	label_position = label_3d.global_position
 	
 	for mtype: Recipe.MagicType in required_magic.keys():
 		provided_magic[mtype] = 0
@@ -113,7 +112,7 @@ func set_highlight(_player: Player, highlight_new: bool) -> void:
 	if has_started_animation || door_unlocked:
 		return
 	#print("highlighting for ", self.name, ": ", highlight_new)
-	label_3d.visible = highlight_new
+	info_label_3d.visible = highlight_new
 	
 	star_mat.albedo_color = highlight_color if highlight_new else deactivated_color
 	circle_mat.albedo_color = highlight_color if highlight_new else deactivated_color
@@ -176,19 +175,20 @@ func has_all_magic() -> bool:
 	return true
 
 func display_no_magic_anim(direction_vec: Vector3) -> void:
-	wiggle_text(direction_vec)
+	#wiggle_text(direction_vec)
+	info_label_3d.wiggle_text(direction_vec)
 
-func wiggle_text(direction_vec: Vector3) -> void:
-	if is_instance_valid(text_tween):
-		text_tween.kill()
-		
-	text_tween = create_tween()
-	text_tween.tween_method(tween_wiggle.bind(label_3d.global_position, direction_vec), 0.0, 1.0, 0.5)
-	
-func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -> void:
-	var displacement: float = sin(progress * 10) * 0.1
-	label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
-	label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
+#func wiggle_text(direction_vec: Vector3) -> void:
+	#if is_instance_valid(text_tween):
+		#text_tween.kill()
+		#
+	#text_tween = create_tween()
+	#text_tween.tween_method(tween_wiggle.bind(label_3d.global_position, direction_vec), 0.0, 1.0, 0.5)
+	#
+#func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -> void:
+	#var displacement: float = sin(progress * 10) * 0.1
+	#label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
+	#label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)
 
 func update_requirement_display() -> void:
 	var recipe_texts: Array[String] = []
@@ -202,11 +202,11 @@ func update_requirement_display() -> void:
 			current_amount = provided_magic[mtype]
 		recipe_texts.append(tr(Util.magic_type_to_trkey(mtype)) + ": " + str(current_amount) + "/" + str(needed_amount))
 
-	label_3d.text = "\n".join(recipe_texts)
+	info_label_3d.text = "\n".join(recipe_texts)
 
 func fadeout_text() -> void:
 	var fadeout_text_tween: Tween = create_tween()
-	fadeout_text_tween.tween_property(label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
-	fadeout_text_tween.tween_property(label_3d, "modulate", Color.TRANSPARENT, 0.2)
+	fadeout_text_tween.tween_property(info_label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
+	fadeout_text_tween.tween_property(info_label_3d, "modulate", Color.TRANSPARENT, 0.2)
 	await  fadeout_text_tween.finished
-	label_3d.visible = false
+	info_label_3d.visible = false

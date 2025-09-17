@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b5npl0ksq8mxq"]
 
 [ext_resource type="Script" uid="uid://bnfcnb8qrl0t5" path="res://scenes/interactable/item_provider.gd" id="1_yvxfo"]
-[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="2_0ns2q"]
+[ext_resource type="PackedScene" uid="uid://bgrpeagpcgvnb" path="res://scenes/ui/info_label_3d.tscn" id="2_0ns2q"]
 [ext_resource type="AudioStream" uid="uid://bngdomxcvu4m4" path="res://audio/sfx/ui/pickup_01.ogg" id="2_g4kgx"]
 [ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="3_0ns2q"]
 
@@ -45,15 +45,16 @@ streams_count = 2
 stream_0/stream = ExtResource("2_g4kgx")
 stream_1/stream = ExtResource("3_0ns2q")
 
-[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh", "label_3d", "pickup_audio_stream_player", "progress_mesh")]
+[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh", "info_label_3d", "pickup_audio_stream_player", "progress_mesh", "cooldown_timer")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
 source_mesh = NodePath("MeshInstance3D")
-label_3d = NodePath("DebugLabel3D")
+info_label_3d = NodePath("InfoLabel3D")
 pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
 progress_mesh = NodePath("ProgressMesh")
+cooldown_timer = NodePath("CooldownTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")
@@ -71,17 +72,17 @@ texture = SubResource("GradientTexture2D_1hiuq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
 mesh = SubResource("BoxMesh_1hiuq")
 
-[node name="DebugLabel3D" type="Label3D" parent="."]
+[node name="InfoLabel3D" parent="." instance=ExtResource("2_0ns2q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896345, 0)
-billboard = 2
-no_depth_test = true
-outline_modulate = Color(0.25, 0.25, 0.25, 1)
-text = "lorem ipsum"
-font = ExtResource("2_0ns2q")
-font_size = 60
-outline_size = 8
 
 [node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1hiuq")
 volume_db = 6.5
 bus = &"SFX"
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="wiggle_finished" from="InfoLabel3D" to="." method="_on_info_label_3d_wiggle_finished"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -42,6 +42,8 @@ ui.settings.audio.overall;Overall;Gesamt
 ui.settings.audio.music;Music;Musik
 ui.settings.audio.sfx;SFX;SFX
 ui.settings.audio.ambience;Ambience;Umgebung
+ui.settings.fullscreen;Fullscreen;Vollbild
+ui.settings.reset;Reset;Zurücksetzen
 ui.paused;Paused;Pausiert
 dialogue.this_is;This is the {0};Das ist {0}
 dialogue.room_unlocked;Room unlocked: {0};Raum freigeschaltet: {0}
