@@ -34,3 +34,26 @@ static func set_sample_type_if_web(node: Node) -> void:
 
 static func is_web_build() -> bool:
 	return OS.has_feature("web")
+
+static func set_bus_volume(bus_name: String, volume_linear: float) -> void:
+	var vol_to_use: float = volume_linear
+	if vol_to_use <= 0:
+		vol_to_use = 0.00001
+	var bus_index: int = AudioServer.get_bus_index(bus_name)	
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(vol_to_use))
+	
+static func set_bus_muted(bus_name: String, is_muted_new: bool) -> void:
+	var bus_index: int = AudioServer.get_bus_index(bus_name)
+	AudioServer.set_bus_mute(bus_index, is_muted_new)
+	
+static func is_bus_muted(bus_name: String) -> bool:
+	var bus_index: int = AudioServer.get_bus_index(bus_name)
+	return AudioServer.is_bus_mute(bus_index)
+
+static func set_fullscreen(is_fullscreen: bool) -> void:
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, Settings.FULLSCREEN_IS_BORDERLESS)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)

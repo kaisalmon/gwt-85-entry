@@ -1,53 +1,101 @@
 extends Node
 
-const SAVE_USER_SETTINGS: bool = false
-const SAVE_PATH: String = "user://settings.cfg"
+const SAVE_PATH: String = "user://settings.save"
+const FULLSCREEN_IS_BORDERLESS: bool = true
 
 const MASTER_BUS_NAME: String = "Master"
 const SFX_BUS_NAME: String = "SFX"
 const MUSIC_BUS_NAME: String = "Music"
 const AMBIENCE_BUS_NAME: String = "Ambience"
 
+signal locale_changed
+
 var locale: StringName = &"en"
 var master_volume_linear: float = 0.75
 var music_volume_linear: float = 0.75
 var sfx_volume_linear: float = 0.75
 var ambience_volume_linear: float = 0.75
+var fullscreen_active: bool = false
 
-func reset_to_defaults() -> void:
+func _ready() -> void:
+	load_from_file()
+	apply_values()
+	
+	
+func reset_to_defaults(do_save: bool = true) -> void:
 	set_locale(&"en", false)
 	set_master_volume(0.75, false)
 	set_music_volume(0.75, false)
 	set_sfx_volume(0.75, false)
 	set_ambience_volume(0.75, false)
-
-	save_to_file()
+	set_fullscreen_active(false, false)
 	
+	apply_values()
+	if do_save:
+		save_to_file()
+
+func apply_values() -> void:
 	TranslationServer.set_locale(locale)
-	set_bus_volume(MASTER_BUS_NAME, master_volume_linear)
-	set_bus_volume(SFX_BUS_NAME, music_volume_linear)
-	set_bus_volume(MUSIC_BUS_NAME, sfx_volume_linear)
-	set_bus_volume(AMBIENCE_BUS_NAME, ambience_volume_linear)
+	Util.set_bus_volume(MASTER_BUS_NAME, master_volume_linear)
+	Util.set_bus_volume(SFX_BUS_NAME, music_volume_linear)
+	Util.set_bus_volume(MUSIC_BUS_NAME, sfx_volume_linear)
+	Util.set_bus_volume(AMBIENCE_BUS_NAME, ambience_volume_linear)
+	Util.set_fullscreen(fullscreen_active)
 
-func _ready() -> void:
-	reset_to_defaults()
-
+		
 func save_to_file() -> void:
-	pass
+	var settings_file_access: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var save_dict: Dictionary = {
+		"master_volume": master_volume_linear,
+		"music_volume": music_volume_linear,
+		"sfx_volume": sfx_volume_linear,
+		"ambience_volume": ambience_volume_linear,
+		"locale": locale,
+		"fullscreen_active": fullscreen_active
+	}
+	
+	var json_string: String = JSON.stringify(save_dict)
+	settings_file_access.store_line(json_string)
+	
 
 func load_from_file() -> void:
-	pass
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+
+	var save_game: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	while save_game.get_position() < save_game.get_length():
+		var json_string: String = save_game.get_line()
+		var json: JSON = JSON.new()
+		var parseResult: Error = json.parse(json_string)
+		if not parseResult == OK:
+			push_warning("Preferences: JSON Parse Error: '" + json.get_error_message() + "'  at line " + str(json.get_error_line()))
+			continue
+		var save_dict: Dictionary = json.get_data()
+##
+		if save_dict.has("master_volume"):
+			master_volume_linear = save_dict["master_volume"]
+		if save_dict.has("music_volume"):
+			music_volume_linear = save_dict["music_volume"]
+		if save_dict.has("sfx_volume"):
+			sfx_volume_linear = save_dict["sfx_volume"]
+		if save_dict.has("ambience_volume"):
+			ambience_volume_linear = save_dict["ambience_volume"]
+		if save_dict.has("locale"):
+			locale = save_dict["locale"]
+		if save_dict.has("fullscreen_active"):
+			fullscreen_active = save_dict["fullscreen_active"]
 
 func set_locale(locale_new: StringName, do_save: bool = true) -> void:
 	locale = locale_new
-	
+	locale_changed.emit()
+
 	if do_save:
 		save_to_file()
 
 		
 func set_master_volume(volume_linear_new: float, do_save: bool = true) -> void:
 	master_volume_linear = volume_linear_new
-	
+
 	if do_save:
 		save_to_file()
 		
@@ -68,6 +116,9 @@ func set_ambience_volume(volume_linear_new: float, do_save: bool = true) -> void
 	
 	if do_save:
 		save_to_file()
-
-static func set_bus_volume(bus_name: String, volume_linear: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), linear_to_db(volume_linear))
+		
+func set_fullscreen_active(fs_active_new: bool, do_save: bool = true) -> void:
+	fullscreen_active = fs_active_new
+	
+	if do_save:
+		save_to_file()

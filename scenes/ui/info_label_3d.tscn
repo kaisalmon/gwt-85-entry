@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgrpeagpcgvnb"]
+
+[ext_resource type="FontFile" uid="uid://bn4sp1pda3cvc" path="res://ui/Fonts/yolk_6_v1/Yolk 6.ttf" id="1_02xvg"]
+[ext_resource type="Script" uid="uid://db3pfljwrb0qj" path="res://scenes/ui/info_label_3d.gd" id="2_80st3"]
+
+[node name="InfoLabel3D" type="Label3D"]
+billboard = 2
+no_depth_test = true
+outline_modulate = Color(0.25, 0.25, 0.25, 1)
+text = "lorem ipsum"
+font = ExtResource("1_02xvg")
+font_size = 60
+outline_size = 8
+script = ExtResource("2_80st3")

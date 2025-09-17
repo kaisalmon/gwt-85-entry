@@ -10,7 +10,8 @@ extends Interactable
 @export var recipe: Recipe
 @export var cooldown_time: float = 1.0
 @export var ready_item_position: Marker3D
-@export var label_3d: Label3D
+#@export var label_3d: Label3D
+@export var info_label: Label3D
 @export var source_mesh: MeshInstance3D
 @onready var cauldroninteract_success: AudioStreamPlayer3D = $cauldroninteract_success
 @onready var cauldroninteract_insert: AudioStreamPlayer3D = $cauldroninteract_insert
@@ -25,7 +26,7 @@ var is_currently_highlighted: bool
 var provided_ingredients: Dictionary[Item.ItemType, int]
 
 func _ready() -> void:
-	label_position = label_3d.global_position
+	#label_position = label_3d.global_position
 	set_highlight(null, false)
 	update_recipe_display()
 	if recipe.ingredients.size() == 0:
@@ -45,6 +46,7 @@ func can_interact(_player: Player) -> bool:
 func interact(player: Player) -> void:
 	if !is_instance_valid(player.held_item):
 		#print("interacting with ", self.name, ": the player does not hold an item")
+		info_label.wiggle_text(player.get_look_ortho_vec3D())
 		return
 	
 	var held_item_type: Item.ItemType = player.held_item.item_type
@@ -52,7 +54,7 @@ func interact(player: Player) -> void:
 	if has_necessary_ingredients_for(held_item_type):
 		print("does not need item of the given type")
 		cauldroninteract_failure.play()
-		wiggle_text(player.get_look_ortho_vec3D())
+		info_label.wiggle_text(player.get_look_ortho_vec3D())
 		return
 	
 	#print("interacting with ", self.name, ": using item type: ", Item.ItemType.keys()[item])
@@ -75,12 +77,12 @@ func interact(player: Player) -> void:
 	if recipe_completed:
 		is_on_cooldown = true
 		var cooldown_tween: Tween = create_tween()
-		cooldown_tween.tween_property(label_3d, "modulate", Color.GREEN_YELLOW, 0.3)
-		cooldown_tween.tween_property(label_3d, "modulate", Color.TRANSPARENT, 0.2)
+		cooldown_tween.tween_property(info_label, "modulate", Color.GREEN_YELLOW, 0.3)
+		cooldown_tween.tween_property(info_label, "modulate", Color.TRANSPARENT, 0.2)
 		update_recipe_display()
 
 		await cooldown_tween.finished
-		label_3d.visible = false
+		info_label.visible = false
 	
 	await tween.finished
 	item.queue_free()
@@ -88,7 +90,7 @@ func interact(player: Player) -> void:
 
 	if recipe_completed:
 		provide_magic()
-		label_3d.modulate = Color.WHITE
+		info_label.modulate = Color.WHITE
 		is_on_cooldown = false
 		set_highlight(player, is_currently_highlighted)
 
@@ -100,7 +102,7 @@ func set_highlight(player: Player, highlight_new: bool) -> void:
 	if is_on_cooldown:
 		return
 	#print("highlighting for ", self.name, ": ", highlight_new)
-	label_3d.visible = highlight_new
+	info_label.visible = highlight_new
 	
 	if player != null && is_instance_valid(player.held_item):
 		if highlight_new:
@@ -172,7 +174,7 @@ func update_recipe_display() -> void:
 		recipe_texts.append(" => " + str(recipe.produced_magic[magic_type]) + "x " + tr(Util.magic_type_to_trkey(magic_type)))
 
 
-	label_3d.text = "\n".join(recipe_texts)
+	info_label.text = "\n".join(recipe_texts)
 
 func is_recipe_completed() -> bool:
 	for item_type: Item.ItemType in recipe.ingredients.keys():
@@ -180,16 +182,3 @@ func is_recipe_completed() -> bool:
 			return false
 			
 	return true
-	
-func wiggle_text(direction_vec: Vector3) -> void:
-	if is_instance_valid(text_tween):
-		text_tween.kill()
-		#debug_label_3d.global_position = label_position
-		
-	text_tween = create_tween()
-	text_tween.tween_method(tween_wiggle.bind(label_position, direction_vec), 0.0, 1.0, 0.5)
-	
-func tween_wiggle(progress: float, start_pos: Vector3, direction_vec: Vector3) -> void:
-	var displacement: float = sin(progress * 10) * 0.1
-	label_3d.global_position = start_pos + (direction_vec * displacement * (1-progress))
-	label_3d.modulate = Color.DARK_RED.lerp(Color.WHITE, progress)

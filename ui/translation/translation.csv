@@ -31,16 +31,19 @@ room.office;Office;Büro
 room.main_room;Main Room;Hauptraum
 room.corridor;Corridor;Flur
 room.green_house;Green House;Gewächshaus
-ui.menu.start;Start;Start
+ui.menu.new_game;New Game;Neues Spiel
 ui.menu.continue;Continue;Fortsetzen
 ui.menu.settings;Settings;Einstellungen
 ui.menu.credits;Credits;Credits
 ui.menu.quit;Quit;Verlassen
+ui.menu.back;Back;Zurück
 ui.settings.language;Language;Sprache (Language)
 ui.settings.audio.overall;Overall;Gesamt
 ui.settings.audio.music;Music;Musik
 ui.settings.audio.sfx;SFX;SFX
-ui.settings.audio.atmo;Atmo;Atmo
+ui.settings.audio.ambience;Ambience;Umgebung
+ui.settings.fullscreen;Fullscreen;Vollbild
+ui.settings.reset;Reset;Zurücksetzen
 ui.paused;Paused;Pausiert
 dialogue.this_is;This is the {0};Das ist {0}
 dialogue.room_unlocked;Room unlocked: {0};Raum freigeschaltet: {0}

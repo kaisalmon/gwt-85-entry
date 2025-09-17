@@ -226,6 +226,9 @@ shape = SubResource("ConvexPolygonShape3D_e22f2")
 
 [node name="Door" parent="SecondRoom" instance=ExtResource("18_ce3nn")]
 transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, -4, 0, -0.3)
+required_magic = Dictionary[int, int]({
+1: 2
+})
 
 [node name="Walls" type="Node3D" parent="SecondRoom"]
 
