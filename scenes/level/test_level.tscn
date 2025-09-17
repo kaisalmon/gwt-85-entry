@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv2ty85umnl7f"]
+[gd_scene load_steps=9 format=3 uid="uid://bv2ty85umnl7f"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_xaj2o"]
 [ext_resource type="PackedScene" uid="uid://ch5ehwhnko4q2" path="res://scenes/level/map_layout.tscn" id="2_nxsyj"]
+[ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_xaj2o"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_mrxxk"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="4_nom25"]
 [ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipe_book_to_crispy.tres" id="5_sytxn"]
@@ -9,6 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_pfo8u"]
 
 [node name="Level" instance=ExtResource("1_xaj2o")]
+script = ExtResource("2_xaj2o")
+
+[node name="Fadeout" type="ColorRect" parent="CanvasLayer" index="0"]
+offset_right = 261.0
+offset_bottom = 238.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MapLayout" parent="." index="4" instance=ExtResource("2_nxsyj")]
 

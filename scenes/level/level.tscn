@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=12 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
+[ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
 [ext_resource type="PackedScene" uid="uid://ch5ehwhnko4q2" path="res://scenes/level/map_layout.tscn" id="2_xv074"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_i166f"]
 [ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipe_book_to_crispy.tres" id="5_xv074"]
@@ -16,6 +17,13 @@ size = Vector3(5.75055, 2.38037, 6.07367)
 size = Vector3(5.75055, 2.38037, 6.07367)
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
+script = ExtResource("2_sytrn")
+
+[node name="Fadeout" type="ColorRect" parent="CanvasLayer" index="0"]
+offset_right = 261.0
+offset_bottom = 238.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="MapLayout" parent="." index="5" instance=ExtResource("2_xv074")]
 

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ix4bx5skvi3" path="res://textures/pentagram_star.png" id="4_lnqit"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_lnqit"]
 [ext_resource type="ArrayMesh" uid="uid://duw0blk7uy1mg" path="res://models/custom/doorframe.obj" id="6_1sv7o"]
-[ext_resource type="Texture2D" uid="uid://ck5nqplsb6l2p" path="res://models/custom/texture.png" id="7_1skjs"]
+[ext_resource type="Texture2D" uid="uid://cs7w15701uw8x" path="res://models/custom/cauldron_0.png" id="7_0sk6o"]
 [ext_resource type="Texture2D" uid="uid://upf86n4fc53x" path="res://models/custom/GreenWall.png" id="8_o4i0j"]
 [ext_resource type="AudioStream" uid="uid://tljteju1sgjn" path="res://audio/sfx/ui/magicseal_open.ogg" id="9_4d6i1"]
 [ext_resource type="AudioStream" uid="uid://cajsjgqgl624t" path="res://audio/sfx/ui/magicseal_end_01.ogg" id="10_0sk6o"]
@@ -80,7 +80,7 @@ size = Vector2(0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4d6i1"]
 shading_mode = 0
-albedo_texture = ExtResource("7_1skjs")
+albedo_texture = ExtResource("7_0sk6o")
 texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sk6o"]
