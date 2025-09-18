@@ -118,8 +118,12 @@ func tween_to_position(target_pos_node: Node3D, duration: float = 0.3) -> Tween:
 		drag_tween.kill()
 
 	drag_tween = create_tween()
-	drag_tween.tween_property(self, "global_position", target_pos_node.global_position, duration)
+	#drag_tween.tween_property(self, "global_position", target_pos_node.global_position, duration)
+	drag_tween.tween_method(tween_to_object_pos.bind(global_position, target_pos_node), 0.0, 1.0, duration)
 	return drag_tween
+
+func tween_to_object_pos(progress: float, current_position: Vector3, target_pos_node: Node3D) -> void:
+	global_position = current_position.lerp(target_pos_node.global_position, progress)
 
 ## using a method wrapper in case we want to use something else for fading out later
 func set_visible_custom(is_visible_new: bool) -> void:

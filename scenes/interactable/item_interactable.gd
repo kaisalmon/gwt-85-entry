@@ -14,10 +14,10 @@ func can_interact(_player: Player) -> bool:
 	return true
 
 func interact(player: Player) -> void:
-	print(player.name, ": interacting with ", self.name)
+	#print(player.name, ": interacting with ", self.name)
 	
 	if is_instance_valid(player.held_item):
-		print("player can't pick up '", Item.ItemType.keys()[item_source.item_type], "' from '", self.name, "' because he currently holds '", player.held_item)
+		#print("player can't pick up '", Item.ItemType.keys()[item_source.item_type], "' from '", self.name, "' because he currently holds '", player.held_item)
 		# TODO: should we allow the player to remove items from his hand if its from the same type?
 		return
 	

@@ -124,6 +124,7 @@ func on_interaction_finished() -> void:
 	stop_interact(source_player)
 	source_mesh.global_position = source_mesh_default_pos
 	var new_item: Item = Item.get_scene(produced_item).instantiate() as Item
+	source_player.get_parent().add_child(new_item)
 	source_player.set_item_in_hand(new_item)
 	cooldown_timer.start()
 	is_on_cooldown = true

@@ -116,35 +116,19 @@ func remove_and_get_current_item() -> Item:
 		return null
 	var item: Item = held_item
 	held_item = null
-	item_hold_position.node_b = ""
 	return item
 	
 func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
-	if !reparent_child:
-		get_parent().add_child(item)
-	else:
-		#item.reparent(item_hold_position)
-		item.reparent(get_parent())
-
 	item.global_position = item_hold_position.global_position
-	#item_hold_position.node_b = item_hold_position.get_path_to(item)
 	held_item = item
 	held_item.set_held(true)
 	held_item.drag_target = item_hold_position
 	is_item_in_hover_pos = false
-	
-func set_item_to_hand_pos(item: Item) -> void:
-	is_item_in_hover_pos = false
-	#item.reparent(get_parent())
-	#item_hold_position.node_b = item_hold_position.get_path_to(item)
-	held_item.drag_target = item_hold_position
 
 func drop_current_item() -> void:
 	if !is_instance_valid(held_item):
 		return
 
-	#remove_and_get_current_item()
-	held_item.reparent(get_parent())
 	if is_item_in_hover_pos:
 		held_item.drag_target = self
 		await get_tree().create_timer(0.1).timeout
@@ -152,53 +136,23 @@ func drop_current_item() -> void:
 	held_item.set_held(false)
 	held_item.drag_target = null
 	held_item = null
-	#item_hold_position.node_b = ""
-
-
-func remove_item_from_hand(new_parent: Node3D) -> Item:
-	if !is_instance_valid(held_item):
-		return null
-	held_item.set_held(false)
-	held_item.reparent(new_parent)
-	#item_hold_position.node_b = ""
-	held_item.drag_target = null
-	var temp_item: Item = held_item
-	held_item = null
-	return temp_item
-
 
 func set_item_to_hand_pos_from_hover() -> void:
 	if !is_instance_valid(held_item):
 		return
-	#held_item.reparent(self)
-	#held_item.drag_target = pos_node
-	#is_item_in_hover_pos = false
 	var tween: Tween = held_item.tween_to_position(item_hold_position)
-	#item_hold_position.node_b = item_hold_position.get_path_to(held_item)
 	tween.finished.connect(on_after_item_hover)
 
 func on_after_item_hover() -> void:
 	is_item_in_hover_pos = false
-	#item.reparent(get_parent())
-	set_item_drag_target(item_hold_position)
-	held_item.global_position = item_hold_position.global_position
+	held_item.drag_target = item_hold_position
 
 func set_item_to_hover_pos(pos_node: Node3D) -> void:
 	if !is_instance_valid(held_item):
 		return
-	#held_item.reparent(self)
-	set_item_drag_target(pos_node)
+	held_item.drag_target = pos_node
 	is_item_in_hover_pos = true
 	held_item.tween_to_position(pos_node)
-
-func set_item_drag_target(target_node: Node3D) -> void:
-	if target_node != null:
-		#item_hold_position.node_b = ""	
-		held_item.drag_target = target_node
-	else:
-		#item_hold_position.node_b = item_hold_position.get_path_to(held_item)
-		held_item.drag_target = null
-
 
 func get_look_ortho() -> float:
 	return rotation.y + PI
