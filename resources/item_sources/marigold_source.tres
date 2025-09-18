@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_j5p0d")
-item = 0
+item = 4
 interaction_duration = 2.0
 cooldown_duration = 5.0
 metadata/_custom_type_script = "uid://dr7jfnaxd4avt"

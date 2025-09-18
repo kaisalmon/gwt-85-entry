@@ -19,6 +19,8 @@ item.clock;Clock;Uhr
 item.clock.plural;Clocks;Uhren
 item.bottle;Bottle;Flasche
 item.bottle.plural;Bottles;Flaschen
+item.marigold;Marigold;Ringelblume
+item.marigold.plural;Marigolds;Ringelblumen
 item.lavender;Lavender;Lavendel
 item.lavender.plural;Lavenders;Lavendel
 item.pumpkin;Pumpkin;Kürbis

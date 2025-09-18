@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://wu271fptdut0"]
+[gd_scene load_steps=9 format=3 uid="uid://6c62xe801un0"]
 
-[ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_aocwp"]
-[ext_resource type="PackedScene" uid="uid://b5xpry7ne6hmn" path="res://scenes/interactable/item_interactable.tscn" id="2_3r1n4"]
+[ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_62gmw"]
+[ext_resource type="PackedScene" uid="uid://b5xpry7ne6hmn" path="res://scenes/interactable/item_interactable.tscn" id="2_54he4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3r1n4"]
 
@@ -23,12 +23,12 @@ size = Vector3(0.1, 0.18, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dywoi"]
 size = Vector3(0.540314, 0.145697, 0.487594)
 
-[node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
+[node name="MarigoldItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 mass = 7.0
 linear_damp = 10.0
 angular_damp = 12.0
-script = ExtResource("1_aocwp")
-item_type = 5
+script = ExtResource("1_62gmw")
+item_type = 4
 item_interactable = NodePath("ItemInteractable")
 col_shape = NodePath("CollisionShape3D")
 despawn_timer = NodePath("DespawnTimer")
@@ -53,7 +53,7 @@ mesh = SubResource("BoxMesh_jblyg")
 transform = Transform3D(0.992375, 0.103584, -0.066799, -0.123255, 0.833998, -0.537825, 7.45058e-09, 0.541958, 0.840406, -0.0315098, 0.000447732, 0.00455323)
 shape = SubResource("BoxShape3D_dywoi")
 
-[node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_3r1n4")]
+[node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_54he4")]
 item_source = NodePath("..")
 
 [node name="DespawnTimer" type="Timer" parent="."]
