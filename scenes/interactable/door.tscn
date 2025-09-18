@@ -179,9 +179,11 @@ shape = SubResource("ConcavePolygonShape3D_1sv7o")
 
 [node name="dooropen" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_he66k")
+max_distance = 15.0
 
 [node name="dooropen_end" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4cxkj")
+max_distance = 15.0
 
 [node name="dooropen_error" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_mxi5f")
