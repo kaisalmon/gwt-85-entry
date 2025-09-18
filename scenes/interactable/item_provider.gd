@@ -7,9 +7,7 @@ const FINAL_WIGGLE_INTENSITY: float = 0.3
 const START_WIGGLE_SPEED: float = 1.0
 const FINAL_WIGGLE_SPEED: float = 45.0
 
-@export var produced_item: Item.ItemType
-@export var interaction_duration: float = 2
-@export var cooldown_duration: float = 3.0
+@export var item_source: ItemSource
 @export var max_interaction_distance: float = 2.5
 @export var source_mesh: MeshInstance3D
 @export var highlight_albedo: Color = Color.GREEN_YELLOW
@@ -38,7 +36,7 @@ var is_on_cooldown: bool = false
 func _ready() -> void:
 	highlight_material = source_mesh.get_active_material(0) as StandardMaterial3D	
 	progress_mesh_mat = progress_mesh.get_active_material(0) as StandardMaterial3D
-	cooldown_timer.wait_time = cooldown_duration
+	cooldown_timer.wait_time = item_source.cooldown_duration
 	source_mesh_default_pos = source_mesh.global_position
 	default_albedo = highlight_material.albedo_color
 	#highlight_albedo = Color.from_hsv(default_albedo.h, max(default_albedo.s - 0.3, 0), min(default_albedo.v + 0.2, 1.0))
@@ -57,23 +55,23 @@ func _process(delta: float) -> void:
 	if !is_interacting:
 		if interaction_progress > 0:
 			interaction_progress -= delta * 2
-			set_progress_bar(interaction_progress / interaction_duration)
+			set_progress_bar(interaction_progress / item_source.interaction_duration)
 			source_mesh.global_position = source_mesh_default_pos
 			#print("pickup stopped: ", interaction_progress)
 		return
 
 	interaction_progress += delta
-	var relative_progress: float = interaction_progress / interaction_duration
+	var relative_progress: float = interaction_progress / item_source.interaction_duration
 	set_progress_bar(relative_progress)
 
 	var wiggle_intensity: float = lerp(START_WIGGLE_INTENSITY, FINAL_WIGGLE_INTENSITY, relative_progress)
 	var wiggle_speed: float = lerp(START_WIGGLE_SPEED, FINAL_WIGGLE_SPEED, relative_progress)
 	var wiggle_factor: float = sin(relative_progress * wiggle_speed)
 	source_mesh.global_position = source_mesh_default_pos + (source_player.get_look_ortho_vec3D() * wiggle_factor * wiggle_intensity)
-	highlight_material.albedo_color = lerp(highlight_albedo, finalzie_albedo, interaction_progress/interaction_duration)
+	highlight_material.albedo_color = lerp(highlight_albedo, finalzie_albedo, interaction_progress/item_source.interaction_duration)
 
 	#print("pickup: ", interaction_progress)
-	if interaction_progress >= interaction_duration:
+	if interaction_progress >= item_source.interaction_duration:
 		on_interaction_finished()
 		return
 	
@@ -91,7 +89,6 @@ func interact(player: Player) -> void:
 		
 		info_label_3d.wiggle_text(player.get_look_ortho_vec3D())
 		return
-		
 		
 	if is_interacting:
 		return
@@ -123,7 +120,7 @@ func on_interaction_finished() -> void:
 	interaction_progress = 0
 	stop_interact(source_player)
 	source_mesh.global_position = source_mesh_default_pos
-	var new_item: Item = Item.get_scene(produced_item).instantiate() as Item
+	var new_item: Item = Item.get_scene(item_source.item).instantiate() as Item
 	source_player.get_parent().add_child(new_item)
 	source_player.set_item_in_hand(new_item)
 	cooldown_timer.start()
@@ -167,7 +164,7 @@ func _on_cooldown_timer_timeout() -> void:
 		set_info_label_text_to_item()
 	
 func set_info_label_text_to_item() -> void:
-	info_label_3d.text = tr(Util.item_type_to_trkey(produced_item))
+	info_label_3d.text = tr(Util.item_type_to_trkey(item_source.item))
 	
 func get_cooldown_time_left() -> String:
 	return str(roundi(cooldown_timer.time_left))

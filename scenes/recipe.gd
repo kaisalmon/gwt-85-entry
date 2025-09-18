@@ -10,7 +10,7 @@ enum MagicType {
 }
 
 #item -> amount
-@export var ingredients: Dictionary[Item.ItemType, int]
+@export var ingredients: Dictionary[Item.ItemType, int] = {}
 
 #magic type -> amount
-@export var produced_magic: Dictionary[MagicType, int]
+@export var produced_magic: Dictionary[MagicType, int] = {}
