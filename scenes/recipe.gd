@@ -3,11 +3,10 @@ extends Resource
 
 
 enum MagicType {
-	SOFT,
-	CRISPY,
+	COZY,
 	HOLLOW,
-	BULKY,
-	STURDY
+	VIVID,
+	WINDY
 }
 
 #item -> amount

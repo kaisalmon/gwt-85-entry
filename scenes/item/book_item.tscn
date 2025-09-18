@@ -25,7 +25,7 @@ size = Vector3(0.540314, 0.145697, 0.487594)
 
 [node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 mass = 7.0
-linear_damp = 12.0
+linear_damp = 10.0
 angular_damp = 12.0
 script = ExtResource("1_aocwp")
 item_interactable = NodePath("ItemInteractable")

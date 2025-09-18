@@ -14,6 +14,8 @@ enum ItemType {
 	KNIFE
 }
 
+const ITEM_INTERACTABLE_OFFSET: Vector3 = Vector3(0, 0.5, 0)
+
 @export var item_type: ItemType
 @export var fadeout_time: float = 4.0
 @export var grabbing_strength: float = 10.0
@@ -26,8 +28,12 @@ var drag_target: Node3D
 var is_held: bool = false
 var drag_tween: Tween
 var fadeout_factor: float = 0
-var item_interactable_offset: Vector3
 
+var held_linear_damping: float
+
+func _ready() -> void:
+	held_linear_damping = linear_damp
+		
 func set_held(is_held_new: bool) -> void:
 	is_held = is_held_new
 	gravity_scale = 0.0 if is_held_new else 1.0
@@ -35,7 +41,7 @@ func set_held(is_held_new: bool) -> void:
 	item_interactable.monitorable = !is_held_new
 	#col_shape.disabled = is_held_new
 	set_collision_layer_value(1, !is_held_new)
-	item_interactable_offset = item_interactable.debug_label_3d.position
+	linear_damp = held_linear_damping if is_held_new else 5.0
 	
 	if is_held_new:
 		set_visible_custom(true)
@@ -97,7 +103,7 @@ func update_label_pos() -> void:
 		return
 		
 	item_interactable.global_rotation = Vector3.ZERO
-	item_interactable.debug_label_3d.global_position = item_interactable.global_position + item_interactable_offset
+	item_interactable.debug_label_3d.global_position = item_interactable.global_position + ITEM_INTERACTABLE_OFFSET
 		
 func _on_despawn_timer_timeout() -> void:
 	if is_instance_valid(fadeout_tween):

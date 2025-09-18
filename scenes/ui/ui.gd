@@ -1,22 +1,22 @@
 class_name UI
 extends CanvasLayer
 
+var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
+
 @export_category("internal nodes")
 @export var pause_overlay: ColorRect
 @export var magic_value_label: Label
 
-var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 
-@onready var magic_value_label_soft: Label = $MagicView/HBoxContainer/MagicValueLabelSoft
-@onready var magic_value_label_crispy: Label = $MagicView/HBoxContainer/MagicValueLabelCrispy
-@onready var magic_value_label_hollow: Label = $MagicView/HBoxContainer/MagicValueLabelHollow
-@onready var magic_value_label_bulky: Label = $MagicView/HBoxContainer/MagicValueLabelBulky
-@onready var magic_value_label_sturdy: Label = $MagicView/HBoxContainer/MagicValueLabelSturdy
+@export var magic_value_label_cozy: Label
+@export var magic_value_label_hollow: Label
+@export var magic_value_label_vivid: Label
+@export var magic_value_label_windy: Label
 
-@onready var textbox_container: MarginContainer = $TextboxContainer
-@onready var text_start: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextStart
-@onready var text_main: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextMain
-@onready var text_end: Label = $TextboxContainer/MarginContainer/HBoxContainer/TextEnd
+@export var textbox_container: MarginContainer
+@export var text_start: Label
+@export var text_main: Label 
+@export var text_end: Label
 
 #var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 	#Recipe.MagicType.SOFT: 0,
@@ -94,16 +94,14 @@ func set_magic_amount(type: Recipe.MagicType, magic_amount_new: int) -> void:
 
 func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 	match magic_type:
-		Recipe.MagicType.SOFT:
-			return magic_value_label_soft
-		Recipe.MagicType.CRISPY:
-			return magic_value_label_crispy
+		Recipe.MagicType.COZY:
+			return magic_value_label_cozy
 		Recipe.MagicType.HOLLOW:
 			return magic_value_label_hollow
-		Recipe.MagicType.BULKY:
-			return magic_value_label_bulky
-		Recipe.MagicType.STURDY:
-			return magic_value_label_sturdy			
+		Recipe.MagicType.VIVID:
+			return magic_value_label_vivid
+		Recipe.MagicType.WINDY:
+			return magic_value_label_windy	
 	push_warning("no implementation found for UI.get_label_by_type() with type: ", Recipe.MagicType.keys()[magic_type])
 	return null
 
