@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnnabxlcftlwx"]
+[gd_scene load_steps=9 format=3 uid="uid://bnnabxlcftlwx"]
 
 [ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_7w6k3"]
 [ext_resource type="PackedScene" uid="uid://b5xpry7ne6hmn" path="res://scenes/interactable/item_interactable.tscn" id="2_a5fkr"]
+[ext_resource type="AudioStream" uid="uid://df3jkj0bwb8dp" path="res://audio/sfx/ui/clock.ogg" id="3_a5fkr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elfyg"]
 albedo_color = Color(0.522737, 0.338662, 0.0434357, 1)
@@ -54,5 +55,10 @@ item_source = NodePath("..")
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 8.0
 one_shot = true
+
+[node name="clock" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_a5fkr")
+autoplay = true
+max_distance = 13.83
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
