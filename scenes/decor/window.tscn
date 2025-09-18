@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://r4n06db14718"]
+[gd_scene load_steps=27 format=3 uid="uid://r4n06db14718"]
 
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="1_tyc8v"]
 [ext_resource type="ArrayMesh" uid="uid://l658w3s75ek2" path="res://models/custom/window.obj" id="3_a4nrp"]
 [ext_resource type="Material" uid="uid://b7xke3yltv0pk" path="res://models/custom/window_material.tres" id="4_nfjdw"]
-[ext_resource type="Shader" path="res://materials/portal.gdshader" id="4_scc5q"]
+[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="4_scc5q"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_a4nrp"]
 [ext_resource type="AudioStream" uid="uid://bymgiq4hi7unr" path="res://audio/sfx/ambience/ambience_outside_l_01.ogg" id="6_scc5q"]
 [ext_resource type="AudioStream" uid="uid://c4738x3sla8ta" path="res://audio/sfx/ambience/ambience_outside_l_02.ogg" id="7_oyt8e"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://ch5du6ccnc02x" path="res://audio/sfx/ambience/ambience_outside_r_02.ogg" id="11_po8k2"]
 [ext_resource type="AudioStream" uid="uid://dq80kcmwcnrjg" path="res://audio/sfx/ambience/ambience_outside_r_03.ogg" id="12_85w4r"]
 [ext_resource type="AudioStream" uid="uid://cnyr85r13tgtq" path="res://audio/sfx/ambience/ambience_outside_r_04.ogg" id="13_wnh8w"]
+[ext_resource type="Texture2D" uid="uid://8orohokldmd1" path="res://textures/grate.png" id="14_oyt8e"]
 
 [sub_resource type="Environment" id="Environment_17yy1"]
 resource_local_to_scene = true
@@ -91,6 +92,16 @@ stream_1/stream = ExtResource("11_po8k2")
 stream_2/stream = ExtResource("12_85w4r")
 stream_3/stream = ExtResource("13_wnh8w")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_scc5q"]
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyqfd"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("14_oyt8e")
+texture_filter = 2
+
 [node name="Window" type="Node3D" node_paths=PackedStringArray("ambience_outside_l", "ambience_outside_r")]
 script = ExtResource("1_tyc8v")
 ambience_outside_l = NodePath("AmbienceOutsideL")
@@ -144,3 +155,15 @@ volume_db = 6.61
 autoplay = true
 max_distance = 7.0
 bus = &"Ambience"
+
+[node name="Grate" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 0, 0, -0.0180533)
+visible = false
+material_override = SubResource("ShaderMaterial_kyqfd")
+mesh = SubResource("PlaneMesh_scc5q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Grate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88337e-09, 0, 0.0210652)
+material_override = SubResource("StandardMaterial3D_kyqfd")
+mesh = SubResource("PlaneMesh_scc5q")
+skeleton = NodePath("../..")
