@@ -1,3 +1,4 @@
+@tool
 extends RoomListener
 
 var outside_camera: Camera3D
@@ -6,6 +7,7 @@ var unlock_time = null
 var unlock_duration = null
 var has_emitted = false
 @export var removed_by_room: GameState.RoomType = GameState.RoomType.NONE
+@export var grate = false
 
 @export_category("internal nodes")
 @export var ambience_outside_l: AudioStreamPlayer3D
@@ -19,13 +21,19 @@ func _ready() -> void:
 		Util.set_sample_type_if_web(ambience_outside_l)
 	if ambience_outside_r:
 		Util.set_sample_type_if_web(ambience_outside_r)
+	if grate:
+		$Window.visible = false
+		$Grate.visible = true
 
 func _physics_process(delta: float) -> void:
 	update_dissapear_animation(delta)
-
+	if not viewport:
+		return
 	viewport.size = get_viewport().size # Sync viewport size with main viewport
 
 	var active_camera = get_viewport().get_camera_3d()
+	if not active_camera:
+		return
 	viewport.size = get_viewport().size
 	outside_camera.size = active_camera.size
 	outside_camera.near = active_camera.near
