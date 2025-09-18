@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_xaj2o"]
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_mrxxk"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="4_nom25"]
-[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipe_book_to_crispy.tres" id="5_sytxn"]
+[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipes/recipe_book_to_crispy.tres" id="5_sytxn"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="6_k6grx"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_pfo8u"]
 

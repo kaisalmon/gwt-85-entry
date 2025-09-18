@@ -1,17 +1,23 @@
 class_name Item
 extends RigidBody3D
 
-const BOOK_ITEM_SCENE: PackedScene = preload("res://scenes/item/book_item.tscn") as PackedScene
 const CANDLE_ITEM_SCENE: PackedScene = preload("res://scenes/item/candle_item.tscn") as PackedScene
-const KNIFE_ITEM_SCENE: PackedScene = preload("res://scenes/item/knife_item.tscn") as PackedScene
+const BOTTLE_ITEM_SCENE: PackedScene  = preload("res://scenes/item/bottle_item.tscn") as PackedScene
+const CLOCK_ITEM_SCENE: PackedScene  = preload("res://scenes/item/clock_item.tscn") as PackedScene
+const MARIGOLD_ITEM_SCENE: PackedScene  = preload("res://scenes/item/marigold_item.tscn") as PackedScene
+const PUMPKIN_ITEM_SCENE: PackedScene  = preload("res://scenes/item/pumpkin_item.tscn") as PackedScene
+const COAL_ITEM_SCENE: PackedScene  = preload("res://scenes/item/coal_item.tscn") as PackedScene
 
 const FADEOUT_START_SPEED: float = 10
 const FADEOUT_FINAL_SPEED: float = 50
 
 enum ItemType {
-	BOOK,
 	CANDLE,
-	KNIFE
+	COAL,
+ 	CLOCK,
+	BOTTLE,
+	MARIGOLD,
+	PUMPKIN
 }
 
 const ITEM_INTERACTABLE_OFFSET: Vector3 = Vector3(0, 0.5, 0)
@@ -137,16 +143,21 @@ func set_visible_custom(is_visible_new: bool) -> void:
 
 static func get_scene(scene_item_type: ItemType) -> PackedScene:
 	match scene_item_type:
-		ItemType.BOOK:
-			return BOOK_ITEM_SCENE
 		ItemType.CANDLE:
 			return CANDLE_ITEM_SCENE
-		ItemType.KNIFE:
-			return KNIFE_ITEM_SCENE
-			
+		ItemType.COAL:
+			return COAL_ITEM_SCENE		
+		ItemType.CLOCK:
+			return CLOCK_ITEM_SCENE
+		ItemType.BOTTLE:
+			return BOTTLE_ITEM_SCENE
+		ItemType.MARIGOLD:
+			return MARIGOLD_ITEM_SCENE
+		ItemType.PUMPKIN:
+			return PUMPKIN_ITEM_SCENE		
 	push_warning("Item.get_scene(): no implementation for " + ItemType.keys()[scene_item_type] + " exists yet!")
 	return null
-
+	
 func print_debug() -> void:
 	var info: String = "DEBUG: ITEM '" + self.name + "'"
 	info += "col_shape.disabled: " + str(col_shape.disabled) + "\n"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemSource" load_steps=2 format=3 uid="uid://70obnp3ufqxq"]
+
+[ext_resource type="Script" uid="uid://dr7jfnaxd4avt" path="res://scenes/item_source.gd" id="1_50uvm"]
+
+[resource]
+script = ExtResource("1_50uvm")
+item = 5
+interaction_duration = 2.0
+cooldown_duration = 5.0
+metadata/_custom_type_script = "uid://dr7jfnaxd4avt"
