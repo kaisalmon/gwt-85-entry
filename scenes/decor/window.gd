@@ -1,4 +1,3 @@
-@tool
 extends RoomListener
 
 var outside_camera: Camera3D
@@ -26,6 +25,8 @@ func _ready() -> void:
 		$Grate.visible = true
 
 func _physics_process(delta: float) -> void:
+	if not Engine.is_editor_hint():
+		return
 	update_dissapear_animation(delta)
 	if not viewport:
 		return
@@ -41,7 +42,8 @@ func _physics_process(delta: float) -> void:
 	outside_camera.fov = active_camera.fov
 	
 	var src = GameState.outside
-
+	if not src:
+		return
 	# outside_camera.global_transform = src.global_transform
 	var relative_position = active_camera.global_transform.origin - self.global_transform.origin
 	outside_camera.global_transform.origin = src.global_transform.origin + relative_position

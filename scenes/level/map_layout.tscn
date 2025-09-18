@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ch5ehwhnko4q2"]
+[gd_scene load_steps=46 format=3 uid="uid://ch5ehwhnko4q2"]
 
 [ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="2_1advv"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="3_15kbo"]
@@ -20,7 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://mi86shal52bd" path="res://textures/stone.png" id="21_o54a4"]
 [ext_resource type="PackedScene" uid="uid://cw7l88og36qev" path="res://scenes/level/mini_wall.tscn" id="21_wl1g2"]
 [ext_resource type="PackedScene" uid="uid://o3dxjjbvg8gl" path="res://scenes/decor/frontdoor.tscn" id="22_o54a4"]
+[ext_resource type="ArrayMesh" uid="uid://oy0q8oy1fec7" path="res://models/cactus_medium_B.obj" id="22_upsk1"]
+[ext_resource type="ArrayMesh" uid="uid://d8ter136g1xq" path="res://models/cactus_medium_A.obj" id="23_0yujp"]
 [ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="23_n1evr"]
+[ext_resource type="ArrayMesh" uid="uid://be7ssnfe4vj3n" path="res://models/cactus_small_A.obj" id="24_lb8ta"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15kbo"]
 albedo_texture = ExtResource("19_1advv")
@@ -109,6 +112,12 @@ texture_filter = 2
 size = Vector2(6, 2)
 orientation = 2
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_foglo"]
+points = PackedVector3Array(-0.136008, 0.372327, -0.418422, -0.355986, 0.372327, -0.258606, -0.042901, 0.782792, -0.165632, 0.0966305, 0.768217, -0.267616, 0.089051, 0.695258, -0.308738, 0.135906, 0.372327, -0.418422, -0.132391, 0.312648, -0.407282, -0.346425, 0.312648, -0.251725, -0.428249, 0.312648, 0, -0.439963, 0.372327, 0, -0.331783, 0.580597, -0.0500501, -0.297934, 0.583917, -0.132293, -0.2733, 0.644243, -0.101902, -0.294747, 0.642138, -0.0500501, 0.0452105, 0.823118, -0.138518, 0.101712, 0.817288, -0.179885, 0.236248, 0.753722, -0.165632, 0.355884, 0.372327, -0.258606, 0.132289, 0.312648, -0.407282, -0.0998333, 0.0267239, -0.307181, -0.261328, 0.0267239, -0.189879, -0.322998, 0.0267239, 0, -0.261328, 0.0267239, 0.189797, -0.346425, 0.312648, 0.251643, -0.355986, 0.372327, 0.258524, -0.2733, 0.644243, 0.00180212, 0.0668294, 0.820932, -0.0716757, 0.102832, 0.827248, -0.120006, 0.1583, 0.811377, -0.138518, 0.136681, 0.813644, -0.0716757, 0.182933, 0.759229, -0.000655323, 0.254163, 0.614039, 0.190616, 0.439947, 0.372327, 0, 0.2676, 0.676633, -0.178329, 0.346323, 0.312648, -0.251725, 0.261226, 0.0267239, -0.189879, 0.0997312, 0.0267239, -0.307181, -0.0911342, 2e-06, -0.280395, -0.23859, 2e-06, -0.173332, -0.294833, 2e-06, 0, -0.23859, 2e-06, 0.17325, -0.0998333, 0.0267239, 0.307099, -0.132391, 0.312648, 0.4072, -0.136008, 0.372327, 0.418422, -0.342119, 0.392976, 0.24853, -0.130754, 0.392976, 0.402121, 0.0104138, 0.777205, -0.000655323, 0.130566, 0.619789, 0.245991, 0.181727, 0.606023, 0.264504, 0.232975, 0.603675, 0.241567, 0.355884, 0.372327, 0.258524, 0.346323, 0.312648, 0.251643, 0.428147, 0.312648, 0, 0.322896, 0.0267239, 0, 0.238488, 2e-06, -0.173332, 0.091032, 2e-06, -0.280395, -0.0911342, 2e-06, 0.280313, 0.0997312, 0.0267239, 0.307099, 0.132289, 0.312648, 0.4072, 0.135906, 0.372327, 0.418422, 0.261226, 0.0267239, 0.189797, 0.238488, 2e-06, 0.17325, 0.294731, 2e-06, 0, 0.091032, 2e-06, 0.280313)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fmx6b"]
+points = PackedVector3Array(-0.136008, 0.372327, -0.418422, -0.355986, 0.372327, -0.258606, -0.042901, 0.782792, -0.165632, 0.0966305, 0.768217, -0.267616, 0.089051, 0.695258, -0.308738, 0.135906, 0.372327, -0.418422, -0.132391, 0.312648, -0.407282, -0.346425, 0.312648, -0.251725, -0.428249, 0.312648, 0, -0.439963, 0.372327, 0, -0.331783, 0.580597, -0.0500501, -0.297934, 0.583917, -0.132293, -0.2733, 0.644243, -0.101902, -0.294747, 0.642138, -0.0500501, 0.0452105, 0.823118, -0.138518, 0.101712, 0.817288, -0.179885, 0.236248, 0.753722, -0.165632, 0.355884, 0.372327, -0.258606, 0.132289, 0.312648, -0.407282, -0.0998333, 0.0267239, -0.307181, -0.261328, 0.0267239, -0.189879, -0.322998, 0.0267239, 0, -0.261328, 0.0267239, 0.189797, -0.346425, 0.312648, 0.251643, -0.355986, 0.372327, 0.258524, -0.2733, 0.644243, 0.00180212, 0.0668294, 0.820932, -0.0716757, 0.102832, 0.827248, -0.120006, 0.1583, 0.811377, -0.138518, 0.136681, 0.813644, -0.0716757, 0.182933, 0.759229, -0.000655323, 0.254163, 0.614039, 0.190616, 0.439947, 0.372327, 0, 0.2676, 0.676633, -0.178329, 0.346323, 0.312648, -0.251725, 0.261226, 0.0267239, -0.189879, 0.0997312, 0.0267239, -0.307181, -0.0911342, 2e-06, -0.280395, -0.23859, 2e-06, -0.173332, -0.294833, 2e-06, 0, -0.23859, 2e-06, 0.17325, -0.0998333, 0.0267239, 0.307099, -0.132391, 0.312648, 0.4072, -0.136008, 0.372327, 0.418422, -0.342119, 0.392976, 0.24853, -0.130754, 0.392976, 0.402121, 0.0104138, 0.777205, -0.000655323, 0.130566, 0.619789, 0.245991, 0.181727, 0.606023, 0.264504, 0.232975, 0.603675, 0.241567, 0.355884, 0.372327, 0.258524, 0.346323, 0.312648, 0.251643, 0.428147, 0.312648, 0, 0.322896, 0.0267239, 0, 0.238488, 2e-06, -0.173332, 0.091032, 2e-06, -0.280395, -0.0911342, 2e-06, 0.280313, 0.0997312, 0.0267239, 0.307099, 0.132289, 0.312648, 0.4072, 0.135906, 0.372327, 0.418422, 0.261226, 0.0267239, 0.189797, 0.238488, 2e-06, 0.17325, 0.294731, 2e-06, 0, 0.091032, 2e-06, 0.280313)
+
 [node name="MapLayout" type="Node3D"]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -147,7 +156,7 @@ mesh = SubResource("PlaneMesh_o54a4")
 skeleton = NodePath("../..")
 
 [node name="Armchair" type="MeshInstance3D" parent="StartRoom"]
-transform = Transform3D(-0.565685, 0, 0.565685, 0, 0.8, 0, -0.565685, 0, -0.565685, -3, 0, 5)
+transform = Transform3D(-0.207055, 0, 0.77274, 0, 0.8, 0, -0.77274, 0, -0.207055, -3.24462, 0, 4.4201)
 material_override = ExtResource("2_1advv")
 material_overlay = ExtResource("3_15kbo")
 mesh = ExtResource("4_wl1g2")
@@ -158,7 +167,7 @@ mesh = ExtResource("4_wl1g2")
 shape = SubResource("ConvexPolygonShape3D_2ip7w")
 
 [node name="CabinetSmallDecorated" type="MeshInstance3D" parent="StartRoom"]
-transform = Transform3D(-0.725046, 0, 0.338095, 0, 0.8, 0, -0.338095, 0, -0.725046, -1.8, 0, 5.3)
+transform = Transform3D(-0.458861, 0, 0.655322, 0, 0.8, 0, -0.655322, 0, -0.458861, -2.35538, 0, 5.2799)
 material_override = SubResource("StandardMaterial3D_xabof")
 material_overlay = ExtResource("3_15kbo")
 mesh = ExtResource("9_lb8ta")
@@ -445,3 +454,44 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 1, 6)
 material_override = SubResource("StandardMaterial3D_n1evr")
 mesh = SubResource("PlaneMesh_upsk1")
 skeleton = NodePath("../..")
+
+[node name="CactusMediumB" type="MeshInstance3D" parent="Greenhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0, 0.6)
+material_override = ExtResource("2_1advv")
+material_overlay = ExtResource("3_15kbo")
+mesh = ExtResource("22_upsk1")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Greenhouse/CactusMediumB"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greenhouse/CactusMediumB/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_foglo")
+
+[node name="CactusMediumB2" type="MeshInstance3D" parent="Greenhouse"]
+transform = Transform3D(0.906308, 0, -0.422618, 0, 1, 0, 0.422618, 0, 0.906308, 7.2, 0, 1.2)
+material_override = ExtResource("2_1advv")
+material_overlay = ExtResource("3_15kbo")
+mesh = ExtResource("22_upsk1")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Greenhouse/CactusMediumB2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Greenhouse/CactusMediumB2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_foglo")
+
+[node name="CactusMediumA" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.427314, 0, -0.610268, 0, 0.745, 0, 0.610268, 0, 0.427314, 6.5, 0.1, 1.4)
+material_override = ExtResource("2_1advv")
+material_overlay = ExtResource("3_15kbo")
+mesh = ExtResource("23_0yujp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CactusMediumA"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CactusMediumA/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fmx6b")
+
+[node name="CactusSmallA" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.13, 0, 0, 0, 2.13, 0, 0, 0, 2.13, 6.5, 0, 6)
+material_override = ExtResource("2_1advv")
+material_overlay = ExtResource("3_15kbo")
+mesh = ExtResource("24_lb8ta")
