@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=26 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -6,15 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_i166f"]
 [ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="3_m0bv2"]
 [ext_resource type="Texture2D" uid="uid://4lhd8480iw6b" path="res://hidden-library-1x.png" id="4_b7m21"]
-[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipes/deprecated_recipe.tres" id="5_xv074"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_xv074"]
 [ext_resource type="PackedScene" uid="uid://83bhm1ar3cx0" path="res://interaction/text_area.tscn" id="9_sytrn"]
 [ext_resource type="Resource" uid="uid://bwqfywk466dn0" path="res://resources/item_sources/bottle_source.tres" id="10_vrc4q"]
 [ext_resource type="Resource" uid="uid://c7p43v4j1ebny" path="res://resources/item_sources/candle_source.tres" id="11_vrc4q"]
-[ext_resource type="PackedScene" uid="uid://cbdv8jmxybrli" path="res://scenes/item/candle_item.tscn" id="12_m0bv2"]
 [ext_resource type="Resource" uid="uid://c55dv7rq4fupj" path="res://resources/item_sources/marigold_source.tres" id="12_vrc4q"]
+[ext_resource type="Resource" uid="uid://dfm6fepoiifqw" path="res://resources/recipes/vivid_from_candles_bottles_recipe.tres" id="14_3rml5"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
+[ext_resource type="Resource" uid="uid://wwm36lyddcat" path="res://resources/recipes/windy_from_marigold_pumpkin_recipe.tres" id="15_a5iu8"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
+[ext_resource type="Resource" uid="uid://b70keb30v0jjb" path="res://resources/recipes/cozy_from_candle_recipe.tres" id="15_x4oov"]
+[ext_resource type="Resource" uid="uid://diac4mt4r075o" path="res://resources/recipes/hollow_from_candles_clocks_bottles_pumpkins_recipe.tres" id="16_b3up8"]
+[ext_resource type="Resource" uid="uid://ct7fqdi38bhjb" path="res://resources/recipes/cozy_from_coal_clocks_recipe.tres" id="16_x4oov"]
+[ext_resource type="Resource" uid="uid://d2yfl3ic70o6r" path="res://resources/recipes/hollow_from_clocks_bottles_recipe.tres" id="17_ivku7"]
+[ext_resource type="Resource" uid="uid://b7426tgx52tbw" path="res://resources/item_sources/clock_source.tres" id="17_ss4b2"]
+[ext_resource type="Resource" uid="uid://rn2g0wjpgnys" path="res://resources/item_sources/coal_source.tres" id="18_qjqsm"]
+[ext_resource type="Resource" uid="uid://b4npe2rlbifgl" path="res://resources/recipes/cozy_from_bottles_pumpkin_recipe.tres" id="18_ss4b2"]
+[ext_resource type="Resource" uid="uid://d3s3pn0p3blor" path="res://resources/item_sources/pumpkin_source.tres" id="21_wyi7n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pm6rs"]
 shader = ExtResource("3_m0bv2")
@@ -49,33 +57,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.3, 3.8)
 light_energy = 3.91
 omni_range = 17.0
 
-[node name="Cauldron" parent="." index="8" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44803, 0, 2.17526)
-
-[node name="cylinder" parent="Cauldron/blockbench_export/Node" index="0"]
-transform = Transform3D(0.75, 0, -2.98023e-08, 0, 0.75, 0, 2.98023e-08, 0, 0.75, 6.65044, 0.1875, 1.94621)
-
-[node name="ItemConsumer" parent="Cauldron" index="1"]
-recipe = ExtResource("5_xv074")
-
-[node name="BookItemProvider" parent="." index="9" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11466, 1, -3.6633)
-item_source = ExtResource("10_vrc4q")
-
-[node name="CandleItemProvider" parent="." index="10" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07337, 1, -1.58746)
-item_source = ExtResource("11_vrc4q")
-
-[node name="KnifeItemProvider" parent="." index="11" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81846, 1, -1.35637)
-item_source = ExtResource("12_vrc4q")
-
-[node name="ManaOrb_For_performance_reasons" parent="." index="12" instance=ExtResource("8_xv074")]
+[node name="ManaOrb_For_performance_reasons" parent="." index="8" instance=ExtResource("8_xv074")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81567, 0.0175796, 8.92895)
 visible = false
 is_valid_orb = false
 
-[node name="TextArea" parent="." index="13" instance=ExtResource("9_sytrn")]
+[node name="TextArea" parent="." index="9" instance=ExtResource("9_sytrn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90207, 0, -3.53272)
 room_type = 1
 
@@ -83,9 +70,92 @@ room_type = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37528, 0.690186, -1.34946)
 shape = SubResource("BoxShape3D_sytrn")
 
-[node name="CandleItem" parent="." index="14" instance=ExtResource("12_m0bv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.09583, 0.626984, 2.52992)
+[node name="Interactions" type="Node3D" parent="." index="10"]
 
-[editable path="Cauldron"]
-[editable path="Cauldron/blockbench_export"]
-[editable path="Cauldron/ItemConsumer"]
+[node name="Cauldron_MainRoom1" parent="Interactions" index="0" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9032, 0.126985, 1.94407)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom1" index="1"]
+recipe = ExtResource("15_x4oov")
+
+[node name="Cauldron_MainRoom2" parent="Interactions" index="1" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9032, 0.126985, -2.84033)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom2" index="1"]
+recipe = ExtResource("16_x4oov")
+
+[node name="Cauldron_Kitchen" parent="Interactions" index="2" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39897, 0.126985, 1.72528)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_Kitchen" index="1"]
+recipe = ExtResource("17_ivku7")
+
+[node name="Cauldron_Greenhouse" parent="Interactions" index="3" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13405, 0.126985, 4.03394)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_Greenhouse" index="1"]
+recipe = ExtResource("18_ss4b2")
+
+[node name="Cauldron_Corridor" parent="Interactions" index="4" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03337, 0.126985, 5.13542)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_Corridor" index="1"]
+recipe = ExtResource("14_3rml5")
+
+[node name="Cauldron_Office" parent="Interactions" index="5" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84827, 0.126985, 5.13542)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_Office" index="1"]
+recipe = ExtResource("15_a5iu8")
+
+[node name="Cauldron_BroomRoom" parent="Interactions" index="6" instance=ExtResource("14_b3up8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84827, 0.126985, 8.10398)
+
+[node name="ItemConsumer" parent="Interactions/Cauldron_BroomRoom" index="1"]
+recipe = ExtResource("16_b3up8")
+
+[node name="CandleItemProvider_MainRoom" parent="Interactions" index="7" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39346, 1, -2.91511)
+item_source = ExtResource("11_vrc4q")
+
+[node name="CoaltemProvider_MainRoom" parent="Interactions" index="8" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39346, 1, 0.806611)
+item_source = ExtResource("18_qjqsm")
+
+[node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44365, 1, -1.76651)
+item_source = ExtResource("17_ss4b2")
+
+[node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22764, 1, -0.242455)
+item_source = ExtResource("10_vrc4q")
+
+[node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="11" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92246, 0.9993, 0.94719)
+item_source = ExtResource("12_vrc4q")
+
+[node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="12" instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92246, 0.9993, 5.94719)
+item_source = ExtResource("21_wyi7n")
+
+[editable path="Interactions/Cauldron_MainRoom1"]
+[editable path="Interactions/Cauldron_MainRoom1/blockbench_export"]
+[editable path="Interactions/Cauldron_MainRoom1/ItemConsumer"]
+[editable path="Interactions/Cauldron_MainRoom2"]
+[editable path="Interactions/Cauldron_MainRoom2/blockbench_export"]
+[editable path="Interactions/Cauldron_MainRoom2/ItemConsumer"]
+[editable path="Interactions/Cauldron_Kitchen"]
+[editable path="Interactions/Cauldron_Kitchen/blockbench_export"]
+[editable path="Interactions/Cauldron_Kitchen/ItemConsumer"]
+[editable path="Interactions/Cauldron_Greenhouse"]
+[editable path="Interactions/Cauldron_Greenhouse/blockbench_export"]
+[editable path="Interactions/Cauldron_Greenhouse/ItemConsumer"]
+[editable path="Interactions/Cauldron_Corridor"]
+[editable path="Interactions/Cauldron_Corridor/blockbench_export"]
+[editable path="Interactions/Cauldron_Corridor/ItemConsumer"]
+[editable path="Interactions/Cauldron_Office"]
+[editable path="Interactions/Cauldron_Office/blockbench_export"]
+[editable path="Interactions/Cauldron_Office/ItemConsumer"]
+[editable path="Interactions/Cauldron_BroomRoom"]
+[editable path="Interactions/Cauldron_BroomRoom/blockbench_export"]
+[editable path="Interactions/Cauldron_BroomRoom/ItemConsumer"]
