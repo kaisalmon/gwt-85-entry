@@ -71,30 +71,6 @@ func update_drag() -> void:
 	if is_held:
 		linear_velocity = grabbing_strength * (drag_target.global_position - global_position)
 
-
-#func update_drag() -> void:
-	#if !is_instance_valid(drag_target):
-		#return
-	#if global_position.distance_to(drag_target.global_position) < 0.1:
-		#return
-		#
-	#if is_instance_valid(drag_tween):
-		#drag_tween.kill()
-#
-	#drag_tween = create_tween()
-	#drag_tween.tween_property(self, "global_position", drag_target.global_position, 0.3)
-
-
-#func update_drag_tween() -> void:
-	#if !is_instance_valid(drag_target):
-		#return
-	#if global_position.distance_to(drag_target.global_position) < 0.1:
-		#return
-		#
-	#tween_to_position(drag_target, 0.3)
-#func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	#pass
-
 func update_fadeout() -> void:
 	if is_zero_approx(fadeout_factor):
 		return

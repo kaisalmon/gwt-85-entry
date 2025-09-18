@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cls2l048sueax" path="res://scenes/player/player.tscn" id="3_i166f"]
 [ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="3_m0bv2"]
 [ext_resource type="Texture2D" uid="uid://4lhd8480iw6b" path="res://hidden-library-1x.png" id="4_b7m21"]
-[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipes/recipe_book_to_crispy.tres" id="5_xv074"]
+[ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipes/deprecated_recipe.tres" id="5_xv074"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_xv074"]
 [ext_resource type="PackedScene" uid="uid://83bhm1ar3cx0" path="res://interaction/text_area.tscn" id="9_sytrn"]
-[ext_resource type="Resource" uid="uid://70obnp3ufqxq" path="res://resources/item_sources/book_source.tres" id="10_pm6rs"]
+[ext_resource type="Resource" uid="uid://bwqfywk466dn0" path="res://resources/item_sources/bottle_source.tres" id="10_vrc4q"]
 [ext_resource type="Resource" uid="uid://c7p43v4j1ebny" path="res://resources/item_sources/candle_source.tres" id="11_vrc4q"]
 [ext_resource type="PackedScene" uid="uid://cbdv8jmxybrli" path="res://scenes/item/candle_item.tscn" id="12_m0bv2"]
 [ext_resource type="Resource" uid="uid://c55dv7rq4fupj" path="res://resources/item_sources/marigold_source.tres" id="12_vrc4q"]
@@ -60,7 +60,7 @@ recipe = ExtResource("5_xv074")
 
 [node name="BookItemProvider" parent="." index="9" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11466, 1, -3.6633)
-item_source = ExtResource("10_pm6rs")
+item_source = ExtResource("10_vrc4q")
 
 [node name="CandleItemProvider" parent="." index="10" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07337, 1, -1.58746)
