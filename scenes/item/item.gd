@@ -16,8 +16,8 @@ enum ItemType {
 
 @export var item_type: ItemType
 @export var fadeout_time: float = 4.0
+@export var grabbing_strength: float = 10.0
 @export_category("internal nodes")
-
 @export var item_interactable: ItemInteractable
 @export var col_shape: CollisionShape3D
 @export var despawn_timer: Timer
@@ -51,7 +51,15 @@ func _physics_process(_delta: float) -> void:
 	#update_drag_tween()
 	update_fadeout()
 	update_label_pos()
-#
+	update_drag()
+
+func update_drag() -> void:
+	if !is_instance_valid(drag_target):
+		return
+	if is_held:
+		linear_velocity = grabbing_strength * (drag_target.global_position - global_position)
+
+
 #func update_drag() -> void:
 	#if !is_instance_valid(drag_target):
 		#return
