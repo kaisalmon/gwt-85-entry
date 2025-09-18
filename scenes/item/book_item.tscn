@@ -26,6 +26,9 @@ size = Vector3(0.540314, 0.145697, 0.487594)
 [node name="BookItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 collision_layer = 9
 collision_mask = 9
+mass = 5.0
+linear_damp = 10.0
+angular_damp = 10.0
 script = ExtResource("1_aocwp")
 item_interactable = NodePath("ItemInteractable")
 col_shape = NodePath("CollisionShape3D")

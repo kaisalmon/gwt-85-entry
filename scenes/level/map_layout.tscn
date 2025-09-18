@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dn58wv626jhtd" path="res://scenes/level/middle_wall.tscn" id="20_wl1g2"]
 [ext_resource type="PackedScene" uid="uid://cw7l88og36qev" path="res://scenes/level/mini_wall.tscn" id="21_wl1g2"]
 [ext_resource type="PackedScene" uid="uid://o3dxjjbvg8gl" path="res://scenes/decor/frontdoor.tscn" id="22_o54a4"]
-[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="23_n1evr"]
+[ext_resource type="Shader" path="res://materials/portal.gdshader" id="23_n1evr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15kbo"]
 albedo_texture = ExtResource("19_1advv")

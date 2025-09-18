@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://d208nph7co14w" path="res://models/custom/frontdoor.obj" id="1_685vh"]
 [ext_resource type="Texture2D" uid="uid://by3siyvprg51c" path="res://textures/furniturebits_texture.png" id="2_lddte"]
-[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="3_6jyou"]
+[ext_resource type="Shader" path="res://materials/portal.gdshader" id="3_6jyou"]
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="3_rtmrr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtmrr"]
@@ -39,7 +39,6 @@ fog_depth_begin = 100.0
 [node name="Frontdoor" type="MeshInstance3D"]
 transform = Transform3D(0.805, 0, 0, 0, 0.805, 0, 0, 0, 0.805, 0, 0, 0)
 mesh = ExtResource("1_685vh")
-skeleton = NodePath("../../CanvasLayer")
 surface_material_override/0 = SubResource("StandardMaterial3D_rtmrr")
 surface_material_override/1 = SubResource("ShaderMaterial_fd07e")
 surface_material_override/2 = SubResource("StandardMaterial3D_rtmrr")

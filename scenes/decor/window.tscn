@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://113oplqbtxdh" path="res://scenes/decor/window.gd" id="1_tyc8v"]
 [ext_resource type="ArrayMesh" uid="uid://l658w3s75ek2" path="res://models/custom/window.obj" id="3_a4nrp"]
 [ext_resource type="Material" uid="uid://b7xke3yltv0pk" path="res://models/custom/window_material.tres" id="4_nfjdw"]
-[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="4_scc5q"]
+[ext_resource type="Shader" path="res://materials/portal.gdshader" id="4_scc5q"]
 [ext_resource type="Texture2D" uid="uid://brjsdd1psgd4e" path="res://textures/splash.png" id="5_a4nrp"]
 [ext_resource type="AudioStream" uid="uid://bymgiq4hi7unr" path="res://audio/sfx/ambience/ambience_outside_l_01.ogg" id="6_scc5q"]
 [ext_resource type="AudioStream" uid="uid://c4738x3sla8ta" path="res://audio/sfx/ambience/ambience_outside_l_02.ogg" id="7_oyt8e"]
@@ -91,8 +91,10 @@ stream_1/stream = ExtResource("11_po8k2")
 stream_2/stream = ExtResource("12_85w4r")
 stream_3/stream = ExtResource("13_wnh8w")
 
-[node name="Window" type="Node3D"]
+[node name="Window" type="Node3D" node_paths=PackedStringArray("ambience_outside_l", "ambience_outside_r")]
 script = ExtResource("1_tyc8v")
+ambience_outside_l = NodePath("AmbienceOutsideL")
+ambience_outside_r = NodePath("AmbienceOutsideR")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 

@@ -6,8 +6,10 @@ var unlock_time = null
 var unlock_duration = null
 var has_emitted = false
 @export var removed_by_room: GameState.RoomType = GameState.RoomType.NONE
-@onready var ambience_outside_l: AudioStreamPlayer3D = $AmbienceOutsideL
-@onready var ambience_outside_r: AudioStreamPlayer3D = $AmbienceOutsideR
+
+@export_category("internal nodes")
+@export var ambience_outside_l: AudioStreamPlayer3D
+@export var ambience_outside_r: AudioStreamPlayer3D
 
 func _ready() -> void:
 	super._ready()
