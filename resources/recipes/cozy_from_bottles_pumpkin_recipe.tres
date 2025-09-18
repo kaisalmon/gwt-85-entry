@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3 uid="uid://b4npe2rlbifgl"]
+
+[ext_resource type="Script" uid="uid://m6koss8c30rd" path="res://scenes/recipe.gd" id="1_ny0b4"]
+
+[resource]
+script = ExtResource("1_ny0b4")
+ingredients = Dictionary[int, int]({
+0: 0
+})
+produced_magic = Dictionary[int, int]({
+0: 0
+})
+metadata/_custom_type_script = "uid://m6koss8c30rd"
