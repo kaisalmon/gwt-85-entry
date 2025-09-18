@@ -11,7 +11,7 @@ class_name  ManaOrb
 var screen_space_target: Vector2 = Vector2.ZERO
 var velocity: Vector3 = Vector3.ZERO
 var deposited: bool = false
-var magic_type: Recipe.MagicType = Recipe.MagicType.SOFT
+var magic_type: Recipe.MagicType = Recipe.MagicType.COZY
 var delay = 0.0
 var sound_played: bool = false
 

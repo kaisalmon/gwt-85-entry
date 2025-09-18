@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=15 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://fos4f1jywlg6" path="res://resources/recipe_book_to_crispy.tres" id="5_xv074"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_xv074"]
 [ext_resource type="PackedScene" uid="uid://83bhm1ar3cx0" path="res://interaction/text_area.tscn" id="9_sytrn"]
+[ext_resource type="PackedScene" uid="uid://cbdv8jmxybrli" path="res://scenes/item/candle_item.tscn" id="12_m0bv2"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
 [ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="15_vrc4q"]
 
@@ -48,18 +49,21 @@ omni_range = 17.0
 [node name="Cauldron" parent="." index="8" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44803, 0, 2.17526)
 
+[node name="cylinder" parent="Cauldron/blockbench_export/Node" index="0"]
+transform = Transform3D(0.75, 0, -2.98023e-08, 0, 0.75, 0, 2.98023e-08, 0, 0.75, 6.65044, 0.1875, 1.94621)
+
 [node name="ItemConsumer" parent="Cauldron" index="1"]
 recipe = ExtResource("5_xv074")
 
 [node name="BookItemProvider" parent="." index="9" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08885, 1, 3.10791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11466, 1, -3.6633)
 
 [node name="CandleItemProvider" parent="." index="10" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.23787, 1, -1.58746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07337, 1, -1.58746)
 produced_item = 1
 
 [node name="KnifeItemProvider" parent="." index="11" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02163, 1, -5.95487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81846, 1, -1.35637)
 produced_item = 2
 
 [node name="ManaOrb_For_performance_reasons" parent="." index="12" instance=ExtResource("8_xv074")]
@@ -74,6 +78,9 @@ room_type = 1
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="TextArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37528, 0.690186, -1.34946)
 shape = SubResource("BoxShape3D_sytrn")
+
+[node name="CandleItem" parent="." index="14" instance=ExtResource("12_m0bv2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.09583, 0.626984, 2.52992)
 
 [editable path="Cauldron"]
 [editable path="Cauldron/blockbench_export"]

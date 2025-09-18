@@ -6,11 +6,19 @@
 bg_color = Color(0.164706, 0.129412, 0.227451, 1)
 border_color = Color(1, 1, 1, 1)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label", "magic_value_label_cozy", "magic_value_label_hollow", "magic_value_label_vivid", "magic_value_label_windy", "textbox_container", "text_start", "text_main", "text_end")]
 layer = 8
 script = ExtResource("1_u7n8c")
 pause_overlay = NodePath("PauseOverlay")
-magic_value_label = NodePath("MagicView/HBoxContainer/MagicValueLabelSoft")
+magic_value_label = NodePath("MagicView/HBoxContainer/MagicValueLabelCozy")
+magic_value_label_cozy = NodePath("MagicView/HBoxContainer/MagicValueLabelCozy")
+magic_value_label_hollow = NodePath("MagicView/HBoxContainer/MagicValueLabelHollow")
+magic_value_label_vivid = NodePath("MagicView/HBoxContainer/MagicValueLabelVivid")
+magic_value_label_windy = NodePath("MagicView/HBoxContainer/MagicValueLabelWindy")
+textbox_container = NodePath("TextboxContainer")
+text_start = NodePath("TextboxContainer/MarginContainer/HBoxContainer/TextStart")
+text_main = NodePath("TextboxContainer/MarginContainer/HBoxContainer/TextMain")
+text_end = NodePath("TextboxContainer/MarginContainer/HBoxContainer/TextEnd")
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
 visible = false
@@ -55,7 +63,7 @@ layout_mode = 2
 text = "Magic:"
 vertical_alignment = 1
 
-[node name="MagicValueLabelSoft" type="Label" parent="MagicView/HBoxContainer"]
+[node name="MagicValueLabelCozy" type="Label" parent="MagicView/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.745098, 1, 1)
@@ -66,7 +74,7 @@ vertical_alignment = 1
 [node name="Separator" type="VSeparator" parent="MagicView/HBoxContainer"]
 layout_mode = 2
 
-[node name="MagicValueLabelCrispy" type="Label" parent="MagicView/HBoxContainer"]
+[node name="MagicValueLabelHollow" type="Label" parent="MagicView/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.78905, 0.742444, 1)
@@ -77,7 +85,7 @@ vertical_alignment = 1
 [node name="Separator2" type="VSeparator" parent="MagicView/HBoxContainer"]
 layout_mode = 2
 
-[node name="MagicValueLabelHollow" type="Label" parent="MagicView/HBoxContainer"]
+[node name="MagicValueLabelVivid" type="Label" parent="MagicView/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 1, 0.929167, 1)
@@ -88,21 +96,10 @@ vertical_alignment = 1
 [node name="Separator3" type="VSeparator" parent="MagicView/HBoxContainer"]
 layout_mode = 2
 
-[node name="MagicValueLabelBulky" type="Label" parent="MagicView/HBoxContainer"]
+[node name="MagicValueLabelWindy" type="Label" parent="MagicView/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9625, 1, 0.75, 1)
-text = "0"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Separator4" type="VSeparator" parent="MagicView/HBoxContainer"]
-layout_mode = 2
-
-[node name="MagicValueLabelSturdy" type="Label" parent="MagicView/HBoxContainer"]
-custom_minimum_size = Vector2(15, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
