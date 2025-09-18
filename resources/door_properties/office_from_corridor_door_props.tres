@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DoorProperties" load_steps=2 format=3 uid="uid://cu73slm863eiu"]
+
+[ext_resource type="Script" uid="uid://y3bgppqiyes" path="res://scenes/door_properties.gd" id="1_13ge5"]
+
+[resource]
+script = ExtResource("1_13ge5")
+unlocked_room_type = 5
+required_magic = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://y3bgppqiyes"
