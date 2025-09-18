@@ -106,11 +106,10 @@ func set_highlight(player: Player, highlight_new: bool) -> void:
 	
 	if player != null && is_instance_valid(player.held_item):
 		if highlight_new:
-			player.held_item.reparent(self)
-			player.held_item.drag_target = ready_item_position
-			player.is_item_in_ready_pos = true
+			player.set_item_to_hover_pos(ready_item_position)
 		else:
-			player.set_item_to_hand_pos(player.held_item)
+			#player.set_item_to_hand_pos(player.held_item)
+			player.set_item_to_hand_pos_from_hover()
 	
 func has_necessary_ingredients_for(item_type: Item.ItemType) -> bool:
 	if recipe.ingredients.size() == 0:

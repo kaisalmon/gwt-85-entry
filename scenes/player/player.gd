@@ -14,7 +14,7 @@ extends CharacterBody3D
 @export_category("internal nodes")
 @export var look_pivot: Node3D
 @export var interaction: Interaction
-@export var item_hold_position: Marker3D
+@export var item_hold_position: PinJoint3D
 @onready var footsteps: AudioStreamPlayer3D = $PlayerAudio/footsteps
 var base_y_pos: float
 var move_time: float = 0.0
@@ -22,7 +22,7 @@ var current_y_offset: float = 0.0
 var ismoving: bool = false #check movement for footsteps
 var actual_current_speed: float
 var held_item: Item = null
-var is_item_in_ready_pos: bool = false
+var is_item_in_hover_pos: bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -98,6 +98,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("drop_item"):
 		drop_current_item()
 				
+	if event is InputEventKey:
+		var iek: InputEventKey = event as InputEventKey
+		if iek.pressed && iek.keycode == KEY_F3:
+			if held_item != null:
+				held_item.print_debug()
+				
 func can_use_input() -> bool:
 	return true
 
@@ -110,36 +116,81 @@ func remove_and_get_current_item() -> Item:
 		return null
 	var item: Item = held_item
 	held_item = null
+	item_hold_position.node_b = ""
 	return item
 	
+func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
+	if !reparent_child:
+		get_parent().add_child(item)
+	else:
+		#item.reparent(item_hold_position)
+		item.reparent(get_parent())
+
+	item.global_position = item_hold_position.global_position
+	item_hold_position.node_b = item_hold_position.get_path_to(item)
+	held_item = item
+	held_item.set_held(true)
+	held_item.drag_target = null
+	is_item_in_hover_pos = false
+	
+func set_item_to_hand_pos(item: Item) -> void:
+	is_item_in_hover_pos = false
+	#item.reparent(get_parent())
+	item_hold_position.node_b = item_hold_position.get_path_to(item)
+	#held_item.drag_target = null
+
 func drop_current_item() -> void:
 	if !is_instance_valid(held_item):
 		return
 
+	#remove_and_get_current_item()
 	held_item.reparent(get_parent())
-	if is_item_in_ready_pos:
+	if is_item_in_hover_pos:
 		held_item.drag_target = self
 		await get_tree().create_timer(0.1).timeout
-	is_item_in_ready_pos = false
+	is_item_in_hover_pos = false
 	held_item.set_held(false)
-	held_item.drag_target = null
+	#held_item.drag_target = null
 	held_item = null
+	item_hold_position.node_b = ""
 
-func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
-	if !reparent_child:
-		item_hold_position.add_child(item)
-	else:
-		item.reparent(item_hold_position)
-	item.position = Vector3.ZERO
-	held_item = item
-	held_item.set_held(true)	
-	held_item.drag_target = item_hold_position
-	is_item_in_ready_pos = false
-	
-func set_item_to_hand_pos(item: Item) -> void:
-	is_item_in_ready_pos = false
-	item.reparent(item_hold_position)
-	held_item.drag_target = item_hold_position
+
+func remove_item_from_hand(new_parent: Node3D) -> Item:
+	if !is_instance_valid(held_item):
+		return null
+	held_item.set_held(false)
+	held_item.reparent(new_parent)
+	item_hold_position.node_b = ""	
+	var temp_item: Item = held_item
+	held_item = null
+	return temp_item
+
+
+func set_item_to_hand_pos_from_hover() -> void:
+	if !is_instance_valid(held_item):
+		return
+	#held_item.reparent(self)
+	#held_item.drag_target = pos_node
+	#is_item_in_hover_pos = false
+	var tween: Tween = held_item.tween_to_position(item_hold_position)
+	#item_hold_position.node_b = item_hold_position.get_path_to(held_item)
+	tween.finished.connect(on_after_item_hover)
+
+func on_after_item_hover() -> void:
+	is_item_in_hover_pos = false
+	#item.reparent(get_parent())
+	item_hold_position.node_b = item_hold_position.get_path_to(held_item)
+	#held_item.drag_target = null
+	held_item.global_position = item_hold_position.global_position
+
+func set_item_to_hover_pos(pos_node: Node3D) -> void:
+	if !is_instance_valid(held_item):
+		return
+	#held_item.reparent(self)
+	#held_item.drag_target = pos_node
+	is_item_in_hover_pos = true
+	item_hold_position.node_b = ""	
+	held_item.tween_to_position(pos_node)
 
 func get_look_ortho() -> float:
 	return rotation.y + PI

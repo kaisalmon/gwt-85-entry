@@ -48,21 +48,32 @@ func set_held(is_held_new: bool) -> void:
 		despawn_timer.start()
 
 func _physics_process(_delta: float) -> void:
-	update_drag_tween()
+	#update_drag_tween()
 	update_fadeout()
 	update_label_pos()
+#
+#func update_drag() -> void:
+	#if !is_instance_valid(drag_target):
+		#return
+	#if global_position.distance_to(drag_target.global_position) < 0.1:
+		#return
+		#
+	#if is_instance_valid(drag_tween):
+		#drag_tween.kill()
+#
+	#drag_tween = create_tween()
+	#drag_tween.tween_property(self, "global_position", drag_target.global_position, 0.3)
 
-func update_drag_tween() -> void:
-	if !is_instance_valid(drag_target):
-		return
-	if global_position.distance_to(drag_target.global_position) < 0.1:
-		return
-		
-	if is_instance_valid(drag_tween):
-		drag_tween.kill()
 
-	drag_tween = create_tween()
-	drag_tween.tween_property(self, "global_position", drag_target.global_position, 0.3)
+#func update_drag_tween() -> void:
+	#if !is_instance_valid(drag_target):
+		#return
+	#if global_position.distance_to(drag_target.global_position) < 0.1:
+		#return
+		#
+	#tween_to_position(drag_target, 0.3)
+#func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	#pass
 
 func update_fadeout() -> void:
 	if is_zero_approx(fadeout_factor):
@@ -94,6 +105,14 @@ func on_fadeout_tween_finished() -> void:
 	
 	queue_free()
 
+func tween_to_position(target_pos_node: Node3D, duration: float = 0.3) -> Tween:
+	if is_instance_valid(drag_tween):
+		drag_tween.kill()
+
+	drag_tween = create_tween()
+	drag_tween.tween_property(self, "global_position", target_pos_node.global_position, duration)
+	return drag_tween
+
 ## using a method wrapper in case we want to use something else for fading out later
 func set_visible_custom(is_visible_new: bool) -> void:
 	visible = is_visible_new
@@ -109,3 +128,13 @@ static func get_scene(scene_item_type: ItemType) -> PackedScene:
 			
 	push_warning("Item.get_scene(): no implementation for " + ItemType.keys()[scene_item_type] + " exists yet!")
 	return null
+
+func print_debug() -> void:
+	var info: String = "DEBUG: ITEM '" + self.name + "'"
+	info += "col_shape.disabled: " + str(col_shape.disabled) + "\n"
+	info += "collisions: [1] l:" + str(get_collision_layer_value(1)) + " | m:" + str(get_collision_mask_value(1))
+	info += "//  [2]: l: " + str(get_collision_layer_value(2))  + " | m:" + str(get_collision_mask_value(2))
+	info += "//  [3]: l: " + str(get_collision_layer_value(3))  + " | m:" + str(get_collision_mask_value(3))
+	info += "//  [4]: l: " + str(get_collision_layer_value(4))  + " | m:" + str(get_collision_mask_value(4)) + "\n" 
+	
+	print(info)
