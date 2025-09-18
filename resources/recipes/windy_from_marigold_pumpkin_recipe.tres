@@ -5,9 +5,10 @@
 [resource]
 script = ExtResource("1_mm53j")
 ingredients = Dictionary[int, int]({
-0: 0
+4: 1,
+5: 1
 })
 produced_magic = Dictionary[int, int]({
-0: 0
+3: 2
 })
 metadata/_custom_type_script = "uid://m6koss8c30rd"

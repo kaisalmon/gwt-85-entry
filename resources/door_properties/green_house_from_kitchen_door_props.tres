@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_c6xxd")
-unlocked_room_type = 0
-required_magic = Dictionary[int, int]({})
+unlocked_room_type = 8
+required_magic = Dictionary[int, int]({
+2: 2
+})
 metadata/_custom_type_script = "uid://y3bgppqiyes"
