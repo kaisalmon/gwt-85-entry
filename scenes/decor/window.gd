@@ -25,16 +25,12 @@ func _ready() -> void:
 		$Grate.visible = true
 
 func _physics_process(delta: float) -> void:
-	if not Engine.is_editor_hint():
-		return
 	update_dissapear_animation(delta)
-	if not viewport:
-		return
+
 	viewport.size = get_viewport().size # Sync viewport size with main viewport
 
 	var active_camera = get_viewport().get_camera_3d()
-	if not active_camera:
-		return
+
 	viewport.size = get_viewport().size
 	outside_camera.size = active_camera.size
 	outside_camera.near = active_camera.near
@@ -42,8 +38,7 @@ func _physics_process(delta: float) -> void:
 	outside_camera.fov = active_camera.fov
 	
 	var src = GameState.outside
-	if not src:
-		return
+
 	# outside_camera.global_transform = src.global_transform
 	var relative_position = active_camera.global_transform.origin - self.global_transform.origin
 	outside_camera.global_transform.origin = src.global_transform.origin + relative_position
