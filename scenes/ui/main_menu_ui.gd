@@ -14,6 +14,8 @@ var new_game_timer = 0.0
 var fadeout_duration = 0.8
 
 func _ready() -> void:
+	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
+	get_tree().paused = false
 	settings_ui.visible = false
 	start_menu_mc.visible = true
 	continue_button.visible = SaveGame.is_savegame_available
