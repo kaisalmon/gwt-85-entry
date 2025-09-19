@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dyawlu53u7bd2"]
+[gd_scene load_steps=33 format=3 uid="uid://dyawlu53u7bd2"]
 
 [ext_resource type="PackedScene" uid="uid://cfi7rvclpdapr" path="res://scenes/ui/main_menu_ui.tscn" id="1_8gim3"]
 [ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="1_ckupo"]
@@ -12,6 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://joxn32oypkaf" path="res://textures/window_paralax/parallax-demon-woods-mid-trees.png" id="9_vvrmg"]
 [ext_resource type="Texture2D" uid="uid://f5n3f27l4pxq" path="res://textures/window_paralax/parallax-demon-woods-far-trees.png" id="10_542r0"]
 [ext_resource type="Texture2D" uid="uid://b2vxcdbcpwh6q" path="res://textures/window_paralax/kais-worse-mountains.png" id="11_8gim3"]
+[ext_resource type="AudioStream" uid="uid://2o2kt71h2g0j" path="res://audio/sfx/footsteps/house_step-001.ogg" id="13_7hwy3"]
+[ext_resource type="AudioStream" uid="uid://bvmsbrcn7qse1" path="res://audio/sfx/footsteps/leaves_rustle-001.ogg" id="13_50874"]
+[ext_resource type="AudioStream" uid="uid://dq1uynbf1r2ut" path="res://audio/sfx/footsteps/house_step-002.ogg" id="14_1lne2"]
+[ext_resource type="AudioStream" uid="uid://c3t7k1qtwpo1t" path="res://audio/sfx/footsteps/leaves_rustle-002.ogg" id="14_vwcil"]
+[ext_resource type="AudioStream" uid="uid://expchb1bver2" path="res://audio/sfx/footsteps/leaves_rustle-003.ogg" id="15_blkq3"]
+[ext_resource type="AudioStream" uid="uid://d4axeudmve2pk" path="res://audio/sfx/footsteps/house_step-003.ogg" id="15_tqckk"]
 
 [sub_resource type="Environment" id="Environment_3vvtq"]
 background_mode = 1
@@ -97,6 +103,20 @@ texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n1qyp"]
 size = Vector2(4.29, 25.025)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1txtf"]
+random_pitch = 1.01
+streams_count = 3
+stream_0/stream = ExtResource("13_50874")
+stream_1/stream = ExtResource("14_vwcil")
+stream_2/stream = ExtResource("15_blkq3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_50874"]
+random_pitch = 1.01
+streams_count = 3
+stream_0/stream = ExtResource("13_7hwy3")
+stream_1/stream = ExtResource("14_1lne2")
+stream_2/stream = ExtResource("15_tqckk")
 
 [node name="Node3D" type="Node3D"]
 
@@ -213,3 +233,19 @@ parallax_amount = 0.2
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_8gim3")
 mesh = SubResource("PlaneMesh_n1qyp")
+
+[node name="rustle" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0537935, 0, -0.4)
+stream = SubResource("AudioStreamRandomizer_1txtf")
+attenuation_model = 3
+volume_db = -10.0
+bus = &"SFX"
+playback_type = 2
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0502561, 0, -0.4)
+stream = SubResource("AudioStreamRandomizer_50874")
+attenuation_model = 3
+volume_db = -10.0
+bus = &"SFX"
+playback_type = 2

@@ -67,6 +67,18 @@ ready_item_position = NodePath("../Marker3D")
 info_label = NodePath("../InfoLabel3D")
 source_mesh = NodePath("../blockbench_export/Node/cylinder")
 
+[node name="ambience_cauldron" parent="ItemConsumer/CollisionShape3D" index="0"]
+max_distance = 15.0
+
+[node name="cauldroninteract_success" parent="ItemConsumer" index="1"]
+max_distance = 15.0
+
+[node name="cauldroninteract_insert" parent="ItemConsumer" index="2"]
+max_distance = 15.0
+
+[node name="cauldroninteract_failure" parent="ItemConsumer" index="3"]
+max_distance = 15.0
+
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41314, 0)
 visible = false
