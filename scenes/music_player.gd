@@ -9,7 +9,10 @@ var music_bus_index = AudioServer.get_bus_index("Music")
 var sfx_bus_index = AudioServer.get_bus_index("SFX")
 var ambience_bus_index = AudioServer.get_bus_index("Ambience")
 var open_ibrary_door: bool = false
+var playback: AudioStreamPlaybackInteractive
+
 func _ready() -> void:
+	
 	Util.set_sample_type_if_web(audio_stream_player)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -23,18 +26,34 @@ func _ready() -> void:
 	GameState.door_count_music_increase.connect(progress_music)
 
 func progress_music(_numdoors: int,_room_type:GameState.RoomType) -> void:
-	var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
+	if playback == null:
+		playback = audio_stream_player.get_stream_playback()
+	
 	if _room_type == GameState.RoomType.LIBRARY:
 		playback.switch_to_clip_by_name("library (silence)")
 		open_ibrary_door = true
-	elif!open_ibrary_door:
+		print("switch to library silence")
+
+	elif !open_ibrary_door:
 		var transition_name: String = "Intro 0"+ str(_numdoors) 
 		playback.switch_to_clip_by_name(transition_name)
+		print("switch to transition: ", transition_name)
+		
+	await get_tree().create_timer(0.3).timeout
+	
+	#(audio_stream_player.stream as AudioStreamInteractive).
+	print("playback clip index:" , playback.get_current_clip_index())
+	
 
 func _input(event):
 	if event.is_action_pressed ("ui_mute"):
 		AudioServer.set_bus_mute(master_bus_index, !AudioServer.is_bus_mute(master_bus_index))
 		print("audio toggle")
+
+	if event is InputEventKey && (event as InputEventKey).pressed && (event as InputEventKey).keycode == KEY_I:
+		if playback == null:
+			playback = audio_stream_player.get_stream_playback()
+		print("playback clip index:" , playback.get_current_clip_index())
 
 func _on_master_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
