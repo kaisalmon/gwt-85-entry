@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var new_game_deletes_old_save: bool = true
+
 @export_file("*.tscn") var start_game_scene_path: String
 @export_category("internal nodes")
 @export var start_menu_mc: MarginContainer
@@ -25,10 +27,13 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file(start_game_scene_path)
 
 func _on_new_game_button_pressed() -> void:
+	if new_game_deletes_old_save:
+		SaveGame.delete_savegame()
+	
 	starting_game = true
 	GameState.load_game_at_start = false
 	new_game_timer = fadeout_duration
-
+	
 func _on_continue_button_pressed() -> void:
 	starting_game = true
 	new_game_timer = fadeout_duration

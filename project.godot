@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mystical Maggie's Magical Mansion"
-config/version="0.0.5d"
+config/version="0.0.6"
 run/main_scene="uid://dyawlu53u7bd2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"

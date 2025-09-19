@@ -39,6 +39,8 @@ ui.menu.settings;Settings;Einstellungen
 ui.menu.credits;Credits;Credits
 ui.menu.quit;Quit;Verlassen
 ui.menu.back;Back;Zurück
+ui.menu.resume;Resume;Fortsetzen
+ui.menu.to_main_menu;Main Menu;Hauptmenü
 ui.settings.language;Language;Sprache (Language)
 ui.settings.audio.overall;Overall;Gesamt
 ui.settings.audio.music;Music;Musik
@@ -47,5 +49,6 @@ ui.settings.audio.ambience;Ambience;Umgebung
 ui.settings.fullscreen;Fullscreen;Vollbild
 ui.settings.reset;Reset;Zurücksetzen
 ui.paused;Paused;Pausiert
+ui.saved;Saved;Gespeichert
 dialogue.this_is;This is the {0};Das ist {0}
 dialogue.room_unlocked;Room unlocked: {0};Raum freigeschaltet: {0}

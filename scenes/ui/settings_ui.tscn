@@ -42,6 +42,7 @@ popup/item_1/id = 1
 layout_mode = 2
 
 [node name="FullscreenHBC" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="FullscreenLabel" type="Label" parent="VBoxContainer/FullscreenHBC"]
@@ -53,6 +54,7 @@ text = "ui.settings.fullscreen"
 layout_mode = 2
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="OverallHBC" type="HBoxContainer" parent="VBoxContainer"]

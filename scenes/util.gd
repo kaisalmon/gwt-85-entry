@@ -1,6 +1,7 @@
 class_name Util
 extends Node
 
+static var audio_effect_tween
 
 static func room_type_to_trkey(rtype: GameState.RoomType) -> String:
 	return "room."+(GameState.RoomType.keys()[rtype] as String).to_lower()
@@ -66,3 +67,34 @@ static func set_fullscreen(is_fullscreen: bool) -> void:
 
 static func is_debug_mode_allowed() -> bool:
 	return is_in_editor || str(ProjectSettings.get_setting("application/config/version")).ends_with("d")
+
+
+static func set_paused_audio_effect(effect_active: bool, from_node: Node) -> void:
+	if is_instance_valid(audio_effect_tween):
+		audio_effect_tween.kill()
+	var audio_effect_eqband: AudioEffectEQ = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
+	var audio_effect_stereo: AudioEffectStereoEnhance = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 1)
+
+	#if effect_active:
+		#set_audio_effect_enabled(true)
+	
+	var new_band1: float = -60 if effect_active else 0
+	var new_band2: float = -50 if effect_active else 0
+	var new_band3: float = -6 if effect_active else 0
+	var new_band4: float = -20 if effect_active else 0
+	var new_band5: float = -60 if effect_active else 0
+	var new_band6: float = -60 if effect_active else 0
+	
+	var new_pan: float = 0 if effect_active else 1
+
+	audio_effect_tween = from_node.create_tween().set_parallel()
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/32_hz", new_band1, 0.5)
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/100_hz", new_band2, 0.4)
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/320_hz", new_band3, 0.3)
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/1000_hz", new_band4, 0.3)
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/3200_hz", new_band5, 0.25)
+	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/10000_hz", new_band6, 0.2)
+	audio_effect_tween.tween_property(audio_effect_stereo, "pan_pullout", new_pan, 0.4)
+	
+	#if !is_paused_new:
+	#	music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))

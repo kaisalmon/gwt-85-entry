@@ -165,6 +165,10 @@ func set_info_label_text_to_item() -> void:
 	info_label_3d.text = tr(Util.item_type_to_trkey(item_source.item))
 	
 func get_cooldown_time_left() -> String:
+	var time_left: float = cooldown_timer.time_left
+	if time_left < 2.0:
+		return str(snapped(time_left, 0.1))
+	
 	return str(roundi(cooldown_timer.time_left))
 
 func _on_info_label_3d_wiggle_finished() -> void:

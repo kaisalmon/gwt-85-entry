@@ -15,6 +15,14 @@ func clear_savegame() -> void:
 	for type: Recipe.MagicType in Recipe.MagicType.values():
 		GameState.current_magic_amounts.append(0)
 				
+func delete_savegame() -> void:
+	print("deleting current save game...")
+	is_savegame_available = FileAccess.file_exists(SAVE_PATH)
+	if !is_savegame_available:
+		return
+	OS.move_to_trash(ProjectSettings.globalize_path(SAVE_PATH))
+	is_savegame_available = false
+
 func save_to_file() -> void:
 	if !is_instance_valid(GameState.player):
 		push_warning("Cannot save game when GameState.player is not a valid instance (are you outside the level scene?) ")
