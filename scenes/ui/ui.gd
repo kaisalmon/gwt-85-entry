@@ -3,6 +3,8 @@ extends CanvasLayer
 
 var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 
+signal current_text_finished
+
 @export_category("internal nodes")
 @export var pause_overlay: PauseMenuUI
 @export var magic_value_label: Label
@@ -47,7 +49,7 @@ func _input(event: InputEvent) -> void:
 		set_pause_screen_active(!is_on_pause_screen)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
 		
-	if event.is_action_pressed("text_accept",):
+	if event.is_action_pressed("text_accept"):
 		hide_textbox()
 		
 	if event.is_action_pressed("debug_mode"):
@@ -99,22 +101,30 @@ func get_label_by_type(magic_type: Recipe.MagicType) -> Label:
 	push_warning("no implementation found for UI.get_label_by_type() with type: ", Recipe.MagicType.keys()[magic_type])
 	return null
 
-func hide_textbox():
+func hide_textbox() -> void:
 	text_start.text = ""
 	text_main.text = ""
 	text_end.text = ""
 	textbox_container.hide()
 	text_main.visible_ratio = 0
+	current_text_finished.emit()
 
-func show_textbox():
+func show_textbox() -> void:
 	text_start.text = ""
 	textbox_container.show()
 	
-func show_text(next_text):
+func show_text(next_text: String) -> void:
+	var text_length: int = next_text.length()
+	var text_show_duration: float = clamp(next_text.length() * 0.04, 1.5, 3.0)
 	text_main.text = next_text
 	show_textbox()
 	text_animate_tween = create_tween()
-	text_animate_tween.tween_property(text_main, "visible_ratio", 1, 1)
+	text_animate_tween.tween_property(text_main, "visible_ratio", 1, text_show_duration)
+	await text_animate_tween.finished
+	await get_tree().create_timer(1.0).timeout
+
+	hide_textbox()
+	
 
 func do_autosave() -> void:
 	SaveGame.save_to_file()
@@ -139,3 +149,10 @@ func _on_pause_overlay_unpause_requested() -> void:
 
 func _on_autosave_timer_timeout() -> void:
 	autosave_available = true
+
+func show_dialogue_by_door(room_type: GameState.RoomType) -> void:
+	if room_type == GameState.RoomType.NONE || room_type == GameState.RoomType.MAIN_ROOM:
+		return
+	
+	show_text(tr("dialogue.unlock_room."+(GameState.RoomType.keys()[room_type] as String).to_lower()))
+	

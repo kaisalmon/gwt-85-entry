@@ -8,11 +8,14 @@ func _ready() -> void:
 	_late_ready.call_deferred()
 
 func _late_ready() -> void:
+	var has_loaded = false
 	if GameState.load_game_at_start:
-		load_game()
+		has_loaded = load_game()
+	if !has_loaded:
+		show_intro()
 	
-func load_game() -> void:
-	SaveGame.load_from_file()
+func load_game() -> bool:
+	return SaveGame.load_from_file()
 	
 func save_game() -> void:
 	SaveGame.save_to_file()
@@ -22,3 +25,18 @@ func _process(delta: float) -> void:
 		timer += delta
 		$CanvasLayer/Fadeout.color.a = lerp(1.0, 0.0, timer / fadein_time)
 		
+func show_intro() -> void:
+	GameState.ui.show_text(tr("dialogue.intro.1"))
+	await GameState.ui.current_text_finished
+	await get_tree().create_timer(1.0).timeout
+	GameState.ui.show_text(tr("dialogue.intro.2"))
+
+	GameState.door_count_music_increase.connect(progress_music)
+
+func progress_music(_numdoors: int, room_type:GameState.RoomType) -> void:
+	if room_type == GameState.RoomType.LIBRARY:
+		await get_tree().create_timer(5.0).timeout
+		GameState.ui.show_text(tr("dialogue.ending.1"))
+		await GameState.ui.current_text_finished
+		await get_tree().create_timer(1.0).timeout
+		GameState.ui.show_text(tr("dialogue.ending.2"))

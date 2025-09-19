@@ -130,7 +130,7 @@ func set_highlight(_player: Player, highlight_new: bool) -> void:
 	
 	highlighted = highlight_new
 	
-func start_unlock_anim(progress_music: bool) -> void:
+func start_unlock_anim(_progress_music: bool) -> void:
 	has_started_animation = true
 	animation_progress = 0.01
 	if play_unlock_sounds:

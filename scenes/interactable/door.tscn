@@ -187,12 +187,5 @@ bus = &"SFX"
 
 [node name="InfoLabel3D" parent="." instance=ExtResource("12_mxi5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3705, 0.297059)
-pixel_size = 0.01
-no_depth_test = false
-alpha_cut = 1
-texture_filter = 2
-outline_render_priority = -2
-outline_modulate = Color(0.197937, 0.197937, 0.197937, 1)
-font_size = 16
 
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

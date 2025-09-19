@@ -26,18 +26,22 @@ autosave_label = NodePath("AutosaveLabel")
 autosave_timer = NodePath("AutosaveTimer")
 
 [node name="TextboxContainer" type="MarginContainer" parent="."]
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -121.0
+offset_left = -108.0
+offset_top = -60.0
+offset_right = 108.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="Panel" type="Panel" parent="TextboxContainer"]
 layout_mode = 2
@@ -64,11 +68,13 @@ text = "\""
 [node name="TextMain" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1
 texture_repeat = 2
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Text!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TextEnd" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
 texture_filter = 1

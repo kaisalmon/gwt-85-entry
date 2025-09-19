@@ -41,14 +41,14 @@ func save_to_file() -> void:
 	is_savegame_available = true
 	print("saved to " + savegame_file_access.get_path_absolute())
 
-func load_from_file() -> void:
+func load_from_file() -> bool:
 	if not FileAccess.file_exists(SAVE_PATH):
-		return
+		return false
 	is_savegame_available = true
 	
 	if !is_instance_valid(GameState.player):
 		push_warning("Cannot load game when GameState.player is not a valid instance (are you outside the level scene?) ")
-		return
+		return false
 		
 	var save_game: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
@@ -72,3 +72,4 @@ func load_from_file() -> void:
 				ItemProvider.give_item_to_player(held_item_int as Item.ItemType, GameState.player)
 		
 	GameState.apply_loaded_state()
+	return true

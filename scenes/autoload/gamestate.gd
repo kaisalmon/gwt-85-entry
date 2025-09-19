@@ -58,6 +58,8 @@ func set_door_opened(unlocked_room_type: RoomType) -> void:
 	if opened_doors.has(unlocked_room_type):
 		#print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
 		return
+		
+	ui.show_dialogue_by_door(unlocked_room_type)
 	door_count +=1
 	door_count_music_increase.emit(door_count, unlocked_room_type)
 	opened_doors.append(unlocked_room_type)

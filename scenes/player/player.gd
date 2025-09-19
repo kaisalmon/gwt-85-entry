@@ -70,7 +70,7 @@ func _move(delta: float) -> void:
 		move_dir = transform.basis * Vector3(input_dir.x, 0, input_dir.y)
 		move_time += delta
 		ismoving = true
-
+		interaction.set_dirty()
 		# 0 when moving in exact opposition direction to move_dir, 1 when moving in exact same direction
 		var acc_dec_ratio = velocity.normalized().dot(move_dir.normalized()) * 0.5 + 0.5 
 		var acc_dec_rate = lerp(current_decel, current_accel, acc_dec_ratio)

@@ -80,13 +80,6 @@ outline_size = 8
 
 [node name="InfoLabel3D" parent="." instance=ExtResource("6_3um5l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32536, 0)
-pixel_size = 0.01
-billboard = 1
-no_depth_test = false
-alpha_cut = 1
-texture_filter = 2
-outline_render_priority = -2
-font_size = 16
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
