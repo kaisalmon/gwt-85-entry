@@ -5,10 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://c3bst5fw73pkb" path="res://textures/nameideas/name 4.png" id="2_qegi1"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="3_qegi1"]
 
-[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "quit_button", "settings_ui")]
+[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
 script = ExtResource("1_3bauu")
 start_game_scene_path = "uid://ddhwvnrt4veas"
 start_menu_mc = NodePath("StartMenuMC")
+continue_button = NodePath("StartMenuMC/VBoxContainer/ContinueButton")
 quit_button = NodePath("StartMenuMC/VBoxContainer/QuitButton")
 settings_ui = NodePath("SettingsUI")
 
@@ -36,6 +37,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/separation = -1
+
+[node name="ContinueButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.continue"
 
 [node name="NewGameButton" type="Button" parent="StartMenuMC/VBoxContainer"]
 layout_mode = 2
@@ -70,6 +77,7 @@ offset_bottom = 238.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

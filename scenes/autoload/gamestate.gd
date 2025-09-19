@@ -78,3 +78,4 @@ func set_player_position_to_room_pos(room_type: RoomType) -> void:
 		return
 	
 	player.global_position = room_center_positions[room_type]
+	player.current_room = room_type
