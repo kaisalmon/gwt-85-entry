@@ -8,7 +8,7 @@ var master_bus_index = AudioServer.get_bus_index("Master")
 var music_bus_index = AudioServer.get_bus_index("Music")
 var sfx_bus_index = AudioServer.get_bus_index("SFX")
 var ambience_bus_index = AudioServer.get_bus_index("Ambience")
-
+var open_ibrary_door: bool = false
 func _ready() -> void:
 	Util.set_sample_type_if_web(audio_stream_player)
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -20,10 +20,16 @@ func _ready() -> void:
 	
 	GameState.music_player = self
 	audio_stream_player.play()
+	GameState.door_count_music_increase.connect(progress_music)
 
-func progress_music(_room_type:GameState.RoomType) -> void:
+func progress_music(_numdoors: int,_room_type:GameState.RoomType) -> void:
 	var playback: AudioStreamPlaybackInteractive = audio_stream_player.get_stream_playback()
-	playback.switch_to_clip_by_name("Intro02")
+	if _room_type == GameState.RoomType.LIBRARY:
+		playback.switch_to_clip_by_name("library (silence)")
+		open_ibrary_door = true
+	elif!open_ibrary_door:
+		var transition_name: String = "Intro 0"+ str(_numdoors) 
+		playback.switch_to_clip_by_name(transition_name)
 
 func _input(event):
 	if event.is_action_pressed ("ui_mute"):

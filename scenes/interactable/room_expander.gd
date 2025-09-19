@@ -136,8 +136,8 @@ func start_unlock_anim(progress_music: bool) -> void:
 	if play_unlock_sounds:
 		dooropen.play()
 
-	if progress_music:
-		GameState.music_player.progress_music(door_properties.unlocked_room_type)
+	#if progress_music:
+	#	GameState.music_player.progress_music(door_properties.unlocked_room_type)
 
 func unlock() -> void:
 	if door_unlocked: 

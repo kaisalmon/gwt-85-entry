@@ -17,6 +17,7 @@ enum RoomType {
 }
 
 signal open_door_requested(room_type: RoomType)
+signal door_count_music_increase(door_count: int, room_type: RoomType)
 
 var ui: UI
 
@@ -33,6 +34,8 @@ var opened_doors: Array[RoomType] = []
 var room_center_positions: Dictionary[RoomType, Vector3] = {}
 
 var load_game_at_start: bool = false
+
+var door_count: int = 0
 
 # returns the amount that was removed	
 func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
@@ -55,7 +58,8 @@ func set_door_opened(unlocked_room_type: RoomType) -> void:
 	if opened_doors.has(unlocked_room_type):
 		#print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
 		return
-		
+	door_count +=1
+	door_count_music_increase.emit(door_count, unlocked_room_type)
 	opened_doors.append(unlocked_room_type)
 	
 	if AUTO_SAVE:
