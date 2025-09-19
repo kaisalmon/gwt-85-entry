@@ -46,10 +46,6 @@ func progress_music(_numdoors: int,_room_type:GameState.RoomType) -> void:
 	
 
 func _input(event):
-	if event.is_action_pressed ("ui_mute"):
-		AudioServer.set_bus_mute(master_bus_index, !AudioServer.is_bus_mute(master_bus_index))
-		print("audio toggle")
-
 	if event is InputEventKey && (event as InputEventKey).pressed && (event as InputEventKey).keycode == KEY_I:
 		if playback == null:
 			playback = audio_stream_player.get_stream_playback()
