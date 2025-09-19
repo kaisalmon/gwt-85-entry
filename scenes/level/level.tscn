@@ -73,25 +73,28 @@ shape = SubResource("BoxShape3D_sytrn")
 [node name="Interactions" type="Node3D" parent="." index="10"]
 
 [node name="Cauldron_MainRoom1" parent="Interactions" index="0" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9032, 0.126985, 1.94407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4954, 0.126985, 2.73697)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom1" index="1"]
 recipe = ExtResource("15_x4oov")
 
 [node name="Cauldron_MainRoom2" parent="Interactions" index="1" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9032, 0.126985, -2.84033)
+transform = Transform3D(0.754515, 0, -0.656283, 0, 1, 0, 0.656283, 0, 0.754515, 2.29637, 0.126985, 2.0555)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom2" index="1"]
 recipe = ExtResource("16_x4oov")
 
 [node name="Cauldron_Kitchen" parent="Interactions" index="2" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39897, 0.126985, 1.72528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25061, 0.126985, 4.20722)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Kitchen" index="1"]
 recipe = ExtResource("17_ivku7")
 
 [node name="Cauldron_Greenhouse" parent="Interactions" index="3" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13405, 0.126985, 4.03394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61698, 0.126985, 3.33881)
+
+[node name="cylinder" parent="Interactions/Cauldron_Greenhouse/blockbench_export/Node" index="0"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 2.38419e-07, 0.1875, 0)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Greenhouse" index="1"]
 recipe = ExtResource("18_ss4b2")
@@ -127,15 +130,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44365, 1, -1.76651)
 item_source = ExtResource("17_ss4b2")
 
 [node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22764, 1, -0.242455)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.37666, 1.35448, 0.494568)
 item_source = ExtResource("10_vrc4q")
 
 [node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="11" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92246, 0.9993, 0.94719)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.63333, 0.9993, 0.94719)
 item_source = ExtResource("12_vrc4q")
 
 [node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="12" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92246, 0.9993, 5.94719)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.63333, 0.9993, 5.94719)
 item_source = ExtResource("21_wyi7n")
 
 [editable path="Interactions/Cauldron_MainRoom1"]

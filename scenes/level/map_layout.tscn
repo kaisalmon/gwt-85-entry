@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://o3dxjjbvg8gl" path="res://scenes/decor/frontdoor.tscn" id="22_o54a4"]
 [ext_resource type="ArrayMesh" uid="uid://oy0q8oy1fec7" path="res://models/cactus_medium_B.obj" id="22_upsk1"]
 [ext_resource type="ArrayMesh" uid="uid://d8ter136g1xq" path="res://models/cactus_medium_A.obj" id="23_0yujp"]
-[ext_resource type="Shader" path="res://materials/portal.gdshader" id="23_n1evr"]
+[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="23_n1evr"]
 [ext_resource type="Resource" uid="uid://cjy2c6r1yfem5" path="res://resources/door_properties/green_house_from_kitchen_door_props.tres" id="24_jnmp4"]
 [ext_resource type="ArrayMesh" uid="uid://be7ssnfe4vj3n" path="res://models/cactus_small_A.obj" id="24_lb8ta"]
 
