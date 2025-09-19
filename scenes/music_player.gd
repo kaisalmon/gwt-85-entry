@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	GameState.music_player = self
 	audio_stream_player.play()
-	GameState.door_count_music_increase.connect(progress_music)
+	GameState.new_door_unlocked.connect(progress_music)
 
 func progress_music(_numdoors: int,_room_type:GameState.RoomType) -> void:
 	if playback == null:

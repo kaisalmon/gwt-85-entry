@@ -6,6 +6,7 @@ var timer = 0.0
 func _ready() -> void:
 	$CanvasLayer/Fadeout.color.a = 1.0
 	_late_ready.call_deferred()
+	GameState.new_door_unlocked.connect(show_ending)
 
 func _late_ready() -> void:
 	var has_loaded = false
@@ -31,9 +32,8 @@ func show_intro() -> void:
 	await get_tree().create_timer(1.0).timeout
 	GameState.ui.show_text(tr("dialogue.intro.2"))
 
-	GameState.door_count_music_increase.connect(progress_music)
 
-func progress_music(_numdoors: int, room_type:GameState.RoomType) -> void:
+func show_ending(_numdoors: int, room_type:GameState.RoomType) -> void:
 	if room_type == GameState.RoomType.LIBRARY:
 		await get_tree().create_timer(5.0).timeout
 		GameState.ui.show_text(tr("dialogue.ending.1"))

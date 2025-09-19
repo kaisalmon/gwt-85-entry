@@ -17,7 +17,7 @@ enum RoomType {
 }
 
 signal open_door_requested(room_type: RoomType)
-signal door_count_music_increase(door_count: int, room_type: RoomType)
+signal new_door_unlocked(door_count: int, room_type: RoomType)
 
 var ui: UI
 
@@ -61,7 +61,7 @@ func set_door_opened(unlocked_room_type: RoomType) -> void:
 		
 	ui.show_dialogue_by_door(unlocked_room_type)
 	door_count +=1
-	door_count_music_increase.emit(door_count, unlocked_room_type)
+	new_door_unlocked.emit(door_count, unlocked_room_type)
 	opened_doors.append(unlocked_room_type)
 	
 	if AUTO_SAVE:
