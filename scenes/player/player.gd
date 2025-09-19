@@ -180,3 +180,9 @@ func set_noclip_enabled(has_noclip_new: bool) -> void:
 	current_speed = move_speed * 2 if has_noclip_new else move_speed
 	current_accel = acceleration * 2 if has_noclip_new else acceleration
 	current_decel = deacceleration * 2 if has_noclip_new else deacceleration
+
+func set_current_room(room_type_new: GameState.RoomType) -> void:
+	if room_type_new == GameState.RoomType.NONE:
+		return
+	print("player entering room: ", GameState.RoomType.keys()[room_type_new])
+	current_room = room_type_new

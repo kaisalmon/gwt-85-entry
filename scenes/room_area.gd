@@ -13,4 +13,4 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 		
 	var player: Player = body as Player
-	player.current_room = room_type
+	player.set_current_room(room_type)
