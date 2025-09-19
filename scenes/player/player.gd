@@ -43,9 +43,6 @@ func _ready() -> void:
 
 	 #we may not want this here
 	base_y_pos = look_pivot.position.y
-	
-	for type: Recipe.MagicType in Recipe.MagicType.values():
-		GameState.current_magic_amounts.append(0)
 
 func _physics_process(delta: float) -> void:
 	_move(delta)

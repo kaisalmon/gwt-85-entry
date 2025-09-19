@@ -6,7 +6,7 @@ extends Area3D
 
 func _ready() -> void:
 	if player_center_position != null:
-		GameState.room_center_positions[room_type]
+		GameState.room_center_positions[room_type] = player_center_position.global_position
 
 func _on_body_entered(body: Node3D) -> void:
 	if !body is Player:

@@ -26,7 +26,7 @@ var player: Player
 
 var music_player: MusicPlayer
 
-var current_magic_amounts: Array[int] = []
+var current_magic_amounts: Array[int] = [0, 0, 0, 0]
 
 var opened_doors: Array[RoomType] = []
 
@@ -53,7 +53,7 @@ func set_magic(magic_type: Recipe.MagicType, new_amount: int) -> void:
 
 func set_door_opened(unlocked_room_type: RoomType) -> void:
 	if opened_doors.has(unlocked_room_type):
-		print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
+		#print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
 		return
 		
 	opened_doors.append(unlocked_room_type)
@@ -68,6 +68,9 @@ func apply_loaded_state() -> void:
 		open_door_requested.emit(open_room_type)
 	
 	set_player_position_to_room_pos(player.current_room)
+	
+	for magic_type: Recipe.MagicType in Recipe.MagicType.values():
+		ui.set_magic_amount(magic_type, current_magic_amounts[magic_type] )
 
 func set_player_position_to_room_pos(room_type: RoomType) -> void:
 	if !room_center_positions.has(room_type):

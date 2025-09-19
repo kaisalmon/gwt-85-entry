@@ -85,9 +85,9 @@ func _on_restart_game_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_save_game_pressed() -> void:
-	print("[DebugModeUI]: Saving the game (NOT IMPLEMENTED)")
+	print("[DebugModeUI]: Saving the game")
 	SaveGame.save_to_file()
 
 func _on_load_game_pressed() -> void:
-	print("[DebugModeUI]: Loading the game (NOT IMPLEMENTED)")
+	print("[DebugModeUI]: Loading the game")
 	SaveGame.load_from_file()

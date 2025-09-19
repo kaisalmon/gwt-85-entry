@@ -148,7 +148,8 @@ func unlock() -> void:
 	star_mesh.queue_free()
 	collision_shape_3d.queue_free()
 	doorframe.visible = true
-	dooropen_end.play()
+	if play_unlock_sounds:
+		dooropen_end.play()
 	#GameState.ui.show_text("new room!")
 	GameState.set_door_opened(door_properties.unlocked_room_type)
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")

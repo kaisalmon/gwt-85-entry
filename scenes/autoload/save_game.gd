@@ -25,6 +25,7 @@ func save_to_file() -> void:
 		"player_room_pos": GameState.player.current_room,
 		"magic_amounts": var_to_str(GameState.current_magic_amounts),
 		"opened_doors": var_to_str(GameState.opened_doors),
+		"held_item": -1 if !is_instance_valid(GameState.player.held_item) else GameState.player.held_item.item_type
 	}
 	
 	var json_string: String = JSON.stringify(save_dict)
@@ -57,3 +58,9 @@ func load_from_file() -> void:
 			GameState.player.current_room = save_dict["player_room_pos"] as GameState.RoomType
 		if save_dict.has("opened_doors"):
 			GameState.opened_doors = str_to_var(save_dict["opened_doors"]) as Array[GameState.RoomType]
+		if save_dict.has("held_item"):
+			var held_item_int: int = save_dict["held_item"]
+			if held_item_int > -1:
+				ItemProvider.give_item_to_player(held_item_int as Item.ItemType, GameState.player)
+		
+	GameState.apply_loaded_state()
