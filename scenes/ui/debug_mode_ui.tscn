@@ -1,0 +1,260 @@
+[gd_scene load_steps=4 format=3 uid="uid://crs2rkc1yx8rn"]
+
+[ext_resource type="Script" uid="uid://bks1aifqk26qq" path="res://scenes/ui/debug_mode_ui.gd" id="1_em5dy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aac20"]
+bg_color = Color(0.117909, 0.197045, 0.155138, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5cxw"]
+bg_color = Color(0.254953, 0.139303, 0.139855, 1)
+
+[node name="DebugModeUI" type="MarginContainer" node_paths=PackedStringArray("main_debug_vbc", "item_vbc", "magic_vbc", "teleport_vbc", "open_door_vbc")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_em5dy")
+main_debug_vbc = NodePath("ScrollContainer/VBoxContainer/MainDebugVBC")
+item_vbc = NodePath("ScrollContainer/VBoxContainer/ItemVBC")
+magic_vbc = NodePath("ScrollContainer/VBoxContainer/MagicVBC")
+teleport_vbc = NodePath("ScrollContainer/VBoxContainer/TeleportVBC")
+open_door_vbc = NodePath("ScrollContainer/VBoxContainer/OpenDoorVBC")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Debug Panel (F2)"
+
+[node name="MainDebugVBC" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="NoClip" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aac20")
+theme_override_styles/normal = SubResource("StyleBoxFlat_f5cxw")
+toggle_mode = true
+text = "Toggle noclip"
+
+[node name="GiveMagicMenu" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Give Magic..."
+
+[node name="GiveItemMenu" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Give Item..."
+
+[node name="TeleportToMenu" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Teleport..."
+
+[node name="OpenDoorMenu" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Open Door...
+"
+
+[node name="RestartGame" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Reset Game"
+
+[node name="SaveGame" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Save Game"
+
+[node name="LoadGame" type="Button" parent="ScrollContainer/VBoxContainer/MainDebugVBC"]
+layout_mode = 2
+text = "Load Game"
+
+[node name="MagicVBC" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GiveAllMagic" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = "Give All Magic"
+
+[node name="GiveMagicCozy" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = "Give 10 Cozy Magic"
+
+[node name="GiveMagicHollow" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = "Give 10 Hollow Magic"
+
+[node name="GiveMagicVivid" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = " Give 10 Vivid Magic"
+
+[node name="GiveMagicWindy" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = "Give 10 Windy Magic"
+
+[node name="Back" type="Button" parent="ScrollContainer/VBoxContainer/MagicVBC"]
+layout_mode = 2
+text = "Back"
+
+[node name="ItemVBC" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GiveItemCandle" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Candle"
+
+[node name="GiveItemCoal" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Coal"
+
+[node name="GiveItemClock" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Clock"
+
+[node name="GiveItemBottle" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Bottle"
+
+[node name="GiveItemMarigold" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Marigold"
+
+[node name="GiveItemPumpkin" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Give Pumpkin"
+
+[node name="Back" type="Button" parent="ScrollContainer/VBoxContainer/ItemVBC"]
+layout_mode = 2
+text = "Back"
+
+[node name="TeleportVBC" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TeleportMainRoom" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Main Room"
+
+[node name="TeleportBedroom" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Bedroom"
+
+[node name="TeleportKitchen" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Kitchen"
+
+[node name="TeleportGreenHouse" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Greenhouse"
+
+[node name="TeleportCorridor" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Corridor"
+
+[node name="TeleportOffice" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Office"
+
+[node name="TeleportBroomRoom" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Broomroom"
+
+[node name="TeleportLibrary" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Teleport Library"
+
+[node name="Back" type="Button" parent="ScrollContainer/VBoxContainer/TeleportVBC"]
+layout_mode = 2
+text = "Back"
+
+[node name="OpenDoorVBC" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenAllDoors" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open All Doors
+"
+
+[node name="OpenBedroom" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Bedroom Door"
+
+[node name="OpenKitchen" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Kitchen Door"
+
+[node name="OpenGreenHouse" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Greenhouse Door"
+
+[node name="OpenCorridor" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Corridor Door"
+
+[node name="OpenOffice" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Office Door"
+
+[node name="OpenBroomRoom" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Broomroom Door"
+
+[node name="OpenLibrary" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Open Library Door"
+
+[node name="Back" type="Button" parent="ScrollContainer/VBoxContainer/OpenDoorVBC"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/MainDebugVBC/NoClip" to="." method="_on_no_clip_toggled"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/GiveMagicMenu" to="." method="_on_give_magic_menu_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/GiveItemMenu" to="." method="_on_give_item_menu_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/TeleportToMenu" to="." method="_on_teleport_to_menu_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/OpenDoorMenu" to="." method="_on_open_door_menu_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/RestartGame" to="." method="_on_restart_game_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/SaveGame" to="." method="_on_save_game_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MainDebugVBC/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/GiveAllMagic" to="." method="_on_give_all_magic_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/GiveMagicCozy" to="." method="_on_give_magic_pressed" binds= [0]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/GiveMagicHollow" to="." method="_on_give_magic_pressed" binds= [1]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/GiveMagicVivid" to="." method="_on_give_magic_pressed" binds= [2]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/GiveMagicWindy" to="." method="_on_give_magic_pressed" binds= [3]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/MagicVBC/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemCandle" to="." method="_on_give_item_pressed" binds= [0]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemCoal" to="." method="_on_give_item_pressed" binds= [1]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemClock" to="." method="_on_give_item_pressed" binds= [2]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemBottle" to="." method="_on_give_item_pressed" binds= [3]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemMarigold" to="." method="_on_give_item_pressed" binds= [4]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/GiveItemPumpkin" to="." method="_on_give_item_pressed" binds= [5]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ItemVBC/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportMainRoom" to="." method="_on_teleport_pressed" binds= [1]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportBedroom" to="." method="_on_teleport_pressed" binds= [2]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportKitchen" to="." method="_on_teleport_pressed" binds= [3]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportGreenHouse" to="." method="_on_teleport_pressed" binds= [4]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportCorridor" to="." method="_on_teleport_pressed" binds= [5]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportOffice" to="." method="_on_teleport_pressed" binds= [6]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportBroomRoom" to="." method="_on_teleport_pressed" binds= [7]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/TeleportLibrary" to="." method="_on_teleport_pressed" binds= [8]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/TeleportVBC/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenAllDoors" to="." method="_on_open_all_doors_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenBedroom" to="." method="_on_open_door_pressed" binds= [2]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenKitchen" to="." method="_on_open_door_pressed" binds= [3]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenGreenHouse" to="." method="_on_open_door_pressed" binds= [4]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenCorridor" to="." method="_on_open_door_pressed" binds= [5]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenOffice" to="." method="_on_open_door_pressed" binds= [6]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenBroomRoom" to="." method="_on_open_door_pressed" binds= [7]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/OpenLibrary" to="." method="_on_open_door_pressed" binds= [8]]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OpenDoorVBC/Back" to="." method="_on_back_pressed"]

@@ -1,17 +1,22 @@
 extends Node
 # Autoload
 
+const AUTO_SAVE: bool = false
+const MAX_MAGIC: int = 999
+
 enum RoomType {
 	NONE, # Used to disable room-specific behavior
-	BEDROOM,
-	LIBRARY,
-	KITCHEN,
-	BROOM_ROOM,
-	OFFICE,
 	MAIN_ROOM,
+	BEDROOM,
+	KITCHEN,
+	GREEN_HOUSE,
 	CORRIDOR,
-	GREEN_HOUSE
+	OFFICE,
+	BROOM_ROOM,
+	LIBRARY
 }
+
+signal open_door_requested(room_type: RoomType)
 
 var ui: UI
 
@@ -23,6 +28,11 @@ var music_player: MusicPlayer
 
 var current_magic_amounts: Array[int] = []
 
+var opened_doors: Array[RoomType] = []
+
+var room_center_positions: Dictionary[RoomType, Vector3] = {}
+
+var load_game_at_start: bool = false
 
 # returns the amount that was removed	
 func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
@@ -35,5 +45,33 @@ func change_magic(magic_type: Recipe.MagicType, change_amount: int) -> void:
 	set_magic(magic_type, current_magic_amounts[magic_type] + change_amount)
 
 func set_magic(magic_type: Recipe.MagicType, new_amount: int) -> void:
-	current_magic_amounts[magic_type] = max(new_amount, 0)
+	current_magic_amounts[magic_type] = clamp(new_amount, 0, MAX_MAGIC)
 	ui.set_magic_amount(magic_type, current_magic_amounts[magic_type] )
+
+	if AUTO_SAVE:
+		SaveGame.save_to_file()
+
+func set_door_opened(unlocked_room_type: RoomType) -> void:
+	if opened_doors.has(unlocked_room_type):
+		print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
+		return
+		
+	opened_doors.append(unlocked_room_type)
+	
+	if AUTO_SAVE:
+		SaveGame.save_to_file()
+
+func apply_loaded_state() -> void:
+	for open_room_type: RoomType in opened_doors:
+		if open_room_type == GameState.RoomType.NONE:
+			continue
+		open_door_requested.emit(open_room_type)
+	
+	set_player_position_to_room_pos(player.current_room)
+
+func set_player_position_to_room_pos(room_type: RoomType) -> void:
+	if !room_center_positions.has(room_type):
+		
+		return
+	
+	player.global_position = room_center_positions[room_type]

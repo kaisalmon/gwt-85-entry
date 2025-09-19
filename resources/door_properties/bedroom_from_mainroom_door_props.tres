@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_hdrlc")
-unlocked_room_type = 4
+unlocked_room_type = 2
 required_magic = Dictionary[int, int]({
 0: 2
 })

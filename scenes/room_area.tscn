@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c36grwud7xvll"]
+
+[ext_resource type="Script" uid="uid://bjjhxlbsd3voi" path="res://scenes/room_area.gd" id="1_cs1xi"]
+
+[node name="RoomArea" type="Area3D" node_paths=PackedStringArray("player_center_position")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_cs1xi")
+player_center_position = NodePath("RoomCenterMarker3D")
+
+[node name="RoomCenterMarker3D" type="Marker3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

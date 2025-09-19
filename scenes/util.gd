@@ -34,6 +34,12 @@ static func set_sample_type_if_web(node: Node) -> void:
 
 static func is_web_build() -> bool:
 	return OS.has_feature("web")
+	
+static func is_in_editor() -> bool:
+	return OS.has_feature("editor")
+	
+static func is_release_build() -> bool:
+	return OS.has_feature("release")
 
 static func set_bus_volume(bus_name: String, volume_linear: float) -> void:
 	var vol_to_use: float = volume_linear
@@ -57,3 +63,6 @@ static func set_fullscreen(is_fullscreen: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+
+static func is_debug_mode_allowed() -> bool:
+	return is_in_editor || str(ProjectSettings.get_setting("application/config/version")).ends_with("d")

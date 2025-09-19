@@ -120,9 +120,7 @@ func on_interaction_finished() -> void:
 	interaction_progress = 0
 	stop_interact(source_player)
 	source_mesh.global_position = source_mesh_default_pos
-	var new_item: Item = Item.get_scene(item_source.item).instantiate() as Item
-	source_player.get_parent().add_child(new_item)
-	source_player.set_item_in_hand(new_item)
+	give_item_to_player(item_source.item, source_player)
 	cooldown_timer.start()
 	is_on_cooldown = true
 	pickup_audio_stream_player.play()
@@ -169,7 +167,11 @@ func set_info_label_text_to_item() -> void:
 func get_cooldown_time_left() -> String:
 	return str(roundi(cooldown_timer.time_left))
 
-
 func _on_info_label_3d_wiggle_finished() -> void:
 	if !is_on_cooldown:
 		set_info_label_text_to_item()
+
+static func give_item_to_player(item_type: Item.ItemType, player: Player) -> void:
+	var new_item: Item = Item.get_scene(item_type).instantiate() as Item
+	player.get_parent().add_child(new_item)
+	player.set_item_in_hand(new_item)

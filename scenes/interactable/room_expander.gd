@@ -1,11 +1,15 @@
 class_name RoomExpander
 extends Interactable
 
+const SHOW_ANIM_ON_INDIRECT_UNLOCK: bool = false
+const PROGRESS_MUSIC_ON_INDIRECT_UNLOCK: bool = false
+const PLAY_SFX_ON_INDIRECT_UNLOCK: bool = false
+
 var animation_progress: float = 0.0
 var rotation_speed: float = 0;
 var fired_particles: bool = false
 
-@export var door_settings: DoorProperties
+@export var door_properties: DoorProperties
 @export var unlock_time: float = 7.0
 @export var scale_factor: float = 0.6
 @export var deactivated_color: Color = Color.DIM_GRAY
@@ -34,16 +38,17 @@ var text_tween: Tween = null
 var highlighted: bool = false
 
 var provided_magic: Dictionary[Recipe.MagicType, int] = {}
+var play_unlock_sounds: bool = true
 
 func _ready() -> void:
 	Util.set_sample_type_if_web(dooropen)
 	Util.set_sample_type_if_web(dooropen_end)
+	GameState.open_door_requested.connect(set_unlocked.bind(SHOW_ANIM_ON_INDIRECT_UNLOCK, PROGRESS_MUSIC_ON_INDIRECT_UNLOCK, PLAY_SFX_ON_INDIRECT_UNLOCK))
 	
-	
-	if door_settings.required_magic.size() == 0:
+	if door_properties.required_magic.size() == 0:
 		push_warning("door ", self.name, " does not have any required magic set up!")
 	
-	for mtype: Recipe.MagicType in door_settings.required_magic.keys():
+	for mtype: Recipe.MagicType in door_properties.required_magic.keys():
 		provided_magic[mtype] = 0
 		
 	init_circle()
@@ -100,10 +105,8 @@ func interact(player: Player) -> void:
 			if !has_all_magic():
 				return
 	
-	has_started_animation = true
-	animation_progress = 0.01
-	dooropen.play()
-	GameState.music_player.progress_music(door_settings.unlocked_room_type)
+	start_unlock_anim(true)
+
 	
 	fadeout_text()
 		
@@ -115,7 +118,7 @@ func interact(player: Player) -> void:
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")
 	for room_listener in room_listeners:
 		if room_listener is RoomListener:
-			room_listener.on_room_unlock_start(door_settings.unlocked_room_type, unlock_time)
+			room_listener.on_room_unlock_start(door_properties.unlocked_room_type, unlock_time)
 
 	update_requirement_display()
 	
@@ -126,6 +129,16 @@ func set_highlight(_player: Player, highlight_new: bool) -> void:
 	info_label_3d.visible = highlight_new
 	
 	highlighted = highlight_new
+	
+func start_unlock_anim(progress_music: bool) -> void:
+	has_started_animation = true
+	animation_progress = 0.01
+	if play_unlock_sounds:
+		dooropen.play()
+
+	if progress_music:
+		GameState.music_player.progress_music(door_properties.unlocked_room_type)
+
 func unlock() -> void:
 	if door_unlocked: 
 		return
@@ -136,12 +149,12 @@ func unlock() -> void:
 	collision_shape_3d.queue_free()
 	doorframe.visible = true
 	dooropen_end.play()
-	GameState.ui.show_text("new room!")
-	
+	#GameState.ui.show_text("new room!")
+	GameState.set_door_opened(door_properties.unlocked_room_type)
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")
 	for room_listener in room_listeners:
 		if room_listener is RoomListener:
-			room_listener.on_room_unlocked(door_settings.unlocked_room_type)
+			room_listener.on_room_unlocked(door_properties.unlocked_room_type)
 
 func init_circle() -> void:
 	star_mat = star_mesh.material_override
@@ -156,7 +169,7 @@ func init_circle() -> void:
 ## returns true if anything was provided
 func provide_available_magic() -> bool:
 	var has_provided_anything: bool = false	
-	for mtype: Recipe.MagicType in door_settings.required_magic.keys():
+	for mtype: Recipe.MagicType in door_properties.required_magic.keys():
 		var remaining_magic_amount: int = get_remaining_magic_amount_for(mtype)
 		if remaining_magic_amount > 0:
 			var added_amount: int = GameState.remove_magic(mtype, remaining_magic_amount)
@@ -167,18 +180,18 @@ func provide_available_magic() -> bool:
 	return has_provided_anything
 			
 func get_remaining_magic_amount_for(magic_type: Recipe.MagicType) -> int:
-	if door_settings.required_magic.size() == 0:
+	if door_properties.required_magic.size() == 0:
 		return 0
-	if !door_settings.required_magic.has(magic_type):
+	if !door_properties.required_magic.has(magic_type):
 		return 0
-	var needed_amount: int = door_settings.required_magic[magic_type]
+	var needed_amount: int = door_properties.required_magic[magic_type]
 	var current_amount: int = 0
 	if provided_magic.has(magic_type):
 		current_amount = provided_magic[magic_type]
 	return max(needed_amount - current_amount, 0)
 
 func has_all_magic() -> bool:
-	for mtype: Recipe.MagicType in door_settings.required_magic.keys():
+	for mtype: Recipe.MagicType in door_properties.required_magic.keys():
 		if get_remaining_magic_amount_for(mtype) > 0:
 			return false
 	return true
@@ -189,11 +202,11 @@ func display_no_magic_anim(direction_vec: Vector3) -> void:
 
 func update_requirement_display() -> void:
 	var recipe_texts: Array[String] = []
-	for mtype: Recipe.MagicType in door_settings.required_magic.keys():
-		if door_settings.required_magic[mtype] <= 0:
+	for mtype: Recipe.MagicType in door_properties.required_magic.keys():
+		if door_properties.required_magic[mtype] <= 0:
 			push_warning("the required on ", self.name, " has an item entry with a 0 (or less) amount for ", Recipe.MagicType.keys()[mtype])
 			continue
-		var needed_amount: int = door_settings.required_magic[mtype]
+		var needed_amount: int = door_properties.required_magic[mtype]
 		var current_amount: int = 0
 		if provided_magic.has(mtype):
 			current_amount = provided_magic[mtype]
@@ -207,3 +220,14 @@ func fadeout_text() -> void:
 	fadeout_text_tween.tween_property(info_label_3d, "modulate", Color.TRANSPARENT, 0.2)
 	await  fadeout_text_tween.finished
 	info_label_3d.visible = false
+
+func set_unlocked(room_type_to_unlock: GameState.RoomType, play_animation: bool, progress_music: bool = false, set_play_sound: bool = false) -> void:
+	if room_type_to_unlock != door_properties.unlocked_room_type:
+		return
+		
+	play_unlock_sounds = set_play_sound
+	
+	if play_animation:
+		start_unlock_anim(progress_music)
+	else:
+		unlock()

@@ -16,6 +16,9 @@ extends CharacterBody3D
 @export var interaction: Interaction
 @export var item_hold_position: Marker3D
 @onready var footsteps: AudioStreamPlayer3D = $PlayerAudio/footsteps
+
+var current_room: GameState.RoomType
+
 var base_y_pos: float
 var move_time: float = 0.0
 var current_y_offset: float = 0.0
@@ -24,10 +27,19 @@ var actual_current_speed: float
 var held_item: Item = null
 var is_item_in_hover_pos: bool = false
 
+var has_noclip: bool = false
+
+var current_speed: float
+var current_accel: float
+var current_decel: float
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.player = self
 	Util.set_sample_type_if_web(footsteps)
+	current_speed = move_speed
+	current_accel = acceleration
+	current_decel = deacceleration
 
 	 #we may not want this here
 	base_y_pos = look_pivot.position.y
@@ -54,7 +66,7 @@ func _move(delta: float) -> void:
 	if !can_use_input():
 		input_dir = Vector2.ZERO
 
-	var y_velo: float = 0.0 if is_on_floor() else -gravity
+	var y_velo: float = 0.0 if (is_on_floor() || has_noclip) else -gravity
 
 	var move_dir: Vector3 = Vector3.ZERO
 	if !input_dir.is_zero_approx():
@@ -64,12 +76,12 @@ func _move(delta: float) -> void:
 
 		# 0 when moving in exact opposition direction to move_dir, 1 when moving in exact same direction
 		var acc_dec_ratio = velocity.normalized().dot(move_dir.normalized()) * 0.5 + 0.5 
-		var acc_dec_rate = lerp(deacceleration, acceleration, acc_dec_ratio)
-		velocity = velocity.move_toward(move_dir * move_speed, acc_dec_rate * delta)
+		var acc_dec_rate = lerp(current_decel, current_accel, acc_dec_ratio)
+		velocity = velocity.move_toward(move_dir * current_speed, acc_dec_rate * delta)
 	else:
 		move_time = 0.0
 		ismoving = false
-		velocity = velocity.move_toward(Vector3(0,y_velo,0), deacceleration * delta)
+		velocity = velocity.move_toward(Vector3(0,y_velo,0), current_decel * delta)
 
 
 	var previous_pos: Vector3 = global_position
@@ -118,7 +130,7 @@ func remove_and_get_current_item() -> Item:
 	held_item = null
 	return item
 	
-func set_item_in_hand(item: Item, reparent_child: bool = false) -> void:
+func set_item_in_hand(item: Item) -> void:
 	item.global_position = item_hold_position.global_position
 	held_item = item
 	held_item.set_held(true)
@@ -160,3 +172,11 @@ func get_look_ortho() -> float:
 func get_look_ortho_vec3D() -> Vector3:
 	var displacemnt_vec: Vector2 = Vector2.from_angle(2 * PI - get_look_ortho())
 	return Vector3(displacemnt_vec.x, 0, displacemnt_vec.y)
+
+func set_noclip_enabled(has_noclip_new: bool) -> void:
+	has_noclip = has_noclip_new
+	set_collision_layer_value(1, !has_noclip_new)
+	set_collision_mask_value(1, !has_noclip_new)
+	current_speed = move_speed * 2 if has_noclip_new else move_speed
+	current_accel = acceleration * 2 if has_noclip_new else acceleration
+	current_decel = deacceleration * 2 if has_noclip_new else deacceleration

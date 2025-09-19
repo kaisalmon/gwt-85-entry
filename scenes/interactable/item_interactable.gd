@@ -21,7 +21,7 @@ func interact(player: Player) -> void:
 		# TODO: should we allow the player to remove items from his hand if its from the same type?
 		return
 	
-	player.set_item_in_hand(item_source, true)
+	player.set_item_in_hand(item_source)
 	pickup_audio_stream_player.play()
 	
 func set_highlight(_player: Player, highlight_new: bool) -> void:

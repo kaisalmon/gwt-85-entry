@@ -16,11 +16,12 @@ var music_volume_linear: float = 0.75
 var sfx_volume_linear: float = 0.75
 var ambience_volume_linear: float = 0.75
 var fullscreen_active: bool = false
+var is_debug_mode_available: bool
 
 func _ready() -> void:
+	is_debug_mode_available = Util.is_debug_mode_allowed()
 	load_from_file()
 	apply_values()
-	
 	
 func reset_to_defaults(do_save: bool = true) -> void:
 	set_locale(&"en", false)
@@ -29,6 +30,7 @@ func reset_to_defaults(do_save: bool = true) -> void:
 	set_sfx_volume(0.75, false)
 	set_ambience_volume(0.75, false)
 	set_fullscreen_active(false, false)
+	set_debug_mode_available(Util.is_debug_mode_allowed(), false)
 	
 	apply_values()
 	if do_save:
@@ -41,7 +43,6 @@ func apply_values() -> void:
 	Util.set_bus_volume(MUSIC_BUS_NAME, sfx_volume_linear)
 	Util.set_bus_volume(AMBIENCE_BUS_NAME, ambience_volume_linear)
 	Util.set_fullscreen(fullscreen_active)
-
 		
 func save_to_file() -> void:
 	var settings_file_access: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -51,7 +52,8 @@ func save_to_file() -> void:
 		"sfx_volume": sfx_volume_linear,
 		"ambience_volume": ambience_volume_linear,
 		"locale": locale,
-		"fullscreen_active": fullscreen_active
+		"fullscreen_active": fullscreen_active,
+		"is_debug_mode_available": is_debug_mode_available
 	}
 	
 	var json_string: String = JSON.stringify(save_dict)
@@ -84,7 +86,9 @@ func load_from_file() -> void:
 			locale = save_dict["locale"]
 		if save_dict.has("fullscreen_active"):
 			fullscreen_active = save_dict["fullscreen_active"]
-
+		if save_dict.has("is_debug_mode_available"):
+			is_debug_mode_available = is_debug_mode_available || save_dict["is_debug_mode_available"]
+			
 func set_locale(locale_new: StringName, do_save: bool = true) -> void:
 	locale = locale_new
 	locale_changed.emit()
@@ -119,6 +123,12 @@ func set_ambience_volume(volume_linear_new: float, do_save: bool = true) -> void
 		
 func set_fullscreen_active(fs_active_new: bool, do_save: bool = true) -> void:
 	fullscreen_active = fs_active_new
+	
+	if do_save:
+		save_to_file()
+
+func set_debug_mode_available(is_debug_mode_available_new: bool, do_save: bool = true) -> void:
+	is_debug_mode_available = is_debug_mode_available_new
 	
 	if do_save:
 		save_to_file()

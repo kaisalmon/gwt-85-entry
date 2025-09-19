@@ -18,6 +18,7 @@ var default_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_CAPTURED
 @export var text_main: Label 
 @export var text_end: Label
 
+@export var debug_mode_ui: DebugModeUI
 #var visual_magic_amounts: Dictionary[Recipe.MagicType, int] = {
 	#Recipe.MagicType.SOFT: 0,
 	#Recipe.MagicType.CRISPY: 0,
@@ -31,28 +32,57 @@ var music_mono_tween: Tween = null
 
 var text_animate_tween: Tween = null
 
+var is_debug_mode_active: bool = false
+var is_on_pause_screen: bool = false
+
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
-	set_paused(false)
+	set_pause_screen_active(false)
 	hide_textbox()
+	set_debug_mode_active(false, false)
 	
 	for type: Recipe.MagicType in Recipe.MagicType.values():
 		set_magic_amount(type, 0)
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		set_pause_screen_active(!is_on_pause_screen)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
+		
+	if event.is_action_pressed("text_accept",):
+		hide_textbox()
+		
+	if event.is_action_pressed("debug_mode"):
+		set_debug_mode_active(!is_debug_mode_active)
+		
+		
+func set_debug_mode_active(is_debug_mode_active_new: bool, change_paused: bool = true) -> void:
+	is_debug_mode_active = is_debug_mode_active_new
+	if change_paused:
+		set_paused(is_debug_mode_active_new || is_on_pause_screen)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
 
-func set_paused(is_paused_new: bool) -> void:
+	if is_debug_mode_active_new && !Settings.is_debug_mode_available:
+		return
+
+	debug_mode_ui.visible = is_debug_mode_active_new
+	if is_debug_mode_active:
+		debug_mode_ui.show_only_main_debug_view()
+		
+func set_pause_screen_active(is_paused_new: bool) -> void:
 	if is_instance_valid(music_fade_tween):
 		music_fade_tween.kill()
-
+	is_on_pause_screen = is_paused_new
+	set_paused(is_paused_new|| is_debug_mode_active)
+	pause_overlay.visible = is_paused_new
+	
 	var audio_effect_eqband: AudioEffectEQ = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
 	var audio_effect_stereo: AudioEffectStereoEnhance = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 1)
 
 	#if is_paused_new:
 		#set_audio_effect_enabled(true)
 	
-	get_tree().paused = is_paused_new
-	pause_overlay.visible = is_paused_new
-
 	var new_band1: float = -60 if is_paused_new else 0
 	var new_band2: float = -50 if is_paused_new else 0
 	var new_band3: float = -6 if is_paused_new else 0
@@ -74,19 +104,15 @@ func set_paused(is_paused_new: bool) -> void:
 	#if !is_paused_new:
 	#	music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))
 
+func set_paused(is_paused_new: bool) -> void:
+	get_tree().paused = is_paused_new
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
+
 func set_audio_effect_enabled(is_enabled_new: bool) -> void:
 	#AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Master"), 0, is_enabled_new)
 	print("set audio effect: ", is_enabled_new)
 
-	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		set_paused(!get_tree().paused)
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if get_tree().paused else default_mouse_mode
-		
-	if event.is_action_pressed("text_accept",):
-		hide_textbox()
-		
+
 func set_magic_amount(type: Recipe.MagicType, magic_amount_new: int) -> void:
 	# TODO: store the actual mechanical amounts, either here or in player or in game state
 	pass
@@ -122,7 +148,6 @@ func show_textbox():
 	text_start.text = ""
 	textbox_container.show()
 	
-
 func show_text(next_text):
 	text_main.text = next_text
 	show_textbox()
