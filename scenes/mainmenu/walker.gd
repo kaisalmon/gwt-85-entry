@@ -10,6 +10,8 @@ class_name WalkManager
 @export var house_max_height = 3.0
 @export var foot_angle_rate = 0.1 # How quickly the rotates, relative to its height
 @export var foot_max_angle = 0.5 # Maximum angle the foot rotates, in radians
+@onready var footsteps: AudioStreamPlayer3D = $"../footsteps"
+@onready var rustle: AudioStreamPlayer3D = $"../rustle"
 
 var l_foot;
 var r_foot;
@@ -73,6 +75,8 @@ func _process(delta: float) -> void:
 	planted_foot.position -= walk_speed * delta * Vector3.FORWARD
 
 	if swinging_foot.position.dot(Vector3.FORWARD) > planted_foot.position.dot(Vector3.FORWARD) + stride_length / 2.0:
+		footsteps.play()
+		rustle.play()
 		left_foot_planted = !left_foot_planted
 
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfi7rvclpdapr"]
+[gd_scene load_steps=6 format=3 uid="uid://cfi7rvclpdapr"]
 
 [ext_resource type="Script" uid="uid://dic6c0jtrsj0f" path="res://scenes/ui/main_menu_ui.gd" id="1_3bauu"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_b8bkt"]
 [ext_resource type="Texture2D" uid="uid://c3bst5fw73pkb" path="res://textures/nameideas/name 4.png" id="2_qegi1"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="3_qegi1"]
+[ext_resource type="AudioStream" uid="uid://bokyu7kki5mni" path="res://audio/sfx/ambience/menuambience.ogg" id="5_02l8k"]
 
 [node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
 script = ExtResource("1_3bauu")
@@ -76,6 +77,11 @@ offset_right = 261.0
 offset_bottom = 238.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_02l8k")
+autoplay = true
+bus = &"SFX"
 
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
