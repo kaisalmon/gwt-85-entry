@@ -2,13 +2,15 @@ class_name Interaction
 extends Area3D
 
 @export var player: Player
+@export_category("internal nodes")
+@export var visibilty_ray_cast_3d: RayCast3D 
 
 var available_interactables: Array[Interactable] = []
 var current_highlight_interactable: Interactable = null
 
 var interactable_in_use: Interactable = null
 
- 
+
 func interact() -> void:	
 	var next_interactable: Interactable = _get_next_interactable()
 	if next_interactable != null:
@@ -38,16 +40,42 @@ func _update_interaction_hint() -> void:
 	current_highlight_interactable = next_interactable
 	
 func _get_next_interactable() -> Interactable:
-	var found_interactable: Interactable = null
-	
 	remove_invalid_interactables()
 	available_interactables.sort_custom(sort_by_dist.bind(global_position))
+	var available_interactables_size: int = available_interactables.size()
+	if available_interactables_size == 0:
+		return null
+		
+	var start_index: int = 0
+		
+	if available_interactables[0] == interactable_in_use:
+		start_index = 1
+		if (available_interactables[0].can_interact(player)):
+			return interactable_in_use
 	
-	for interactable: Interactable in available_interactables:
-		if interactable.can_interact(player):
-			found_interactable = interactable
+		if available_interactables_size == 1:
+			return null
+	
+	visibilty_ray_cast_3d.force_raycast_update()
+	var collider: Object = visibilty_ray_cast_3d.get_collider()
+	
+	var collision_dist_sq: float = 999
+	
+	if collider != null:
+		collision_dist_sq = global_position.distance_squared_to(visibilty_ray_cast_3d.get_collision_point())
 
-	return found_interactable
+	
+	for i: int in available_interactables_size:
+		if i < start_index:
+			continue
+		var interactable: Interactable = available_interactables[i]
+		if interactable.can_interact(player):
+			if collider == null:
+				return interactable
+				
+			if global_position.distance_squared_to(interactable.global_position) < collision_dist_sq:
+				return interactable
+	return null
 
 func sort_by_dist(ia1: Interactable, ia2: Interactable, pos_reference: Vector3) -> int:
 	return ia1.global_position.distance_to(pos_reference) < ia2.global_position.distance_to(pos_reference)
