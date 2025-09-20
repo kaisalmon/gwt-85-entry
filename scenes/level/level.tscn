@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=46 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://4lhd8480iw6b" path="res://hidden-library-1x.png" id="4_b7m21"]
 [ext_resource type="PackedScene" uid="uid://1o1n6tonmg8w" path="res://scenes/level/map_layout_alt.tscn" id="5_a5iu8"]
 [ext_resource type="PackedScene" uid="uid://cpsbtueuw7x8m" path="res://ui/mana_orb.tscn" id="8_xv074"]
+[ext_resource type="Texture2D" uid="uid://dfufa154w6xnr" path="res://models/custom/stonerepeated.png" id="10_87pmf"]
 [ext_resource type="Resource" uid="uid://bwqfywk466dn0" path="res://resources/item_sources/bottle_source.tres" id="10_vrc4q"]
+[ext_resource type="ArrayMesh" uid="uid://b1g2mdi8w4rho" path="res://models/custom/fireplace.obj" id="11_mf35j"]
 [ext_resource type="Resource" uid="uid://c55dv7rq4fupj" path="res://resources/item_sources/marigold_source.tres" id="12_vrc4q"]
 [ext_resource type="Resource" uid="uid://dfm6fepoiifqw" path="res://resources/recipes/vivid_from_candles_bottles_recipe.tres" id="14_3rml5"]
 [ext_resource type="PackedScene" uid="uid://b7658larp87xq" path="res://scenes/interactable/cauldron.tscn" id="14_b3up8"]
@@ -20,6 +22,8 @@
 [ext_resource type="Resource" uid="uid://b7426tgx52tbw" path="res://resources/item_sources/clock_source.tres" id="17_ss4b2"]
 [ext_resource type="Resource" uid="uid://rn2g0wjpgnys" path="res://resources/item_sources/coal_source.tres" id="18_qjqsm"]
 [ext_resource type="Resource" uid="uid://b4npe2rlbifgl" path="res://resources/recipes/cozy_from_bottles_pumpkin_recipe.tres" id="18_ss4b2"]
+[ext_resource type="Texture2D" uid="uid://djt81dtivtjtt" path="res://textures/fire.png" id="18_xm880"]
+[ext_resource type="ArrayMesh" uid="uid://ddmgedghfkd4j" path="res://models/custom/coal.obj" id="19_vfold"]
 [ext_resource type="ArrayMesh" uid="uid://cyysv06jchoop" path="res://models/custom/clock.obj" id="21_fhw5o"]
 [ext_resource type="Material" uid="uid://c6y85fuj7qccd" path="res://materials/furniture_unshaded.tres" id="21_u5w0m"]
 [ext_resource type="Resource" uid="uid://d3s3pn0p3blor" path="res://resources/item_sources/pumpkin_source.tres" id="21_wyi7n"]
@@ -36,6 +40,127 @@ shader_parameter/palette_size = 16
 shader_parameter/solid_modifier = 0.6
 shader_parameter/max_distance = 0.6
 shader_parameter/gamma = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t51ir"]
+albedo_texture = ExtResource("10_87pmf")
+texture_filter = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_87pmf"]
+points = PackedVector3Array(0, 0.687427, 0.5, 0, 1.75, 0.249902, -0.5, 0.687427, 0.5, 0, 0, 0.5, 0, 1.75, -0.250098, -0.312549, 1.75, 0.249902, -0.5, 0.687427, -0.5, -0.5, 0, 0.5, 0, 0, -0.5, -0.312549, 1.75, -0.250098, 0, 0.687427, -0.5, -0.5, 0, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87pmf"]
+resource_local_to_scene = true
+render_priority = 2
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.82606, 0.82606, 0.82606, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mf35j"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_87pmf")
+size = Vector3(1, 0.1, 0.1)
+
+[sub_resource type="Shader" id="Shader_fhw5o"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+
+	// Billboard Mode: Enabled
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+			MAIN_CAM_INV_VIEW_MATRIX[0],
+			MAIN_CAM_INV_VIEW_MATRIX[1],
+			MAIN_CAM_INV_VIEW_MATRIX[2],
+			MODEL_MATRIX[3]);
+
+	// Billboard Keep Scale: Enabled
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(
+			vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0),
+			vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0),
+			vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0),
+			vec4(0.0, 0.0, 0.0, 1.0));
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb * COLOR.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xm880"]
+render_priority = 0
+shader = SubResource("Shader_fhw5o")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("18_xm880")
+shader_parameter/albedo_texture_size = Vector2i(256, 256)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_vfold"]
+offsets = PackedFloat32Array(0, 0.047191, 0.191011, 0.34382, 0.793258, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.901961, 0.662745, 1, 1, 0.701961, 0.47451, 1, 0.839216, 0.462745, 0.329412, 1, 0.839216, 0.462745, 0.329412, 1, 0.345098, 0.176471, 0.152941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r732y"]
+gradient = SubResource("Gradient_vfold")
+
+[sub_resource type="Curve" id="Curve_vfold"]
+_data = [Vector2(0, 0.034345), 0.0, 0.0, 0, 0, Vector2(0.229299, 0.989617), 0.0, 0.0, 0, 0, Vector2(0.968153, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r732y"]
+curve = SubResource("Curve_vfold")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_87pmf"]
+emission_shape = 1
+emission_sphere_radius = 0.15
+gravity = Vector3(0, 5, 0)
+scale_min = 0.05
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_r732y")
+color_ramp = SubResource("GradientTexture1D_r732y")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mf35j"]
 
 [node name="Level" instance=ExtResource("1_h3e3j")]
 script = ExtResource("2_sytrn")
@@ -63,52 +188,104 @@ is_valid_orb = false
 [node name="Interactions" type="Node3D" parent="." index="8"]
 
 [node name="Cauldron_MainRoom1" parent="Interactions" index="0" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91158, 0.126985, 2.73697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77652, 0.126985, 2.73697)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom1" index="1"]
 recipe = ExtResource("15_x4oov")
 
 [node name="Cauldron_MainRoom2" parent="Interactions" index="1" instance=ExtResource("14_b3up8")]
-transform = Transform3D(0.754515, 0, -0.656283, 0, 1, 0, 0.656283, 0, 0.754515, 3.19729, 0.126985, 2.0555)
+transform = Transform3D(0.754515, 0, -0.656283, 0, 1, 0, 0.656283, 0, 0.754515, -1.79867, 0.126985, 1.63149)
+
+[node name="cylinder" parent="Interactions/Cauldron_MainRoom2/blockbench_export/Node" index="0"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.0769817, 0.1875, -0.47204)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom2" index="1"]
 recipe = ExtResource("16_x4oov")
 
-[node name="Cauldron_Kitchen" parent="Interactions" index="2" instance=ExtResource("14_b3up8")]
+[node name="Fireplace" type="MeshInstance3D" parent="Interactions" index="2"]
+transform = Transform3D(1.145, 0, -2.98023e-08, 0, 1.145, 0, 2.98023e-08, 0, 1.145, 3.94811, -0.00320303, 2.23505)
+material_override = SubResource("StandardMaterial3D_t51ir")
+mesh = ExtResource("11_mf35j")
+skeleton = NodePath("../Cauldron_MainRoom2/blockbench_export/Node")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Interactions/Fireplace" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactions/Fireplace/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_87pmf")
+
+[node name="Cauldron_Kitchen" parent="Interactions" index="3" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25061, 0.126985, 4.20722)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Kitchen" index="1"]
 recipe = ExtResource("17_ivku7")
 
-[node name="Cauldron_Greenhouse" parent="Interactions" index="3" instance=ExtResource("14_b3up8")]
+[node name="Cauldron_Greenhouse" parent="Interactions" index="4" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.92705, 0.126985, 3.33881)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Greenhouse" index="1"]
 recipe = ExtResource("18_ss4b2")
 
-[node name="Cauldron_Corridor" parent="Interactions" index="4" instance=ExtResource("14_b3up8")]
+[node name="Cauldron_Corridor" parent="Interactions" index="5" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.03337, 0.126985, 5.13542)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Corridor" index="1"]
 recipe = ExtResource("14_3rml5")
 
-[node name="Cauldron_Office" parent="Interactions" index="5" instance=ExtResource("14_b3up8")]
+[node name="Cauldron_Office" parent="Interactions" index="6" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84827, 0.126985, 5.13542)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_Office" index="1"]
 recipe = ExtResource("15_a5iu8")
 
-[node name="Cauldron_BroomRoom" parent="Interactions" index="6" instance=ExtResource("14_b3up8")]
+[node name="Cauldron_BroomRoom" parent="Interactions" index="7" instance=ExtResource("14_b3up8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84827, 0.126985, 8.10398)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_BroomRoom" index="1"]
 recipe = ExtResource("16_b3up8")
 
-[node name="CoaltemProvider_MainRoom" parent="Interactions" index="7" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39346, 1, 0.806611)
+[node name="CoaltemProvider_MainRoom" parent="Interactions" index="8" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+transform = Transform3D(0.999466, 0, -0.0326667, 0, 1, 0, 0.0326667, 0, 0.999466, 3.7537, -0.115822, 2.28841)
 item_source = ExtResource("18_qjqsm")
+source_mesh = NodePath("Fire")
 
-[node name="ClockItemProvider_Bedroom" parent="Interactions" index="8" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="ProgressMesh" parent="Interactions/CoaltemProvider_MainRoom" index="2"]
+mesh = SubResource("BoxMesh_mf35j")
+
+[node name="InfoLabel3D" parent="Interactions/CoaltemProvider_MainRoom" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.294676, 0.681496, 0.0096314)
+
+[node name="Fire" type="Node3D" parent="Interactions/CoaltemProvider_MainRoom" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.240402, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162648, 0)
+material_override = SubResource("ShaderMaterial_xm880")
+amount = 30
+lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_87pmf")
+draw_pass_1 = SubResource("QuadMesh_mf35j")
+
+[node name="Coal" type="MeshInstance3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="1"]
+transform = Transform3D(0.634661, 0, 0.0207434, 0, 0.635, 0, -0.0207434, 0, 0.634661, -0.0234025, -0.0389321, -0.208108)
+mesh = ExtResource("19_vfold")
+
+[node name="Coal2" type="MeshInstance3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="2"]
+transform = Transform3D(0.544201, 0, 0.0177868, 0, 0.544492, 0, -0.0177868, 0, 0.544201, -0.104721, -0.0389321, -0.0232196)
+mesh = ExtResource("19_vfold")
+
+[node name="Coal3" type="MeshInstance3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="3"]
+transform = Transform3D(0.696841, 0, 0.0227757, 0, 0.697213, 0, -0.0227757, 0, 0.696841, -0.0984273, -0.0389321, 0.169334)
+mesh = ExtResource("19_vfold")
+
+[node name="Coal4" type="MeshInstance3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="4"]
+transform = Transform3D(0.69684, 0, 0.0227757, 0, 0.697213, 0, -0.0227757, 0, 0.69684, 0.0723252, -0.0389321, 0.163754)
+mesh = ExtResource("19_vfold")
+
+[node name="Coal5" type="MeshInstance3D" parent="Interactions/CoaltemProvider_MainRoom/Fire" index="5"]
+transform = Transform3D(0.69684, 0, 0.0227757, 0, 0.697213, 0, -0.0227757, 0, 0.69684, 0.0654097, -0.0389321, -0.0478404)
+mesh = ExtResource("19_vfold")
+
+[node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 0.384626, 1.93349)
 item_source = ExtResource("17_ss4b2")
 source_mesh = NodePath("Clocks")
@@ -137,7 +314,7 @@ material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("21_fhw5o")
 skeleton = NodePath("../..")
 
-[node name="BottleItemProvider_Kitchen" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32956, 0.854693, 0.494568)
 item_source = ExtResource("10_vrc4q")
 source_mesh = NodePath("Bottles")
@@ -179,11 +356,11 @@ material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("23_yoh1m")
 skeleton = NodePath("../..")
 
-[node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="10" instance=ExtResource("15_vrc4q")]
+[node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="11" instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78712, 0.9993, 0.94719)
 item_source = ExtResource("12_vrc4q")
 
-[node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="11" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="12" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38294, 0.124033, 5.89843)
 item_source = ExtResource("21_wyi7n")
 source_mesh = NodePath("Node3D")
@@ -242,3 +419,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0807367, 0.750098, -0.2632
 [editable path="Interactions/Cauldron_BroomRoom"]
 [editable path="Interactions/Cauldron_BroomRoom/blockbench_export"]
 [editable path="Interactions/Cauldron_BroomRoom/ItemConsumer"]
+[editable path="Interactions/CoaltemProvider_MainRoom"]

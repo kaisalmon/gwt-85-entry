@@ -412,10 +412,6 @@ transform = Transform3D(4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, 4.37113
 removed_by_room = 3
 grate = true
 
-[node name="WindowMainRoom7" parent="MainRoom" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.97587, 0.972613, 4.32947)
-removed_by_room = 3
-
 [node name="Bedroom" type="Node3D" parent="."]
 
 [node name="DoorBedroom" parent="Bedroom" instance=ExtResource("16_31f5n")]
