@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://1o1n6tonmg8w"]
+[gd_scene load_steps=87 format=3 uid="uid://1o1n6tonmg8w"]
 
 [ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="1_y51pv"]
 [ext_resource type="PackedScene" uid="uid://dt6k0c8w2pyfj" path="res://scenes/level/wall.tscn" id="2_vaofm"]
@@ -164,17 +164,6 @@ points = PackedVector3Array(0.324932, 0.449948, 0.375, -0.325005, 0.449948, 0.37
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_60hyd"]
 size = Vector3(2.09476, 2, 3.4906)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o54a4"]
-cull_mode = 2
-shading_mode = 0
-albedo_texture = ExtResource("4_qxlrm")
-uv1_scale = Vector3(6, 1, 1)
-texture_filter = 2
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_n1evr"]
-size = Vector2(6, 2)
-orientation = 2
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fmx6b"]
 points = PackedVector3Array(-0.136008, 0.372327, -0.418422, -0.355986, 0.372327, -0.258606, -0.042901, 0.782792, -0.165632, 0.0966305, 0.768217, -0.267616, 0.089051, 0.695258, -0.308738, 0.135906, 0.372327, -0.418422, -0.132391, 0.312648, -0.407282, -0.346425, 0.312648, -0.251725, -0.428249, 0.312648, 0, -0.439963, 0.372327, 0, -0.331783, 0.580597, -0.0500501, -0.297934, 0.583917, -0.132293, -0.2733, 0.644243, -0.101902, -0.294747, 0.642138, -0.0500501, 0.0452105, 0.823118, -0.138518, 0.101712, 0.817288, -0.179885, 0.236248, 0.753722, -0.165632, 0.355884, 0.372327, -0.258606, 0.132289, 0.312648, -0.407282, -0.0998333, 0.0267239, -0.307181, -0.261328, 0.0267239, -0.189879, -0.322998, 0.0267239, 0, -0.261328, 0.0267239, 0.189797, -0.346425, 0.312648, 0.251643, -0.355986, 0.372327, 0.258524, -0.2733, 0.644243, 0.00180212, 0.0668294, 0.820932, -0.0716757, 0.102832, 0.827248, -0.120006, 0.1583, 0.811377, -0.138518, 0.136681, 0.813644, -0.0716757, 0.182933, 0.759229, -0.000655323, 0.254163, 0.614039, 0.190616, 0.439947, 0.372327, 0, 0.2676, 0.676633, -0.178329, 0.346323, 0.312648, -0.251725, 0.261226, 0.0267239, -0.189879, 0.0997312, 0.0267239, -0.307181, -0.0911342, 2e-06, -0.280395, -0.23859, 2e-06, -0.173332, -0.294833, 2e-06, 0, -0.23859, 2e-06, 0.17325, -0.0998333, 0.0267239, 0.307099, -0.132391, 0.312648, 0.4072, -0.136008, 0.372327, 0.418422, -0.342119, 0.392976, 0.24853, -0.130754, 0.392976, 0.402121, 0.0104138, 0.777205, -0.000655323, 0.130566, 0.619789, 0.245991, 0.181727, 0.606023, 0.264504, 0.232975, 0.603675, 0.241567, 0.355884, 0.372327, 0.258524, 0.346323, 0.312648, 0.251643, 0.428147, 0.312648, 0, 0.322896, 0.0267239, 0, 0.238488, 2e-06, -0.173332, 0.091032, 2e-06, -0.280395, -0.0911342, 2e-06, 0.280313, 0.0997312, 0.0267239, 0.307099, 0.132289, 0.312648, 0.4072, 0.135906, 0.372327, 0.418422, 0.261226, 0.0267239, 0.189797, 0.238488, 2e-06, 0.17325, 0.294731, 2e-06, 0, 0.091032, 2e-06, 0.280313)
@@ -746,34 +735,28 @@ grate = true
 transform = Transform3D(-0.999999, 0, 0, 0, 1, 0, 0, 0, -0.999999, -0.269075, 0.5, -0.0128465)
 grate = true
 
-[node name="SmallWall3" parent="Greenhouse" instance=ExtResource("3_s5l36")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.6147, 1, 3.20196)
-material_override = SubResource("StandardMaterial3D_o54a4")
-mesh = SubResource("PlaneMesh_n1evr")
-skeleton = NodePath("../..")
-
-[node name="WindowGreenhouseDuo3A" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79804, -0.5, -0.00149059)
+[node name="WindowGreenhouseDuo3A" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6856, 0.5, 5)
 grate = true
 
-[node name="WindowGreenhouseDuo3B" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.79804, 0.5, -0.00149059)
+[node name="WindowGreenhouseDuo3B" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.7115, 1.5, 5)
 grate = true
 
-[node name="WindowGreenhouseDuo4A" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0980363, -0.5, -0.00149059)
+[node name="WindowGreenhouseDuo4A" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.7146, 0.5, 3.3)
 grate = true
 
-[node name="WindowGreenhouseDuo4B" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0980363, 0.5, -0.00149059)
+[node name="WindowGreenhouseDuo4B" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6831, 1.5, 3.3)
 grate = true
 
-[node name="WindowGreenhouseDuo5A" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.60196, -0.5, -0.00149059)
+[node name="WindowGreenhouseDuo5A" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6554, 0.5, 1.6)
 grate = true
 
-[node name="WindowGreenhouseDuo5B" parent="Greenhouse/SmallWall3" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.60196, 0.5, -0.00149059)
+[node name="WindowGreenhouseDuo5B" parent="Greenhouse" instance=ExtResource("11_0rxmf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6915, 1.5, 1.6)
 grate = true
 
 [node name="CactusMediumA" type="MeshInstance3D" parent="Greenhouse"]
@@ -822,6 +805,9 @@ shape = SubResource("ConvexPolygonShape3D_foglo")
 [node name="MiddleWall4" parent="Greenhouse" instance=ExtResource("22_24spx")]
 transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, 7.614, 1, 6.548)
 skeleton = NodePath("../../..")
+
+[node name="MiddleWall" parent="Greenhouse" instance=ExtResource("22_24spx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.7, 1, 3.3)
 
 [node name="Corridor" type="Node3D" parent="."]
 
