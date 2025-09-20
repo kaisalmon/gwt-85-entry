@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvdt2mvdyvokq"]
+[gd_scene load_steps=5 format=3 uid="uid://bvdt2mvdyvokq"]
 
 [ext_resource type="Script" uid="uid://bven71qdfs5jt" path="res://scenes/ui/pause_menu_ui.gd" id="1_31fmg"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="1_jfoc7"]
+[ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="3_8358y"]
+[ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="4_642b2"]
 
 [node name="PauseOverlay" type="ColorRect" node_paths=PackedStringArray("settings_ui", "pause_menu_vbc", "quit_button")]
 z_index = 5
@@ -70,8 +72,21 @@ text = "ui.menu.quit"
 visible = false
 layout_mode = 2
 
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8358y")
+bus = &"SFX"
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_642b2")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="VBoxContainer/PauseMenuVBC/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PauseMenuVBC/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/PauseMenuVBC/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PauseMenuVBC/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/PauseMenuVBC/MainMenuButton" to="." method="_on_main_menu_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PauseMenuVBC/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/PauseMenuVBC/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PauseMenuVBC/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="VBoxContainer/SettingsUI" to="." method="_on_settings_ui_back_pressed"]

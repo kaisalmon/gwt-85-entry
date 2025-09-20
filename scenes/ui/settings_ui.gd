@@ -15,6 +15,8 @@ signal back_pressed
 
 @onready var locale_option_button: OptionButton = $VBoxContainer/LanguageHBC/LocaleOptionButton
 @onready var fullscreen_button: CheckBox = $VBoxContainer/FullscreenHBC/FullscreenButton
+@onready var click: AudioStreamPlayer = $click
+@onready var hover: AudioStreamPlayer = $hover
 
 var fullscreen_active: bool
 
@@ -42,38 +44,46 @@ func load_values_from_settings() -> void:
 	locale_option_button.selected = get_locale_button_id(Settings.locale)
 	
 func _on_overall_fader_value_changed(value: float) -> void:
+	hover.play()
 	Settings.set_master_volume(value, false)
 	set_audio_slider_value(overall_value_label, value)
 	Util.set_bus_volume(Settings.MASTER_BUS_NAME, value)
 
 func _on_music_fader_value_changed(value: float) -> void:
+	hover.play()
 	Settings.set_music_volume(value, false)
 	set_audio_slider_value(music_value_label, value)
 	Util.set_bus_volume(Settings.MUSIC_BUS_NAME, value)
 
 func _on_sfx_fader_value_changed(value: float) -> void:
+	hover.play()
 	Settings.set_sfx_volume(value, false)
 	set_audio_slider_value(sfx_value_label, value)
 	Util.set_bus_volume(Settings.SFX_BUS_NAME, value)
 
 func _on_ambience_fader_value_changed(value: float) -> void:
+	hover.play()
 	Settings.set_ambience_volume(value, false)
 	set_audio_slider_value(ambience_value_label, value)
 	Util.set_bus_volume(Settings.AMBIENCE_BUS_NAME, value)
 
 func _on_overall_fader_drag_ended(value_changed: bool) -> void:
+	click.play()
 	if value_changed:
 		Settings.set_ambience_volume(overall_fader.value)
 
 func _on_music_fader_drag_ended(value_changed: bool) -> void:
+	click.play()
 	if value_changed:
 		Settings.set_ambience_volume(music_fader.value)
 		
 func _on_sfx_fader_drag_ended(value_changed: bool) -> void:
+	click.play()
 	if value_changed:
 		Settings.set_ambience_volume(sfx_fader.value)
 		
 func _on_ambience_fader_drag_ended(value_changed: bool) -> void:
+	click.play()
 	if value_changed:
 		Settings.set_ambience_volume(ambience_fader.value)
 
@@ -102,15 +112,18 @@ static func get_locale_button_id(locale_short: StringName) -> int:
 	return 0
 	
 func _on_locale_option_button_item_selected(index: int) -> void:
+	click.play()
 	var locale_new: String = locale_option_button.get_item_text(index);
 	var locale_new_short: String = get_languagecode_fom_locale_uitext(locale_new);
 	change_locale(locale_new_short)
 	Settings.set_locale(locale_new_short)
 	
 func change_locale(locale_short: StringName) -> void:
+	click.play()
 	TranslationServer.set_locale(locale_short)
 	
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	click.play()
 	set_fullscreen_active(toggled_on)
 		
 func set_fullscreen_active(is_active_new: bool) -> void:
@@ -120,8 +133,10 @@ func set_fullscreen_active(is_active_new: bool) -> void:
 	fullscreen_button.set_pressed_no_signal(fullscreen_active)
 	
 func _on_back_button_pressed() -> void:
+	click.play()
 	back_pressed.emit()
 
 func _on_reset_button_pressed() -> void:
+	click.play()
 	Settings.reset_to_defaults(true)
 	load_values_from_settings()

@@ -9,6 +9,9 @@ extends CanvasLayer
 @export var quit_button: Button
 @export var settings_ui: SettingsUI
 
+@onready var click: AudioStreamPlayer = $click
+@onready var hover: AudioStreamPlayer = $hover
+
 var starting_game = false
 var new_game_timer = 0.0
 var fadeout_duration = 0.8
@@ -29,6 +32,7 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file(start_game_scene_path)
 
 func _on_new_game_button_pressed() -> void:
+	click.play()
 	if new_game_deletes_old_save:
 		SaveGame.delete_savegame()
 	
@@ -37,20 +41,50 @@ func _on_new_game_button_pressed() -> void:
 	new_game_timer = fadeout_duration
 	
 func _on_continue_button_pressed() -> void:
+	click.play()
 	starting_game = true
 	new_game_timer = fadeout_duration
 	GameState.load_game_at_start = true
 
 func _on_settings_button_pressed() -> void:
+	click.play()
 	settings_ui.visible = true
 	start_menu_mc.visible = false
 	
 func _on_credits_button_pressed() -> void:
+	click.play()
 	pass # Replace with function body.
 
 func _on_quit_button_pressed() -> void:
+	click.play()
 	get_tree().quit()
 
 func _on_settings_ui_back_pressed() -> void:
+	click.play()
 	settings_ui.visible = false
 	start_menu_mc.visible = true
+
+
+func _on_continue_button_mouse_entered() -> void:
+	hover.play()
+	pass # Replace with function body.
+
+
+func _on_new_game_button_mouse_entered() -> void:
+	hover.play()
+	pass # Replace with function body.
+
+
+func _on_settings_button_mouse_entered() -> void:
+	hover.play()
+	pass # Replace with function body.
+
+
+func _on_credits_button_mouse_entered() -> void:
+	hover.play()
+	pass # Replace with function body.
+
+
+func _on_quit_button_mouse_entered() -> void:
+	hover.play()
+	pass # Replace with function body.

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://lgpv656d2gli"]
+[gd_scene load_steps=5 format=3 uid="uid://lgpv656d2gli"]
 
 [ext_resource type="Script" uid="uid://dhqiw3qfy4o06" path="res://scenes/ui/settings_ui.gd" id="1_orh8u"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_5jsx6"]
+[ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="3_jmt4x"]
+[ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="4_2oxlm"]
 
 [node name="SettingsUI" type="MarginContainer"]
 anchors_preset = 8
@@ -151,6 +153,15 @@ layout_mode = 2
 theme = ExtResource("2_5jsx6")
 theme_type_variation = &"FlatButton"
 text = "ui.settings.reset"
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jmt4x")
+bus = &"SFX"
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2oxlm")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="item_selected" from="VBoxContainer/LanguageHBC/LocaleOptionButton" to="." method="_on_locale_option_button_item_selected"]
 [connection signal="toggled" from="VBoxContainer/FullscreenHBC/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
