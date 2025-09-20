@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50mm"
+   height="50mm"
+   viewBox="0 0 50 50"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="cozy_magic.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#676767"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8901105"
+     inkscape:cx="102.24523"
+     inkscape:cy="98.958155"
+     inkscape:window-width="1520"
+     inkscape:window-height="1250"
+     inkscape:window-x="2391"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3.96875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.855443,29.232707 c 0,8.656548 7.314321,13.258062 13.800835,13.297322 6.486514,0.03926 13.357225,-7.328532 13.357225,-13.357225 -10.617352,6.285794 -19.472547,4.858992 -27.15806,0.0599 z"
+       id="path3"
+       sodipodi:nodetypes="czccc" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3.96875;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 39.013502,21.78139 c 0,-8.656548 -7.31432,-13.2580624 -13.800834,-13.2973224 -6.486514,-0.03926 -13.357225,7.3285324 -13.357225,13.3572254 14.356827,-6.446635 17.889195,6.848333 27.158059,-0.0599 z"
+       id="path4"
+       sodipodi:nodetypes="czccc" />
+  </g>
+</svg>
