@@ -61,13 +61,16 @@ is_valid_orb = false
 [node name="Interactions" type="Node3D" parent="." index="9"]
 
 [node name="Cauldron_MainRoom1" parent="Interactions" index="0" instance=ExtResource("14_b3up8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4954, 0.126985, 2.73697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9097, 0.126985, 2.73697)
+
+[node name="blockbench_export" parent="Interactions/Cauldron_MainRoom1" index="0"]
+transform = Transform3D(0.892979, 0, 0.450098, 0, 1, 0, -0.450098, 0, 0.892979, -1.71798, 0, 0)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom1" index="1"]
 recipe = ExtResource("15_x4oov")
 
 [node name="Cauldron_MainRoom2" parent="Interactions" index="1" instance=ExtResource("14_b3up8")]
-transform = Transform3D(0.754515, 0, -0.656283, 0, 1, 0, 0.656283, 0, 0.754515, 2.29637, 0.126985, 2.0555)
+transform = Transform3D(0.754515, 0, -0.656283, 0, 1, 0, 0.656283, 0, 0.754515, 3.19729, 0.126985, 2.0555)
 
 [node name="ItemConsumer" parent="Interactions/Cauldron_MainRoom2" index="1"]
 recipe = ExtResource("16_x4oov")
@@ -111,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39346, 1, 0.806611)
 item_source = ExtResource("18_qjqsm")
 
 [node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44365, 1, -1.76651)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 1, 1.93349)
 item_source = ExtResource("17_ss4b2")
 
 [node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" instance=ExtResource("15_vrc4q")]
