@@ -54,14 +54,10 @@ ui.saved;Saved;Gespeichert
 dialogue.this_is;This is the {0};Das ist {0}
 dialogue.room_unlocked;Room unlocked: {0};Raum freigeschaltet: {0}
 dialogue.unlock_room.bedroom;I'm gonna sleep like a log;Ich werde wie ein Murmeltier schlafen
-dialogue.unlock_room.library;Oh, that looks like a cozy place...;Oh, das sieht wie ein gemütlicher Platz aus...
 dialogue.unlock_room.kitchen;Where did I put these bottles?;Wo habe ich diese Flaschen hingelegt?
 dialogue.unlock_room.broom_room;This is where I park my second and third broom.;Hier parke ich meinen Zweit- und Drittbesen.
 dialogue.unlock_room.office;This room is purely for procrastination.;Dieser Raum dient ausschließlich zur Prokrastination.
 dialogue.unlock_room.corridor;And this is the corridor.;Und das ist der Korridor.
 dialogue.unlock_room.green_house;It's pumpkin season!;Es ist Kürbis-Saison!
-dialogue.intro.1;I guess I should settle down here.;Ich denke, ich sollte mich hier niederlassen.
-dialogue.intro.2;Time to unpack and make some room for the winter furniture.;Zeit, auszupacken und etwas Platz für die Wintermöbel zu schaffen.
-dialogue.ending.1;I will definitely find a good book here!;Hier werde ich definitiv ein gutes Buch finden!
-dialogue.ending.2;Time to take a rest from expanding and get some tea...;Zeit, sich eine Auszeit vom Ausbauen zu nehmen und sich einen Tee zu holen...
-
+dialogue.intro.1;I think this'll make nice place to settle for the winter.;Ich denke, das wird ein schöner Ort sein, um sich für den Winter niederzulassen.
+dialogue.ending.1;...and that's it! The last room!;...und das ist der letzte Raum!

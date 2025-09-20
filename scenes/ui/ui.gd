@@ -152,9 +152,10 @@ func _on_autosave_timer_timeout() -> void:
 	autosave_available = true
 
 func show_dialogue_by_door(room_type: GameState.RoomType) -> void:
-	if room_type == GameState.RoomType.NONE || room_type == GameState.RoomType.MAIN_ROOM:
+	if room_type == GameState.RoomType.LIBRARY || room_type == GameState.RoomType.NONE || room_type == GameState.RoomType.MAIN_ROOM:
 		return
 	
+	await get_tree().create_timer(1.0).timeout
 	show_text(tr("dialogue.unlock_room."+(GameState.RoomType.keys()[room_type] as String).to_lower()))
 	
 func _process(delta: float) -> void:

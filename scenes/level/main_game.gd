@@ -32,16 +32,11 @@ func _process(delta: float) -> void:
 		$CanvasLayer/Fadeout.color.a = lerp(0.0, 1.0, fadeout_timer / fadein_time)
 
 func show_intro() -> void:
+	await get_tree().create_timer(2.0).timeout
 	GameState.ui.show_text(tr("dialogue.intro.1"))
-	await GameState.ui.current_text_finished
-	await get_tree().create_timer(1.0).timeout
-	GameState.ui.show_text(tr("dialogue.intro.2"))
 
 
 func show_ending(_numdoors: int, room_type:GameState.RoomType) -> void:
 	if room_type == GameState.RoomType.LIBRARY:
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(3.0).timeout
 		GameState.ui.show_text(tr("dialogue.ending.1"))
-		await GameState.ui.current_text_finished
-		await get_tree().create_timer(1.0).timeout
-		GameState.ui.show_text(tr("dialogue.ending.2"))
