@@ -13,6 +13,7 @@ const FINAL_WIGGLE_SPEED: float = 40.0
 @export var source_mesh: Node3D
 @export var info_label_3d: InfoLabel3D
 @export var pickup_audio_stream_player: AudioStreamPlayer
+@export var progress_audio_stream_player: AudioStreamPlayer
 @export var progress_mesh: MeshInstance3D
 @export var cooldown_timer: Timer
 
@@ -46,6 +47,8 @@ func _process(delta: float) -> void:
 		info_label_3d.text = get_cooldown_time_left()
 		
 	if !is_interacting:
+		if progress_audio_stream_player: 
+			progress_audio_stream_player.stop()
 		if interaction_progress > 0:
 			interaction_progress -= delta * 2
 			set_progress_bar(interaction_progress / item_source.interaction_duration)
@@ -53,7 +56,8 @@ func _process(delta: float) -> void:
 				source_mesh.global_position = source_mesh_default_pos
 			#print("pickup stopped: ", interaction_progress)
 		return
-
+	if !progress_audio_stream_player.playing:
+		progress_audio_stream_player.play()
 	interaction_progress += delta
 	var relative_progress: float = interaction_progress / item_source.interaction_duration
 	set_progress_bar(relative_progress)
