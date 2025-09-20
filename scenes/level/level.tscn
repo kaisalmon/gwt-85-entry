@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=48 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -32,6 +32,7 @@
 [ext_resource type="ArrayMesh" uid="uid://c23bvjcdd7u1l" path="res://models/custom/pumpkin.obj" id="24_yoh1m"]
 [ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="25_u5w0m"]
 [ext_resource type="PackedScene" uid="uid://bilcilcn0ckx3" path="res://scenes/interactable/candle_provider.tscn" id="27_u5w0m"]
+[ext_resource type="Script" uid="uid://cxu1nrqik4n3d" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pm6rs"]
 shader = ExtResource("3_m0bv2")
@@ -162,6 +163,9 @@ color_ramp = SubResource("GradientTexture1D_r732y")
 
 [sub_resource type="QuadMesh" id="QuadMesh_mf35j"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_87pmf"]
+size = Vector3(2.31709, 1.93463, 2.7571)
+
 [node name="Level" instance=ExtResource("1_h3e3j")]
 script = ExtResource("2_sytrn")
 
@@ -177,7 +181,7 @@ material = SubResource("ShaderMaterial_pm6rs")
 [node name="MapLayoutAlt" parent="." index="5" instance=ExtResource("5_a5iu8")]
 
 [node name="Player" parent="." index="6" instance=ExtResource("3_i166f")]
-transform = Transform3D(0.999896, 0, 0.0144508, 0, 1, 0, -0.0144508, 0, 0.999896, -0.318056, 0.657381, -3.61046)
+transform = Transform3D(0.999896, 0, 0.0144508, 0, 1, 0, -0.0144508, 0, 0.999896, -0.318056, 0.657381, -2.9244)
 mouse_sensitivity = 0.01
 
 [node name="ManaOrb_For_performance_reasons" parent="." index="7" instance=ExtResource("8_xv074")]
@@ -399,7 +403,21 @@ skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/Do
 surface_material_override/0 = ExtResource("25_u5w0m")
 
 [node name="ItemProvider" parent="." index="9" instance=ExtResource("27_u5w0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0807367, 0.750098, -0.263253)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0807367, 0.750098, 0.384184)
+
+[node name="GameEndArea" type="Area3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45224, 0.592497, 7.21803)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("33_mf35j")
+next_scene = "uid://dyawlu53u7bd2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameEndArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0975113, 0.135712, 0.0977859)
+shape = SubResource("BoxShape3D_87pmf")
+debug_color = Color(0.900826, 0.492434, 0.889312, 1)
+
+[connection signal="body_entered" from="GameEndArea" to="GameEndArea" method="_on_game_end_area_body_entered"]
 
 [editable path="Interactions/Cauldron_MainRoom1"]
 [editable path="Interactions/Cauldron_MainRoom1/blockbench_export"]

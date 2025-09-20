@@ -2,11 +2,13 @@ extends Node3D
 
 var fadein_time = 0.8
 var timer = 0.0
+var fadeout_timer = 0.0
 
 func _ready() -> void:
 	$CanvasLayer/Fadeout.color.a = 1.0
 	_late_ready.call_deferred()
 	GameState.new_door_unlocked.connect(show_ending)
+	GameState.is_ending = false
 
 func _late_ready() -> void:
 	var has_loaded = false
@@ -22,10 +24,13 @@ func save_game() -> void:
 	SaveGame.save_to_file()
 	
 func _process(delta: float) -> void:
-	if timer < fadein_time:
+	if timer < fadein_time and not GameState.is_ending:
 		timer += delta
 		$CanvasLayer/Fadeout.color.a = lerp(1.0, 0.0, timer / fadein_time)
-		
+	if GameState.is_ending:
+		fadeout_timer += delta
+		$CanvasLayer/Fadeout.color.a = lerp(0.0, 1.0, fadeout_timer / fadein_time)
+
 func show_intro() -> void:
 	GameState.ui.show_text(tr("dialogue.intro.1"))
 	await GameState.ui.current_text_finished

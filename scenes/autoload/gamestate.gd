@@ -37,6 +37,8 @@ var load_game_at_start: bool = false
 
 var door_count: int = 0
 
+var is_ending: bool = false
+
 # returns the amount that was removed	
 func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
 	var current_amount: int = current_magic_amounts[magic_type]

@@ -28,10 +28,12 @@ var held_item: Item = null
 var is_item_in_hover_pos: bool = false
 
 var has_noclip: bool = false
+var disable_input: bool = false # set to false in final cutscene
 
 var current_speed: float
 var current_accel: float
 var current_decel: float
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -59,6 +61,8 @@ func _physics_process(delta: float) -> void:
 		look_pivot.position.y = base_y_pos + current_y_offset		
 
 func _move(delta: float) -> void:
+	if disable_input:
+		return
 	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if !can_use_input():
 		input_dir = Vector2.ZERO
@@ -114,7 +118,7 @@ func _input(event: InputEvent) -> void:
 				held_item.print_debug()
 				
 func can_use_input() -> bool:
-	return true
+	return !disable_input
 
 func _on_timer_timeout() -> void:
 	if ismoving:

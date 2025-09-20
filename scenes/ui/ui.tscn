@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgpt5j6jktjpw"]
+[gd_scene load_steps=7 format=3 uid="uid://cgpt5j6jktjpw"]
 
 [ext_resource type="Script" uid="uid://blfd2w44hlxyr" path="res://scenes/ui/ui.gd" id="1_u7n8c"]
 [ext_resource type="PackedScene" uid="uid://crs2rkc1yx8rn" path="res://scenes/ui/debug_mode_ui.tscn" id="2_f5cxw"]
 [ext_resource type="PackedScene" uid="uid://bvdt2mvdyvokq" path="res://scenes/ui/pause_menu_ui.tscn" id="3_aac20"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7n8c"]
-bg_color = Color(0.164706, 0.129412, 0.227451, 1)
+bg_color = Color(0, 0, 0, 0.396078)
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aac20"]
+bg_color = Color(0.197229, 0.383469, 0.265152, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5kmx"]
+bg_color = Color(0, 0, 0, 0)
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label", "magic_value_label_cozy", "magic_value_label_hollow", "magic_value_label_vivid", "magic_value_label_windy", "textbox_container", "text_start", "text_main", "text_end", "debug_mode_ui", "autosave_label", "autosave_timer")]
 layer = 8
@@ -55,6 +61,7 @@ theme_override_constants/margin_right = 0
 [node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aac20")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
 layout_mode = 2
@@ -71,6 +78,7 @@ texture_repeat = 2
 custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_g5kmx")
 text = "Text!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -161,6 +169,20 @@ offset_bottom = 16.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.800491, 0.800491, 0.800491, 1)
 text = "ui.saved"
+
+[node name="CutsceneBars" type="Node2D" parent="."]
+
+[node name="BottomBar" type="ColorRect" parent="CutsceneBars"]
+offset_top = 177.0
+offset_right = 215.0
+offset_bottom = 219.0
+color = Color(0, 0, 0, 1)
+
+[node name="TopBar" type="ColorRect" parent="CutsceneBars"]
+offset_top = -47.0
+offset_right = 210.0
+offset_bottom = -5.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="unpause_requested" from="PauseOverlay" to="." method="_on_pause_overlay_unpause_requested"]
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://df7yerlwjrge4"
+valid=false
+
+[deps]
+
+source_file="res://final_cutscene.csv"
+
+[params]
+
+compress=true
+delimiter=0

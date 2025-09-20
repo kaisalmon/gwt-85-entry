@@ -32,6 +32,7 @@ var text_animate_tween: Tween = null
 var is_debug_mode_active: bool = false
 var is_on_pause_screen: bool = false
 var autosave_available: bool = true
+var in_cutscene: bool = false
 
 func _ready() -> void:
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
@@ -156,3 +157,8 @@ func show_dialogue_by_door(room_type: GameState.RoomType) -> void:
 	
 	show_text(tr("dialogue.unlock_room."+(GameState.RoomType.keys()[room_type] as String).to_lower()))
 	
+func _process(delta: float) -> void:
+	if not in_cutscene:
+		return
+	$CutsceneBars/TopBar.position.y = lerp($CutsceneBars/TopBar.position.y, 0.0, delta * 2)
+	$CutsceneBars/BottomBar.position.y = lerp($CutsceneBars/BottomBar.position.y, 192.0 - 42.0, delta * 2)
