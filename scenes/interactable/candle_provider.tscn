@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://bilcilcn0ckx3"]
+
+[ext_resource type="PackedScene" uid="uid://b5npl0ksq8mxq" path="res://scenes/interactable/item_provider.tscn" id="1_3eaga"]
+[ext_resource type="Script" uid="uid://dr7jfnaxd4avt" path="res://scenes/item_source.gd" id="2_juq7f"]
+[ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="3_an7nk"]
+
+[sub_resource type="Resource" id="Resource_mnmup"]
+script = ExtResource("2_juq7f")
+item = 0
+interaction_duration = 1.0
+cooldown_duration = 25.0
+metadata/_custom_type_script = "uid://dr7jfnaxd4avt"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f60gi"]
+resource_local_to_scene = true
+render_priority = 2
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.82606, 0.82606, 0.82606, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_juq7f"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_f60gi")
+size = Vector3(1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1tlb"]
+albedo_color = Color(1, 0.513054, 0.254568, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_64sie"]
+material = SubResource("StandardMaterial3D_b1tlb")
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57h7h"]
+shading_mode = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3250i"]
+material = SubResource("StandardMaterial3D_57h7h")
+radius = 0.03
+height = 0.1
+
+[node name="ItemProvider" node_paths=PackedStringArray("source_mesh") instance=ExtResource("1_3eaga")]
+item_source = SubResource("Resource_mnmup")
+source_mesh = NodePath("Candles")
+
+[node name="ProgressMesh" parent="." index="2"]
+mesh = SubResource("BoxMesh_juq7f")
+
+[node name="Candles" type="Node3D" parent="." index="6"]
+
+[node name="DummyMesh" type="MeshInstance3D" parent="Candles" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355074, 0.0733237, 0.191609)
+material_overlay = ExtResource("3_an7nk")
+mesh = SubResource("CylinderMesh_64sie")
+
+[node name="DummyMesh2" type="MeshInstance3D" parent="Candles" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0345799, 0.208688, 0.192226)
+mesh = SubResource("CapsuleMesh_3250i")
+
+[node name="DummyMesh7" type="MeshInstance3D" parent="Candles" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180651, 0.0733237, -0.0082131)
+material_overlay = ExtResource("3_an7nk")
+mesh = SubResource("CylinderMesh_64sie")
+
+[node name="DummyMesh8" type="MeshInstance3D" parent="Candles" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179724, 0.208688, -0.00759646)
+mesh = SubResource("CapsuleMesh_3250i")
+
+[node name="DummyMesh3" type="MeshInstance3D" parent="Candles" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141143, 0.0733237, 0.0977226)
+material_overlay = ExtResource("3_an7nk")
+mesh = SubResource("CylinderMesh_64sie")
+
+[node name="DummyMesh4" type="MeshInstance3D" parent="Candles" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142071, 0.208688, 0.0983392)
+mesh = SubResource("CapsuleMesh_3250i")
+
+[node name="DummyMesh5" type="MeshInstance3D" parent="Candles" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1.645, 0, 0, 0, 1, 0.01491, 0.136939, -0.0374879)
+material_overlay = ExtResource("3_an7nk")
+mesh = SubResource("CylinderMesh_64sie")
+
+[node name="DummyMesh6" type="MeshInstance3D" parent="Candles" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0139825, 0.354756, -0.0368713)
+mesh = SubResource("CapsuleMesh_3250i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Candles" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0512637, 0.721214, 0.0296366)
+light_energy = 3.91
+omni_range = 17.0

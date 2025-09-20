@@ -2,21 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bnfcnb8qrl0t5" path="res://scenes/interactable/item_provider.gd" id="1_yvxfo"]
 [ext_resource type="PackedScene" uid="uid://bgrpeagpcgvnb" path="res://scenes/ui/info_label_3d.tscn" id="2_0ns2q"]
+[ext_resource type="Script" uid="uid://dr7jfnaxd4avt" path="res://scenes/item_source.gd" id="2_auakr"]
 [ext_resource type="AudioStream" uid="uid://bngdomxcvu4m4" path="res://audio/sfx/ui/pickup_01.ogg" id="2_g4kgx"]
 [ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="3_0ns2q"]
 
+[sub_resource type="Resource" id="Resource_goeln"]
+script = ExtResource("2_auakr")
+item = 5
+interaction_duration = 2.0
+cooldown_duration = 30.0
+metadata/_custom_type_script = "uid://dr7jfnaxd4avt"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7q1x"]
 radius = 0.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yvxfo"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.894594, 0.369436, 0.44871, 0.647059)
-
-[sub_resource type="SphereMesh" id="SphereMesh_vyspm"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_yvxfo")
 
 [sub_resource type="Gradient" id="Gradient_0ns2q"]
 offsets = PackedFloat32Array(1)
@@ -45,12 +43,12 @@ streams_count = 2
 stream_0/stream = ExtResource("2_g4kgx")
 stream_1/stream = ExtResource("3_0ns2q")
 
-[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("source_mesh", "info_label_3d", "pickup_audio_stream_player", "progress_mesh", "cooldown_timer")]
+[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("info_label_3d", "pickup_audio_stream_player", "progress_mesh", "cooldown_timer")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
-source_mesh = NodePath("MeshInstance3D")
+item_source = SubResource("Resource_goeln")
 info_label_3d = NodePath("InfoLabel3D")
 pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
 progress_mesh = NodePath("ProgressMesh")
@@ -58,9 +56,6 @@ cooldown_timer = NodePath("CooldownTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_b7q1x")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_vyspm")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730339, 0)

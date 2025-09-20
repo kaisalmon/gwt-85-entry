@@ -3,20 +3,20 @@
 [ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_b1tlb"]
 [ext_resource type="PackedScene" uid="uid://b5xpry7ne6hmn" path="res://scenes/interactable/item_interactable.tscn" id="2_57h7h"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1tlb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57h7h"]
 albedo_color = Color(1, 0.513054, 0.254568, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_b1tlb"]
-material = SubResource("StandardMaterial3D_b1tlb")
+material = SubResource("StandardMaterial3D_57h7h")
 top_radius = 0.07
 bottom_radius = 0.07
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57h7h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6kjv0"]
 shading_mode = 0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b1tlb"]
-material = SubResource("StandardMaterial3D_57h7h")
+material = SubResource("StandardMaterial3D_6kjv0")
 radius = 0.03
 height = 0.1
 
