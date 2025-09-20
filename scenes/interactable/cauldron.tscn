@@ -69,6 +69,7 @@ source_mesh = NodePath("../blockbench_export/Node/cylinder")
 
 [node name="ambience_cauldron" parent="ItemConsumer/CollisionShape3D" index="0"]
 max_distance = 15.0
+bus = &"Ambience"
 
 [node name="cauldroninteract_success" parent="ItemConsumer" index="1"]
 max_distance = 15.0
