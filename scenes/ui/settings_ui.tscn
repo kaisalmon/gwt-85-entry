@@ -41,6 +41,27 @@ popup/item_0/id = 0
 popup/item_1/text = "Deutsch"
 popup/item_1/id = 1
 
+[node name="SensitivityHBC" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SensitivityLabel" type="Label" parent="VBoxContainer/SensitivityHBC"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "ui.settings.controls.sensitivity"
+
+[node name="SensitivityFader" type="HSlider" parent="VBoxContainer/SensitivityHBC"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+min_value = 0.1
+max_value = 2.0
+step = 0.001
+value = 0.1
+
+[node name="SensitivityValue" type="Label" parent="VBoxContainer/SensitivityHBC"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "999%"
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -164,6 +185,8 @@ volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="item_selected" from="VBoxContainer/LanguageHBC/LocaleOptionButton" to="." method="_on_locale_option_button_item_selected"]
+[connection signal="drag_ended" from="VBoxContainer/SensitivityHBC/SensitivityFader" to="." method="_on_sensitivity_fader_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/SensitivityHBC/SensitivityFader" to="." method="_on_sensitivity_fader_value_changed"]
 [connection signal="toggled" from="VBoxContainer/FullscreenHBC/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
 [connection signal="drag_ended" from="VBoxContainer/OverallHBC/OverallFader" to="." method="_on_overall_fader_drag_ended"]
 [connection signal="value_changed" from="VBoxContainer/OverallHBC/OverallFader" to="." method="_on_overall_fader_value_changed"]

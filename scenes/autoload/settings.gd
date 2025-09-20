@@ -15,6 +15,7 @@ var master_volume_linear: float = 0.75
 var music_volume_linear: float = 0.75
 var sfx_volume_linear: float = 0.75
 var ambience_volume_linear: float = 0.75
+var sensitivity: float = 1.0
 var fullscreen_active: bool = false
 var is_debug_mode_available: bool
 
@@ -30,6 +31,7 @@ func reset_to_defaults(do_save: bool = true) -> void:
 	set_sfx_volume(0.75, false)
 	set_ambience_volume(0.75, false)
 	set_fullscreen_active(false, false)
+	set_mouse_sensitivity(1.0, false)
 	set_debug_mode_available(Util.is_debug_mode_allowed(), false)
 	
 	apply_values()
@@ -129,6 +131,12 @@ func set_fullscreen_active(fs_active_new: bool, do_save: bool = true) -> void:
 
 func set_debug_mode_available(is_debug_mode_available_new: bool, do_save: bool = true) -> void:
 	is_debug_mode_available = is_debug_mode_available_new
+	
+	if do_save:
+		save_to_file()
+
+func set_mouse_sensitivity(sensitivity_new: float, do_save: bool = true) -> void:
+	sensitivity = sensitivity_new
 	
 	if do_save:
 		save_to_file()

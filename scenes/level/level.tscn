@@ -53,6 +53,7 @@ material = SubResource("ShaderMaterial_pm6rs")
 
 [node name="Player" parent="." index="6" instance=ExtResource("3_i166f")]
 transform = Transform3D(0.999896, 0, 0.0144508, 0, 1, 0, -0.0144508, 0, 0.999896, -0.318056, 0.657381, -3.61046)
+mouse_sensitivity = 0.01
 
 [node name="ManaOrb_For_performance_reasons" parent="." index="7" instance=ExtResource("8_xv074")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81567, 0.0175796, 8.92895)

@@ -42,6 +42,7 @@ ui.menu.back;Back;Zurück
 ui.menu.resume;Resume;Fortsetzen
 ui.menu.to_main_menu;Main Menu;Hauptmenü
 ui.settings.language;Language;Sprache (Language)
+ui.settings.controls.sensitivity;Sensitivity;Empfindlichkeit
 ui.settings.audio.overall;Overall;Gesamt
 ui.settings.audio.music;Music;Musik
 ui.settings.audio.sfx;SFX;SFX

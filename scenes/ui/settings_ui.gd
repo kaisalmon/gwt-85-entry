@@ -7,11 +7,13 @@ signal back_pressed
 @onready var music_fader: HSlider = $VBoxContainer/MusicHBC/MusicFader
 @onready var sfx_fader: HSlider = $VBoxContainer/SFXHBC/SFXFader
 @onready var ambience_fader: HSlider = $VBoxContainer/AmbienceHBC/AmbienceFader
+@onready var sensitivity_fader: HSlider = $VBoxContainer/SensitivityHBC/SensitivityFader
 
 @onready var overall_value_label: Label = $VBoxContainer/OverallHBC/OverallValueLabel
 @onready var music_value_label: Label = $VBoxContainer/MusicHBC/MusicValueLabel
 @onready var sfx_value_label: Label = $VBoxContainer/SFXHBC/SFXValueLabel
 @onready var ambience_value_label: Label = $VBoxContainer/AmbienceHBC/AmbienceValueLabel
+@onready var sensitivity_value_label: Label = $VBoxContainer/SensitivityHBC/SensitivityValue
 
 @onready var locale_option_button: OptionButton = $VBoxContainer/LanguageHBC/LocaleOptionButton
 @onready var fullscreen_button: CheckBox = $VBoxContainer/FullscreenHBC/FullscreenButton
@@ -33,11 +35,13 @@ func load_values_from_settings() -> void:
 	music_fader.set_value_no_signal(Settings.music_volume_linear)
 	sfx_fader.set_value_no_signal(Settings.sfx_volume_linear)
 	ambience_fader.set_value_no_signal(Settings.ambience_volume_linear)
+	sensitivity_fader.set_value_no_signal(Settings.sensitivity)
 
-	set_audio_slider_value(overall_value_label, Settings.master_volume_linear)
-	set_audio_slider_value(music_value_label, Settings.music_volume_linear)
-	set_audio_slider_value(sfx_value_label, Settings.sfx_volume_linear)
-	set_audio_slider_value(ambience_value_label, Settings.ambience_volume_linear)
+	set_percent_slider_value(overall_value_label, Settings.master_volume_linear)
+	set_percent_slider_value(music_value_label, Settings.music_volume_linear)
+	set_percent_slider_value(sfx_value_label, Settings.sfx_volume_linear)
+	set_percent_slider_value(ambience_value_label, Settings.ambience_volume_linear)
+	set_percent_slider_value(sensitivity_value_label, Settings.sensitivity)
 	
 	set_fullscreen_active(Settings.fullscreen_active)
 
@@ -46,25 +50,25 @@ func load_values_from_settings() -> void:
 func _on_overall_fader_value_changed(value: float) -> void:
 	hover.play()
 	Settings.set_master_volume(value, false)
-	set_audio_slider_value(overall_value_label, value)
+	set_percent_slider_value(overall_value_label, value)
 	Util.set_bus_volume(Settings.MASTER_BUS_NAME, value)
 
 func _on_music_fader_value_changed(value: float) -> void:
 	hover.play()
 	Settings.set_music_volume(value, false)
-	set_audio_slider_value(music_value_label, value)
+	set_percent_slider_value(music_value_label, value)
 	Util.set_bus_volume(Settings.MUSIC_BUS_NAME, value)
 
 func _on_sfx_fader_value_changed(value: float) -> void:
 	hover.play()
 	Settings.set_sfx_volume(value, false)
-	set_audio_slider_value(sfx_value_label, value)
+	set_percent_slider_value(sfx_value_label, value)
 	Util.set_bus_volume(Settings.SFX_BUS_NAME, value)
 
 func _on_ambience_fader_value_changed(value: float) -> void:
 	hover.play()
 	Settings.set_ambience_volume(value, false)
-	set_audio_slider_value(ambience_value_label, value)
+	set_percent_slider_value(ambience_value_label, value)
 	Util.set_bus_volume(Settings.AMBIENCE_BUS_NAME, value)
 
 func _on_overall_fader_drag_ended(value_changed: bool) -> void:
@@ -87,7 +91,7 @@ func _on_ambience_fader_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		Settings.set_ambience_volume(ambience_fader.value)
 
-func set_audio_slider_value(label: Label, value_linear: float) -> void:
+func set_percent_slider_value(label: Label, value_linear: float) -> void:
 	label.text = str(roundi(value_linear * 100)) + "%"
 	
 
@@ -140,3 +144,14 @@ func _on_reset_button_pressed() -> void:
 	click.play()
 	Settings.reset_to_defaults(true)
 	load_values_from_settings()
+
+func _on_sensitivity_fader_value_changed(value: float) -> void:
+	hover.play()
+	Settings.set_mouse_sensitivity(value, false)
+	set_percent_slider_value(sensitivity_value_label, value)
+
+func _on_sensitivity_fader_drag_ended(value_changed: bool) -> void:
+	click.play()
+	if value_changed:
+		Settings.set_mouse_sensitivity(sensitivity_fader.value, true)
+		set_percent_slider_value(sensitivity_value_label, sensitivity_fader.value)

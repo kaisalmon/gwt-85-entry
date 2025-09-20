@@ -93,8 +93,8 @@ func _input(event: InputEvent) -> void:
 	if !can_use_input():
 		return
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		look_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
+		rotate_y(-event.relative.x * mouse_sensitivity * Settings.sensitivity)
+		look_pivot.rotate_x(-event.relative.y * mouse_sensitivity * Settings.sensitivity)
 		look_pivot.rotation.x = clampf(look_pivot.rotation.x, -deg_to_rad(max_down_angle), deg_to_rad(max_up_angle))
 	if event is InputEventMouseButton && (event as InputEventMouseButton).pressed:
 		#Needed for web capture
