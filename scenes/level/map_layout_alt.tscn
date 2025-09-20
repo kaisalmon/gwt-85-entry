@@ -274,6 +274,14 @@ material_override = ExtResource("5_e26lo")
 mesh = ExtResource("10_5jhde")
 skeleton = NodePath("../..")
 
+[node name="ShelfBSmallDecorated2" type="MeshInstance3D" parent="MainRoom"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.40839, 1, -1.98701)
+material_override = ExtResource("5_e26lo")
+mesh = ExtResource("10_5jhde")
+skeleton = NodePath("../..")
+script = ExtResource("13_8ahfx")
+added_by_room = 3
+
 [node name="WindowMainRoom1" parent="MainRoom" instance=ExtResource("11_0rxmf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20503, 1, 5.95082)
 removed_by_room = 6

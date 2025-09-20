@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=30 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://b7426tgx52tbw" path="res://resources/item_sources/clock_source.tres" id="17_ss4b2"]
 [ext_resource type="Resource" uid="uid://rn2g0wjpgnys" path="res://resources/item_sources/coal_source.tres" id="18_qjqsm"]
 [ext_resource type="Resource" uid="uid://b4npe2rlbifgl" path="res://resources/recipes/cozy_from_bottles_pumpkin_recipe.tres" id="18_ss4b2"]
+[ext_resource type="ArrayMesh" uid="uid://cyysv06jchoop" path="res://models/custom/clock.obj" id="21_fhw5o"]
 [ext_resource type="Material" uid="uid://c6y85fuj7qccd" path="res://materials/furniture_unshaded.tres" id="21_u5w0m"]
 [ext_resource type="Resource" uid="uid://d3s3pn0p3blor" path="res://resources/item_sources/pumpkin_source.tres" id="21_wyi7n"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="23_cqqhe"]
@@ -106,9 +107,34 @@ recipe = ExtResource("16_b3up8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39346, 1, 0.806611)
 item_source = ExtResource("18_qjqsm")
 
-[node name="ClockItemProvider_Bedroom" parent="Interactions" index="8" instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 1, 1.93349)
+[node name="ClockItemProvider_Bedroom" parent="Interactions" index="8" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 0.384626, 1.93349)
 item_source = ExtResource("17_ss4b2")
+source_mesh = NodePath("Clocks")
+
+[node name="Clocks" type="Node3D" parent="Interactions/ClockItemProvider_Bedroom" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654, 0)
+
+[node name="Clock" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="0"]
+transform = Transform3D(0.450344, 0, -0.535901, 0, 0.7, 0, 0.535901, 0, 0.450344, 0.0756531, -0.485, 0.198708)
+material_override = ExtResource("21_u5w0m")
+material_overlay = ExtResource("23_cqqhe")
+mesh = ExtResource("21_fhw5o")
+skeleton = NodePath("../..")
+
+[node name="Clock3" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="1"]
+transform = Transform3D(0.64643, 0, -0.268567, 0, 0.7, 0, 0.268567, 0, 0.64643, -0.177779, -0.485, 0.284329)
+material_override = ExtResource("21_u5w0m")
+material_overlay = ExtResource("23_cqqhe")
+mesh = ExtResource("21_fhw5o")
+skeleton = NodePath("../..")
+
+[node name="Clock2" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="2"]
+transform = Transform3D(0.679431, 0, 0.168444, 0, 0.7, 0, -0.168444, 0, 0.679431, -0.222635, -0.485, 0.0205445)
+material_override = ExtResource("21_u5w0m")
+material_overlay = ExtResource("23_cqqhe")
+mesh = ExtResource("21_fhw5o")
+skeleton = NodePath("../..")
 
 [node name="BottleItemProvider_Kitchen" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32956, 0.854693, 0.494568)
