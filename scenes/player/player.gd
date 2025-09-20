@@ -158,7 +158,8 @@ func set_item_to_hand_pos_from_hover() -> void:
 
 func on_after_item_hover() -> void:
 	is_item_in_hover_pos = false
-	held_item.drag_target = item_hold_position
+	if held_item:
+		held_item.drag_target = item_hold_position
 
 func set_item_to_hover_pos(pos_node: Node3D) -> void:
 	if !is_instance_valid(held_item):

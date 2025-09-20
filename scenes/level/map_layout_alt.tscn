@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://1o1n6tonmg8w"]
+[gd_scene load_steps=88 format=3 uid="uid://1o1n6tonmg8w"]
 
 [ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="1_y51pv"]
 [ext_resource type="PackedScene" uid="uid://dt6k0c8w2pyfj" path="res://scenes/level/wall.tscn" id="2_vaofm"]
@@ -195,6 +195,9 @@ points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rj1k4"]
 points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_24spx"]
+points = PackedVector3Array(0.479933, 1, 0.479933, 0.479933, 0.979933, 0.5, 0.5, 0.979933, 0.479933, 0.479933, 1, -0.480031, -0.480031, 1, 0.479933, 0.479933, 0.819988, 0.5, -0.480031, 0.979933, 0.5, 0.5, 0.979933, -0.480031, 0.5, 0.819988, 0.479933, 0.479933, 0.979933, -0.5, -0.480031, 1, -0.480031, -0.5, 0.979933, 0.479933, 0.429914, 0.0199687, 0.44998, -0.480031, 0.819988, 0.5, 0.5, 0.819988, -0.480031, 0.44998, 0.0199687, 0.429914, 0.479933, 0.819988, -0.5, -0.480031, 0.979933, -0.5, -0.5, 0.979933, -0.480031, -0.5, 0.819988, 0.479933, 0.429914, 0, 0.429914, -0.430012, 0.0199687, 0.44998, -0.450078, 0.0199687, 0.429914, 0.44998, 0.0199687, -0.430012, 0.429914, 0.0199687, -0.450078, -0.480031, 0.819988, -0.5, -0.5, 0.819988, -0.480031, 0.429914, 0, -0.430012, -0.430012, 0, 0.429914, -0.450078, 0.0199687, -0.430012, -0.430012, 0.0199687, -0.450078, -0.430012, 0, -0.430012)
+
 [node name="MapLayout" type="Node3D"]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -250,7 +253,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, 4.5)
 
 [node name="SmallWall5" parent="MainRoom" instance=ExtResource("3_s5l36")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, -0.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 1, -1.48486)
 skeleton = NodePath("")
 
 [node name="SmallWall6" parent="MainRoom" instance=ExtResource("3_s5l36")]
@@ -670,15 +673,15 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Kitchen/Kitchencounter8/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_j5rwv")
 
-[node name="ShelfABig7" type="MeshInstance3D" parent="Kitchen"]
+[node name="Barrel" type="MeshInstance3D" parent="Kitchen"]
 transform = Transform3D(0.449827, 0, -0.181331, 0, 0.485, 0, 0.181331, 0, 0.449827, 3.98021, -0.00108719, 4.0831)
 material_overlay = ExtResource("6_0hdne")
 mesh = ExtResource("38_j5rwv")
 surface_material_override/0 = ExtResource("5_e26lo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Kitchen/ShelfABig7"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Kitchen/Barrel"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Kitchen/ShelfABig7/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kitchen/Barrel/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_vxhik")
 
 [node name="Desk" type="MeshInstance3D" parent="Kitchen"]
@@ -1171,5 +1174,16 @@ transform = Transform3D(-0.193, 0, 0.57339, 0, 0.605, 0, -0.57339, 0, -0.193, 3.
 material_override = ExtResource("5_e26lo")
 material_overlay = ExtResource("6_0hdne")
 mesh = ExtResource("7_60hyd")
+
+[node name="TableSmall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.348293, 0, -0.379364, 0, 0.515, 0, 0.379364, 0, 0.348293, 9.30312, 0.126984, 1.47567)
+material_override = ExtResource("5_e26lo")
+material_overlay = ExtResource("6_0hdne")
+mesh = ExtResource("15_vxhik")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TableSmall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableSmall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_24spx")
 
 [editable path="Library/LibraryArea"]
