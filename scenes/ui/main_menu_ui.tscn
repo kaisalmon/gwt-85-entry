@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfi7rvclpdapr"]
+[gd_scene load_steps=11 format=3 uid="uid://cfi7rvclpdapr"]
 
 [ext_resource type="Script" uid="uid://dic6c0jtrsj0f" path="res://scenes/ui/main_menu_ui.gd" id="1_3bauu"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_b8bkt"]
@@ -7,6 +7,26 @@
 [ext_resource type="AudioStream" uid="uid://bokyu7kki5mni" path="res://audio/sfx/ambience/menuambience.ogg" id="5_02l8k"]
 [ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="6_1xem4"]
 [ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="7_5cb75"]
+[ext_resource type="AudioStream" uid="uid://dnopldy5pss6w" path="res://audio/music/mainmenuintro.ogg" id="8_ub220"]
+[ext_resource type="AudioStream" uid="uid://isgt3i7320hs" path="res://audio/music/mainmenuloop.ogg" id="9_ij111"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_1cefk"]
+clip_count = 2
+clip_0/name = &"Mainmenuintro"
+clip_0/stream = ExtResource("8_ub220")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Mainmenuloop"
+clip_1/stream = ExtResource("9_ij111")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 3,
+"to_time": 1
+}
+}
 
 [node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
 script = ExtResource("1_3bauu")
@@ -80,7 +100,7 @@ offset_bottom = 238.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_02l8k")
 autoplay = true
 bus = &"Ambience"
@@ -94,6 +114,12 @@ bus = &"SFX"
 stream = ExtResource("7_5cb75")
 volume_db = -5.0
 bus = &"SFX"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamInteractive_1cefk")
+autoplay = true
+bus = &"Music"
+playback_type = 2
 
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
