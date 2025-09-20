@@ -1,29 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg6ypkovvigfq"]
+[gd_scene load_steps=7 format=3 uid="uid://cg6ypkovvigfq"]
 
 [ext_resource type="Script" uid="uid://bbx7m1m8u2jbf" path="res://scenes/item/item.gd" id="1_tm076"]
 [ext_resource type="PackedScene" uid="uid://b5xpry7ne6hmn" path="res://scenes/interactable/item_interactable.tscn" id="2_iv35d"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elfyg"]
-albedo_color = Color(0.522737, 0.338662, 0.0434357, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_elfyg"]
-material = SubResource("StandardMaterial3D_elfyg")
-radius = 0.08
-height = 0.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsuh1"]
-albedo_color = Color(0.61339, 0.61339, 0.61339, 1)
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.4
-
-[sub_resource type="BoxMesh" id="BoxMesh_elfyg"]
-material = SubResource("StandardMaterial3D_lsuh1")
-size = Vector3(0.2, 0.4, 0.05)
+[ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="2_yn3u4"]
+[ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="3_gui8v"]
+[ext_resource type="ArrayMesh" uid="uid://cnntluk00hb7j" path="res://models/custom/bottle.obj" id="4_r2gxa"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_elfyg"]
-height = 0.681076
-radius = 0.0830078
+height = 0.439556
+radius = 0.192871
 
 [node name="BottleItem" type="RigidBody3D" node_paths=PackedStringArray("item_interactable", "col_shape", "despawn_timer")]
 mass = 7.0
@@ -37,15 +22,12 @@ despawn_timer = NodePath("DespawnTimer")
 
 [node name="DummyMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.767725, -0.64078, 0, 0.613686, 0.735263, 0.287712, -0.18436, -0.220883, 0.957717, 0.116549, -0.051848, 0.0401756)
-mesh = SubResource("CapsuleMesh_elfyg")
-
-[node name="DummyMesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.667832, -0.744312, 0, 0.71284, 0.639594, 0.287712, -0.214147, -0.192143, 0.957717, -0.11366, 0.212305, -0.0391798)
-mesh = SubResource("BoxMesh_elfyg")
-skeleton = NodePath("../DummyMesh")
+material_override = ExtResource("2_yn3u4")
+material_overlay = ExtResource("3_gui8v")
+mesh = ExtResource("4_r2gxa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.767725, -0.64078, 0, 0.613686, 0.735263, 0.287712, -0.18436, -0.220883, 0.957717, -0.00288864, 0.0852006, -0.000995741)
+transform = Transform3D(0.767725, -0.64078, 0, 0.613686, 0.735263, 0.287712, -0.18436, -0.220883, 0.957717, -0.0113034, 0.0948562, -0.0038964)
 shape = SubResource("CylinderShape3D_elfyg")
 
 [node name="ItemInteractable" parent="." node_paths=PackedStringArray("item_source") instance=ExtResource("2_iv35d")]

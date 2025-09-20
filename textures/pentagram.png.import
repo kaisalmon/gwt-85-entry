@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhmm2d2xfu0mj"
 path.s3tc="res://.godot/imported/pentagram.png-2f6f44ff88020375c4aedb2756bf2798.s3tc.ctex"
+path.etc2="res://.godot/imported/pentagram.png-2f6f44ff88020375c4aedb2756bf2798.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/pentagram.png"
-dest_files=["res://.godot/imported/pentagram.png-2f6f44ff88020375c4aedb2756bf2798.s3tc.ctex"]
+dest_files=["res://.godot/imported/pentagram.png-2f6f44ff88020375c4aedb2756bf2798.s3tc.ctex", "res://.godot/imported/pentagram.png-2f6f44ff88020375c4aedb2756bf2798.etc2.ctex"]
 
 [params]
 

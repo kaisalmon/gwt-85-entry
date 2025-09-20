@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy6awpc087igu"
 path.s3tc="res://.godot/imported/pentagram_circle.png-7d2360bde681e816c341017848d029ea.s3tc.ctex"
+path.etc2="res://.godot/imported/pentagram_circle.png-7d2360bde681e816c341017848d029ea.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/pentagram_circle.png"
-dest_files=["res://.godot/imported/pentagram_circle.png-7d2360bde681e816c341017848d029ea.s3tc.ctex"]
+dest_files=["res://.godot/imported/pentagram_circle.png-7d2360bde681e816c341017848d029ea.s3tc.ctex", "res://.godot/imported/pentagram_circle.png-7d2360bde681e816c341017848d029ea.etc2.ctex"]
 
 [params]
 

@@ -13,12 +13,13 @@ blend_mode = 1
 shading_mode = 0
 albedo_texture = ExtResource("3_p2k2p")
 billboard_mode = 3
+billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_2vx1k"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23676, 0.497506), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.193206, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_kvme1"]
@@ -34,7 +35,7 @@ emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 initial_velocity_max = 1.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_kvme1")
 scale_over_velocity_max = 1.0
 
