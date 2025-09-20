@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ddhwvnrt4veas"]
+[gd_scene load_steps=55 format=3 uid="uid://ddhwvnrt4veas"]
 
 [ext_resource type="PackedScene" uid="uid://ctiidqqgvmjm0" path="res://scenes/level/level_base.tscn" id="1_h3e3j"]
 [ext_resource type="Script" uid="uid://cacegnsvxeb7n" path="res://scenes/level/main_game.gd" id="2_sytrn"]
@@ -29,12 +29,17 @@
 [ext_resource type="Resource" uid="uid://d3s3pn0p3blor" path="res://resources/item_sources/pumpkin_source.tres" id="21_wyi7n"]
 [ext_resource type="AudioStream" uid="uid://cyyfui622ld0i" path="res://audio/sfx/ambience/fireplace.ogg" id="22_mf35j"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="23_cqqhe"]
+[ext_resource type="AudioStream" uid="uid://d163rffmxxxdy" path="res://audio/sfx/ui/coal_interact.ogg" id="23_lilx5"]
+[ext_resource type="AudioStream" uid="uid://bpelpsijdlnqq" path="res://audio/sfx/ui/marigold_interact.ogg" id="23_uhw4h"]
 [ext_resource type="ArrayMesh" uid="uid://cnntluk00hb7j" path="res://models/custom/bottle.obj" id="23_yoh1m"]
 [ext_resource type="ArrayMesh" uid="uid://c23bvjcdd7u1l" path="res://models/custom/pumpkin.obj" id="24_yoh1m"]
 [ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="25_u5w0m"]
 [ext_resource type="AudioStream" uid="uid://b5wfyq8e6xx88" path="res://audio/sfx/ambience/clocks_ambience.ogg" id="27_t51ir"]
 [ext_resource type="PackedScene" uid="uid://bilcilcn0ckx3" path="res://scenes/interactable/candle_provider.tscn" id="27_u5w0m"]
-[ext_resource type="Script" uid="uid://cxu1nrqik4n3d" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
+[ext_resource type="AudioStream" uid="uid://c5iir4lbn0x57" path="res://audio/sfx/ui/bottles_interact.ogg" id="31_d6d7a"]
+[ext_resource type="Script" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
+[ext_resource type="AudioStream" uid="uid://2j41qijj5v2b" path="res://audio/sfx/ui/candles_interact.ogg" id="35_7lsmv"]
+[ext_resource type="AudioStream" uid="uid://dcncsjmf4xa4" path="res://audio/sfx/ui/pumpkin_interact.ogg" id="35_d6d7a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pm6rs"]
 shader = ExtResource("3_m0bv2")
@@ -249,10 +254,11 @@ transform = Transform3D(0.479274, 0, -0.877665, 0, 1, 0, 0.877665, 0, 0.479274, 
 [node name="ItemConsumer" parent="Interactions/Cauldron_BroomRoom" index="1"]
 recipe = ExtResource("16_b3up8")
 
-[node name="CoaltemProvider_MainRoom" parent="Interactions" index="8" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="CoaltemProvider_MainRoom" parent="Interactions" index="8" node_paths=PackedStringArray("source_mesh", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(0.999466, 0, -0.0326667, 0, 1, 0, 0.0326667, 0, 0.999466, 3.7537, -0.115822, 2.28841)
 item_source = ExtResource("18_qjqsm")
 source_mesh = NodePath("Fire")
+progress_audio_stream_player = NodePath("CoalProgressAudio")
 
 [node name="ProgressMesh" parent="Interactions/CoaltemProvider_MainRoom" index="2"]
 mesh = SubResource("BoxMesh_mf35j")
@@ -297,10 +303,15 @@ autoplay = true
 max_distance = 5.0
 bus = &"Ambience"
 
-[node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="CoalProgressAudio" type="AudioStreamPlayer" parent="Interactions/CoaltemProvider_MainRoom" index="8"]
+stream = ExtResource("23_lilx5")
+bus = &"SFX"
+
+[node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 0.384626, 1.93349)
 item_source = ExtResource("17_ss4b2")
 source_mesh = NodePath("Clocks")
+progress_audio_stream_player = NodePath("ClockProgressAudio")
 
 [node name="Clocks" type="Node3D" parent="Interactions/ClockItemProvider_Bedroom" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654, 0)
@@ -332,10 +343,15 @@ autoplay = true
 max_distance = 4.0
 bus = &"Ambience"
 
-[node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="ClockProgressAudio" type="AudioStreamPlayer" parent="Interactions/ClockItemProvider_Bedroom" index="8"]
+stream = ExtResource("23_uhw4h")
+bus = &"SFX"
+
+[node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" node_paths=PackedStringArray("source_mesh", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32956, 0.854693, 0.494568)
 item_source = ExtResource("10_vrc4q")
 source_mesh = NodePath("Bottles")
+progress_audio_stream_player = NodePath("BottleProgressAudio")
 
 [node name="Bottles" type="Node3D" parent="Interactions/BottleItemProvider_Kitchen" index="6"]
 
@@ -374,14 +390,24 @@ material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("23_yoh1m")
 skeleton = NodePath("../..")
 
-[node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="11" instance=ExtResource("15_vrc4q")]
+[node name="BottleProgressAudio" type="AudioStreamPlayer" parent="Interactions/BottleItemProvider_Kitchen" index="7"]
+stream = ExtResource("31_d6d7a")
+bus = &"SFX"
+
+[node name="MarigoldItemProvider_Greenhouse" parent="Interactions" index="11" node_paths=PackedStringArray("progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.78712, 0.9993, 0.94719)
 item_source = ExtResource("12_vrc4q")
+progress_audio_stream_player = NodePath("MarigoldProgressAudio")
 
-[node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="12" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
+[node name="MarigoldProgressAudio" type="AudioStreamPlayer" parent="Interactions/MarigoldItemProvider_Greenhouse" index="6"]
+stream = ExtResource("23_uhw4h")
+bus = &"SFX"
+
+[node name="PumpkinItemProvider_Greenhouse" parent="Interactions" index="12" node_paths=PackedStringArray("source_mesh", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38294, 0.124033, 5.89843)
 item_source = ExtResource("21_wyi7n")
 source_mesh = NodePath("Node3D")
+progress_audio_stream_player = NodePath("PumpkinProgressAudio")
 
 [node name="Node3D" type="Node3D" parent="Interactions/PumpkinItemProvider_Greenhouse" index="6"]
 
@@ -413,8 +439,17 @@ mesh = ExtResource("24_yoh1m")
 skeleton = NodePath("../../root/@EditorNode@21272/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11482/@VSplitContainer@11134/@HSplitContainer@11136/@HSplitContainer@11138/@Control@11139/@SubViewportContainer@11140/@SubViewport@11141/ItemProvider")
 surface_material_override/0 = ExtResource("25_u5w0m")
 
-[node name="ItemProvider" parent="." index="9" instance=ExtResource("27_u5w0m")]
+[node name="PumpkinProgressAudio" type="AudioStreamPlayer" parent="Interactions/PumpkinItemProvider_Greenhouse" index="7"]
+stream = ExtResource("35_d6d7a")
+bus = &"SFX"
+
+[node name="CandleProviderMainRoom" parent="." index="9" node_paths=PackedStringArray("progress_audio_stream_player") instance=ExtResource("27_u5w0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0807367, 0.750098, 0.384184)
+progress_audio_stream_player = NodePath("CandleProgressAudio")
+
+[node name="CandleProgressAudio" type="AudioStreamPlayer" parent="CandleProviderMainRoom" index="0"]
+stream = ExtResource("35_7lsmv")
+bus = &"SFX"
 
 [node name="GameEndArea" type="Area3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45224, 0.592497, 7.21803)
