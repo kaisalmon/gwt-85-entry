@@ -27,10 +27,12 @@
 [ext_resource type="ArrayMesh" uid="uid://cyysv06jchoop" path="res://models/custom/clock.obj" id="21_fhw5o"]
 [ext_resource type="Material" uid="uid://c6y85fuj7qccd" path="res://materials/furniture_unshaded.tres" id="21_u5w0m"]
 [ext_resource type="Resource" uid="uid://d3s3pn0p3blor" path="res://resources/item_sources/pumpkin_source.tres" id="21_wyi7n"]
+[ext_resource type="AudioStream" uid="uid://cyyfui622ld0i" path="res://audio/sfx/ambience/fireplace.ogg" id="22_mf35j"]
 [ext_resource type="Material" uid="uid://bwy0ygpw6wwvf" path="res://materials/outline.tres" id="23_cqqhe"]
 [ext_resource type="ArrayMesh" uid="uid://cnntluk00hb7j" path="res://models/custom/bottle.obj" id="23_yoh1m"]
 [ext_resource type="ArrayMesh" uid="uid://c23bvjcdd7u1l" path="res://models/custom/pumpkin.obj" id="24_yoh1m"]
 [ext_resource type="Material" uid="uid://tsrbgbwtov5l" path="res://materials/furniture.tres" id="25_u5w0m"]
+[ext_resource type="AudioStream" uid="uid://b5wfyq8e6xx88" path="res://audio/sfx/ambience/clocks_ambience.ogg" id="27_t51ir"]
 [ext_resource type="PackedScene" uid="uid://bilcilcn0ckx3" path="res://scenes/interactable/candle_provider.tscn" id="27_u5w0m"]
 [ext_resource type="Script" uid="uid://cxu1nrqik4n3d" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
 
@@ -292,6 +294,12 @@ mesh = ExtResource("19_vfold")
 transform = Transform3D(0.69684, 0, 0.0227757, 0, 0.697213, 0, -0.0227757, 0, 0.69684, 0.0654097, -0.0389321, -0.0478404)
 mesh = ExtResource("19_vfold")
 
+[node name="fireplace_ambience" type="AudioStreamPlayer3D" parent="Interactions/CoaltemProvider_MainRoom" index="7"]
+stream = ExtResource("22_mf35j")
+autoplay = true
+max_distance = 5.0
+bus = &"Ambience"
+
 [node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 0.384626, 1.93349)
 item_source = ExtResource("17_ss4b2")
@@ -320,6 +328,12 @@ material_override = ExtResource("21_u5w0m")
 material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("21_fhw5o")
 skeleton = NodePath("../..")
+
+[node name="clock_ambience" type="AudioStreamPlayer3D" parent="Interactions/ClockItemProvider_Bedroom" index="7"]
+stream = ExtResource("27_t51ir")
+autoplay = true
+max_distance = 4.0
+bus = &"Ambience"
 
 [node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" node_paths=PackedStringArray("source_mesh") instance=ExtResource("15_vrc4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32956, 0.854693, 0.494568)
