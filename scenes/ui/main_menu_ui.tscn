@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfi7rvclpdapr"]
+[gd_scene load_steps=8 format=3 uid="uid://cfi7rvclpdapr"]
 
 [ext_resource type="Script" uid="uid://dic6c0jtrsj0f" path="res://scenes/ui/main_menu_ui.gd" id="1_3bauu"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_b8bkt"]
 [ext_resource type="Texture2D" uid="uid://c3bst5fw73pkb" path="res://textures/nameideas/name 4.png" id="2_qegi1"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="3_qegi1"]
 [ext_resource type="AudioStream" uid="uid://bokyu7kki5mni" path="res://audio/sfx/ambience/menuambience.ogg" id="5_02l8k"]
+[ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="6_1xem4"]
+[ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="7_5cb75"]
 
 [node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
 script = ExtResource("1_3bauu")
@@ -81,11 +83,26 @@ color = Color(0, 0, 0, 0)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_02l8k")
 autoplay = true
+bus = &"Ambience"
+playback_type = 2
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1xem4")
 bus = &"SFX"
 
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5cb75")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="SettingsUI" to="." method="_on_settings_ui_back_pressed"]
