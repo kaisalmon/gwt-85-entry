@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhri1py20tl7o"
 path.s3tc="res://.godot/imported/house.png-18cc0ad04e322882959a0a7beebdc9b1.s3tc.ctex"
+path.etc2="res://.godot/imported/house.png-18cc0ad04e322882959a0a7beebdc9b1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/custom/house.png"
-dest_files=["res://.godot/imported/house.png-18cc0ad04e322882959a0a7beebdc9b1.s3tc.ctex"]
+dest_files=["res://.godot/imported/house.png-18cc0ad04e322882959a0a7beebdc9b1.s3tc.ctex", "res://.godot/imported/house.png-18cc0ad04e322882959a0a7beebdc9b1.etc2.ctex"]
 
 [params]
 

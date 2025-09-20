@@ -14,6 +14,8 @@ config/name="Mystical Maggie's Magical Mansion"
 config/version="0.0.6"
 run/main_scene="uid://dyawlu53u7bd2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.0745098, 0.133333, 0.247059, 1)
+boot_splash/image="uid://cu44eywwtqawy"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -116,3 +118,4 @@ locale/translations=PackedStringArray("res://ui/translation/translation.en.trans
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

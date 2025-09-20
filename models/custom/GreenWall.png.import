@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://upf86n4fc53x"
 path.s3tc="res://.godot/imported/GreenWall.png-dd7737bb0f0a2d806b10627104971285.s3tc.ctex"
+path.etc2="res://.godot/imported/GreenWall.png-dd7737bb0f0a2d806b10627104971285.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/custom/GreenWall.png"
-dest_files=["res://.godot/imported/GreenWall.png-dd7737bb0f0a2d806b10627104971285.s3tc.ctex"]
+dest_files=["res://.godot/imported/GreenWall.png-dd7737bb0f0a2d806b10627104971285.s3tc.ctex", "res://.godot/imported/GreenWall.png-dd7737bb0f0a2d806b10627104971285.etc2.ctex"]
 
 [params]
 
