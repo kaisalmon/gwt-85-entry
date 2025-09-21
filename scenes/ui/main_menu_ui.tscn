@@ -31,6 +31,7 @@ Vector2i(0, 1): {
 [node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
 script = ExtResource("1_3bauu")
 start_game_scene_path = "uid://ddhwvnrt4veas"
+credits_path = "uid://daw67whmawla1"
 start_menu_mc = NodePath("StartMenuMC")
 continue_button = NodePath("StartMenuMC/VBoxContainer/ContinueButton")
 quit_button = NodePath("StartMenuMC/VBoxContainer/QuitButton")
@@ -80,7 +81,6 @@ theme_type_variation = &"FlatButton"
 text = "ui.menu.settings"
 
 [node name="CreditsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_b8bkt")
 theme_type_variation = &"FlatButton"

@@ -3,6 +3,7 @@ extends CanvasLayer
 @export var new_game_deletes_old_save: bool = true
 
 @export_file("*.tscn") var start_game_scene_path: String
+@export_file("*.tscn") var credits_path: String
 @export_category("internal nodes")
 @export var start_menu_mc: MarginContainer
 @export var continue_button: Button
@@ -13,7 +14,8 @@ extends CanvasLayer
 @onready var hover: AudioStreamPlayer = $hover
 
 var starting_game = false
-var new_game_timer = 0.0
+var starting_credits = false
+var fadeout_timer = 0.0
 var timer = 0.0
 var fadeout_duration = 0.8
 
@@ -28,10 +30,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	timer += delta
 	if starting_game:
-		new_game_timer -= delta
-		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - new_game_timer) / fadeout_duration)
-		if new_game_timer <= 0.0:
+		fadeout_timer -= delta
+		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - fadeout_timer) / fadeout_duration)
+		if fadeout_timer <= 0.0:
 			get_tree().change_scene_to_file(start_game_scene_path)
+	elif starting_credits:
+		fadeout_timer -= delta
+		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - fadeout_timer) / fadeout_duration)
+		if fadeout_timer <= 0.0:
+			get_tree().change_scene_to_file(credits_path)
+			
 	else:
 		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - timer) / fadeout_duration)
 
@@ -43,12 +51,12 @@ func _on_new_game_button_pressed() -> void:
 	
 	starting_game = true
 	GameState.load_game_at_start = false
-	new_game_timer = fadeout_duration
+	fadeout_timer = fadeout_duration
 	
 func _on_continue_button_pressed() -> void:
 	click.play()
 	starting_game = true
-	new_game_timer = fadeout_duration
+	fadeout_timer = fadeout_duration
 	GameState.load_game_at_start = true
 
 func _on_settings_button_pressed() -> void:
@@ -58,7 +66,8 @@ func _on_settings_button_pressed() -> void:
 	
 func _on_credits_button_pressed() -> void:
 	click.play()
-	pass # Replace with function body.
+	starting_credits = true
+	fadeout_timer = fadeout_duration
 
 func _on_quit_button_pressed() -> void:
 	click.play()

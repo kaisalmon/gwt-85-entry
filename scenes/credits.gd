@@ -11,13 +11,24 @@ extends Node3D
 
 var progress = 0.0
 var end_sequence_timer = 0.0
+var speedup = 1.0
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		speedup = 5.0
+	else:
+		speedup = 1.0
+
 func _process(delta: float) -> void:
-	progress += delta
+	progress += delta * speedup
 	if progress < fadein_duration:
 		$Fadeout.color.a = lerp(1.0, 0.0, progress / fadein_duration)
 	if progress < delay:
 		return
-	credits_control.position.y -= delta * scroll_speed
+	credits_control.position.y -= delta * scroll_speed * speedup
 	if credits_control.position.y + credits_control.size.y < 92:
 		end_sequence_timer += delta
 		var house = $House
@@ -30,4 +41,3 @@ func _process(delta: float) -> void:
 			$Fadeout.color.a = lerp(0.0, 1.0, (end_sequence_timer - 3.0) / fadein_duration)
 		if end_sequence_timer > 4.5:
 			get_tree().change_scene_to_file(next_scene)
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -41,7 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="31_v0tij"]
 [ext_resource type="ArrayMesh" uid="uid://ybk3ifbxnwbu" path="res://models/custom/marigold.obj" id="32_d6d7a"]
 [ext_resource type="ArrayMesh" uid="uid://6gfre1nltcd0" path="res://models/custom/barrel.obj" id="33_lilx5"]
-[ext_resource type="Script" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
+[ext_resource type="Script" uid="uid://cxu1nrqik4n3d" path="res://scenes/level/game_end_area.gd" id="33_mf35j"]
 [ext_resource type="AudioStream" uid="uid://2j41qijj5v2b" path="res://audio/sfx/ui/candles_interact.ogg" id="35_7lsmv"]
 [ext_resource type="AudioStream" uid="uid://dcncsjmf4xa4" path="res://audio/sfx/ui/pumpkin_interact.ogg" id="35_d6d7a"]
 
