@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvdt2mvdyvokq"]
+[gd_scene load_steps=6 format=3 uid="uid://bvdt2mvdyvokq"]
 
 [ext_resource type="Script" uid="uid://bven71qdfs5jt" path="res://scenes/ui/pause_menu_ui.gd" id="1_31fmg"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="1_jfoc7"]
 [ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="3_8358y"]
 [ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="4_642b2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8358y"]
 
 [node name="PauseOverlay" type="ColorRect" node_paths=PackedStringArray("settings_ui", "pause_menu_vbc", "quit_button")]
 z_index = 5
@@ -54,18 +56,62 @@ layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer/PauseMenuVBC"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8358y")
 text = "ui.menu.resume"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer/PauseMenuVBC"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8358y")
 text = "ui.menu.settings"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer/PauseMenuVBC"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8358y")
 text = "ui.menu.to_main_menu"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/PauseMenuVBC"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8358y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8358y")
 text = "ui.menu.quit"
 
 [node name="SettingsUI" parent="VBoxContainer" instance=ExtResource("1_jfoc7")]

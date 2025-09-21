@@ -261,6 +261,7 @@ color = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_0dwhk")
 offset_right = 1155.0
 offset_bottom = 650.0
+mouse_filter = 2
 
 [connection signal="unpause_requested" from="PauseOverlay" to="." method="_on_pause_overlay_unpause_requested"]
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
