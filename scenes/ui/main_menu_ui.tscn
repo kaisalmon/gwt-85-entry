@@ -129,7 +129,7 @@ offset_right = 174.0
 offset_bottom = 137.0
 text = "
 
-If you experience issues with sound quality on web, we recommend downloading and running the game executable.
+If you experience issues with sound quality or low performance on web, we recommend downloading and running the game executable.
 "
 autowrap_mode = 3
 

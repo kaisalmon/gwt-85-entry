@@ -13,10 +13,10 @@ config_version=5
 config/name="Mystical Maggie's Magical Mansion"
 config/version="0.0.6"
 run/main_scene="uid://dyawlu53u7bd2"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0.0745098, 0.133333, 0.247059, 1)
 boot_splash/image="uid://cu44eywwtqawy"
-config/icon="res://icon.svg"
+config/icon="uid://qtaa82s335n0"
 
 [autoload]
 

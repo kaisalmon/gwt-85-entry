@@ -189,7 +189,7 @@ offset_right = 255.0
 offset_bottom = 893.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 9.0
 offset_top = 191.0
 offset_right = 185.0
@@ -199,13 +199,13 @@ bbcode_enabled = true
 text = "A GAME BY
 Kai Salmon 
     [color=\"#adca9a\"]kaisalmon.itch.io[/color]
-Dave ??? 
+Substain 
     [color=\"#adca9a\"]substain.itch.io[/color]
 Andrey Sulimov 
     [color=\"#adca9a\"]andreyslmv.itch.io[/color]
 
 PROGRAMMING BY
-Dave ??? 
+Substain 
     [color=\"#adca9a\"]substain.itch.io[/color]
 Kai Salmon 
     [color=\"#adca9a\"]kaisalmon.itch.io[/color]
@@ -255,7 +255,7 @@ Yolk font
     [color=\"#adca9a\"]somepx.itch.io/free-font-yolk[/color]"
 
 [node name="TextureRect" type="TextureRect" parent="Credits"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 5.0
 offset_top = 11.0
 offset_right = 101.12
