@@ -7,9 +7,10 @@ extends Interactable
 
 
 func _ready() -> void:
-	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]
 	set_highlight(null, false)
-
+	Settings.locale_changed.connect(update_recipe_display)
+	update_recipe_display()
+	
 func can_interact(_player: Player) -> bool:
 	return true
 
@@ -27,3 +28,6 @@ func interact(player: Player) -> void:
 func set_highlight(_player: Player, highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	debug_label_3d.visible = highlight_new
+
+func update_recipe_display() -> void:
+	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]

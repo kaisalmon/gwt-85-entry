@@ -33,6 +33,7 @@ room.office;Office;Büro
 room.main_room;Main Room;Hauptraum
 room.corridor;Corridor;Flur
 room.green_house;Green House;Gewächshaus
+ui.magic;Magic;Magie
 ui.menu.new_game;New Game;Neues Spiel
 ui.menu.continue;Continue;Fortsetzen
 ui.menu.settings;Settings;Einstellungen
