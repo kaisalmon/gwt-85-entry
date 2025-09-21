@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dyawlu53u7bd2"]
+[gd_scene load_steps=34 format=3 uid="uid://dyawlu53u7bd2"]
 
 [ext_resource type="PackedScene" uid="uid://cfi7rvclpdapr" path="res://scenes/ui/main_menu_ui.tscn" id="1_8gim3"]
 [ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="1_ckupo"]
@@ -37,7 +37,15 @@ shader_parameter/solid_modifier = 0.6
 shader_parameter/max_distance = 0.6
 shader_parameter/gamma = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50874"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_natt5"]
+render_priority = 1
+transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
@@ -102,7 +110,7 @@ uv1_scale = Vector3(0, 0, 0)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n1qyp"]
-size = Vector2(4.29, 25.025)
+size = Vector2(12.245, 25.025)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1txtf"]
 random_pitch = 1.01
@@ -123,8 +131,9 @@ stream_2/stream = ExtResource("15_tqckk")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3vvtq")
 
-[node name="MainMenuUI" parent="." instance=ExtResource("1_8gim3")]
+[node name="MainMenuUI" parent="." node_paths=PackedStringArray("walker") instance=ExtResource("1_8gim3")]
 layer = 5
+walker = NodePath("../Walker")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenuUI"]
 material = SubResource("ShaderMaterial_s5g8n")
@@ -140,7 +149,6 @@ fov = 77.7
 [node name="Walker" type="Node3D" parent="."]
 script = ExtResource("3_xyqql")
 stride_length = 2.0
-limb_length = 1.13
 step_height = 1.0
 walk_speed = 2.0
 house_min_height = 1.5
@@ -150,16 +158,16 @@ foot_max_angle = 100.0
 
 [node name="House" type="MeshInstance3D" parent="Walker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
-material_override = SubResource("StandardMaterial3D_natt5")
+material_override = SubResource("StandardMaterial3D_50874")
 mesh = ExtResource("4_xyqql")
 
 [node name="LeftFoot" type="MeshInstance3D" parent="Walker"]
-transform = Transform3D(-0.692639, 0, 0.287665, 0, 0.75, 0, -0.287665, 0, -0.692639, 1, 0, 0)
+transform = Transform3D(-0.4848473, 0, 0.20136552, 0, 0.525, 0, -0.20136552, 0, -0.4848473, 1, 0, 0)
 material_override = SubResource("StandardMaterial3D_natt5")
 mesh = ExtResource("4_fi8nj")
 
 [node name="RightFoot" type="MeshInstance3D" parent="Walker"]
-transform = Transform3D(-0.692408, 0, -0.288221, 0, 0.75, 0, 0.288221, 0, -0.692408, -1, 0, 0)
+transform = Transform3D(-0.48468548, 0, -0.20175467, 0, 0.525, 0, 0.20175467, 0, -0.48468548, -1, 0, 0)
 material_override = SubResource("StandardMaterial3D_natt5")
 mesh = ExtResource("4_fi8nj")
 
@@ -170,7 +178,7 @@ mesh = ExtResource("4_fi8nj")
 [node name="RightShin" type="Node3D" parent="Walker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04345, 0, 0)
 
-[node name="RightShin" type="MeshInstance3D" parent="Walker/RightShin"]
+[node name="Mesh" type="MeshInstance3D" parent="Walker/RightShin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 material_override = SubResource("StandardMaterial3D_natt5")
 mesh = SubResource("BoxMesh_ckupo")
@@ -178,7 +186,7 @@ mesh = SubResource("BoxMesh_ckupo")
 [node name="LeftShin" type="Node3D" parent="Walker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03164, 0, 0)
 
-[node name="LeftShin" type="MeshInstance3D" parent="Walker/LeftShin"]
+[node name="Mesh" type="MeshInstance3D" parent="Walker/LeftShin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 material_override = SubResource("StandardMaterial3D_natt5")
 mesh = SubResource("BoxMesh_ckupo")
@@ -199,39 +207,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 material_override = SubResource("StandardMaterial3D_natt5")
 mesh = SubResource("BoxMesh_ckupo")
 
-[node name="ForestForeground" type="MeshInstance3D" parent="."]
+[node name="ForestForeground" type="MeshInstance3D" parent="." node_paths=PackedStringArray("walker")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.57146, 0.850369, 0.452899)
 material_override = SubResource("StandardMaterial3D_ugunp")
 mesh = SubResource("PlaneMesh_p5kud")
 script = ExtResource("7_p5kud")
+walker = NodePath("../Walker")
+parallax_amount = 1.0
 
 [node name="ForestForeground" type="MeshInstance3D" parent="ForestForeground"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 0, 1.9, 0)
 material_override = SubResource("StandardMaterial3D_p5kud")
 mesh = SubResource("PlaneMesh_p5kud")
 
-[node name="ForestForeground2" type="MeshInstance3D" parent="."]
+[node name="ForestForeground2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("walker")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.71983, 0.850369, 0.452899)
 material_override = SubResource("StandardMaterial3D_542r0")
 mesh = SubResource("PlaneMesh_p5kud")
 script = ExtResource("7_p5kud")
-parallax_amount = 1.2
+walker = NodePath("../Walker")
+parallax_amount = 0.6
 
-[node name="ForestForeground3" type="MeshInstance3D" parent="."]
+[node name="ForestForeground3" type="MeshInstance3D" parent="." node_paths=PackedStringArray("walker")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08904, 0.850369, 0.452899)
 material_override = SubResource("StandardMaterial3D_aqxfm")
 mesh = SubResource("PlaneMesh_p5kud")
 script = ExtResource("7_p5kud")
-parallax_amount = 0.6
+walker = NodePath("../Walker")
+parallax_amount = 0.3
 
-[node name="ForestForeground4" type="MeshInstance3D" parent="."]
+[node name="ForestForeground4" type="MeshInstance3D" parent="." node_paths=PackedStringArray("walker")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.25225, 3.14661, 0.451566)
 material_override = SubResource("StandardMaterial3D_n1qyp")
 mesh = SubResource("PlaneMesh_p5kud")
 script = ExtResource("7_p5kud")
-parallax_amount = 0.2
+walker = NodePath("../Walker")
+parallax_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3325584, 0)
 material_override = SubResource("StandardMaterial3D_8gim3")
 mesh = SubResource("PlaneMesh_n1qyp")
 
