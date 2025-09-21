@@ -114,15 +114,15 @@ func _on_area_exited(area: Area3D) -> void:
 func set_dirty() -> void:
 	_is_dirty = true
 	if recheck_interaction.is_stopped():
-		print("rechecking interaction by isdirty..")
+		#print("rechecking interaction by isdirty..")
 		_update_interaction_hint()
 
 func _on_recheck_interaction_timeout() -> void:
 	if !_is_dirty:
-		print("no need to recheck, nothing is dirty..")
+		#print("no need to recheck, nothing is dirty..")
 		
 		return
 	
-	print("rechecking interaction..")
+	#print("rechecking interaction..")
 	_update_interaction_hint()
 	

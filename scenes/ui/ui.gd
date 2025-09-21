@@ -114,10 +114,10 @@ func show_textbox() -> void:
 	text_start.text = ""
 	textbox_container.show()
 	
-func show_text(next_text: String) -> void:
-	var text_length: int = next_text.length()
-	var text_show_duration: float = clamp(next_text.length() * 0.04, 1.5, 3.0)
-	text_main.text = next_text
+func show_text(next_text_to_show: String) -> void:
+	var text_length: int = next_text_to_show.length()
+	var text_show_duration: float = clamp(next_text_to_show.length() * 0.04, 1.5, 3.0)
+	text_main.text = next_text_to_show
 	show_textbox()
 	text_animate_tween = create_tween()
 	text_animate_tween.tween_property(text_main, "visible_ratio", 1, text_show_duration)

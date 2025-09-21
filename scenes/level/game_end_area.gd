@@ -59,10 +59,10 @@ func play_cutscene(delta: float) -> void:
 			get_tree().change_scene_to_file(next_scene)
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func record_position_and_rotation(player: Player) -> void:
-	var pposition: Vector3 = player.position
-	var protation: Vector3 = player.rotation
-	var look_pivot: Node3D = player.look_pivot
+func record_position_and_rotation(player_target: Player) -> void:
+	var pposition: Vector3 = player_target.position
+	var protation: Vector3 = player_target.rotation
+	var look_pivot: Node3D = player_target.look_pivot
 	# Save in csv
 	var file = FileAccess.open("res://final_cutscene.csv", FileAccess.READ_WRITE)
 	if not file:
