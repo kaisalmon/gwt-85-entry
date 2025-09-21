@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgpt5j6jktjpw"]
+[gd_scene load_steps=12 format=3 uid="uid://cgpt5j6jktjpw"]
 
 [ext_resource type="Script" uid="uid://blfd2w44hlxyr" path="res://scenes/ui/ui.gd" id="1_u7n8c"]
 [ext_resource type="PackedScene" uid="uid://crs2rkc1yx8rn" path="res://scenes/ui/debug_mode_ui.tscn" id="2_f5cxw"]
 [ext_resource type="PackedScene" uid="uid://bvdt2mvdyvokq" path="res://scenes/ui/pause_menu_ui.tscn" id="3_aac20"]
+[ext_resource type="Shader" uid="uid://dvefp8crwbeq8" path="res://materials/pico8.gdshader" id="4_0dwhk"]
+[ext_resource type="Texture2D" uid="uid://4lhd8480iw6b" path="res://hidden-library-1x.png" id="5_pfayw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7n8c"]
 bg_color = Color(0, 0, 0, 0.396078)
@@ -13,6 +15,22 @@ bg_color = Color(0.197229, 0.383469, 0.265152, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5kmx"]
 bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_0dwhk"]
+colors = PackedColorArray(0, 0, 0, 0.8392157, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pfayw"]
+gradient = SubResource("Gradient_0dwhk")
+fill_from = Vector2(1, 0.63247865)
+fill_to = Vector2(0.99572647, 0.98717946)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dwhk"]
+shader = ExtResource("4_0dwhk")
+shader_parameter/palette_texture = ExtResource("5_pfayw")
+shader_parameter/palette_size = 16
+shader_parameter/solid_modifier = 0.6
+shader_parameter/max_distance = 0.6
+shader_parameter/gamma = 1.0
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label", "magic_label_text", "magic_value_label_cozy", "magic_value_label_hollow", "magic_value_label_vivid", "magic_value_label_windy", "textbox_container", "text_start", "text_main", "text_end", "debug_mode_ui", "autosave_label", "autosave_timer", "magic_view")]
 layer = 8
@@ -98,19 +116,28 @@ visible = false
 [node name="MagicView" type="MarginContainer" parent="."]
 offset_top = -29.0
 offset_right = 301.0
-offset_bottom = 1.0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+offset_bottom = -2.0
+
+[node name="TextureRect" type="TextureRect" parent="MagicView"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pfayw")
+expand_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MagicView"]
+layout_mode = 2
+
+[node name="Padding" type="VSeparator" parent="MagicView/HBoxContainer"]
+modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 
 [node name="MagicLabel" type="Label" parent="MagicView/HBoxContainer"]
 layout_mode = 2
 text = "ui.magic"
 vertical_alignment = 1
+
+[node name="Padding2" type="VSeparator" parent="MagicView/HBoxContainer"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MagicView/HBoxContainer"]
 layout_mode = 2
@@ -129,6 +156,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Separator" type="VSeparator" parent="MagicView/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MagicView/HBoxContainer"]
@@ -150,6 +178,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Separator2" type="VSeparator" parent="MagicView/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MagicView/HBoxContainer"]
@@ -171,6 +200,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Separator3" type="VSeparator" parent="MagicView/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MagicView/HBoxContainer"]
@@ -226,6 +256,11 @@ offset_top = -43.0
 offset_right = 212.0
 offset_bottom = -1.0
 color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0dwhk")
+offset_right = 1155.0
+offset_bottom = 650.0
 
 [connection signal="unpause_requested" from="PauseOverlay" to="." method="_on_pause_overlay_unpause_requested"]
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
