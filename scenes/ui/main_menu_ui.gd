@@ -1,3 +1,4 @@
+class_name MainMenuUI
 extends CanvasLayer
 
 @export var new_game_deletes_old_save: bool = true
@@ -9,6 +10,7 @@ extends CanvasLayer
 @export var continue_button: Button
 @export var quit_button: Button
 @export var settings_ui: SettingsUI
+@export var controls_ui: ControlsUI
 @export var walker: WalkManager
 
 @onready var click: AudioStreamPlayer = $click
@@ -27,6 +29,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	settings_ui.visible = false
 	start_menu_mc.visible = true
+	controls_ui.visible = false
 	continue_button.visible = SaveGame.is_savegame_available
 	quit_button.visible = !Util.is_web_build()
 	
@@ -130,5 +133,11 @@ func _on_controls_button_mouse_entered() -> void:
 
 
 func _on_controls_button_pressed() -> void:
+	controls_ui.visible = true
+	start_menu_mc.visible = false
 	click.play()
-	#TODO
+
+func _on_controls_ui_back_pressed() -> void:
+	controls_ui.visible = false
+	start_menu_mc.visible = true
+	click.play()

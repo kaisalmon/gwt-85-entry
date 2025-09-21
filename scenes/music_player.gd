@@ -45,11 +45,11 @@ func progress_music(_numdoors: int,_room_type:GameState.RoomType) -> void:
 	print("playback clip index:" , playback.get_current_clip_index())
 	
 
-func _input(event):
-	if event is InputEventKey && (event as InputEventKey).pressed && (event as InputEventKey).keycode == KEY_I:
-		if playback == null:
-			playback = audio_stream_player.get_stream_playback()
-		print("playback clip index:" , playback.get_current_clip_index())
+#func _input(event):
+	#if event is InputEventKey && (event as InputEventKey).pressed && (event as InputEventKey).keycode == KEY_I:
+		#if playback == null:
+			#playback = audio_stream_player.get_stream_playback()
+		#print("playback clip index:" , playback.get_current_clip_index())
 
 func _on_master_fader_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))

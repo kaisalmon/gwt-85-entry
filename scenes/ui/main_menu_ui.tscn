@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfi7rvclpdapr"]
+[gd_scene load_steps=12 format=3 uid="uid://cfi7rvclpdapr"]
 
 [ext_resource type="Script" uid="uid://dic6c0jtrsj0f" path="res://scenes/ui/main_menu_ui.gd" id="1_3bauu"]
 [ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_b8bkt"]
 [ext_resource type="Texture2D" uid="uid://c3bst5fw73pkb" path="res://textures/nameideas/name 4.png" id="2_qegi1"]
 [ext_resource type="PackedScene" uid="uid://lgpv656d2gli" path="res://scenes/ui/settings_ui.tscn" id="3_qegi1"]
 [ext_resource type="AudioStream" uid="uid://bokyu7kki5mni" path="res://audio/sfx/ambience/menuambience.ogg" id="5_02l8k"]
+[ext_resource type="PackedScene" uid="uid://btq472fd1fk7t" path="res://scenes/ui/controls.tscn" id="5_ij111"]
 [ext_resource type="AudioStream" uid="uid://dwd683o4iyrjc" path="res://audio/sfx/ui/button_click.ogg" id="6_1xem4"]
 [ext_resource type="AudioStream" uid="uid://bb1knabcs2216" path="res://audio/sfx/ui/button_hover.ogg" id="7_5cb75"]
 [ext_resource type="AudioStream" uid="uid://dnopldy5pss6w" path="res://audio/music/mainmenuintro.ogg" id="8_ub220"]
@@ -28,7 +29,7 @@ Vector2i(0, 1): {
 }
 }
 
-[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui")]
+[node name="MainMenuUI" type="CanvasLayer" node_paths=PackedStringArray("start_menu_mc", "continue_button", "quit_button", "settings_ui", "controls_ui")]
 script = ExtResource("1_3bauu")
 start_game_scene_path = "uid://ddhwvnrt4veas"
 credits_path = "uid://daw67whmawla1"
@@ -36,6 +37,7 @@ start_menu_mc = NodePath("StartMenuMC")
 continue_button = NodePath("StartMenuMC/VBoxContainer/ContinueButton")
 quit_button = NodePath("StartMenuMC/VBoxContainer/QuitButton")
 settings_ui = NodePath("SettingsUI")
+controls_ui = NodePath("ControlsUI")
 
 [node name="StartMenuMC" type="MarginContainer" parent="."]
 anchors_preset = 2
@@ -81,7 +83,6 @@ theme_type_variation = &"FlatButton"
 text = "ui.menu.settings"
 
 [node name="ControlsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("2_b8bkt")
 theme_type_variation = &"FlatButton"
@@ -100,6 +101,8 @@ theme_type_variation = &"FlatButton"
 text = "ui.menu.quit"
 
 [node name="SettingsUI" parent="." instance=ExtResource("3_qegi1")]
+
+[node name="ControlsUI" parent="." instance=ExtResource("5_ij111")]
 
 [node name="Fadeout" type="ColorRect" parent="."]
 offset_right = 261.0
@@ -153,3 +156,4 @@ autowrap_mode = 3
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back_pressed" from="SettingsUI" to="." method="_on_settings_ui_back_pressed"]
+[connection signal="back_pressed" from="ControlsUI" to="." method="_on_controls_ui_back_pressed"]

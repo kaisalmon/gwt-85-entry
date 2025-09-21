@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://btq472fd1fk7t"]
+
+[ext_resource type="Script" uid="uid://8uaa6pu7vaic" path="res://scenes/ui/controls.gd" id="1_fp6ub"]
+[ext_resource type="Theme" uid="uid://5wep3gngthoj" path="res://ui/default_theme.tres" id="2_wqeuo"]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fp6ub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Move Up"
+
+[node name="MoveUpButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Xxx"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Move Down"
+
+[node name="MoveDownButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Move Left"
+
+[node name="MoveLeftButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Move Right"
+
+[node name="MoveRightButton" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Interact"
+
+[node name="InteractButton" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Drop"
+
+[node name="DropButton" type="Button" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Unstuck"
+
+[node name="UnstuckButton" type="Button" parent="VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "xxxxx"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Reset"
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+theme = ExtResource("2_wqeuo")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.back"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoveUpButton" to="." method="_on_move_up_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/MoveDownButton" to="." method="_on_move_down_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/MoveLeftButton" to="." method="_on_move_left_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer4/MoveRightButton" to="." method="_on_move_right_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer5/InteractButton" to="." method="_on_interact_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer6/DropButton" to="." method="_on_drop_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer7/UnstuckButton" to="." method="_on_unstuck_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer8/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer8/BackButton" to="." method="_on_back_button_pressed"]
