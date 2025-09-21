@@ -108,9 +108,9 @@ func _process(delta: float) -> void:
 					if house.position.y < 0.0:
 						house.position.y = 0.0
 						house_fall_vel *= house_fall_bounce
-						if abs(house_fall_vel) < 0.1:
+						if abs(house_fall_vel) < 0.2:
 							done_collapsing = true
-					return
+				return
 	var swinging_foot = self.get_swinging_foot()
 	var planted_foot = self.get_planted_foot()
 	swinging_foot.position += walk_speed * delta * Vector3.FORWARD

@@ -110,7 +110,7 @@ uv1_scale = Vector3(0, 0, 0)
 texture_filter = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n1qyp"]
-size = Vector2(12.245, 25.025)
+size = Vector2(12.245, 35.71)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1txtf"]
 random_pitch = 1.01
@@ -245,7 +245,7 @@ walker = NodePath("../Walker")
 parallax_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3325584, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3325584, 4.9688807)
 material_override = SubResource("StandardMaterial3D_8gim3")
 mesh = SubResource("PlaneMesh_n1qyp")
 
