@@ -16,13 +16,16 @@ var speedup = 1.0
 var fadeout_timer = 0.0
 var fadeout_started = false
 
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _input(event: InputEvent) -> void:
-	speedup = 1.0
-	if event is InputEventMouseButton and event.pressed:
+	#speedup = 1.0
+	if event.is_action_pressed("interact"):
 		speedup = 8.0
+	elif event.is_action_released("interact"):
+		speedup = 1.0
 
 func _process(delta: float) -> void:
 	progress += delta * speedup
