@@ -48,12 +48,13 @@ stream_2/stream = ExtResource("6_je7p5")
 stream_3/stream = ExtResource("8_gx1jg")
 stream_4/stream = ExtResource("10_fcs02")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot", "interaction", "item_hold_position")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot", "interaction", "item_hold_position", "unstuck_timer")]
 collision_layer = 2
 script = ExtResource("1_g2els")
 look_pivot = NodePath("LookPivot")
 interaction = NodePath("LookPivot/Interaction")
 item_hold_position = NodePath("LookPivot/FirstPersonModel/SpringArm3D/ItemHoldPos")
+unstuck_timer = NodePath("UnstuckTimer")
 
 [node name="ModelDummy" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_3vyb7")
@@ -97,6 +98,10 @@ player = NodePath("../..")
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.39
 autostart = true
+
+[node name="UnstuckTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
 
 [node name="PlayerAudio" type="Node3D" parent="."]
 

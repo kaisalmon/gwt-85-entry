@@ -16,6 +16,7 @@ extends CharacterBody3D
 @export var interaction: Interaction
 @export var item_hold_position: Marker3D
 @onready var footsteps: AudioStreamPlayer3D = $PlayerAudio/footsteps
+@export var unstuck_timer: Timer
 
 var current_room: GameState.RoomType
 
@@ -110,6 +111,8 @@ func _input(event: InputEvent) -> void:
 		interaction.stop_interact()
 	if event.is_action_pressed("drop_item"):
 		drop_current_item()
+	if event.is_action_pressed("unstuck"):
+		try_unstuck()
 				
 	if event is InputEventKey:
 		var iek: InputEventKey = event as InputEventKey
@@ -188,3 +191,10 @@ func set_current_room(room_type_new: GameState.RoomType) -> void:
 		return
 	print("player entering room: ", GameState.RoomType.keys()[room_type_new])
 	current_room = room_type_new
+
+func try_unstuck() -> void:
+	if !unstuck_timer.is_stopped():
+		return
+
+	unstuck_timer.start()
+	GameState.set_player_position_to_room_pos(current_room)
