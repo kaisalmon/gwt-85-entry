@@ -9,6 +9,7 @@ const FINAL_WIGGLE_SPEED: float = 40.0
 
 @export var item_source: ItemSource
 @export var max_interaction_distance: float = 2.5
+@export var valid_room: GameState.RoomType
 @export_category("internal nodes")
 @export var source_mesh: Node3D
 @export var info_label_3d: InfoLabel3D
@@ -78,7 +79,7 @@ func _process(delta: float) -> void:
 		return
 
 func can_interact(_player: Player) -> bool:
-	return true
+	return valid_room == GameState.RoomType.NONE || _player.current_room == valid_room
 
 func interact(player: Player) -> void:
 	if is_instance_valid(player.held_item) || is_on_cooldown:

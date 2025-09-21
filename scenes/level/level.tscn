@@ -376,15 +376,14 @@ volume_db = 10.0
 bus = &"SFX"
 
 [node name="BottleItemProvider_Kitchen" parent="Interactions" index="10" node_paths=PackedStringArray("source_mesh", "pickup_audio_stream_player", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.70038, 0.854693, 0.494568)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4003797, 0.854693, 0.494568)
 item_source = ExtResource("10_vrc4q")
-max_interaction_distance = 1.0
+valid_room = 3
 source_mesh = NodePath("Bottles")
 pickup_audio_stream_player = NodePath("BottlePickup")
 progress_audio_stream_player = NodePath("BottleProgressAudio")
 
 [node name="Bottles" type="Node3D" parent="Interactions/BottleItemProvider_Kitchen" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.311597, 0, 0)
 
 [node name="Bottle" type="MeshInstance3D" parent="Interactions/BottleItemProvider_Kitchen/Bottles" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.110194, -0.0131072, 0.18923)

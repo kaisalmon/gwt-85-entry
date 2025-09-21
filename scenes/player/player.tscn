@@ -49,7 +49,7 @@ stream_3/stream = ExtResource("8_gx1jg")
 stream_4/stream = ExtResource("10_fcs02")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("look_pivot", "interaction", "item_hold_position")]
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_g2els")
 look_pivot = NodePath("LookPivot")
 interaction = NodePath("LookPivot/Interaction")

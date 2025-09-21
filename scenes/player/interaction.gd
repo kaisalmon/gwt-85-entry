@@ -13,6 +13,9 @@ var interactable_in_use: Interactable = null
 
 var _is_dirty: bool = false
 
+#func _ready() -> void:
+	#visibilty_ray_cast_3d.add_exception()
+
 func interact() -> void:	
 	var next_interactable: Interactable = _get_next_interactable()
 	if next_interactable != null:
@@ -63,12 +66,16 @@ func _get_next_interactable() -> Interactable:
 	#visibilty_ray_cast_3d.force_raycast_update()
 	var collider: Object = visibilty_ray_cast_3d.get_collider()
 	
-	var collision_dist_sq: float = 999
+	var collision_dist_sq: float = 99999
 	
 	if collider != null:
-		collision_dist_sq = global_position.distance_squared_to(visibilty_ray_cast_3d.get_collision_point())
-		#print("collision! from ", global_position, " looking at ", visibilty_ray_cast_3d.get_collision_point())
-	
+		#debug_spring_arm_position.visible = true
+		collision_dist_sq = visibilty_ray_cast_3d.global_position.distance_squared_to(visibilty_ray_cast_3d.get_collision_point())
+		#debug_spring_arm_position.global_position = visibilty_ray_cast_3d.get_collision_point()
+		#print("collision!: ", collider.name, " from ", global_position, " looking at ", visibilty_ray_cast_3d.get_collision_point())
+		#debug_spring_arm_position.visible = false
+		
+		
 	for i: int in available_interactables_size:
 		if i < start_index:
 			continue
@@ -78,7 +85,7 @@ func _get_next_interactable() -> Interactable:
 				#print("interactable ", interactable.name, " found with no collider")
 				return interactable
 				
-			if global_position.distance_squared_to(interactable.global_position) < collision_dist_sq:
+			if visibilty_ray_cast_3d.global_position.distance_squared_to(interactable.global_position) < collision_dist_sq:
 				#print("interactable ", interactable.name, " is closer, with pos: ", interactable.global_position)
 				return interactable
 	return null

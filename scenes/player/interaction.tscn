@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgu3mnobaoxa2"]
+[gd_scene load_steps=5 format=3 uid="uid://bgu3mnobaoxa2"]
 
 [ext_resource type="Script" uid="uid://cy7eylh2we5wt" path="res://scenes/player/interaction.gd" id="1_mf4np"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mf4np"]
-height = 0.7
+height = 0.56289065
 radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4np"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.8848594, 0.48862785, 0.08731481, 0.43137255)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mf4np"]
+material = SubResource("StandardMaterial3D_mf4np")
+radius = 0.08
+height = 0.16
 
 [node name="Interaction" type="Area3D" node_paths=PackedStringArray("visibilty_ray_cast_3d", "recheck_interaction")]
 collision_layer = 0
@@ -15,16 +25,20 @@ visibilty_ray_cast_3d = NodePath("VisibiltyRayCast3D")
 recheck_interaction = NodePath("RecheckInteraction")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.9966205e-09, 0.06855467)
 shape = SubResource("CylinderShape3D_mf4np")
 debug_color = Color(0, 0.64, 0.192, 0.870588)
 
 [node name="VisibiltyRayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.80698043)
 enabled = false
-target_position = Vector3(0, 0, -0.8)
+target_position = Vector3(0, 0, -1.3)
 hit_from_inside = true
 debug_shape_custom_color = Color(0.875454, 0.116147, 0.341009, 1)
+
+[node name="DebugSpringArmPosition" type="MeshInstance3D" parent="VisibiltyRayCast3D"]
+visible = false
+mesh = SubResource("SphereMesh_mf4np")
 
 [node name="RecheckInteraction" type="Timer" parent="."]
 one_shot = true
