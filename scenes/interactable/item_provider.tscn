@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5npl0ksq8mxq"]
+[gd_scene load_steps=10 format=3 uid="uid://b5npl0ksq8mxq"]
 
 [ext_resource type="Script" uid="uid://bnfcnb8qrl0t5" path="res://scenes/interactable/item_provider.gd" id="1_yvxfo"]
 [ext_resource type="PackedScene" uid="uid://bgrpeagpcgvnb" path="res://scenes/ui/info_label_3d.tscn" id="2_0ns2q"]
 [ext_resource type="Script" uid="uid://dr7jfnaxd4avt" path="res://scenes/item_source.gd" id="2_auakr"]
-[ext_resource type="AudioStream" uid="uid://bngdomxcvu4m4" path="res://audio/sfx/ui/pickup_01.ogg" id="2_g4kgx"]
-[ext_resource type="AudioStream" uid="uid://cnlmr3ij7xd7e" path="res://audio/sfx/ui/pickup_02.ogg" id="3_0ns2q"]
 
 [sub_resource type="Resource" id="Resource_goeln"]
 script = ExtResource("2_auakr")
@@ -38,11 +36,6 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_0ns2q")
 size = Vector3(1, 0.1, 0.1)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1hiuq"]
-streams_count = 2
-stream_0/stream = ExtResource("2_g4kgx")
-stream_1/stream = ExtResource("3_0ns2q")
-
 [node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("info_label_3d", "pickup_audio_stream_player", "progress_mesh", "cooldown_timer")]
 collision_layer = 4
 collision_mask = 0
@@ -50,7 +43,7 @@ monitoring = false
 script = ExtResource("1_yvxfo")
 item_source = SubResource("Resource_goeln")
 info_label_3d = NodePath("InfoLabel3D")
-pickup_audio_stream_player = NodePath("PickupAudioStreamPlayer")
+pickup_audio_stream_player = NodePath("")
 progress_mesh = NodePath("ProgressMesh")
 cooldown_timer = NodePath("CooldownTimer")
 
@@ -69,11 +62,6 @@ mesh = SubResource("BoxMesh_1hiuq")
 
 [node name="InfoLabel3D" parent="." instance=ExtResource("2_0ns2q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.681496, 0)
-
-[node name="PickupAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_1hiuq")
-volume_db = 6.5
-bus = &"SFX"
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 0.5

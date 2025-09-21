@@ -120,6 +120,7 @@ func on_interaction_finished() -> void:
 	if source_mesh:
 		source_mesh.global_position = source_mesh_default_pos
 	give_item_to_player(item_source.item, source_player)
+	pickup_audio_stream_player.play()
 	cooldown_timer.start()
 	is_on_cooldown = true
 	pickup_audio_stream_player.play()
