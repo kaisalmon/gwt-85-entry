@@ -39,6 +39,7 @@ var door_count: int = 0
 
 var is_ending: bool = false
 
+var num_orbs_in_world: int = 0
 
 # returns the amount that was removed	
 func remove_magic(magic_type: Recipe.MagicType, remove_amount: int) -> int:
@@ -98,3 +99,6 @@ func set_player_position_to_room_pos(room_type: RoomType) -> void:
 	player.global_position = room_center_positions[room_type]
 	player.current_room = room_type
 	
+func change_num_orbs_in_world(change_amount: int) -> void:
+	num_orbs_in_world = max(num_orbs_in_world + change_amount, 0)
+	ui.validate_magic_visible()

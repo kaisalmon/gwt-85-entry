@@ -36,11 +36,10 @@ var is_on_pause_screen: bool = false
 var autosave_available: bool = true
 var in_cutscene: bool = false
 
-var magic_view_invisible_y_pos: float = 30
+var magic_view_invisible_y_pos: float = -30
 var magic_view_visible_y_pos: float = 0
 var magic_fade_tween: Tween
 var current_interactable: Interactable = null
-var has_orb_in_world: bool = false
 var is_magic_visible: bool = false
 
 func _ready() -> void:
@@ -184,17 +183,21 @@ func set_magic_ui_fade_in(is_fade_in: bool) -> void:
 	var target_y_pos: float = magic_view_visible_y_pos if is_fade_in else magic_view_invisible_y_pos
 	var target_alpha: float = 1.0 if is_fade_in else 0.0
 	
-	magic_fade_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_parallel()
-	magic_fade_tween.tween_property(magic_view, "position:y", target_y_pos, 0.5)
-	magic_fade_tween.tween_property(magic_view, "modulate:a", target_alpha, 0.4)
-
+	var subtween: Tween = create_tween().set_parallel()
+	subtween.tween_property(magic_view, "position:y", target_y_pos, 0.5)
+	subtween.tween_property(magic_view, "modulate:a", target_alpha, 0.4)
+		
+	magic_fade_tween = create_tween().set_trans(Tween.TRANS_QUAD)
+	magic_fade_tween.tween_interval(0.2 if is_fade_in else 0.8)
+	magic_fade_tween.tween_subtween(subtween)
+	
 func set_interactable_highlighted(interactable: Interactable, is_highlighted_new: bool) -> void:
 	if !(interactable is ItemConsumer || interactable is RoomExpander):
-		pass
-
-	if !is_highlighted_new && current_interactable != interactable:
 		return
-		
+
+	if !is_highlighted_new && interactable != null && current_interactable != interactable:
+		return
+	
 	if !is_highlighted_new:
 		current_interactable = null
 	else:
@@ -204,10 +207,10 @@ func set_interactable_highlighted(interactable: Interactable, is_highlighted_new
 
 func validate_magic_visible() -> void:
 	var is_magic_visible_new: bool = false
-	if current_interactable != null || has_orb_in_world:
+	if current_interactable != null || GameState.num_orbs_in_world > 0:
 		is_magic_visible_new = true	
 		
 	if is_magic_visible == is_magic_visible_new:
 		return
-	
+	is_magic_visible = is_magic_visible_new
 	set_magic_ui_fade_in(is_magic_visible_new)

@@ -23,6 +23,10 @@ func _ready() -> void:
 	)
 	Util.set_sample_type_if_web(bubble_sound)
 
+	if is_valid_orb:
+		GameState.change_num_orbs_in_world(1)
+
+
 func set_magic_type(new_magic_type: Recipe.MagicType) -> void:
 	var ui: UI = GameState.ui
 	var label: Label = ui.get_label_by_type(new_magic_type)
@@ -63,4 +67,6 @@ func _process(delta: float) -> void:
 
 		if xscale < 0.5 and not deposited:
 			GameState.change_magic(magic_type, 1)
+			GameState.change_num_orbs_in_world(-1)
+
 			deposited = true
