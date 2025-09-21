@@ -32,8 +32,19 @@ func _process(delta: float) -> void:
 	if starting_game:
 		fadeout_timer -= delta
 		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - fadeout_timer) / fadeout_duration)
-		if fadeout_timer <= 0.0:
-			get_tree().change_scene_to_file(start_game_scene_path)
+		
+		var is_on_web = Util.is_web_build()
+		if not is_on_web:
+			if fadeout_timer <= 0.0:
+				get_tree().change_scene_to_file(start_game_scene_path)
+		else:
+			if fadeout_timer <= -4.0:
+				get_tree().change_scene_to_file(start_game_scene_path)
+			if fadeout_timer <= -3.0:
+				$WebWarning.modulate.a = lerp($WebWarning.modulate.a, 0.0, 0.1)
+			elif fadeout_timer <= 0.0:
+				$WebWarning.modulate.a = lerp($WebWarning.modulate.a, 1.0, 0.1)
+
 	elif starting_credits:
 		fadeout_timer -= delta
 		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - fadeout_timer) / fadeout_duration)

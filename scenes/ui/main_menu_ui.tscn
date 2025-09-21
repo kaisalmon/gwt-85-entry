@@ -121,6 +121,18 @@ autoplay = true
 bus = &"Music"
 playback_type = 2
 
+[node name="WebWarning" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 35.0
+offset_top = 35.0
+offset_right = 174.0
+offset_bottom = 137.0
+text = "
+
+If you experience issues with sound quality on web, we recommend downloading and running the game executable.
+"
+autowrap_mode = 3
+
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_mouse_entered"]
