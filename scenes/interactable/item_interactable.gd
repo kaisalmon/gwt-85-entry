@@ -28,6 +28,7 @@ func interact(player: Player) -> void:
 func set_highlight(_player: Player, highlight_new: bool) -> void:
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	debug_label_3d.visible = highlight_new
-
+	super(_player, highlight_new)
+	
 func update_recipe_display() -> void:
 	debug_label_3d.text = Item.ItemType.keys()[item_source.item_type]

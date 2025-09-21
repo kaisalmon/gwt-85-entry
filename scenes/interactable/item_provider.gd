@@ -163,3 +163,4 @@ func translate_text() -> void:
 
 func set_highlight(_player: Player, highlight_new: bool) -> void:
 	info_label_3d.visible = highlight_new
+	super(_player, highlight_new)

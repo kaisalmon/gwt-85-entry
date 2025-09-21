@@ -39,11 +39,12 @@ var highlighted: bool = false
 
 var provided_magic: Dictionary[Recipe.MagicType, int] = {}
 var play_unlock_sounds: bool = true
+var show_room_dialogue: bool = true
 
 func _ready() -> void:
 	Util.set_sample_type_if_web(dooropen)
 	Util.set_sample_type_if_web(dooropen_end)
-	GameState.open_door_requested.connect(set_unlocked.bind(SHOW_ANIM_ON_INDIRECT_UNLOCK, PROGRESS_MUSIC_ON_INDIRECT_UNLOCK, PLAY_SFX_ON_INDIRECT_UNLOCK))
+	GameState.open_door_requested.connect(set_unlocked.bind(SHOW_ANIM_ON_INDIRECT_UNLOCK, PROGRESS_MUSIC_ON_INDIRECT_UNLOCK, PLAY_SFX_ON_INDIRECT_UNLOCK, false))
 	Settings.locale_changed.connect(update_requirement_display)
 	if door_properties.required_magic.size() == 0:
 		push_warning("door ", self.name, " does not have any required magic set up!")
@@ -125,6 +126,7 @@ func interact(player: Player) -> void:
 func set_highlight(_player: Player, highlight_new: bool) -> void:
 	if has_started_animation || door_unlocked:
 		return
+	super(_player, highlight_new)
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	info_label_3d.visible = highlight_new
 	
@@ -135,9 +137,11 @@ func start_unlock_anim(_progress_music: bool) -> void:
 	animation_progress = 0.01
 	if play_unlock_sounds:
 		dooropen.play()
+		
+	GameState.set_door_opened(door_properties.unlocked_room_type)
 
-	#if progress_music:
-	#	GameState.music_player.progress_music(door_properties.unlocked_room_type)
+	#if _progress_music:
+		#GameState.music_player.progress_music(door_properties.unlocked_room_type)
 
 func unlock() -> void:
 	if door_unlocked: 
@@ -151,7 +155,8 @@ func unlock() -> void:
 	if play_unlock_sounds:
 		dooropen_end.play()
 	#GameState.ui.show_text("new room!")
-	GameState.set_door_opened(door_properties.unlocked_room_type)
+	if show_room_dialogue:
+		GameState.ui.show_dialogue_by_door(door_properties.unlocked_room_type)
 	var room_listeners = get_tree().get_nodes_in_group("room_listener")
 	for room_listener in room_listeners:
 		if room_listener is RoomListener:
@@ -222,11 +227,12 @@ func fadeout_text() -> void:
 	await  fadeout_text_tween.finished
 	info_label_3d.visible = false
 
-func set_unlocked(room_type_to_unlock: GameState.RoomType, play_animation: bool, progress_music: bool = false, set_play_sound: bool = false) -> void:
+func set_unlocked(room_type_to_unlock: GameState.RoomType, play_animation: bool, progress_music: bool = false, set_play_sound: bool = false, show_new_room_ui_new: bool = false) -> void:
 	if room_type_to_unlock != door_properties.unlocked_room_type:
 		return
 		
 	play_unlock_sounds = set_play_sound
+	show_room_dialogue = show_new_room_ui_new
 	
 	if play_animation:
 		start_unlock_anim(progress_music)

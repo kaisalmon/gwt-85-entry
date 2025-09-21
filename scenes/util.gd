@@ -95,6 +95,18 @@ static func set_paused_audio_effect(effect_active: bool, from_node: Node) -> voi
 	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/3200_hz", new_band5, 0.25)
 	audio_effect_tween.tween_property(audio_effect_eqband, "band_db/10000_hz", new_band6, 0.2)
 	audio_effect_tween.tween_property(audio_effect_stereo, "pan_pullout", new_pan, 0.4)
-	
 	#if !is_paused_new:
 	#	music_fade_tween.finished.connect(set_audio_effect_enabled.bind(false))
+	
+static func reset_paused_audio_effect() -> void:
+	if is_instance_valid(audio_effect_tween):
+		audio_effect_tween.kill()
+	var audio_effect_eqband: AudioEffectEQ = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 0)
+	var audio_effect_stereo: AudioEffectStereoEnhance = AudioServer.get_bus_effect(AudioServer.get_bus_index("Master"), 1)
+	audio_effect_eqband["band_db/32_hz"] = 0
+	audio_effect_eqband["band_db/100_hz"] = 0
+	audio_effect_eqband["band_db/320_hz"] = 0
+	audio_effect_eqband["band_db/1000_hz"] = 0
+	audio_effect_eqband["band_db/3200_hz"] = 0
+	audio_effect_eqband["band_db/10000_hz"] = 0
+	audio_effect_stereo["pan_pullout"] = 0

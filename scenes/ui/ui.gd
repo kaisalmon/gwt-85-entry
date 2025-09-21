@@ -24,6 +24,7 @@ signal current_text_finished
 
 @export var autosave_label: Label
 @export var autosave_timer: Timer
+@export var magic_view: MarginContainer
 
 var music_fade_tween: Tween = null
 var music_mono_tween: Tween = null
@@ -34,6 +35,13 @@ var is_debug_mode_active: bool = false
 var is_on_pause_screen: bool = false
 var autosave_available: bool = true
 var in_cutscene: bool = false
+
+var magic_view_invisible_y_pos: float = 30
+var magic_view_visible_y_pos: float = 0
+var magic_fade_tween: Tween
+var current_interactable: Interactable = null
+var has_orb_in_world: bool = false
+var is_magic_visible: bool = false
 
 func _ready() -> void:
 	translate_label()
@@ -134,17 +142,17 @@ func do_autosave() -> void:
 	autosave_available = false
 	autosave_timer.start()
 	
-	var start_y_pos: float = autosave_label.position.y
+	var autosave_start_y_pos: float = autosave_label.position.y
 	autosave_label.modulate.a = 0.0
 
 	var autosave_tween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CIRC)
-	autosave_tween.tween_property(autosave_label, "position:y", start_y_pos - 20, 0.4)
+	autosave_tween.tween_property(autosave_label, "position:y", autosave_start_y_pos - 20, 0.4)
 	autosave_tween.tween_property(autosave_label, "modulate:a", 1.0, 0.6)
 	
 	await autosave_tween.finished
 	await get_tree().create_timer(2.0).timeout
 	autosave_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CIRC)
-	autosave_tween.tween_property(autosave_label, "position:y", start_y_pos, 0.5)
+	autosave_tween.tween_property(autosave_label, "position:y", autosave_start_y_pos, 0.5)
 	autosave_tween.tween_property(autosave_label, "modulate:a", 0.0, 0.4)
 	
 func _on_pause_overlay_unpause_requested() -> void:
@@ -167,4 +175,39 @@ func _process(delta: float) -> void:
 	$CutsceneBars/BottomBar.position.y = lerp($CutsceneBars/BottomBar.position.y, 192.0 - 42.0, delta * 2)
 
 func translate_label() -> void:
-	magic_label_text.text = tr("ui.magic") + ":"
+	magic_label_text.text = tr("ui.magic")
+
+func set_magic_ui_fade_in(is_fade_in: bool) -> void:
+	if(is_instance_valid(magic_fade_tween)):
+		magic_fade_tween.kill()
+		
+	var target_y_pos: float = magic_view_visible_y_pos if is_fade_in else magic_view_invisible_y_pos
+	var target_alpha: float = 1.0 if is_fade_in else 0.0
+	
+	magic_fade_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_parallel()
+	magic_fade_tween.tween_property(magic_view, "position:y", target_y_pos, 0.5)
+	magic_fade_tween.tween_property(magic_view, "modulate:a", target_alpha, 0.4)
+
+func set_interactable_highlighted(interactable: Interactable, is_highlighted_new: bool) -> void:
+	if !(interactable is ItemConsumer || interactable is RoomExpander):
+		pass
+
+	if !is_highlighted_new && current_interactable != interactable:
+		return
+		
+	if !is_highlighted_new:
+		current_interactable = null
+	else:
+		current_interactable = interactable
+	
+	validate_magic_visible()	
+
+func validate_magic_visible() -> void:
+	var is_magic_visible_new: bool = false
+	if current_interactable != null || has_orb_in_world:
+		is_magic_visible_new = true	
+		
+	if is_magic_visible == is_magic_visible_new:
+		return
+	
+	set_magic_ui_fade_in(is_magic_visible_new)

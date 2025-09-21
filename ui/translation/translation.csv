@@ -3,10 +3,10 @@ magic.hollow;Hollow Magic;Hohle Magie
 magic.cozy;Cozy Magic;Gemütliche Magie
 magic.vivid;Vivid Magic;Lebhafte Magie
 magic.windy;Windy Magic;Windige Magie
-magic.soft;Soft Magic;Weiche Magie
-magic.bulky;Bulky Magic;Sperrige Magie
-magic.sturdy;Sturdy Magic;Robuste Magie
-magic.crispy;Crispy Magic;Knusprige Magie
+ui.magic.hollow;Hollow;Hohl
+ui.magic.cozy;Cozy;Gemütlich
+ui.magic.vivid;Vivid;Lebhaft
+ui.magic.windy;Windy;Windig
 item.book;Book;Buch
 item.book.plural;Books;Bücher
 item.candle;Candle;Kerze

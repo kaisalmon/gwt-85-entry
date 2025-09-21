@@ -12,4 +12,4 @@ func stop_interact(_player: Player) -> void:
 	pass
 
 func set_highlight(_player: Player, _highlight_new: bool) -> void:
-	pass
+	GameState.ui.set_interactable_highlighted(self, _highlight_new)

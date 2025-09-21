@@ -62,13 +62,16 @@ func set_door_opened(unlocked_room_type: RoomType) -> void:
 		#print("room '", RoomType.keys()[unlocked_room_type], "' already unlocked")
 		return
 		
-	ui.show_dialogue_by_door(unlocked_room_type)
+	#ui.show_dialogue_by_door(unlocked_room_type)
 	door_count +=1
 	new_door_unlocked.emit(door_count, unlocked_room_type)
 	opened_doors.append(unlocked_room_type)
 	
 	if AUTO_SAVE:
 		SaveGame.save_to_file()
+
+func set_door_unlock_finished(unlocked_room_type: RoomType) -> void:
+	ui.show_dialogue_by_door(unlocked_room_type)
 
 func apply_loaded_state() -> void:
 	for open_room_type: RoomType in opened_doors:
@@ -81,6 +84,12 @@ func apply_loaded_state() -> void:
 	for magic_type: Recipe.MagicType in Recipe.MagicType.values():
 		ui.set_magic_amount(magic_type, current_magic_amounts[magic_type] )
 
+	if opened_doors.size() > 0:		
+		if opened_doors.has(RoomType.LIBRARY):
+			new_door_unlocked.emit(opened_doors.size(), RoomType.LIBRARY)
+		else:
+			new_door_unlocked.emit(opened_doors.size(), opened_doors[opened_doors.size()-1])
+
 func set_player_position_to_room_pos(room_type: RoomType) -> void:
 	if !room_center_positions.has(room_type):
 		
@@ -88,3 +97,4 @@ func set_player_position_to_room_pos(room_type: RoomType) -> void:
 	
 	player.global_position = room_center_positions[room_type]
 	player.current_room = room_type
+	

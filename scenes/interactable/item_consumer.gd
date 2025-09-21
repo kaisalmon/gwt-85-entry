@@ -101,6 +101,7 @@ func set_highlight(player: Player, highlight_new: bool) -> void:
 	is_currently_highlighted = highlight_new
 	if is_on_cooldown:
 		return
+	super(player, highlight_new)
 	#print("highlighting for ", self.name, ": ", highlight_new)
 	info_label.visible = highlight_new
 	
