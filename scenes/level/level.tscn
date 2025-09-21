@@ -499,7 +499,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45224, 0.592497, 7.21803)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("33_mf35j")
-next_scene = "uid://dyawlu53u7bd2"
+next_scene = "uid://daw67whmawla1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameEndArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0975113, 0.135712, 0.0977859)

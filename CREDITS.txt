@@ -1,6 +1,57 @@
-Hidden Library Palette Created by Pixel Hoo - https://lospec.com/palette-list/hidden-library
-KayKit Furniture Bits by Kay Lousberg - https://kaylousberg.itch.io/furniture-bits
-Jestan's Fantasy Textures - https://jestan.itch.io/fantasy-textures
-SLK_img2pixel by Lukas Holzbeierlein - https://captain4lk.itch.io/slk-img2pixel
-David Marah - Forest background
-Yolk font by SomePX - https://somepx.itch.io/free-font-yolk
+A GAME BY
+Kai Salmon 
+    [color="#adca9a"]kaisalmon.itch.io[/color]
+Dave ??? 
+    [color="#adca9a"]substain.itch.io[/color]
+Andrey Sulimov 
+    [color="#adca9a"]andreyslmv.itch.io[/color]
+
+PROGRAMMING BY
+Dave ??? 
+    [color="#adca9a"]substain.itch.io[/color]
+Kai Salmon 
+    [color="#adca9a"]kaisalmon.itch.io[/color]
+
+MUSIC BY 
+Andrey Sulimov 
+    [color="#adca9a"]andreyslmv.itch.io[/color]
+
+AUDIO BY 
+Andrey Sulimov 
+    [color="#adca9a"]andreyslmv.itch.io[/color]
+
+3D ART & ANIMATION BY
+Kai Salmon 
+    [color="#adca9a"]kaisalmon.itch.io[/color]
+
+BUILT WITH
+Godot Game Engine 
+    [color="#adca9a"]godotengine.org[/color]
+Blockbench 
+    [color="#adca9a"]blockbench.net[/color]
+SLK_img2pixel 
+    by Lukas Holzbeierlein 
+    [color="#adca9a"]captain4lk.itch.io/slk-img2pixel[/color]
+
+
+ASSETS USED
+3D
+KayKit Furniture Bits 
+    by Kay Lousberg [color="#adca9a"]
+    kaylousberg.itch.io/furniture-bits[/color]
+
+2D
+Hidden Library Palette 
+   by Pixel Hoo [color="#adca9a"]
+   lospec.com/palette-list/hidden-library[/color]
+Jestan's Fantasy Textures 
+   [color="#adca9a"]jestan.itch.io/fantasy-textures[/color]
+Forest background 
+   by David Marah
+   [color="#adca9a"]aethrall.itch.io
+       /demon-woods-parallax-background[/color]
+
+FONT
+Yolk font 
+    by SomePX 
+    [color="#adca9a"]somepx.itch.io/free-font-yolk[/color]

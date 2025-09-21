@@ -32,7 +32,7 @@ fog_depth_end = 20.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s5g8n"]
 shader = ExtResource("1_ckupo")
 shader_parameter/palette_texture = ExtResource("2_fi8nj")
-shader_parameter/palette_size = 14
+shader_parameter/palette_size = 16
 shader_parameter/solid_modifier = 0.6
 shader_parameter/max_distance = 0.6
 shader_parameter/gamma = 1.0
@@ -131,6 +131,7 @@ material = SubResource("ShaderMaterial_s5g8n")
 offset_right = 1155.0
 offset_bottom = 650.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.624705, -0.0118748, -0.780771, -0.0261962, 0.99964, 0.00575642, 0.780421, 0.0240493, -0.624791, -2.12624, 1.58549, -3.34245)

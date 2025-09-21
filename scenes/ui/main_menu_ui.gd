@@ -14,6 +14,7 @@ extends CanvasLayer
 
 var starting_game = false
 var new_game_timer = 0.0
+var timer = 0.0
 var fadeout_duration = 0.8
 
 func _ready() -> void:
@@ -25,11 +26,15 @@ func _ready() -> void:
 	quit_button.visible = !Util.is_web_build()
 	
 func _process(delta: float) -> void:
+	timer += delta
 	if starting_game:
 		new_game_timer -= delta
 		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - new_game_timer) / fadeout_duration)
 		if new_game_timer <= 0.0:
 			get_tree().change_scene_to_file(start_game_scene_path)
+	else:
+		$Fadeout.color.a = lerp(0.0, 1.0, (fadeout_duration - timer) / fadeout_duration)
+
 
 func _on_new_game_button_pressed() -> void:
 	click.play()
