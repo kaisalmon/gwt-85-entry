@@ -330,8 +330,9 @@ volume_db = 10.0
 bus = &"SFX"
 
 [node name="ClockItemProvider_Bedroom" parent="Interactions" index="9" node_paths=PackedStringArray("source_mesh", "pickup_audio_stream_player", "progress_audio_stream_player") instance=ExtResource("15_vrc4q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14365, 0.384626, 1.93349)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2786407, 0.34734452, 2.1614144)
 item_source = ExtResource("17_ss4b2")
+valid_room = 2
 source_mesh = NodePath("Clocks")
 pickup_audio_stream_player = NodePath("ClockPickup")
 progress_audio_stream_player = NodePath("ClockProgressAudio")
@@ -340,21 +341,21 @@ progress_audio_stream_player = NodePath("ClockProgressAudio")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.654, 0)
 
 [node name="Clock" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="0"]
-transform = Transform3D(0.450344, 0, -0.535901, 0, 0.7, 0, 0.535901, 0, 0.450344, 0.0756531, -0.485, 0.198708)
+transform = Transform3D(0.450344, 0, -0.535901, 0, 0.7, 0, 0.535901, 0, 0.450344, 0.17740774, -0.485, 0.0017290115)
 material_override = ExtResource("21_u5w0m")
 material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("21_fhw5o")
 skeleton = NodePath("../..")
 
 [node name="Clock3" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="1"]
-transform = Transform3D(0.64643, 0, -0.268567, 0, 0.7, 0, 0.268567, 0, 0.64643, -0.177779, -0.485, 0.284329)
+transform = Transform3D(0.64643, 0, -0.268567, 0, 0.7, 0, 0.268567, 0, 0.64643, -0.07602453, -0.485, 0.08734989)
 material_override = ExtResource("21_u5w0m")
 material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("21_fhw5o")
 skeleton = NodePath("../..")
 
 [node name="Clock2" type="MeshInstance3D" parent="Interactions/ClockItemProvider_Bedroom/Clocks" index="2"]
-transform = Transform3D(0.679431, 0, 0.168444, 0, 0.7, 0, -0.168444, 0, 0.679431, -0.222635, -0.485, 0.0205445)
+transform = Transform3D(0.679431, 0, 0.168444, 0, 0.7, 0, -0.168444, 0, 0.679431, -0.12088013, -0.485, -0.17643452)
 material_override = ExtResource("21_u5w0m")
 material_overlay = ExtResource("23_cqqhe")
 mesh = ExtResource("21_fhw5o")
