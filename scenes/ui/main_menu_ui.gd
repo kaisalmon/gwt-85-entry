@@ -89,27 +89,26 @@ func _on_settings_ui_back_pressed() -> void:
 	settings_ui.visible = false
 	start_menu_mc.visible = true
 
-
 func _on_continue_button_mouse_entered() -> void:
 	hover.play()
-	pass # Replace with function body.
-
 
 func _on_new_game_button_mouse_entered() -> void:
 	hover.play()
-	pass # Replace with function body.
-
 
 func _on_settings_button_mouse_entered() -> void:
 	hover.play()
-	pass # Replace with function body.
-
 
 func _on_credits_button_mouse_entered() -> void:
 	hover.play()
-	pass # Replace with function body.
-
 
 func _on_quit_button_mouse_entered() -> void:
 	hover.play()
-	pass # Replace with function body.
+
+
+func _on_controls_button_mouse_entered() -> void:
+	hover.play()
+
+
+func _on_controls_button_pressed() -> void:
+	click.play()
+	#TODO

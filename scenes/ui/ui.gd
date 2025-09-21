@@ -115,7 +115,6 @@ func show_textbox() -> void:
 	textbox_container.show()
 	
 func show_text(next_text_to_show: String) -> void:
-	var text_length: int = next_text_to_show.length()
 	var text_show_duration: float = clamp(next_text_to_show.length() * 0.04, 1.5, 3.0)
 	text_main.text = next_text_to_show
 	show_textbox()

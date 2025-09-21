@@ -39,6 +39,7 @@ func _ready() -> void:
 	Settings.locale_changed.connect(translate_text)
 	set_info_label_text_to_item()
 	progress_mesh_mat.albedo_color.a = 0.0
+	set_highlight(null, false)
 
 
 func _process(delta: float) -> void:
@@ -158,3 +159,6 @@ static func give_item_to_player(item_type: Item.ItemType, player: Player) -> voi
 func translate_text() -> void:
 	if cooldown_timer.is_stopped():
 		info_label_3d.text = tr(Util.item_type_to_trkey(item_source.item))
+
+func set_highlight(_player: Player, highlight_new: bool) -> void:
+	info_label_3d.visible = highlight_new

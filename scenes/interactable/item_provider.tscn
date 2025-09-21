@@ -7,7 +7,6 @@
 [sub_resource type="Resource" id="Resource_goeln"]
 script = ExtResource("2_auakr")
 item = 5
-interaction_duration = 2.0
 cooldown_duration = 30.0
 metadata/_custom_type_script = "uid://dr7jfnaxd4avt"
 
@@ -36,14 +35,13 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_0ns2q")
 size = Vector3(1, 0.1, 0.1)
 
-[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("info_label_3d", "pickup_audio_stream_player", "progress_mesh", "cooldown_timer")]
+[node name="ItemProvider" type="Area3D" node_paths=PackedStringArray("info_label_3d", "progress_mesh", "cooldown_timer")]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_yvxfo")
 item_source = SubResource("Resource_goeln")
 info_label_3d = NodePath("InfoLabel3D")
-pickup_audio_stream_player = NodePath("")
 progress_mesh = NodePath("ProgressMesh")
 cooldown_timer = NodePath("CooldownTimer")
 
