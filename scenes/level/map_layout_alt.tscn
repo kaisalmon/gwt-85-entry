@@ -640,12 +640,12 @@ removed_by_room = 4
 grate = true
 
 [node name="WindowGreenhouseDuo2B4" parent="Kitchen" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, 0.999999, 5.66768, 1.10133, 5.67838)
+transform = Transform3D(0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, 0.999999, 5.66768, 1.10133, 5.57838)
 removed_by_room = 5
 grate = true
 
 [node name="WindowGreenhouseDuo2B5" parent="Kitchen" instance=ExtResource("11_0rxmf")]
-transform = Transform3D(0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, 0.999999, 4.51045, 1.10133, 5.67838)
+transform = Transform3D(0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, 0.999999, 4.51045, 1.10133, 5.57838)
 removed_by_room = 5
 grate = true
 
@@ -1217,7 +1217,7 @@ mesh = ExtResource("15_vxhik")
 shape = SubResource("ConvexPolygonShape3D_24spx")
 
 [node name="SmallWall" parent="." instance=ExtResource("3_s5l36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.1, 5.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1, 1, 5.6)
 material_override = SubResource("StandardMaterial3D_rie02")
 
 [editable path="Library/LibraryArea"]
