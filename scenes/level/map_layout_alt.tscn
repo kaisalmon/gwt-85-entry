@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://1o1n6tonmg8w"]
+[gd_scene load_steps=94 format=3 uid="uid://1o1n6tonmg8w"]
 
 [ext_resource type="Texture2D" uid="uid://w3k3ssfyjg08" path="res://textures/wood.png" id="1_y51pv"]
 [ext_resource type="PackedScene" uid="uid://dt6k0c8w2pyfj" path="res://scenes/level/wall.tscn" id="2_vaofm"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://qj8yt50m37o" path="res://scenes/interactable/door.tscn" id="16_31f5n"]
 [ext_resource type="Resource" uid="uid://b57metymml6ot" path="res://resources/door_properties/kitchen_from_main_room_door_props.tres" id="17_4hiba"]
 [ext_resource type="PackedScene" uid="uid://o3dxjjbvg8gl" path="res://scenes/decor/frontdoor.tscn" id="18_3edri"]
-[ext_resource type="Shader" path="res://materials/portal.gdshader" id="19_rie02"]
+[ext_resource type="Shader" uid="uid://veuetltxkkyp" path="res://materials/portal.gdshader" id="19_rie02"]
 [ext_resource type="Resource" uid="uid://cwrnumqbs4qml" path="res://resources/door_properties/corridor_from_main_room_door_props.tres" id="20_al8j5"]
 [ext_resource type="Resource" uid="uid://4whocty31run" path="res://resources/door_properties/bedroom_from_mainroom_door_props.tres" id="21_rj1k4"]
 [ext_resource type="PackedScene" uid="uid://dn58wv626jhtd" path="res://scenes/level/middle_wall.tscn" id="22_24spx"]
@@ -212,6 +212,13 @@ points = PackedVector3Array(1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_24spx"]
 points = PackedVector3Array(0.479933, 1, 0.479933, 0.479933, 0.979933, 0.5, 0.5, 0.979933, 0.479933, 0.479933, 1, -0.480031, -0.480031, 1, 0.479933, 0.479933, 0.819988, 0.5, -0.480031, 0.979933, 0.5, 0.5, 0.979933, -0.480031, 0.5, 0.819988, 0.479933, 0.479933, 0.979933, -0.5, -0.480031, 1, -0.480031, -0.5, 0.979933, 0.479933, 0.429914, 0.0199687, 0.44998, -0.480031, 0.819988, 0.5, 0.5, 0.819988, -0.480031, 0.44998, 0.0199687, 0.429914, 0.479933, 0.819988, -0.5, -0.480031, 0.979933, -0.5, -0.5, 0.979933, -0.480031, -0.5, 0.819988, 0.479933, 0.429914, 0, 0.429914, -0.430012, 0.0199687, 0.44998, -0.450078, 0.0199687, 0.429914, 0.44998, 0.0199687, -0.430012, 0.429914, 0.0199687, -0.450078, -0.480031, 0.819988, -0.5, -0.5, 0.819988, -0.480031, 0.429914, 0, -0.430012, -0.430012, 0, 0.429914, -0.450078, 0.0199687, -0.430012, -0.430012, 0.0199687, -0.450078, -0.430012, 0, -0.430012)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rie02"]
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("4_qxlrm")
+uv1_scale = Vector3(2, 1, 1)
+texture_filter = 2
 
 [node name="MapLayout" type="Node3D"]
 
@@ -560,18 +567,6 @@ skeleton = NodePath("../..")
 
 [node name="SmallWall" parent="Kitchen" instance=ExtResource("3_s5l36")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6.61446, 1, 1.07181)
-material_override = SubResource("StandardMaterial3D_n1evr")
-mesh = SubResource("PlaneMesh_upsk1")
-skeleton = NodePath("../..")
-
-[node name="SmallWall2" parent="Kitchen" instance=ExtResource("3_s5l36")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.60883, 1, 5.66515)
-material_override = SubResource("StandardMaterial3D_n1evr")
-mesh = SubResource("PlaneMesh_upsk1")
-skeleton = NodePath("../..")
-
-[node name="SmallWall5" parent="Kitchen" instance=ExtResource("3_s5l36")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.60791, 1, 5.66515)
 material_override = SubResource("StandardMaterial3D_n1evr")
 mesh = SubResource("PlaneMesh_upsk1")
 skeleton = NodePath("../..")
@@ -1220,5 +1215,9 @@ mesh = ExtResource("15_vxhik")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TableSmall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_24spx")
+
+[node name="SmallWall" parent="." instance=ExtResource("3_s5l36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.1, 5.7)
+material_override = SubResource("StandardMaterial3D_rie02")
 
 [editable path="Library/LibraryArea"]
