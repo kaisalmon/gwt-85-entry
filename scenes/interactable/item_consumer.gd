@@ -38,7 +38,7 @@ func _ready() -> void:
 	Util.set_sample_type_if_web(cauldroninteract_insert)
 	Util.set_sample_type_if_web(cauldroninteract_success)
 	Util.set_sample_type_if_web(ambience_cauldron)
-
+	Settings.locale_changed.connect(update_recipe_display)
 	
 func can_interact(_player: Player) -> bool:
 	return !is_on_cooldown
@@ -52,7 +52,7 @@ func interact(player: Player) -> void:
 	var held_item_type: Item.ItemType = player.held_item.item_type
 
 	if has_necessary_ingredients_for(held_item_type):
-		print("does not need item of the given type")
+		#print("does not need item of the given type")
 		cauldroninteract_failure.play()
 		info_label.wiggle_text(player.get_look_ortho_vec3D())
 		return

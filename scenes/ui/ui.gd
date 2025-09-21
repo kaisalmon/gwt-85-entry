@@ -8,6 +8,7 @@ signal current_text_finished
 @export_category("internal nodes")
 @export var pause_overlay: PauseMenuUI
 @export var magic_value_label: Label
+@export var magic_label_text: Label
 
 @export var magic_value_label_cozy: Label
 @export var magic_value_label_hollow: Label
@@ -35,12 +36,14 @@ var autosave_available: bool = true
 var in_cutscene: bool = false
 
 func _ready() -> void:
+	translate_label()
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 	GameState.ui = self
 	set_pause_screen_active(false)
 	hide_textbox()
 	set_debug_mode_active(false, false)
 	autosave_label.modulate.a = 0.0
+	Settings.locale_changed.connect(translate_label)
 	
 	for type: Recipe.MagicType in Recipe.MagicType.values():
 		set_magic_amount(type, 0)
@@ -162,3 +165,6 @@ func _process(delta: float) -> void:
 		return
 	$CutsceneBars/TopBar.position.y = lerp($CutsceneBars/TopBar.position.y, 0.0, delta * 2)
 	$CutsceneBars/BottomBar.position.y = lerp($CutsceneBars/BottomBar.position.y, 192.0 - 42.0, delta * 2)
+
+func translate_label() -> void:
+	magic_label_text.text = tr("ui.magic") + ":"

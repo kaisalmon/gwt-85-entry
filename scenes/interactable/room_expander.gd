@@ -44,7 +44,7 @@ func _ready() -> void:
 	Util.set_sample_type_if_web(dooropen)
 	Util.set_sample_type_if_web(dooropen_end)
 	GameState.open_door_requested.connect(set_unlocked.bind(SHOW_ANIM_ON_INDIRECT_UNLOCK, PROGRESS_MUSIC_ON_INDIRECT_UNLOCK, PLAY_SFX_ON_INDIRECT_UNLOCK))
-	
+	Settings.locale_changed.connect(update_requirement_display)
 	if door_properties.required_magic.size() == 0:
 		push_warning("door ", self.name, " does not have any required magic set up!")
 	

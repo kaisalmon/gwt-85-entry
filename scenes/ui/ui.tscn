@@ -14,11 +14,12 @@ bg_color = Color(0.197229, 0.383469, 0.265152, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5kmx"]
 bg_color = Color(0, 0, 0, 0)
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label", "magic_value_label_cozy", "magic_value_label_hollow", "magic_value_label_vivid", "magic_value_label_windy", "textbox_container", "text_start", "text_main", "text_end", "debug_mode_ui", "autosave_label", "autosave_timer")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("pause_overlay", "magic_value_label", "magic_label_text", "magic_value_label_cozy", "magic_value_label_hollow", "magic_value_label_vivid", "magic_value_label_windy", "textbox_container", "text_start", "text_main", "text_end", "debug_mode_ui", "autosave_label", "autosave_timer")]
 layer = 8
 script = ExtResource("1_u7n8c")
 pause_overlay = NodePath("PauseOverlay")
 magic_value_label = NodePath("MagicView/HBoxContainer/MagicValueLabelCozy")
+magic_label_text = NodePath("MagicView/HBoxContainer/MagicLabel")
 magic_value_label_cozy = NodePath("MagicView/HBoxContainer/MagicValueLabelCozy")
 magic_value_label_hollow = NodePath("MagicView/HBoxContainer/MagicValueLabelHollow")
 magic_value_label_vivid = NodePath("MagicView/HBoxContainer/MagicValueLabelVivid")
