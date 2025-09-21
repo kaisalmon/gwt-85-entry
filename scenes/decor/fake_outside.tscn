@@ -83,25 +83,30 @@ script = ExtResource("1_0ri0p")
 
 [node name="BGReal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811405, 0)
+layers = 17
 material_override = SubResource("StandardMaterial3D_3f30y")
 mesh = SubResource("CylinderMesh_m8ejx")
 
 [node name="BG" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811405, 0)
+layers = 17
 material_override = SubResource("StandardMaterial3D_sdtmi")
 mesh = SubResource("CylinderMesh_mnhbu")
 
 [node name="Far" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+layers = 17
 material_override = SubResource("StandardMaterial3D_d3ghw")
 mesh = SubResource("CylinderMesh_n0lg8")
 
 [node name="Mid" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+layers = 17
 material_override = SubResource("StandardMaterial3D_ql3f7")
 mesh = SubResource("CylinderMesh_bgqol")
 
 [node name="Close" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621337, 0)
+layers = 17
 material_override = SubResource("StandardMaterial3D_677gn")
 mesh = SubResource("CylinderMesh_13ct7")

@@ -80,6 +80,13 @@ theme = ExtResource("2_b8bkt")
 theme_type_variation = &"FlatButton"
 text = "ui.menu.settings"
 
+[node name="ControlsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_b8bkt")
+theme_type_variation = &"FlatButton"
+text = "ui.menu.controls"
+
 [node name="CreditsButton" type="Button" parent="StartMenuMC/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_b8bkt")
@@ -139,6 +146,8 @@ autowrap_mode = 3
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/ControlsButton" to="." method="_on_controls_button_mouse_entered"]
+[connection signal="pressed" from="StartMenuMC/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="StartMenuMC/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="mouse_entered" from="StartMenuMC/VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]

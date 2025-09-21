@@ -13,7 +13,7 @@ size = Vector2(3, 2)
 orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jbd3v"]
-size = Vector3(3.01172, 2.00671, 0.100098)
+size = Vector3(3.0019536, 2.00671, 0.100098)
 
 [node name="SmallWall" type="MeshInstance3D"]
 material_override = SubResource("StandardMaterial3D_uhxhq")
@@ -22,5 +22,5 @@ mesh = SubResource("PlaneMesh_ltrhp")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00488281, -0.00970459, -0.0100098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5995618e-07, -0.00970459, -0.0100098)
 shape = SubResource("BoxShape3D_jbd3v")

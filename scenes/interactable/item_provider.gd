@@ -31,15 +31,15 @@ var progress_mesh_mat: StandardMaterial3D
 
 var is_on_cooldown: bool = false
 
-
-
 func _ready() -> void:
 	progress_mesh_mat = progress_mesh.get_active_material(0) as StandardMaterial3D
 	cooldown_timer.wait_time = item_source.cooldown_duration
 	if source_mesh:
 		source_mesh_default_pos = source_mesh.global_position
+	Settings.locale_changed.connect(translate_text)
 	set_info_label_text_to_item()
 	progress_mesh_mat.albedo_color.a = 0.0
+	set_highlight(null, false)
 
 
 func _process(delta: float) -> void:
@@ -138,8 +138,8 @@ func _on_cooldown_timer_timeout() -> void:
 		set_info_label_text_to_item()
 	
 func set_info_label_text_to_item() -> void:
-	info_label_3d.text = tr(Util.item_type_to_trkey(item_source.item))
-	
+	translate_text()
+		
 func get_cooldown_time_left() -> String:
 	var time_left: float = cooldown_timer.time_left
 	if time_left < 2.0:
@@ -155,3 +155,10 @@ static func give_item_to_player(item_type: Item.ItemType, player: Player) -> voi
 	var new_item: Item = Item.get_scene(item_type).instantiate() as Item
 	player.get_parent().add_child(new_item)
 	player.set_item_in_hand(new_item)
+
+func translate_text() -> void:
+	if cooldown_timer.is_stopped():
+		info_label_3d.text = tr(Util.item_type_to_trkey(item_source.item))
+
+func set_highlight(_player: Player, highlight_new: bool) -> void:
+	info_label_3d.visible = highlight_new

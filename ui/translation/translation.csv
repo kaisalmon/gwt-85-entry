@@ -36,6 +36,7 @@ room.green_house;Green House;Gewächshaus
 ui.menu.new_game;New Game;Neues Spiel
 ui.menu.continue;Continue;Fortsetzen
 ui.menu.settings;Settings;Einstellungen
+ui.menu.controls;Controls;Steuerung
 ui.menu.credits;Credits;Credits
 ui.menu.quit;Quit;Verlassen
 ui.menu.back;Back;Zurück
@@ -60,4 +61,4 @@ dialogue.unlock_room.office;This room is purely for procrastination.;Dieser Raum
 dialogue.unlock_room.corridor;And this is the corridor.;Und das ist der Korridor.
 dialogue.unlock_room.green_house;It's pumpkin season!;Es ist Kürbis-Saison!
 dialogue.intro.1;I think this'll make nice place to settle for the winter.;Ich denke, das wird ein schöner Ort sein, um sich für den Winter niederzulassen.
-dialogue.ending.1;...and that's it! The last room!;...und das ist der letzte Raum!
+dialogue.ending.1;...and that's it! The last room!;...und das ist er! Der letzte Raum!
