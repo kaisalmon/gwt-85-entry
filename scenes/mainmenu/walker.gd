@@ -12,6 +12,7 @@ class_name WalkManager
 @export var foot_max_angle = 0.5 # Maximum angle the foot rotates, in radians
 @onready var footsteps: AudioStreamPlayer3D = $"../footsteps"
 @onready var rustle: AudioStreamPlayer3D = $"../rustle"
+@onready var house_drop: AudioStreamPlayer3D = $"../HouseDrop"
 
 var l_foot;
 var r_foot;
@@ -35,6 +36,8 @@ var left_foot_planted = true
 var collapsing = false
 var legs_material: StandardMaterial3D
 var done_collapsing = false
+
+var audio_triggered: bool = false
 
 func _ready() -> void:
 	l_foot = $LeftFoot
@@ -106,6 +109,9 @@ func _process(delta: float) -> void:
 					house.position.y -= house_fall_vel * delta
 					house_fall_vel += house_fall_g * delta
 					if house.position.y < 0.0:
+						if audio_triggered == false:
+							audio_triggered = true
+							house_drop.play()
 						house.position.y = 0.0
 						house_fall_vel *= house_fall_bounce
 						if abs(house_fall_vel) < 0.2:
