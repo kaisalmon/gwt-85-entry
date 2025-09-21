@@ -8,6 +8,7 @@ extends Node3D
 @export var fadein_duration = 1.25
 @export var delay = 2.5
 @export_file("*.tscn") var next_scene: String
+@onready var credits_music: AudioStreamPlayer = $credits_music
 
 var progress = 0.0
 var end_sequence_timer = 0.0
@@ -19,6 +20,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		speedup = 5.0
+		if end_sequence_timer > 4.5:
+			get_tree().change_scene_to_file(next_scene)
 	else:
 		speedup = 1.0
 
@@ -38,6 +41,8 @@ func _process(delta: float) -> void:
 		if end_sequence_timer > 2.5:
 			material.albedo_texture = no_lights_texture
 		if end_sequence_timer > 3.0:
-			$Fadeout.color.a = lerp(0.0, 1.0, (end_sequence_timer - 3.0) / fadein_duration)
+			if !credits_music.playing:
+				$Fadeout.color.a = lerp(0.0, 1.0, (end_sequence_timer - 3.0) / fadein_duration)
 		if end_sequence_timer > 4.5:
-			get_tree().change_scene_to_file(next_scene)
+			if !credits_music.playing:
+				get_tree().change_scene_to_file(next_scene)
