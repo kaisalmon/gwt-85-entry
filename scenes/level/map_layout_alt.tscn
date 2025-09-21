@@ -403,7 +403,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.257
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.44275, 1.02932, -2.00531)
 
 [node name="SmallWall" parent="MainRoom" instance=ExtResource("3_s5l36")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.98375, 1, -1.03434)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.98375, 1, -1.0239315)
 material_override = SubResource("StandardMaterial3D_n1evr")
 mesh = SubResource("PlaneMesh_upsk1")
 skeleton = NodePath("../..")
@@ -470,7 +470,7 @@ removed_by_room = 3
 [node name="Bedroom" type="Node3D" parent="."]
 
 [node name="DoorBedroom" parent="Bedroom" instance=ExtResource("16_31f5n")]
-transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, -4, -0.0109286, -0.3)
+transform = Transform3D(1.19249e-08, 0, 1, 0, 1, 0, -1, 0, 1.19249e-08, -4, -0.0109286, -0.29549512)
 door_properties = ExtResource("21_rj1k4")
 
 [node name="BedroomArea" parent="Bedroom" instance=ExtResource("3_e26lo")]
@@ -511,7 +511,7 @@ transform = Transform3D(7.54978e-08, 0, 1, 0, 1, 0, -1, 0, 7.54978e-08, 1.59596,
 transform = Transform3D(-1, 0, 2.06632e-07, 0, 1, 0, -2.06632e-07, 0, -1, 0.503177, -0.096429, -0.0260401)
 
 [node name="MiniWall" parent="Bedroom" instance=ExtResource("23_iblt8")]
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -4, 1, -1.8)
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -4, 1, -1.7961671)
 skeleton = NodePath("..")
 
 [node name="BedSingleA" type="MeshInstance3D" parent="Bedroom"]
@@ -540,7 +540,7 @@ shape = SubResource("ConvexPolygonShape3D_upsk1")
 [node name="Kitchen" type="Node3D" parent="."]
 
 [node name="DoorKitchen" parent="Kitchen" instance=ExtResource("16_31f5n")]
-transform = Transform3D(-9.93477e-08, 0, -1, 0, 1, 0, 1, 0, -9.93477e-08, 3.98375, 0, -1.33434)
+transform = Transform3D(-9.93477e-08, 0, -1, 0, 1, 0, 1, 0, -9.93477e-08, 3.98375, -0.0155797005, -1.33434)
 collision_layer = 13
 door_properties = ExtResource("17_4hiba")
 
