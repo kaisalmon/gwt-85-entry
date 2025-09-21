@@ -2,7 +2,7 @@ extends Node
 class_name WalkManager
 
 @export var stride_length = 8.0
-@export var limb_length = 8.0
+@export var limb_length = 1.14
 @export var step_height = 4.0
 @export var walk_speed = 4.0
 @export var hip_offset = Vector3(.3, 0.0, 0.0)
@@ -23,7 +23,18 @@ var r_shin;
 var l_thigh;
 var r_thigh;
 
+var l_foot_target_x = 0.0
+var r_foot_target_x = 0.0
+
+var house_fall_vel = 0.0
+var house_fall_g = 9.8
+var house_fall_bounce = -0.3
+
 var left_foot_planted = true
+
+var collapsing = false
+var legs_material: StandardMaterial3D
+var done_collapsing = false
 
 func _ready() -> void:
 	l_foot = $LeftFoot
@@ -35,6 +46,9 @@ func _ready() -> void:
 	r_shin = $RightShin
 	l_thigh = $LeftThigh
 	r_thigh = $RightThigh
+	l_foot_target_x = l_foot.position.x
+	r_foot_target_x = r_foot.position.x
+	legs_material = l_shin.get_node("Mesh").material_override as StandardMaterial3D
 
 func get_planted_foot() -> Node3D:
 	if left_foot_planted:
@@ -68,11 +82,45 @@ func get_equidistant_point(a: Vector3, b: Vector3, distance: float, direction: V
 	return mid_point + direction_in_plane * radius
 	
 func _process(delta: float) -> void:
-	# self.position += walk_speed * delta * Vector3.FORWARD
+	
+	var mesh = l_shin.get_node("Mesh").mesh
+	if collapsing:
+		var p = 1.2
+		walk_speed = lerp(walk_speed, 0.0, delta * p)
+		stride_length = lerp(stride_length, 0.0, delta * p)
+		step_height = lerp(step_height, 0.0, delta * p)
+		l_foot_target_x = lerp(l_foot_target_x, 0.0, delta * p)
+		r_foot_target_x = lerp(r_foot_target_x, 0.0, delta * p)
+		if walk_speed > 1.0:
+			house_min_height = lerp(house_min_height, 1.8, delta * p)
+			house_max_height = lerp(house_max_height, 1.8, delta * p)
+		else:
+			p = 1.0
+			house_min_height = lerp(house_min_height, 2.3, delta * p)
+			house_max_height = lerp(house_max_height, 2.3, delta * p)
+			mesh.size.z = lerp(mesh.size.z, 1.35, delta * p)
+			p = 2.5
+			if house_min_height > 2.25:
+				legs_material.albedo_color.a = lerp(legs_material.albedo_color.a, 0.0, delta * p)
+				if legs_material.albedo_color.a < 0.01:
+					house.position.y -= house_fall_vel * delta
+					house_fall_vel += house_fall_g * delta
+					if house.position.y < 0.0:
+						house.position.y = 0.0
+						house_fall_vel *= house_fall_bounce
+						if abs(house_fall_vel) < 0.1:
+							done_collapsing = true
+					return
 	var swinging_foot = self.get_swinging_foot()
 	var planted_foot = self.get_planted_foot()
 	swinging_foot.position += walk_speed * delta * Vector3.FORWARD
 	planted_foot.position -= walk_speed * delta * Vector3.FORWARD
+	var swinging_target = 0.0
+	if left_foot_planted:
+		swinging_target = r_foot_target_x
+	else:
+		swinging_target = l_foot_target_x
+	swinging_foot.position.x = lerp(swinging_foot.position.x, swinging_target, delta * 5)
 
 	if swinging_foot.position.dot(Vector3.FORWARD) > planted_foot.position.dot(Vector3.FORWARD) + stride_length / 2.0:
 		footsteps.play()

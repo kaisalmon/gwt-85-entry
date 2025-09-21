@@ -193,7 +193,7 @@ offset_bottom = 893.0
 layout_mode = 0
 offset_left = 9.0
 offset_top = 191.0
-offset_right = 185.0
+offset_right = 201.0
 offset_bottom = 885.0
 theme_override_fonts/normal_font = ExtResource("13_nmdnh")
 bbcode_enabled = true
@@ -214,6 +214,9 @@ Kai Salmon
 MUSIC BY 
 Andrey Sulimov 
     [color=\"#adca9a\"]andreyslmv.itch.io[/color]
+
+VIOLIN PERFORMED BY
+    Marie Hendel
 
 AUDIO BY 
 Andrey Sulimov 
@@ -249,7 +252,6 @@ Forest background
    by David Marah
    [color=\"#adca9a\"]aethrall.itch.io
        /demon-woods-parallax-background[/color]
-
 FONT
 Yolk font 
     by SomePX 
